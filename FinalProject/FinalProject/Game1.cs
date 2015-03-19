@@ -14,6 +14,7 @@ namespace FinalProject
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Screen current, next;
+        private const float VirtualWidth = 1920.0f, VirtualHeight = 1080.0f;
 
         public Game1()
         {
@@ -100,11 +101,11 @@ namespace FinalProject
 
         private Matrix GetResizeMatrix()
         {
-            float widthScale = GraphicsDevice.Viewport.Width / 800.0f;
-            float heightScale = GraphicsDevice.Viewport.Height / 600.0f;
+            float widthScale = GraphicsDevice.Viewport.Width / VirtualWidth;
+            float heightScale = GraphicsDevice.Viewport.Height / VirtualHeight;
             float scale = Math.Max(widthScale, heightScale);
-            float xChange = (GraphicsDevice.Viewport.Width / 2) - (800.0f * scale / 2);
-            float yChange = (GraphicsDevice.Viewport.Height / 2) - (600.0f * scale / 2);
+            float xChange = (GraphicsDevice.Viewport.Width / 2) - (VirtualWidth * scale / 2);
+            float yChange = (GraphicsDevice.Viewport.Height / 2) - (VirtualHeight * scale / 2);
             Matrix scaleMatrix = Matrix.CreateScale(scale);
             Matrix translateMatrix = Matrix.CreateTranslation(new Vector3(xChange, yChange, 0));
             return translateMatrix * scaleMatrix;
