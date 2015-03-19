@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
+using FinalProject.Screens;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using System;
 
 namespace FinalProject
 {
@@ -16,13 +11,32 @@ namespace FinalProject
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        private GraphicsDeviceManager graphics;
+        private SpriteBatch spriteBatch;
+        private Screen current, next;
 
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+        }
+
+        /// <summary>
+        /// This is called when the game should draw itself.
+        /// </summary>
+        /// <param name="gameTime">Provides a snapshot of timing values.</param>
+        protected override void Draw(GameTime gameTime)
+        {
+            GraphicsDevice.Clear(Color.CornflowerBlue);
+
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GetResizeMatrix());
+            if (current != null)
+            {
+                current.Draw(spriteBatch);
+            }
+            spriteBatch.End();
+
+            base.Draw(gameTime);
         }
 
         /// <summary>
@@ -33,7 +47,11 @@ namespace FinalProject
         /// </summary>
         protected override void Initialize()
         {
-            // TODO: Add your initialization logic here
+            graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            graphics.IsFullScreen = true;
+            graphics.ApplyChanges();
+            IsFixedTimeStep = false;
 
             base.Initialize();
         }
@@ -66,26 +84,30 @@ namespace FinalProject
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            // Allows the game to exit
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed)
-                this.Exit();
-
-            // TODO: Add your update logic here
+            if (current != null)
+            {
+                current.Update(gameTime);
+            }
 
             base.Update(gameTime);
         }
 
-        /// <summary>
-        /// This is called when the game should draw itself.
-        /// </summary>
-        /// <param name="gameTime">Provides a snapshot of timing values.</param>
-        protected override void Draw(GameTime gameTime)
+        private ContentManager GenerateNewContentManager()
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            ContentManager contentManager = new ContentManager(Services, "Content");
+            return contentManager;
+        }
 
-            // TODO: Add your drawing code here
-
-            base.Draw(gameTime);
+        private Matrix GetResizeMatrix()
+        {
+            float widthScale = GraphicsDevice.Viewport.Width / 800.0f;
+            float heightScale = GraphicsDevice.Viewport.Height / 600.0f;
+            float scale = Math.Max(widthScale, heightScale);
+            float xChange = (GraphicsDevice.Viewport.Width / 2) - (800.0f * scale / 2);
+            float yChange = (GraphicsDevice.Viewport.Height / 2) - (600.0f * scale / 2);
+            Matrix scaleMatrix = Matrix.CreateScale(scale);
+            Matrix translateMatrix = Matrix.CreateTranslation(new Vector3(xChange, yChange, 0));
+            return translateMatrix * scaleMatrix;
         }
     }
 }
