@@ -17,7 +17,7 @@ namespace FinalProject.Screens
             this.content = content;
         }
 
-        public sealed void Update(GameTime gameTime)
+        public void Update(GameTime gameTime)
         {
             if (state != ScreenState.Inactive)
             {
@@ -48,7 +48,7 @@ namespace FinalProject.Screens
             Set();
         }
 
-        public sealed void UnloadContent()
+        public void UnloadContent()
         {
             content.Unload();
         }
@@ -58,7 +58,7 @@ namespace FinalProject.Screens
             state = ScreenState.TransitioningOut;
         }
 
-        public sealed void LoadContentAsynchronously()
+        public void LoadContentAsynchronously()
         {
             new Thread(LoadContent).Start();
         }
