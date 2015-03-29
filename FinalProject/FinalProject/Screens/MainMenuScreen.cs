@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace FinalProject.Screens
+﻿namespace FinalProject.Screens
 {
-    class MainMenuScreen : Screen
+    internal class MainMenuScreen : Screen
     {
     }
 }
