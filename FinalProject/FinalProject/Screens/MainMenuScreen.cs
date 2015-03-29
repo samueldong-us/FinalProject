@@ -17,8 +17,9 @@ namespace FinalProject.Screens
         {
         }
 
-        protected override void LoadContent()
+        public override void LoadContent()
         {
+            base.LoadContent();
         }
 
         protected override void ScreenUpdate(float secondsPassed)

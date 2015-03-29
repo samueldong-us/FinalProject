@@ -31,7 +31,7 @@ namespace FinalProject.Screens
 
         protected abstract void ScreenUpdate(float secondsPassed);
 
-        protected virtual void LoadContent()
+        public virtual void LoadContent()
         {
             Set();
         }

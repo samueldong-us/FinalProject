@@ -13,7 +13,6 @@ namespace FinalProject.Screens
         private Video splashVideo;
         private MediaState lastVideoState;
 
-
         public SplashScreen(ContentManager contentManager)
             : base(contentManager)
         {
@@ -24,34 +23,38 @@ namespace FinalProject.Screens
         {
             if (state == ScreenState.Active)
             {
-                spriteBatch.Draw(splashVideoPlayer.GetTexture(), new Rectangle(0,0,1920,1080), Color.White);
+               spriteBatch.Draw(splashVideoPlayer.GetTexture(), new Rectangle(0, 0, 1920, 1080), Color.White);
             }
         }
 
-        protected override void LoadContent()
+        public override void LoadContent()
         {
             splashVideo = content.Load<Video>("Intro");
+            base.LoadContent();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
         {
-            switch (state) {
-                case ScreenState.TransitioningIn: {
-                    state = ScreenState.Active;
-                    splashVideoPlayer.Play(splashVideo);
-                } break;
-                case ScreenState.Active: {
-                    if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
+            switch (state)
+            {
+                case ScreenState.TransitioningIn:
                     {
-                        SplashScreenFinishedPlaying();
-                    }
-                    lastVideoState = splashVideoPlayer.State;
-                } break;
+                        state = ScreenState.Active;
+                        splashVideoPlayer.Play(splashVideo);
+                    } break;
+                case ScreenState.Active:
+                    {
+                        if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
+                        {
+                            SplashScreenFinishedPlaying();
+                        }
+                        lastVideoState = splashVideoPlayer.State;
+                    } break;
                 case ScreenState.TransitioningOut:
                     {
                         FinishedTransitioningOut();
                     } break;
-        }
+            }
         }
 
         public override void Reset()

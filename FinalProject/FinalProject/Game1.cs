@@ -16,6 +16,8 @@ namespace FinalProject
         private Screen current, next;
         private const float VirtualWidth = 1920.0f, VirtualHeight = 1080.0f;
 
+        private SplashScreen splashScreen1, splashScreen2;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -29,7 +31,6 @@ namespace FinalProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GetResizeMatrix());
             if (current != null)
             {
@@ -54,6 +55,12 @@ namespace FinalProject
             graphics.ApplyChanges();
             IsFixedTimeStep = false;
 
+            splashScreen1 = new SplashScreen(GenerateNewContentManager());
+            splashScreen1.SplashScreenFinishedPlaying = Screen1FinishedPlaying;
+            splashScreen1.FinishedTransitioningOut = Screen1FinishedTransitioningOut;
+            splashScreen2 = new SplashScreen(GenerateNewContentManager());
+            splashScreen2.SplashScreenFinishedPlaying = Screen2FinishedPlaying;
+            splashScreen2.FinishedTransitioningOut = Screen2FinishedTransitioningOut;
             base.Initialize();
         }
 
@@ -66,7 +73,10 @@ namespace FinalProject
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
 
-            // TODO: use this.Content to load your game content here
+            splashScreen1.LoadContent();
+            splashScreen2.LoadContent();
+            current = splashScreen1;
+            current.Start();
         }
 
         /// <summary>
@@ -91,6 +101,30 @@ namespace FinalProject
             }
 
             base.Update(gameTime);
+        }
+
+        private void Screen1FinishedPlaying()
+        {
+            splashScreen1.TransitionOut();
+        }
+
+        private void Screen2FinishedPlaying()
+        {
+            splashScreen2.TransitionOut();
+        }
+
+        private void Screen1FinishedTransitioningOut()
+        {
+            current = splashScreen2;
+            splashScreen2.Start();
+            splashScreen1.Stop();
+        }
+
+        private void Screen2FinishedTransitioningOut()
+        {
+            current = splashScreen1;
+            splashScreen1.Start();
+            splashScreen2.Stop();
         }
 
         private ContentManager GenerateNewContentManager()
