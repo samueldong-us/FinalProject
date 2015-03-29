@@ -17,6 +17,7 @@ namespace FinalProject.Screens
         protected Screen(ContentManager content)
         {
             this.content = content;
+            Set();
         }
 
         public void Update(GameTime gameTime)
