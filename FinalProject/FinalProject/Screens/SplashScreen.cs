@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework.Content;
+using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +9,12 @@ namespace FinalProject.Screens
 {
     class SplashScreen : Screen
     {
-        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        private TransitionOutComplete FinishedTransitioningOut;
+        public SplashScreen(ContentManager contentManager, TransitionOutComplete transitionOutCompleteDelegate) : base(contentManager)
+        {
+            FinishedTransitioningOut = transitionOutCompleteDelegate;
+        }
+        public override void Draw(SpriteBatch spriteBatch)
         {
             throw new NotImplementedException();
         }

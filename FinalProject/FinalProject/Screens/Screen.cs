@@ -7,6 +7,7 @@ namespace FinalProject.Screens
 {
     internal abstract class Screen
     {
+        public delegate void TransitionOutComplete();
         protected enum ScreenState { TransitioningIn, TransitioningOut, Active, Inactive };
 
         protected ContentManager content;
