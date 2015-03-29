@@ -5,9 +5,9 @@ namespace FinalProject.Screens
 {
     internal class MainMenuScreen : Screen
     {
-        private TransitionOutComplete FinishedTransitioningOut;
+        private ScreenEvent FinishedTransitioningOut;
 
-        public MainMenuScreen(ContentManager contentManager, TransitionOutComplete transitionOutCompleteDelegate)
+        public MainMenuScreen(ContentManager contentManager, ScreenEvent transitionOutCompleteDelegate)
             : base(contentManager)
         {
             FinishedTransitioningOut = transitionOutCompleteDelegate;
