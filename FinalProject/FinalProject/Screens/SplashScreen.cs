@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 
 namespace FinalProject.Screens
 {
@@ -16,27 +15,22 @@ namespace FinalProject.Screens
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            throw new NotImplementedException();
         }
 
         protected override void LoadContent()
         {
-            throw new NotImplementedException();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
         {
-            throw new NotImplementedException();
         }
 
         public override void Reset()
         {
-            base.Reset();
         }
 
         protected override void Set()
         {
-            throw new NotImplementedException();
         }
 
         public override void Start()
