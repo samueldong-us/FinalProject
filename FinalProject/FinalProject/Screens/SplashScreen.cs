@@ -13,8 +13,8 @@ namespace FinalProject.Screens
         private Video splashVideo;
         private MediaState lastVideoState;
 
-        public SplashScreen(ContentManager contentManager)
-            : base(contentManager)
+        public SplashScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
+            : base(contentManager, graphicsDevice)
         {
             splashVideoPlayer = new VideoPlayer();
         }
@@ -23,7 +23,7 @@ namespace FinalProject.Screens
         {
             if (state == ScreenState.Active)
             {
-               spriteBatch.Draw(splashVideoPlayer.GetTexture(), new Rectangle(0, 0, 1920, 1080), Color.White);
+                spriteBatch.Draw(splashVideoPlayer.GetTexture(), new Rectangle(0, 0, 1920, 1080), Color.White);
             }
         }
 
@@ -35,25 +35,13 @@ namespace FinalProject.Screens
 
         protected override void ScreenUpdate(float secondsPassed)
         {
-            switch (state)
+            if (state == ScreenState.Active)
             {
-                case ScreenState.TransitioningIn:
-                    {
-                        state = ScreenState.Active;
-                        splashVideoPlayer.Play(splashVideo);
-                    } break;
-                case ScreenState.Active:
-                    {
-                        if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
-                        {
-                            SplashScreenFinishedPlaying();
-                        }
-                        lastVideoState = splashVideoPlayer.State;
-                    } break;
-                case ScreenState.TransitioningOut:
-                    {
-                        FinishedTransitioningOut();
-                    } break;
+                if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
+                {
+                    SplashScreenFinishedPlaying();
+                }
+                lastVideoState = splashVideoPlayer.State;
             }
         }
 
@@ -68,7 +56,8 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
-            base.Start();
+            state = ScreenState.Active;
+            splashVideoPlayer.Play(splashVideo);
         }
 
         public override void Stop()
@@ -78,7 +67,7 @@ namespace FinalProject.Screens
 
         public override void TransitionOut()
         {
-            base.TransitionOut();
+            FinishedTransitioningOut();
         }
     }
 }

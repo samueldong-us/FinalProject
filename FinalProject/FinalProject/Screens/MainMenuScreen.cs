@@ -5,12 +5,11 @@ namespace FinalProject.Screens
 {
     internal class MainMenuScreen : Screen
     {
-        private ScreenEvent FinishedTransitioningOut;
+        public ScreenEvent FinishedTransitioningOut;
 
-        public MainMenuScreen(ContentManager contentManager, ScreenEvent transitionOutCompleteDelegate)
-            : base(contentManager)
+        public MainMenuScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
+            : base(contentManager, graphicsDevice)
         {
-            FinishedTransitioningOut = transitionOutCompleteDelegate;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

@@ -1,8 +1,8 @@
 using FinalProject.Screens;
+using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
-using System;
+using Microsoft.Xna.Framework.Input;
 
 namespace FinalProject
 {
@@ -14,9 +14,10 @@ namespace FinalProject
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Screen current, next;
-        private const float VirtualWidth = 1920.0f, VirtualHeight = 1080.0f;
+        private SpriteFont debugFont;
 
         private SplashScreen splashScreen1, splashScreen2;
+        private MainMenuScreen mainMenuScreen;
 
         public Game1()
         {
@@ -31,10 +32,14 @@ namespace FinalProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GetResizeMatrix());
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GameUtilities.GetResizeMatrix(GraphicsDevice));
             if (current != null)
             {
                 current.Draw(spriteBatch);
+            }
+            if (gameTime.ElapsedGameTime.TotalSeconds != 0)
+            {
+                spriteBatch.DrawString(debugFont, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Color.Red);
             }
             spriteBatch.End();
 
@@ -51,16 +56,18 @@ namespace FinalProject
         {
             graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             IsFixedTimeStep = false;
-
-            splashScreen1 = new SplashScreen(GenerateNewContentManager());
+            TextureUtilities.CreateRenderTarget(GraphicsDevice);
+            TextureUtilities.MakePlainTexture(GraphicsDevice);
+            splashScreen1 = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             splashScreen1.SplashScreenFinishedPlaying = Screen1FinishedPlaying;
             splashScreen1.FinishedTransitioningOut = Screen1FinishedTransitioningOut;
-            splashScreen2 = new SplashScreen(GenerateNewContentManager());
+            splashScreen2 = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             splashScreen2.SplashScreenFinishedPlaying = Screen2FinishedPlaying;
             splashScreen2.FinishedTransitioningOut = Screen2FinishedTransitioningOut;
+            mainMenuScreen = new MainMenuScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             base.Initialize();
         }
 
@@ -72,9 +79,10 @@ namespace FinalProject
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            debugFont = Content.Load<SpriteFont>("DebugFont");
             splashScreen1.LoadContent();
             splashScreen2.LoadContent();
+            mainMenuScreen.LoadContent();
             current = splashScreen1;
             current.Start();
         }
@@ -99,7 +107,10 @@ namespace FinalProject
             {
                 current.Update(gameTime);
             }
-
+            if (Keyboard.GetState().IsKeyDown(Keys.Q))
+            {
+                Exit();
+            }
             base.Update(gameTime);
         }
 
@@ -115,8 +126,8 @@ namespace FinalProject
 
         private void Screen1FinishedTransitioningOut()
         {
-            current = splashScreen2;
-            splashScreen2.Start();
+            current = mainMenuScreen;
+            mainMenuScreen.Start();
             splashScreen1.Stop();
         }
 
@@ -125,24 +136,6 @@ namespace FinalProject
             current = splashScreen1;
             splashScreen1.Start();
             splashScreen2.Stop();
-        }
-
-        private ContentManager GenerateNewContentManager()
-        {
-            ContentManager contentManager = new ContentManager(Services, "Content");
-            return contentManager;
-        }
-
-        private Matrix GetResizeMatrix()
-        {
-            float widthScale = GraphicsDevice.Viewport.Width / VirtualWidth;
-            float heightScale = GraphicsDevice.Viewport.Height / VirtualHeight;
-            float scale = Math.Max(widthScale, heightScale);
-            float xChange = (GraphicsDevice.Viewport.Width / 2) - (VirtualWidth * scale / 2);
-            float yChange = (GraphicsDevice.Viewport.Height / 2) - (VirtualHeight * scale / 2);
-            Matrix scaleMatrix = Matrix.CreateScale(scale);
-            Matrix translateMatrix = Matrix.CreateTranslation(new Vector3(xChange, yChange, 0));
-            return translateMatrix * scaleMatrix;
         }
     }
 }

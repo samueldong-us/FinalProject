@@ -12,11 +12,13 @@ namespace FinalProject.Screens
         protected enum ScreenState { TransitioningIn, TransitioningOut, Active, Inactive };
 
         protected ContentManager content;
+        protected GraphicsDevice graphicsDevice;
         protected ScreenState state;
 
-        protected Screen(ContentManager content)
+        protected Screen(ContentManager content, GraphicsDevice graphicsDevice)
         {
             this.content = content;
+            this.graphicsDevice = graphicsDevice;
         }
 
         public void Update(GameTime gameTime)

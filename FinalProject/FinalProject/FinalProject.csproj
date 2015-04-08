@@ -79,6 +79,9 @@
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\GameUtilities.cs" />
+    <Compile Include="Utilities\TextureUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
