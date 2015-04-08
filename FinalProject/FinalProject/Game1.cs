@@ -16,7 +16,7 @@ namespace FinalProject
         private Screen current, next;
         private SpriteFont debugFont;
 
-        private SplashScreen splashScreen1, splashScreen2;
+        private SplashScreen splashScreen;
         private MainMenuScreen mainMenuScreen;
 
         public Game1()
@@ -61,12 +61,9 @@ namespace FinalProject
             IsFixedTimeStep = false;
             TextureUtilities.CreateRenderTarget(GraphicsDevice);
             TextureUtilities.MakePlainTexture(GraphicsDevice);
-            splashScreen1 = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            splashScreen1.SplashScreenFinishedPlaying = Screen1FinishedPlaying;
-            splashScreen1.FinishedTransitioningOut = Screen1FinishedTransitioningOut;
-            splashScreen2 = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            splashScreen2.SplashScreenFinishedPlaying = Screen2FinishedPlaying;
-            splashScreen2.FinishedTransitioningOut = Screen2FinishedTransitioningOut;
+            splashScreen = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            splashScreen.SplashScreenFinishedPlaying = SplashScreenFinishedPlaying;
+            splashScreen.FinishedTransitioningOut = SplashScreenFinishedTransitioningOut;
             mainMenuScreen = new MainMenuScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             base.Initialize();
         }
@@ -80,10 +77,9 @@ namespace FinalProject
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             debugFont = Content.Load<SpriteFont>("DebugFont");
-            splashScreen1.LoadContent();
-            splashScreen2.LoadContent();
+            splashScreen.LoadContent();
             mainMenuScreen.LoadContent();
-            current = splashScreen1;
+            current = splashScreen;
             current.Start();
         }
 
@@ -114,28 +110,16 @@ namespace FinalProject
             base.Update(gameTime);
         }
 
-        private void Screen1FinishedPlaying()
+        private void SplashScreenFinishedPlaying()
         {
-            splashScreen1.TransitionOut();
+            splashScreen.TransitionOut();
         }
 
-        private void Screen2FinishedPlaying()
-        {
-            splashScreen2.TransitionOut();
-        }
-
-        private void Screen1FinishedTransitioningOut()
+        private void SplashScreenFinishedTransitioningOut()
         {
             current = mainMenuScreen;
             mainMenuScreen.Start();
-            splashScreen1.Stop();
-        }
-
-        private void Screen2FinishedTransitioningOut()
-        {
-            current = splashScreen1;
-            splashScreen1.Start();
-            splashScreen2.Stop();
+            splashScreen.Stop();
         }
     }
 }
