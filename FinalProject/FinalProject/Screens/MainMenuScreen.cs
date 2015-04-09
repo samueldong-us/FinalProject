@@ -69,7 +69,7 @@ namespace FinalProject.Screens
                     {
                         switch (key)
                         {
-                            case Keys.Space:
+                            case Keys.Enter:
                                 {
                                     StartingTransitioningOut(menuItems.GetSelected());
                                 } break;

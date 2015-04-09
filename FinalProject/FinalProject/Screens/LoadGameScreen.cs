@@ -70,7 +70,7 @@ namespace FinalProject.Screens
                     {
                         switch (key)
                         {
-                            case Keys.Space:
+                            case Keys.Enter:
                                 {
                                     if (currentPage != -1)
                                     {
@@ -174,6 +174,7 @@ namespace FinalProject.Screens
             {
                 savedGames[currentPage].Draw(spriteBatch);
             }
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "SELECT PROFILE", new Vector2(380, 210), Fonts.Green);
         }
 
         private void ScaleInFinished(float parameter)
