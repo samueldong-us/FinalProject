@@ -9,29 +9,59 @@ namespace FinalProject.Screens
     internal class MainMenuScreen : Screen
     {
         public ScreenEvent FinishedTransitioningOut;
+        public ScreenEvent StartingTransitioningOut;
         private Texture2D placeholder;
-        private InterpolatedValue scale;
+        private Texture2D background;
+        private InterpolatedValue scaleIn, scaleOut;
 
         public MainMenuScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
-            scale = new ExponentialInterpolatedValue(1, .01f, 2);
+            scaleIn = new ExponentialInterpolatedValue(.005f, 1, 2);
+            scaleIn.InterpolationFinished = ScaleInFinished;
+            scaleOut = new ExponentialInterpolatedValue(1, .005f, 2);
+            scaleOut.InterpolationFinished = ScaleOutFinished;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            TextureUtilities.DrawPixelatedTexture(spriteBatch, placeholder, Vector2.Zero, scale.GetValue(), graphicsDevice);
+            switch (state)
+            {
+                case ScreenState.TransitioningIn:
+                    {
+                        TextureUtilities.DrawPixelatedTexture(spriteBatch, background, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
+                    } break;
+                case ScreenState.Active:
+                    {
+                        spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
+                    } break;
+                case ScreenState.TransitioningOut:
+                    {
+                        TextureUtilities.DrawPixelatedTexture(spriteBatch, background, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
+                    } break;
+            }
         }
 
         public override void LoadContent()
         {
             placeholder = content.Load<Texture2D>("PixelateTest");
+            background = content.Load<Texture2D>("MenuBackground");
             base.LoadContent();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
         {
-            scale.Update(secondsPassed);
+            switch (state)
+            {
+                case ScreenState.TransitioningIn:
+                    {
+                        scaleIn.Update(secondsPassed);
+                    } break;
+                case ScreenState.TransitioningOut:
+                    {
+                        scaleOut.Update(secondsPassed);
+                    } break;
+            }
         }
 
         public override void Reset()
@@ -59,10 +89,20 @@ namespace FinalProject.Screens
 
         public override void KeyPressed(Keys key)
         {
-            if (key == Keys.Space)
+            if (state == ScreenState.Active && key == Keys.Space)
             {
-                scale.SetParameter(0);
+                StartingTransitioningOut();
             }
+        }
+
+        private void ScaleInFinished(float parameter)
+        {
+            state = ScreenState.Active;
+        }
+
+        private void ScaleOutFinished(float parameter)
+        {
+            FinishedTransitioningOut();
         }
     }
 }

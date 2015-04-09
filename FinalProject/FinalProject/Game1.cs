@@ -67,6 +67,8 @@ namespace FinalProject
             splashScreen.SplashScreenFinishedPlaying = SplashScreenFinishedPlaying;
             splashScreen.FinishedTransitioningOut = SplashScreenFinishedTransitioningOut;
             mainMenuScreen = new MainMenuScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            mainMenuScreen.StartingTransitioningOut = MainMenuScreenStartingTransitioningOut;
+            mainMenuScreen.FinishedTransitioningOut = MainMenuScreenFinishedTransitioningOut;
             base.Initialize();
         }
 
@@ -142,6 +144,18 @@ namespace FinalProject
             current = mainMenuScreen;
             mainMenuScreen.Start();
             splashScreen.Stop();
+        }
+
+        private void MainMenuScreenStartingTransitioningOut()
+        {
+            mainMenuScreen.TransitionOut();
+        }
+
+        private void MainMenuScreenFinishedTransitioningOut()
+        {
+            current = null;
+            mainMenuScreen.Stop();
+            mainMenuScreen.Reset();
         }
     }
 }
