@@ -24,8 +24,8 @@ namespace FinalProject.Screens
         {
             if (Selected && !Disabled)
             {
-                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle((int)position.X, (int)position.Y - 20, 100, 140), Fonts.Teal);
-                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle((int)position.X + 100, (int)position.Y - 20, 860, 140), Fonts.Teal * 0.27f);
+                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle((int)position.X, (int)position.Y, 100, 100), Fonts.Teal);
+                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle((int)position.X + 100, (int)position.Y, 860, 100), Fonts.Teal * 0.27f);
             }
             GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItems, Text, position + new Vector2(100, 55), Disabled ? Fonts.Teal * 0.27f : Fonts.Teal);
         }

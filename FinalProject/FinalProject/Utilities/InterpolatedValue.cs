@@ -37,10 +37,11 @@ namespace FinalProject.Utilities
             parameter += secondsPassed * timeScale;
             if (parameter > 1)
             {
+                float difference = parameter - 1;
                 parameter = 1;
                 if (InterpolationFinished != null)
                 {
-                    InterpolationFinished(parameter);
+                    InterpolationFinished(difference);
                 }
             }
         }

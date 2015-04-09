@@ -207,7 +207,7 @@ namespace FinalProject.Screens
                     if (i * 4 + j < savedNames.Count)
                     {
                         string currentName = savedNames[i * 4 + j];
-                        savedGames[i].AddItem(new MenuItem(new Vector2(280, 320 + j * 160), currentName));
+                        savedGames[i].AddItem(new MenuItem(new Vector2(280, 320 + j * 130), currentName));
                     }
                 }
             }
