@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace FinalProject.Screens
@@ -34,11 +35,19 @@ namespace FinalProject.Screens
 
         public string GetSelected()
         {
+            if (index == -1)
+            {
+                throw new Exception("MenuItemGroup Must Not Be Empty");
+            }
             return items[index].Text;
         }
 
         public void MoveDown()
         {
+            if (index == -1)
+            {
+                throw new Exception("MenuItemGroup Must Not Be Empty");
+            }
             do
             {
                 index = NextIndex();
@@ -48,6 +57,10 @@ namespace FinalProject.Screens
 
         public void MoveUp()
         {
+            if (index == -1)
+            {
+                throw new Exception("MenuItemGroup Must Not Be Empty");
+            }
             do
             {
                 index = LastIndex();
