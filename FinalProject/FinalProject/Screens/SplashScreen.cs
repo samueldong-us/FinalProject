@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace FinalProject.Screens
@@ -24,6 +25,14 @@ namespace FinalProject.Screens
             if (state == ScreenState.Active)
             {
                 spriteBatch.Draw(splashVideoPlayer.GetTexture(), new Rectangle(0, 0, 1920, 1080), Color.White);
+            }
+        }
+
+        public override void KeyPressed(Keys key)
+        {
+            if (key == Keys.Space)
+            {
+                SplashScreenFinishedPlaying("");
             }
         }
 

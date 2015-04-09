@@ -1,3 +1,4 @@
+using FinalProject.GameResources;
 using FinalProject.Screens;
 using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
@@ -15,6 +16,7 @@ namespace FinalProject
         private Screen current, next;
         private GraphicsDeviceManager graphics;
         private Keys[] lastPressedKeys;
+        private LoadGameScreen loadGameScreen;
         private MainMenuScreen mainMenuScreen;
         private SplashScreen splashScreen;
         private SpriteBatch spriteBatch;
@@ -61,12 +63,22 @@ namespace FinalProject
             IsFixedTimeStep = false;
             GraphicsUtilities.CreateRenderTarget(GraphicsDevice);
             GraphicsUtilities.MakePlainTexture(GraphicsDevice);
+            SaveGameManager.CreateSaveDirectory();
             splashScreen = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             splashScreen.SplashScreenFinishedPlaying = SplashScreenFinishedPlaying;
             splashScreen.FinishedTransitioningOut = SplashScreenFinishedTransitioningOut;
             mainMenuScreen = new MainMenuScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             mainMenuScreen.StartingTransitioningOut = MainMenuScreenStartingTransitioningOut;
             mainMenuScreen.FinishedTransitioningOut = MainMenuScreenFinishedTransitioningOut;
+            loadGameScreen = new LoadGameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            loadGameScreen.FinishedTransitioningOut = LoadGameScreenFinishedTransitioningOut;
+            loadGameScreen.StartingTransitioningOut = LoadGameScreenStartingTransitioningOut;
+            //Testing Purposes
+            for (int i = 0; i < 23; i++)
+            {
+                SaveGameManager.SaveGame(new SaveGame() { SaveName = "Test Save " + i });
+            }
+            //End Testing
             base.Initialize();
         }
 
@@ -132,6 +144,40 @@ namespace FinalProject
             lastPressedKeys = Keyboard.GetState().GetPressedKeys();
         }
 
+        private void LoadGameScreenFinishedTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        current = mainMenuScreen;
+                        mainMenuScreen.Start();
+                    } break;
+                default:
+                    {
+                        current = null;
+                    } break;
+            }
+            loadGameScreen.Stop();
+            loadGameScreen.UnloadContent();
+        }
+
+        private void LoadGameScreenStartingTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        mainMenuScreen.LoadContentAsynchronously();
+                    } break;
+                default:
+                    {
+                        SaveGameManager.GetSavedGame(message + ".sav");
+                    } break;
+            }
+            loadGameScreen.TransitionOut();
+        }
+
         private void MainMenuScreenFinishedTransitioningOut(string message)
         {
             switch (message)
@@ -142,7 +188,8 @@ namespace FinalProject
                     } break;
                 case "LOAD GAME":
                     {
-                        current = null;
+                        current = loadGameScreen;
+                        loadGameScreen.Start();
                     } break;
                 case "QUIT GAME":
                     {
@@ -150,7 +197,7 @@ namespace FinalProject
                     } break;
             }
             mainMenuScreen.Stop();
-            mainMenuScreen.Reset();
+            mainMenuScreen.UnloadContent();
         }
 
         private void MainMenuScreenStartingTransitioningOut(string message)
@@ -162,6 +209,7 @@ namespace FinalProject
                     } break;
                 case "LOAD GAME":
                     {
+                        loadGameScreen.LoadContentAsynchronously();
                     } break;
             }
             mainMenuScreen.TransitionOut();
@@ -177,6 +225,7 @@ namespace FinalProject
             current = mainMenuScreen;
             mainMenuScreen.Start();
             splashScreen.Stop();
+            splashScreen.UnloadContent();
         }
     }
 }
