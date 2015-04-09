@@ -12,13 +12,12 @@ namespace FinalProject
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
-        private GraphicsDeviceManager graphics;
-        private SpriteBatch spriteBatch;
         private Screen current, next;
+        private GraphicsDeviceManager graphics;
         private Keys[] lastPressedKeys;
-
-        private SplashScreen splashScreen;
         private MainMenuScreen mainMenuScreen;
+        private SplashScreen splashScreen;
+        private SpriteBatch spriteBatch;
 
         public Game1()
         {
@@ -133,32 +132,6 @@ namespace FinalProject
             lastPressedKeys = Keyboard.GetState().GetPressedKeys();
         }
 
-        private void SplashScreenFinishedPlaying(string message)
-        {
-            splashScreen.TransitionOut();
-        }
-
-        private void SplashScreenFinishedTransitioningOut(string message)
-        {
-            current = mainMenuScreen;
-            mainMenuScreen.Start();
-            splashScreen.Stop();
-        }
-
-        private void MainMenuScreenStartingTransitioningOut(string message)
-        {
-            switch (message)
-            {
-                case "NEW GAME":
-                    {
-                    } break;
-                case "LOAD GAME":
-                    {
-                    } break;
-            }
-            mainMenuScreen.TransitionOut();
-        }
-
         private void MainMenuScreenFinishedTransitioningOut(string message)
         {
             switch (message)
@@ -178,6 +151,32 @@ namespace FinalProject
             }
             mainMenuScreen.Stop();
             mainMenuScreen.Reset();
+        }
+
+        private void MainMenuScreenStartingTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "NEW GAME":
+                    {
+                    } break;
+                case "LOAD GAME":
+                    {
+                    } break;
+            }
+            mainMenuScreen.TransitionOut();
+        }
+
+        private void SplashScreenFinishedPlaying(string message)
+        {
+            splashScreen.TransitionOut();
+        }
+
+        private void SplashScreenFinishedTransitioningOut(string message)
+        {
+            current = mainMenuScreen;
+            mainMenuScreen.Start();
+            splashScreen.Stop();
         }
     }
 }

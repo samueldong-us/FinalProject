@@ -11,11 +11,10 @@ namespace FinalProject.Screens
         public ScreenEvent FinishedTransitioningOut;
         public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
-        private Texture2D snapshot;
         private bool firstIteration;
         private MenuItemGroup menuItems;
-
         private InterpolatedValue scaleIn, scaleOut;
+        private Texture2D snapshot;
 
         public MainMenuScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -64,52 +63,6 @@ namespace FinalProject.Screens
             }
         }
 
-        public override void LoadContent()
-        {
-            background = content.Load<Texture2D>("MenuBackground");
-            base.LoadContent();
-        }
-
-        protected override void ScreenUpdate(float secondsPassed)
-        {
-            switch (state)
-            {
-                case ScreenState.TransitioningIn:
-                    {
-                        scaleIn.Update(secondsPassed);
-                    } break;
-                case ScreenState.TransitioningOut:
-                    {
-                        scaleOut.Update(secondsPassed);
-                    } break;
-            }
-        }
-
-        public override void Reset()
-        {
-        }
-
-        protected override void Set()
-        {
-            firstIteration = true;
-        }
-
-        public override void Start()
-        {
-            base.Start();
-        }
-
-        public override void Stop()
-        {
-            base.Stop();
-        }
-
-        public override void TransitionOut()
-        {
-            snapshot = GraphicsUtilities.DuplicateTexture(GraphicsUtilities.GetTexture(), graphicsDevice);
-            base.TransitionOut();
-        }
-
         public override void KeyPressed(Keys key)
         {
             switch (state)
@@ -133,6 +86,52 @@ namespace FinalProject.Screens
                         }
                     } break;
             }
+        }
+
+        public override void LoadContent()
+        {
+            background = content.Load<Texture2D>("MenuBackground");
+            base.LoadContent();
+        }
+
+        public override void Reset()
+        {
+        }
+
+        public override void Start()
+        {
+            base.Start();
+        }
+
+        public override void Stop()
+        {
+            base.Stop();
+        }
+
+        public override void TransitionOut()
+        {
+            snapshot = GraphicsUtilities.DuplicateTexture(GraphicsUtilities.GetTexture(), graphicsDevice);
+            base.TransitionOut();
+        }
+
+        protected override void ScreenUpdate(float secondsPassed)
+        {
+            switch (state)
+            {
+                case ScreenState.TransitioningIn:
+                    {
+                        scaleIn.Update(secondsPassed);
+                    } break;
+                case ScreenState.TransitioningOut:
+                    {
+                        scaleOut.Update(secondsPassed);
+                    } break;
+            }
+        }
+
+        protected override void Set()
+        {
+            firstIteration = true;
         }
 
         private void ScaleInFinished(float parameter)

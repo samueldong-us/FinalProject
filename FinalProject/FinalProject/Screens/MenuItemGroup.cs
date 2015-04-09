@@ -1,28 +1,17 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.Screens
 {
     internal class MenuItemGroup
     {
-        private List<MenuItem> items;
         private int index;
+        private List<MenuItem> items;
 
         public MenuItemGroup()
         {
             items = new List<MenuItem>();
             index = -1;
-        }
-
-        private void UpdateItems()
-        {
-            for (int i = 0; i < items.Count; i++)
-            {
-                items[i].Selected = i == index;
-            }
         }
 
         public void AddItem(MenuItem item)
@@ -35,21 +24,17 @@ namespace FinalProject.Screens
             UpdateItems();
         }
 
-        private int NextIndex()
+        public void Draw(SpriteBatch spriteBatch)
         {
-            return (index + 1) % items.Count;
+            foreach (MenuItem item in items)
+            {
+                item.Draw(spriteBatch);
+            }
         }
 
-        private int LastIndex()
+        public string GetSelected()
         {
-            if (index > 0)
-            {
-                return index - 1;
-            }
-            else
-            {
-                return items.Count - 1;
-            }
+            return items[index].Text;
         }
 
         public void MoveDown()
@@ -70,17 +55,29 @@ namespace FinalProject.Screens
             UpdateItems();
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        private int LastIndex()
         {
-            foreach (MenuItem item in items)
+            if (index > 0)
             {
-                item.Draw(spriteBatch);
+                return index - 1;
+            }
+            else
+            {
+                return items.Count - 1;
             }
         }
 
-        public string GetSelected()
+        private int NextIndex()
         {
-            return items[index].Text;
+            return (index + 1) % items.Count;
+        }
+
+        private void UpdateItems()
+        {
+            for (int i = 0; i < items.Count; i++)
+            {
+                items[i].Selected = i == index;
+            }
         }
     }
 }

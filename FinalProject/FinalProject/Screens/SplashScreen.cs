@@ -9,9 +9,9 @@ namespace FinalProject.Screens
     {
         public ScreenEvent FinishedTransitioningOut;
         public ScreenEvent SplashScreenFinishedPlaying;
-        private VideoPlayer splashVideoPlayer;
-        private Video splashVideo;
         private MediaState lastVideoState;
+        private Video splashVideo;
+        private VideoPlayer splashVideoPlayer;
 
         public SplashScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -33,25 +33,8 @@ namespace FinalProject.Screens
             base.LoadContent();
         }
 
-        protected override void ScreenUpdate(float secondsPassed)
-        {
-            if (state == ScreenState.Active)
-            {
-                if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
-                {
-                    SplashScreenFinishedPlaying("");
-                }
-                lastVideoState = splashVideoPlayer.State;
-            }
-        }
-
         public override void Reset()
         {
-        }
-
-        protected override void Set()
-        {
-            lastVideoState = MediaState.Stopped;
         }
 
         public override void Start()
@@ -68,6 +51,23 @@ namespace FinalProject.Screens
         public override void TransitionOut()
         {
             FinishedTransitioningOut("");
+        }
+
+        protected override void ScreenUpdate(float secondsPassed)
+        {
+            if (state == ScreenState.Active)
+            {
+                if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
+                {
+                    SplashScreenFinishedPlaying("");
+                }
+                lastVideoState = splashVideoPlayer.State;
+            }
+        }
+
+        protected override void Set()
+        {
+            lastVideoState = MediaState.Stopped;
         }
     }
 }

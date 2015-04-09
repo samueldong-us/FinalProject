@@ -1,20 +1,14 @@
 ﻿using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.Screens
 {
     internal class MenuItem
     {
-        private Vector2 position;
-        public bool Selected;
         public bool Disabled;
-
-        public string Text { get; private set; }
+        public bool Selected;
+        private Vector2 position;
 
         public MenuItem(Vector2 position, string text)
         {
@@ -23,6 +17,8 @@ namespace FinalProject.Screens
             Selected = false;
             Disabled = false;
         }
+
+        public string Text { get; private set; }
 
         public void Draw(SpriteBatch spriteBatch)
         {
