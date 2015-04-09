@@ -80,7 +80,11 @@
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\CubicInterpolatedValue.cs" />
+    <Compile Include="Utilities\ExponentialnterpolatedValue.cs" />
     <Compile Include="Utilities\GameUtilities.cs" />
+    <Compile Include="Utilities\InterpolatedValue.cs" />
+    <Compile Include="Utilities\LinearInterpolatedValue.cs" />
     <Compile Include="Utilities\TextureUtilities.cs" />
   </ItemGroup>
   <ItemGroup>
