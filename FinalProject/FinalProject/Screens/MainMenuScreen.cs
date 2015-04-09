@@ -41,8 +41,7 @@ namespace FinalProject.Screens
                         {
                             firstIteration = false;
                             GraphicsUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
-                            spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-                            menuItems.Draw(spriteBatch);
+                            DrawScreen(spriteBatch);
                             GraphicsUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
                             snapshot = GraphicsUtilities.DuplicateTexture(GraphicsUtilities.GetTexture(), graphicsDevice);
                         }
@@ -51,8 +50,7 @@ namespace FinalProject.Screens
                 case ScreenState.Active:
                     {
                         GraphicsUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
-                        spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-                        menuItems.Draw(spriteBatch);
+                        DrawScreen(spriteBatch);
                         GraphicsUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
                         spriteBatch.Draw(GraphicsUtilities.GetTexture(), new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
                     } break;
@@ -132,6 +130,12 @@ namespace FinalProject.Screens
         protected override void Set()
         {
             firstIteration = true;
+        }
+
+        private void DrawScreen(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
+            menuItems.Draw(spriteBatch);
         }
 
         private void ScaleInFinished(float parameter)

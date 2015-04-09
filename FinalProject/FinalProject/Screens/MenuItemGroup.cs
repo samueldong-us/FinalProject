@@ -61,9 +61,14 @@ namespace FinalProject.Screens
             {
                 throw new Exception("MenuItemGroup Must Not Be Empty");
             }
+            int startingIndex = index;
             do
             {
                 index = LastIndex();
+                if (index == startingIndex)
+                {
+                    throw new Exception("At Least One Menu Item Must Be Enabled");
+                }
             } while (items[index].Disabled);
             UpdateItems();
         }
