@@ -10,14 +10,10 @@ namespace FinalProject.Screens
     {
         public ScreenEvent FinishedTransitioningOut;
         public ScreenEvent StartingTransitioningOut;
-        private Texture2D placeholder;
         private Texture2D background;
-        private Texture2D buttonStale;
-        private Texture2D screenShot;
-        private SpriteFont currFont;
-        private int buttonX;
-        private int buttonY;
-        private bool first = true;
+        private Texture2D snapshot;
+        private bool firstIteration;
+        private MenuItemGroup menuItems;
 
         private InterpolatedValue scaleIn, scaleOut;
 
@@ -28,6 +24,12 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(1, .005f, 3);
             scaleOut.InterpolationFinished = ScaleOutFinished;
+            menuItems = new MenuItemGroup();
+            menuItems.AddItem(new MenuItem(new Vector2(280, 160), "NEW GAME"));
+            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LOAD GAME"));
+            menuItems.AddItem(new MenuItem(new Vector2(280, 480), "SETTINGS") { Disabled = true });
+            menuItems.AddItem(new MenuItem(new Vector2(280, 640), "CREDITS") { Disabled = true });
+            menuItems.AddItem(new MenuItem(new Vector2(280, 800), "QUIT GAME"));
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -36,43 +38,35 @@ namespace FinalProject.Screens
             {
                 case ScreenState.TransitioningIn:
                     {
-                        if (first)
+                        if (firstIteration)
                         {
-                            first = false;
-                            TextureUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
+                            firstIteration = false;
+                            GraphicsUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
                             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-                            spriteBatch.Draw(buttonStale, new Rectangle(buttonX, buttonY, buttonStale.Width, buttonStale.Height), Color.White);
-                            spriteBatch.Draw(TextureUtilities.PlainTexture, new Rectangle(buttonX-3,buttonY-1,120, 30), Color.Blue);
-                            spriteBatch.DrawString(currFont, "Butt Stuff", new Vector2(buttonX, buttonY), Color.PaleGoldenrod);
-                            TextureUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
-                            screenShot = TextureUtilities.DuplicateTexture(TextureUtilities.GetTexture(), graphicsDevice);
+                            menuItems.Draw(spriteBatch);
+                            GraphicsUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
+                            snapshot = GraphicsUtilities.DuplicateTexture(GraphicsUtilities.GetTexture(), graphicsDevice);
                         }
-                        TextureUtilities.DrawPixelatedTexture(spriteBatch, screenShot, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.DrawPixelatedTexture(spriteBatch, snapshot, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
                     } break;
                 case ScreenState.Active:
                     {
-                        TextureUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
-
+                        GraphicsUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
                         spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-                        spriteBatch.Draw(buttonStale, new Rectangle(buttonX, buttonY, buttonStale.Width, buttonStale.Height), Color.White);
-                        spriteBatch.Draw(TextureUtilities.PlainTexture, new Rectangle(buttonX - 3, buttonY -1, 120, 30), Color.Blue);
-                        spriteBatch.DrawString(currFont, "Butt Stuff", new Vector2(buttonX, buttonY), Color.PaleGoldenrod);
-                        TextureUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
-                        spriteBatch.Draw(TextureUtilities.GetTexture(), new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
+                        menuItems.Draw(spriteBatch);
+                        GraphicsUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
+                        spriteBatch.Draw(GraphicsUtilities.GetTexture(), new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
                     } break;
                 case ScreenState.TransitioningOut:
                     {
-                        TextureUtilities.DrawPixelatedTexture(spriteBatch, screenShot, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.DrawPixelatedTexture(spriteBatch, snapshot, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
                     } break;
             }
         }
 
         public override void LoadContent()
         {
-            placeholder = content.Load<Texture2D>("PixelateTest");
             background = content.Load<Texture2D>("MenuBackground");
-            buttonStale = content.Load<Texture2D>("Button_0");
-            currFont = content.Load<SpriteFont>("DebugFont");
             base.LoadContent();
         }
 
@@ -97,8 +91,7 @@ namespace FinalProject.Screens
 
         protected override void Set()
         {
-            buttonX = Constants.VirtualWidth / 2;
-            buttonY = Constants.VirtualHeight / 2;
+            firstIteration = true;
         }
 
         public override void Start()
@@ -113,31 +106,32 @@ namespace FinalProject.Screens
 
         public override void TransitionOut()
         {
-            screenShot = TextureUtilities.DuplicateTexture(TextureUtilities.GetTexture(), graphicsDevice);
+            snapshot = GraphicsUtilities.DuplicateTexture(GraphicsUtilities.GetTexture(), graphicsDevice);
             base.TransitionOut();
         }
 
         public override void KeyPressed(Keys key)
         {
-            if (state == ScreenState.Active && key == Keys.Space)
+            switch (state)
             {
-                StartingTransitioningOut();
-            }
-            if (state == ScreenState.Active && key == Keys.Up)
-            {
-                buttonY -= 10;
-            }
-            if (state == ScreenState.Active && key == Keys.Down)
-            {
-                buttonY += 10;
-            }
-            if (state == ScreenState.Active && key == Keys.Left)
-            {
-                buttonX -= 10;
-            }
-            if (state == ScreenState.Active && key == Keys.Right)
-            {
-                buttonX += 10;
+                case ScreenState.Active:
+                    {
+                        switch (key)
+                        {
+                            case Keys.Space:
+                                {
+                                    StartingTransitioningOut(menuItems.GetSelected());
+                                } break;
+                            case Keys.Up:
+                                {
+                                    menuItems.MoveUp();
+                                } break;
+                            case Keys.Down:
+                                {
+                                    menuItems.MoveDown();
+                                } break;
+                        }
+                    } break;
             }
         }
 
@@ -148,7 +142,7 @@ namespace FinalProject.Screens
 
         private void ScaleOutFinished(float parameter)
         {
-            FinishedTransitioningOut();
+            FinishedTransitioningOut(menuItems.GetSelected());
         }
     }
 }

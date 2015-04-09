@@ -77,11 +77,14 @@
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
+    <Compile Include="Screens\MenuItem.cs" />
+    <Compile Include="Screens\MenuItemGroup.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\CubicInterpolatedValue.cs" />
     <Compile Include="Utilities\ExponentialnterpolatedValue.cs" />
+    <Compile Include="Utilities\Fonts.cs" />
     <Compile Include="Utilities\GameUtilities.cs" />
     <Compile Include="Utilities\InterpolatedValue.cs" />
     <Compile Include="Utilities\LinearInterpolatedValue.cs" />

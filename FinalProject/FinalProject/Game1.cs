@@ -15,7 +15,6 @@ namespace FinalProject
         private GraphicsDeviceManager graphics;
         private SpriteBatch spriteBatch;
         private Screen current, next;
-        private SpriteFont debugFont;
         private Keys[] lastPressedKeys;
 
         private SplashScreen splashScreen;
@@ -41,7 +40,7 @@ namespace FinalProject
             }
             if (gameTime.ElapsedGameTime.TotalSeconds != 0)
             {
-                spriteBatch.DrawString(debugFont, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Color.Red);
+                spriteBatch.DrawString(Fonts.Debug, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Fonts.Red);
             }
             spriteBatch.End();
 
@@ -61,8 +60,8 @@ namespace FinalProject
             //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             IsFixedTimeStep = false;
-            TextureUtilities.CreateRenderTarget(GraphicsDevice);
-            TextureUtilities.MakePlainTexture(GraphicsDevice);
+            GraphicsUtilities.CreateRenderTarget(GraphicsDevice);
+            GraphicsUtilities.MakePlainTexture(GraphicsDevice);
             splashScreen = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             splashScreen.SplashScreenFinishedPlaying = SplashScreenFinishedPlaying;
             splashScreen.FinishedTransitioningOut = SplashScreenFinishedTransitioningOut;
@@ -80,7 +79,7 @@ namespace FinalProject
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            debugFont = Content.Load<SpriteFont>("DebugFont");
+            Fonts.LoadFonts(Content);
             splashScreen.LoadContent();
             mainMenuScreen.LoadContent();
             current = splashScreen;
@@ -134,26 +133,49 @@ namespace FinalProject
             lastPressedKeys = Keyboard.GetState().GetPressedKeys();
         }
 
-        private void SplashScreenFinishedPlaying()
+        private void SplashScreenFinishedPlaying(string message)
         {
             splashScreen.TransitionOut();
         }
 
-        private void SplashScreenFinishedTransitioningOut()
+        private void SplashScreenFinishedTransitioningOut(string message)
         {
             current = mainMenuScreen;
             mainMenuScreen.Start();
             splashScreen.Stop();
         }
 
-        private void MainMenuScreenStartingTransitioningOut()
+        private void MainMenuScreenStartingTransitioningOut(string message)
         {
+            switch (message)
+            {
+                case "NEW GAME":
+                    {
+                    } break;
+                case "LOAD GAME":
+                    {
+                    } break;
+            }
             mainMenuScreen.TransitionOut();
         }
 
-        private void MainMenuScreenFinishedTransitioningOut()
+        private void MainMenuScreenFinishedTransitioningOut(string message)
         {
-            current = null;
+            switch (message)
+            {
+                case "NEW GAME":
+                    {
+                        current = null;
+                    } break;
+                case "LOAD GAME":
+                    {
+                        current = null;
+                    } break;
+                case "QUIT GAME":
+                    {
+                        Exit();
+                    } break;
+            }
             mainMenuScreen.Stop();
             mainMenuScreen.Reset();
         }

@@ -4,7 +4,7 @@ using System;
 
 namespace FinalProject.Utilities
 {
-    internal static class TextureUtilities
+    internal static class GraphicsUtilities
     {
         private static RenderTarget2D renderTarget = null;
         public static Texture2D PlainTexture = null;
@@ -112,6 +112,13 @@ namespace FinalProject.Utilities
             }
             texture.SetData<Color>(rawArray);
             return texture;
+        }
+
+        public static void DrawStringVerticallyCentered(SpriteBatch spriteBatch, SpriteFont spriteFont, String text, Vector2 location, Color color)
+        {
+            Vector2 stringSize = spriteFont.MeasureString(text);
+            location.Y -= stringSize.Y / 2;
+            spriteBatch.DrawString(spriteFont, text, location, color);
         }
     }
 }

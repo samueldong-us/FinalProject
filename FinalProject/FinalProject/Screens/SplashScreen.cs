@@ -39,7 +39,7 @@ namespace FinalProject.Screens
             {
                 if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
                 {
-                    SplashScreenFinishedPlaying();
+                    SplashScreenFinishedPlaying("");
                 }
                 lastVideoState = splashVideoPlayer.State;
             }
@@ -67,7 +67,7 @@ namespace FinalProject.Screens
 
         public override void TransitionOut()
         {
-            FinishedTransitioningOut();
+            FinishedTransitioningOut("");
         }
     }
 }
