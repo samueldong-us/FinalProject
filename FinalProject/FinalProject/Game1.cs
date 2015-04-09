@@ -3,6 +3,7 @@ using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace FinalProject
 {
@@ -15,6 +16,7 @@ namespace FinalProject
         private SpriteBatch spriteBatch;
         private Screen current, next;
         private SpriteFont debugFont;
+        private Keys[] lastPressedKeys;
 
         private SplashScreen splashScreen;
         private MainMenuScreen mainMenuScreen;
@@ -103,11 +105,31 @@ namespace FinalProject
             {
                 current.Update(gameTime);
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Q))
-            {
-                Exit();
-            }
+            CheckPressedKeys();
             base.Update(gameTime);
+        }
+
+        private void CheckPressedKeys()
+        {
+            if (lastPressedKeys != null && current != null)
+            {
+                Keys[] currentPressedKeys = Keyboard.GetState().GetPressedKeys();
+                foreach (Keys key in currentPressedKeys)
+                {
+                    if (!Array.Exists<Keys>(lastPressedKeys, element => element == key))
+                    {
+                        current.KeyPressed(key);
+                    }
+                }
+                foreach (Keys key in lastPressedKeys)
+                {
+                    if (!Array.Exists<Keys>(currentPressedKeys, element => element == key))
+                    {
+                        current.KeyReleased(key);
+                    }
+                }
+            }
+            lastPressedKeys = Keyboard.GetState().GetPressedKeys();
         }
 
         private void SplashScreenFinishedPlaying()

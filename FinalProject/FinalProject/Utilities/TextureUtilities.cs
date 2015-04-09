@@ -54,9 +54,32 @@ namespace FinalProject.Utilities
             }
         }
 
+        public static void DrawPixelatedTexture(SpriteBatch spriteBatch, Texture2D source, Vector2 position, float scale, GraphicsDevice graphicsDevice)
+        {
+            Rectangle destination = new Rectangle((int)position.X, (int)position.Y, source.Width, source.Height);
+            Rectangle scaled = new Rectangle(0, 0, (int)(source.Width * scale), (int)(source.Height * scale));
+            BeginDrawingToTexture(spriteBatch, graphicsDevice);
+            spriteBatch.Draw(source, scaled, Color.White);
+            spriteBatch.End();
+            graphicsDevice.SetRenderTarget(null);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, GameUtilities.GetResizeMatrix(graphicsDevice));
+            spriteBatch.Draw(GetTexture(), destination, scaled, Color.White);
+            spriteBatch.End();
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GameUtilities.GetResizeMatrix(graphicsDevice));
+        }
+
         public static Texture2D GetTexture()
         {
             return (Texture2D)renderTarget;
+        }
+
+        public static Texture2D DuplicateTexture(Texture2D texture, GraphicsDevice graphicsDevice)
+        {
+            Texture2D duplicate = new Texture2D(graphicsDevice, texture.Width, texture.Height);
+            Color[] rawArray = new Color[texture.Width * texture.Height];
+            texture.GetData<Color>(rawArray);
+            duplicate.SetData<Color>(rawArray);
+            return duplicate;
         }
 
         public static Color[,] GetColorsFromTexture(Texture2D texture)

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using System.Threading;
 
 namespace FinalProject.Screens
@@ -66,6 +67,14 @@ namespace FinalProject.Screens
         public void LoadContentAsynchronously()
         {
             new Thread(LoadContent).Start();
+        }
+
+        public virtual void KeyPressed(Keys key)
+        {
+        }
+
+        public virtual void KeyReleased(Keys key)
+        {
         }
     }
 }
