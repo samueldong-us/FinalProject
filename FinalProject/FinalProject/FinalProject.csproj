@@ -84,6 +84,7 @@
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\MenuItem.cs" />
     <Compile Include="Screens\MenuItemGroup.cs" />
+    <Compile Include="Screens\SelectStageScreen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\UpgradeItemGroup.cs" />
