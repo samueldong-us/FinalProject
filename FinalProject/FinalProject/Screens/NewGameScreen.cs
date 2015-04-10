@@ -9,18 +9,17 @@ namespace FinalProject.Screens
 {
     internal class NewGameScreen : Screen
     {
+        public SaveGame currentGame;
         public ScreenEvent FinishedTransitioningOut;
         public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private bool firstIteration;
-        private MenuItemGroup menuItems;
-        private MenuItem userGameName;
-        private InterpolatedValue scaleIn, scaleOut;
-        private Texture2D snapshot;
-        private string selected;
-        public SaveGame currentGame;
-        private enum Error { None, Exists, Empty}
         private Error lastError;
+        private MenuItemGroup menuItems;
+        private InterpolatedValue scaleIn, scaleOut;
+        private string selected;
+        private Texture2D snapshot;
+        private MenuItem userGameName;
 
         public NewGameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -34,6 +33,8 @@ namespace FinalProject.Screens
             menuItems.AddItem(userGameName);
             lastError = Error.None;
         }
+
+        private enum Error { None, Exists, Empty }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -75,15 +76,20 @@ namespace FinalProject.Screens
                         {
                             case Keys.Enter:
                                 {
-                                    if(SaveGameManager.SaveExists(userGameName.Text + ".sav")){
+                                    if (SaveGameManager.SaveExists(userGameName.Text + ".sav"))
+                                    {
                                         lastError = Error.Exists;
-                                    }else if(userGameName.Text.Trim().Equals("")){
+                                    }
+                                    else if (userGameName.Text.Trim().Equals(""))
+                                    {
                                         lastError = Error.Empty;
-                                    }else{
-                                    currentGame = new SaveGame();
-                                    currentGame.SaveName = userGameName.Text;
-                                    selected = menuItems.GetSelected();
-                                    StartingTransitioningOut(selected);
+                                    }
+                                    else
+                                    {
+                                        currentGame = new SaveGame();
+                                        currentGame.SaveName = userGameName.Text;
+                                        selected = menuItems.GetSelected();
+                                        StartingTransitioningOut(selected);
                                     }
                                 } break;
                             case Keys.Up:
@@ -164,6 +170,14 @@ namespace FinalProject.Screens
             firstIteration = true;
         }
 
+        private void AddCharacterTo(string userKeyPress)
+        {
+            if (Fonts.MenuItems.MeasureString(userGameName.Text + userKeyPress).X < 840)
+            {
+                userGameName.Text += userKeyPress;
+            }
+        }
+
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
@@ -174,11 +188,19 @@ namespace FinalProject.Screens
                 case Error.Empty:
                     {
                         GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeBoldCredits, "INVALID NAME", new Vector2(380, 620), Fonts.Red);
-                    }break;
+                    } break;
                 case Error.Exists:
                     {
                         GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeBoldCredits, "NAME ALREADY FOUND", new Vector2(380, 620), Fonts.Red);
-                    }break;
+                    } break;
+            }
+        }
+
+        private void RemoveCharacterFrom()
+        {
+            if (userGameName.Text.Length > 0)
+            {
+                userGameName.Text = userGameName.Text.Substring(0, userGameName.Text.Length - 1);
             }
         }
 
@@ -190,22 +212,6 @@ namespace FinalProject.Screens
         private void ScaleOutFinished(float parameter)
         {
             FinishedTransitioningOut(selected);
-        }
-
-        private void AddCharacterTo(string userKeyPress)
-        {
-            if (Fonts.MenuItems.MeasureString(userGameName.Text + userKeyPress).X < 840)
-            {
-                userGameName.Text += userKeyPress;
-            }
-        }
-
-        private void RemoveCharacterFrom()
-        {
-            if (userGameName.Text.Length > 0)
-            {
-                userGameName.Text = userGameName.Text.Substring(0,userGameName.Text.Length-1);
-            }
         }
     }
 }

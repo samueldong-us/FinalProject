@@ -14,18 +14,18 @@ namespace FinalProject
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         private CommandCenterScreen commandCenterScreen;
-        private Screen current, next;
+        private Screen current;
         private GraphicsDeviceManager graphics;
         private Keys[] lastPressedKeys;
         private LoadGameScreen loadGameScreen;
         private MainMenuScreen mainMenuScreen;
+        private NewGameScreen newGameScreen;
+        private SelectCharacterScreen selectCharacterScreen;
+        private SelectDifficultyScreen selectDifficultyScreen;
         private SelectStageScreen selectStageScreen;
         private SplashScreen splashScreen;
         private SpriteBatch spriteBatch;
         private UpgradeScreen upgradeScreen;
-        private NewGameScreen newGameScreen;
-        private SelectCharacterScreen selectCharacterScreen;
-        private SelectDifficultyScreen selectDifficultyScreen;
 
         public Game1()
         {
@@ -70,40 +70,33 @@ namespace FinalProject
             GraphicsUtilities.CreateRenderTarget(GraphicsDevice);
             GraphicsUtilities.MakePlainTexture(GraphicsDevice);
             SaveGameManager.CreateSaveDirectory();
-            splashScreen = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            splashScreen.SplashScreenFinishedPlaying = SplashScreenFinishedPlaying;
-            splashScreen.FinishedTransitioningOut = SplashScreenFinishedTransitioningOut;
-            mainMenuScreen = new MainMenuScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            mainMenuScreen.StartingTransitioningOut = MainMenuScreenStartingTransitioningOut;
-            mainMenuScreen.FinishedTransitioningOut = MainMenuScreenFinishedTransitioningOut;
+            commandCenterScreen = new CommandCenterScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            commandCenterScreen.FinishedTransitioningOut = CommandCenterFinishedTransitioningOut;
+            commandCenterScreen.StartingTransitioningOut = CommandCenterStartingTransitioningOut;
             loadGameScreen = new LoadGameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             loadGameScreen.FinishedTransitioningOut = LoadGameScreenFinishedTransitioningOut;
             loadGameScreen.StartingTransitioningOut = LoadGameScreenStartingTransitioningOut;
-            commandCenterScreen = new CommandCenterScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            commandCenterScreen.StartingTransitioningOut = CommandCenterStartingTransitioningOut;
-            commandCenterScreen.FinishedTransitioningOut = CommandCenterFinishedTransitioningOut;
+            mainMenuScreen = new MainMenuScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            mainMenuScreen.FinishedTransitioningOut = MainMenuScreenFinishedTransitioningOut;
+            mainMenuScreen.StartingTransitioningOut = MainMenuScreenStartingTransitioningOut;
             newGameScreen = new NewGameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             newGameScreen.FinishedTransitioningOut = NewGameScreenFinishedTransitioningOut;
             newGameScreen.StartingTransitioningOut = NewGameScreenStartingTransitioningOut;
             selectCharacterScreen = new SelectCharacterScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            selectCharacterScreen.StartingTransitioningOut = SelectCharacterScreenStartingTransitioningOut;
             selectCharacterScreen.FinishedTransitioningOut = SelectCharacterScreenFinishedTransitioningOut;
+            selectCharacterScreen.StartingTransitioningOut = SelectCharacterScreenStartingTransitioningOut;
             selectDifficultyScreen = new SelectDifficultyScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            selectDifficultyScreen.StartingTransitioningOut = SelectDifficultyScreenStartingTransitioningOut;
             selectDifficultyScreen.FinishedTransitioningOut = SelectDifficultyScreenFinishedTransitioningOut;
-            //Testing Purposes
-            for (int i = 0; i < 23; i++)
-            {
-                SaveGameManager.SaveGame(new SaveGame() { SaveName = "Test Save " + i });
-            }
-            //End Testing
-            upgradeScreen = new UpgradeScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            upgradeScreen.StartingTransitioningOut = UpgradeScreenStartedTransitioningOut;
-            upgradeScreen.FinishedTransitioningOut = UpgradeScreenFinishedTransitioningOut;
-
+            selectDifficultyScreen.StartingTransitioningOut = SelectDifficultyScreenStartingTransitioningOut;
             selectStageScreen = new SelectStageScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            selectStageScreen.StartingTransitioningOut = SelectStageScreenStartingTransitioningOut;
             selectStageScreen.FinishedTransitioningOut = SelectStageScreenFinishedTransitioningOut;
+            selectStageScreen.StartingTransitioningOut = SelectStageScreenStartingTransitioningOut;
+            splashScreen = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            splashScreen.FinishedTransitioningOut = SplashScreenFinishedTransitioningOut;
+            splashScreen.SplashScreenFinishedPlaying = SplashScreenFinishedPlaying;
+            upgradeScreen = new UpgradeScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            upgradeScreen.FinishedTransitioningOut = UpgradeScreenFinishedTransitioningOut;
+            upgradeScreen.StartingTransitioningOut = UpgradeScreenStartingTransitioningOut;
             base.Initialize();
         }
 
@@ -290,6 +283,115 @@ namespace FinalProject
             mainMenuScreen.TransitionOut();
         }
 
+        private void NewGameScreenFinishedTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        current = mainMenuScreen;
+                        mainMenuScreen.Start();
+                    } break;
+                default:
+                    {
+                        current = selectCharacterScreen;
+                        selectCharacterScreen.currentGame = newGameScreen.currentGame;
+                        selectCharacterScreen.Start();
+                    } break;
+            }
+            newGameScreen.Stop();
+            newGameScreen.UnloadContent();
+        }
+
+        private void NewGameScreenStartingTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        mainMenuScreen.LoadContentAsynchronously();
+                    } break;
+                default:
+                    {
+                        selectCharacterScreen.LoadContentAsynchronously();
+                    } break;
+            }
+            newGameScreen.TransitionOut();
+        }
+
+        private void SelectCharacterScreenFinishedTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        current = newGameScreen;
+                        newGameScreen.Start();
+                    } break;
+                default:
+                    {
+                        current = selectDifficultyScreen;
+                        selectDifficultyScreen.currentGame = selectCharacterScreen.currentGame;
+                        selectDifficultyScreen.Start();
+                    } break;
+            }
+            selectCharacterScreen.Stop();
+            selectCharacterScreen.UnloadContent();
+        }
+
+        private void SelectCharacterScreenStartingTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        newGameScreen.LoadContentAsynchronously();
+                    } break;
+                default:
+                    {
+                        selectDifficultyScreen.LoadContentAsynchronously();
+                    } break;
+            }
+            selectCharacterScreen.TransitionOut();
+        }
+
+        private void SelectDifficultyScreenFinishedTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        current = selectCharacterScreen;
+                        selectCharacterScreen.Start();
+                    } break;
+                default:
+                    {
+                        current = commandCenterScreen;
+                        commandCenterScreen.currentGame = selectDifficultyScreen.currentGame;
+                        commandCenterScreen.Start();
+                    } break;
+            }
+            selectDifficultyScreen.Stop();
+            selectDifficultyScreen.UnloadContent();
+        }
+
+        private void SelectDifficultyScreenStartingTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        selectCharacterScreen.LoadContentAsynchronously();
+                    } break;
+                default:
+                    {
+                        SaveGameManager.SaveGame(selectDifficultyScreen.currentGame);
+                        commandCenterScreen.LoadContentAsynchronously();
+                    } break;
+            }
+            selectDifficultyScreen.TransitionOut();
+        }
+
         private void SelectStageScreenFinishedTransitioningOut(string message)
         {
             switch (message)
@@ -346,110 +448,6 @@ namespace FinalProject
             splashScreen.Stop();
             splashScreen.UnloadContent();
         }
-        private void SelectDifficultyScreenStartingTransitioningOut(string message)
-        {
-            switch (message)
-            {
-                case "":
-                    {
-                        selectCharacterScreen.LoadContentAsynchronously();
-                    } break;
-                default:
-                    {
-                        SaveGameManager.SaveGame(selectDifficultyScreen.currentGame);
-                        commandCenterScreen.LoadContentAsynchronously();
-                    } break;
-            }
-            selectDifficultyScreen.TransitionOut();
-        }
-        private void SelectDifficultyScreenFinishedTransitioningOut(string message)
-        {
-            switch (message)
-            {
-                case "":
-                    {
-                        current = selectCharacterScreen;
-                        selectCharacterScreen.Start();
-                    } break;
-                default:
-                    {
-                        current = commandCenterScreen;
-                        commandCenterScreen.currentGame = selectDifficultyScreen.currentGame;
-                        commandCenterScreen.Start();
-                    } break;
-            }
-            selectDifficultyScreen.Stop();
-            selectDifficultyScreen.UnloadContent();
-        }
-        private void SelectCharacterScreenStartingTransitioningOut(string message)
-        {
-            switch (message)
-            {
-                case "":
-                    {
-                        newGameScreen.LoadContentAsynchronously();
-                    } break;
-                default:
-                    {
-                        selectDifficultyScreen.LoadContentAsynchronously();
-                    } break;
-            }
-            selectCharacterScreen.TransitionOut();
-        }
-        private void SelectCharacterScreenFinishedTransitioningOut(string message)
-        {
-            switch (message)
-            {
-                case "":
-                    {
-                        current = newGameScreen;
-                        newGameScreen.Start();
-                    } break;
-                default:
-                    {
-                        current = selectDifficultyScreen;
-                        selectDifficultyScreen.currentGame = selectCharacterScreen.currentGame;
-                        selectDifficultyScreen.Start();
-                    } break;
-            }
-            selectCharacterScreen.Stop();
-            selectCharacterScreen.UnloadContent();
-        }
-        private void NewGameScreenFinishedTransitioningOut(string message)
-        {
-            switch (message)
-            {
-                case "":
-                    {
-                        current = mainMenuScreen;
-                        mainMenuScreen.Start();
-                    } break;
-                default:
-                    {
-                        current = selectCharacterScreen;
-                        selectCharacterScreen.currentGame = newGameScreen.currentGame;
-                        selectCharacterScreen.Start();
-                    } break;
-            }
-            newGameScreen.Stop();
-            newGameScreen.UnloadContent();
-        }
-
-        private void NewGameScreenStartingTransitioningOut(string message)
-        {
-            switch (message)
-            {
-                case "":
-                    {
-                        mainMenuScreen.LoadContentAsynchronously();
-                    } break;
-                default:
-                    {
-                        selectCharacterScreen.LoadContentAsynchronously();
-                    } break;
-            }
-            newGameScreen.TransitionOut();
-        }
 
         private void UpgradeScreenFinishedTransitioningOut(string message)
         {
@@ -460,7 +458,7 @@ namespace FinalProject
             upgradeScreen.UnloadContent();
         }
 
-        private void UpgradeScreenStartedTransitioningOut(string message)
+        private void UpgradeScreenStartingTransitioningOut(string message)
         {
             commandCenterScreen.LoadContentAsynchronously();
             upgradeScreen.TransitionOut();
