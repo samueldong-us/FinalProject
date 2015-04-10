@@ -13,6 +13,7 @@ namespace FinalProject
     /// </summary>
     public class Game1 : Microsoft.Xna.Framework.Game
     {
+        private CommandCenterScreen commandCenterScreen;
         private Screen current, next;
         private GraphicsDeviceManager graphics;
         private Keys[] lastPressedKeys;
@@ -20,7 +21,6 @@ namespace FinalProject
         private MainMenuScreen mainMenuScreen;
         private SplashScreen splashScreen;
         private SpriteBatch spriteBatch;
-        private NewGameScreen newGameScreen;
 
         public Game1()
         {
@@ -74,7 +74,9 @@ namespace FinalProject
             loadGameScreen = new LoadGameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             loadGameScreen.FinishedTransitioningOut = LoadGameScreenFinishedTransitioningOut;
             loadGameScreen.StartingTransitioningOut = LoadGameScreenStartingTransitioningOut;
-            newGameScreen = new NewGameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            commandCenterScreen = new CommandCenterScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            commandCenterScreen.StartingTransitioningOut = CommandCenterStartingTransitioningOut;
+            commandCenterScreen.FinishedTransitioningOut = CommandCenterFinishedTransitioningOut;
             //Testing Purposes
             for (int i = 0; i < 23; i++)
             {
@@ -146,6 +148,32 @@ namespace FinalProject
             lastPressedKeys = Keyboard.GetState().GetPressedKeys();
         }
 
+        private void CommandCenterFinishedTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        current = mainMenuScreen;
+                        mainMenuScreen.Start();
+                    } break;
+            }
+            commandCenterScreen.Stop();
+            commandCenterScreen.UnloadContent();
+        }
+
+        private void CommandCenterStartingTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        mainMenuScreen.LoadContentAsynchronously();
+                    } break;
+            }
+            commandCenterScreen.TransitionOut();
+        }
+
         private void LoadGameScreenFinishedTransitioningOut(string message)
         {
             switch (message)
@@ -157,7 +185,9 @@ namespace FinalProject
                     } break;
                 default:
                     {
-                        current = null;
+                        current = commandCenterScreen;
+                        commandCenterScreen.currentGame = SaveGameManager.GetSavedGame(message + ".sav");
+                        commandCenterScreen.Start();
                     } break;
             }
             loadGameScreen.Stop();
@@ -174,7 +204,7 @@ namespace FinalProject
                     } break;
                 default:
                     {
-                        SaveGameManager.GetSavedGame(message + ".sav");
+                        commandCenterScreen.LoadContentAsynchronously();
                     } break;
             }
             loadGameScreen.TransitionOut();
@@ -186,8 +216,7 @@ namespace FinalProject
             {
                 case "NEW GAME":
                     {
-                        current = newGameScreen;
-                        newGameScreen.Start();
+                        current = null;
                     } break;
                 case "LOAD GAME":
                     {
@@ -209,7 +238,6 @@ namespace FinalProject
             {
                 case "NEW GAME":
                     {
-                        newGameScreen.LoadContentAsynchronously();
                     } break;
                 case "LOAD GAME":
                     {
@@ -231,6 +259,5 @@ namespace FinalProject
             splashScreen.Stop();
             splashScreen.UnloadContent();
         }
-
     }
 }
