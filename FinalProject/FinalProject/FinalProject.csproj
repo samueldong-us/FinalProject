@@ -79,12 +79,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
+    <Compile Include="Screens\CommandCenterScreen.cs" />
     <Compile Include="Screens\LoadGameScreen.cs" />
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\MenuItem.cs" />
     <Compile Include="Screens\MenuItemGroup.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\UpgradeScreen.cs" />
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\CubicInterpolatedValue.cs" />
     <Compile Include="Utilities\ExponentialnterpolatedValue.cs" />
