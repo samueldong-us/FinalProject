@@ -96,6 +96,7 @@
     <Compile Include="Utilities\InterpolatedValue.cs" />
     <Compile Include="Utilities\LinearInterpolatedValue.cs" />
     <Compile Include="Utilities\GraphicsUtilities.cs" />
+    <Compile Include="Screens\UpgradeMenuItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
