@@ -7,22 +7,19 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FinalProject.Screens
 {
-    internal class NewGameScreen : Screen
+    internal class SelectCharacterScreen : Screen
     {
+        public SaveGame currentGame;
         public ScreenEvent FinishedTransitioningOut;
         public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private bool firstIteration;
         private MenuItemGroup menuItems;
-        private MenuItem userGameName;
         private InterpolatedValue scaleIn, scaleOut;
-        private Texture2D snapshot;
         private string selected;
-        public SaveGame currentGame;
-        private enum Error { None, Exists, Empty}
-        private Error lastError;
+        private Texture2D snapshot;
 
-        public NewGameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public SelectCharacterScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             scaleIn = new ExponentialInterpolatedValue(.002f, .25f, .5f);
@@ -30,9 +27,10 @@ namespace FinalProject.Screens
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
             menuItems = new MenuItemGroup();
-            userGameName = new MenuItem(new Vector2(280, 320), "");
-            menuItems.AddItem(userGameName);
-            lastError = Error.None;
+            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "OASON"));
+            menuItems.AddItem(new MenuItem(new Vector2(280, 450), "VARLET"));
+            menuItems.AddItem(new MenuItem(new Vector2(280, 580), "DIMMY"));
+            selected = "";
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -75,16 +73,23 @@ namespace FinalProject.Screens
                         {
                             case Keys.Enter:
                                 {
-                                    if(SaveGameManager.SaveExists(userGameName.Text + ".sav")){
-                                        lastError = Error.Exists;
-                                    }else if(userGameName.Text.Trim().Equals("")){
-                                        lastError = Error.Empty;
-                                    }else{
-                                    currentGame = new SaveGame();
-                                    currentGame.SaveName = userGameName.Text;
                                     selected = menuItems.GetSelected();
-                                    StartingTransitioningOut(selected);
+                                    switch (selected)
+                                    {
+                                        case "VARLET":
+                                            {
+                                                currentGame.character = SaveGame.Character.Varlet;
+                                            } break;
+                                        case "OASON":
+                                            {
+                                                currentGame.character = SaveGame.Character.Oason;
+                                            } break;
+                                        case "DIMMY":
+                                            {
+                                                currentGame.character = SaveGame.Character.Dimmy;
+                                            } break;
                                     }
+                                    StartingTransitioningOut(selected);
                                 } break;
                             case Keys.Up:
                                 {
@@ -94,21 +99,9 @@ namespace FinalProject.Screens
                                 {
                                     menuItems.MoveDown();
                                 } break;
-                            case Keys.Space:
+                            case Keys.Escape:
                                 {
-                                    AddCharacterTo(" ");
-                                } break;
-                            case Keys.Back:
-                                {
-                                    RemoveCharacterFrom();
-                                } break;
-                            default:
-                                {
-                                    string KeyPress = "" + key;
-                                    if (KeyPress.Length == 1 && KeyPress[0] >= 'A' && KeyPress[0] <= 'Z')
-                                    {
-                                        AddCharacterTo(KeyPress);
-                                    }
+                                    StartingTransitioningOut("");
                                 } break;
                         }
                     } break;
@@ -123,9 +116,9 @@ namespace FinalProject.Screens
 
         public override void Reset()
         {
-            selected = "";
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
+            selected = "";
         }
 
         public override void Start()
@@ -168,18 +161,7 @@ namespace FinalProject.Screens
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
             menuItems.Draw(spriteBatch);
-            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "NAME PROFILE", new Vector2(380, 210), Fonts.Green);
-            switch (lastError)
-            {
-                case Error.Empty:
-                    {
-                        GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeBoldCredits, "INVALID NAME", new Vector2(380, 620), Fonts.Red);
-                    }break;
-                case Error.Exists:
-                    {
-                        GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeBoldCredits, "NAME ALREADY FOUND", new Vector2(380, 620), Fonts.Red);
-                    }break;
-            }
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "SELECT CHARACTER", new Vector2(320, 210), Fonts.Green);
         }
 
         private void ScaleInFinished(float parameter)
@@ -190,22 +172,6 @@ namespace FinalProject.Screens
         private void ScaleOutFinished(float parameter)
         {
             FinishedTransitioningOut(selected);
-        }
-
-        private void AddCharacterTo(string userKeyPress)
-        {
-            if (Fonts.MenuItems.MeasureString(userGameName.Text + userKeyPress).X < 840)
-            {
-                userGameName.Text += userKeyPress;
-            }
-        }
-
-        private void RemoveCharacterFrom()
-        {
-            if (userGameName.Text.Length > 0)
-            {
-                userGameName.Text = userGameName.Text.Substring(0,userGameName.Text.Length-1);
-            }
         }
     }
 }

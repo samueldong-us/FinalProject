@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FinalProject.Screens
 {
-    internal class UpgradeMenuItem : MenuItem
+    internal class UpgradeMenuItem
     {
     }
 }
