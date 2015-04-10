@@ -83,6 +83,7 @@
     <Compile Include="Screens\MainMenuScreen.cs" />
     <Compile Include="Screens\MenuItem.cs" />
     <Compile Include="Screens\MenuItemGroup.cs" />
+    <Compile Include="Screens\NewGameScreen.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Utilities\Constants.cs" />
