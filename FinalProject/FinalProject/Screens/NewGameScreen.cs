@@ -13,6 +13,7 @@ namespace FinalProject.Screens
         private Texture2D background;
         private bool firstIteration;
         private MenuItemGroup menuItems;
+        private MenuItem userGameName;
         private InterpolatedValue scaleIn, scaleOut;
         private Texture2D snapshot;
 
@@ -24,11 +25,8 @@ namespace FinalProject.Screens
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
             menuItems = new MenuItemGroup();
-            menuItems.AddItem(new MenuItem(new Vector2(280, 160), "NEW GAME"));
-            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LOAD GAME"));
-            menuItems.AddItem(new MenuItem(new Vector2(280, 480), "SETTINGS") { Disabled = true });
-            menuItems.AddItem(new MenuItem(new Vector2(280, 640), "CREDITS") { Disabled = true });
-            menuItems.AddItem(new MenuItem(new Vector2(280, 800), "QUIT GAME"));
+            userGameName = new MenuItem(new Vector2(280, 160), "");
+            menuItems.AddItem(userGameName);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -80,6 +78,22 @@ namespace FinalProject.Screens
                             case Keys.Down:
                                 {
                                     menuItems.MoveDown();
+                                } break;
+                            case Keys.Space:
+                                {
+                                    AddCharacterTo(" ");
+                                } break;
+                            case Keys.Back:
+                                {
+                                    RemoveCharacterFrom();
+                                } break;
+                            default:
+                                {
+                                    string KeyPress = "" + key;
+                                    if (KeyPress.Length == 1 && KeyPress[0] >= 'A' && KeyPress[0] <= 'Z')
+                                    {
+                                        AddCharacterTo(KeyPress);
+                                    }
                                 } break;
                         }
                     } break;
@@ -149,6 +163,22 @@ namespace FinalProject.Screens
         private void ScaleOutFinished(float parameter)
         {
             FinishedTransitioningOut(menuItems.GetSelected());
+        }
+
+        private void AddCharacterTo(string userKeyPress)
+        {
+            if (userGameName.Text.Length < 10)
+            {
+                userGameName.Text += userKeyPress;
+            }
+        }
+
+        private void RemoveCharacterFrom()
+        {
+            if (userGameName.Text.Length > 0)
+            {
+                userGameName.Text = userGameName.Text.Substring(0,userGameName.Text.Length-1);
+            }
         }
     }
 }

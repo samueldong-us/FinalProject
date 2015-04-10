@@ -20,6 +20,7 @@ namespace FinalProject
         private MainMenuScreen mainMenuScreen;
         private SplashScreen splashScreen;
         private SpriteBatch spriteBatch;
+        private NewGameScreen newGameScreen;
 
         public Game1()
         {
@@ -73,6 +74,7 @@ namespace FinalProject
             loadGameScreen = new LoadGameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             loadGameScreen.FinishedTransitioningOut = LoadGameScreenFinishedTransitioningOut;
             loadGameScreen.StartingTransitioningOut = LoadGameScreenStartingTransitioningOut;
+            newGameScreen = new NewGameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             //Testing Purposes
             for (int i = 0; i < 23; i++)
             {
@@ -184,7 +186,8 @@ namespace FinalProject
             {
                 case "NEW GAME":
                     {
-                        current = null;
+                        current = newGameScreen;
+                        newGameScreen.Start();
                     } break;
                 case "LOAD GAME":
                     {
@@ -206,6 +209,7 @@ namespace FinalProject
             {
                 case "NEW GAME":
                     {
+                        newGameScreen.LoadContentAsynchronously();
                     } break;
                 case "LOAD GAME":
                     {
@@ -227,5 +231,6 @@ namespace FinalProject
             splashScreen.Stop();
             splashScreen.UnloadContent();
         }
+
     }
 }
