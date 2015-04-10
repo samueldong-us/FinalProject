@@ -4,11 +4,11 @@ namespace FinalProject.Utilities
 {
     internal abstract class InterpolatedValue
     {
-        public delegate void InterpolationEvent(float parameter);
-
         public InterpolationEvent InterpolationFinished;
-        protected float timeScale;
+
         protected float parameter;
+
+        protected float timeScale;
 
         protected InterpolatedValue(float timeToFinish)
         {
@@ -16,18 +16,9 @@ namespace FinalProject.Utilities
             parameter = 0;
         }
 
-        public void Update(float secondsPassed)
-        {
-            parameter += secondsPassed * timeScale;
-            if (parameter > 1)
-            {
-                if (InterpolationFinished != null)
-                {
-                    InterpolationFinished(parameter);
-                }
-                parameter = 1;
-            }
-        }
+        public delegate void InterpolationEvent(float parameter);
+
+        public abstract float GetValue();
 
         public void SetParameter(float parameter)
         {
@@ -41,6 +32,18 @@ namespace FinalProject.Utilities
             }
         }
 
-        public abstract float GetValue();
+        public void Update(float secondsPassed)
+        {
+            parameter += secondsPassed * timeScale;
+            if (parameter > 1)
+            {
+                float difference = parameter - 1;
+                parameter = 1;
+                if (InterpolationFinished != null)
+                {
+                    InterpolationFinished(difference);
+                }
+            }
+        }
     }
 }

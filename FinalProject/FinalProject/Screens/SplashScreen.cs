@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
+using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 
 namespace FinalProject.Screens
@@ -9,9 +10,9 @@ namespace FinalProject.Screens
     {
         public ScreenEvent FinishedTransitioningOut;
         public ScreenEvent SplashScreenFinishedPlaying;
-        private VideoPlayer splashVideoPlayer;
-        private Video splashVideo;
         private MediaState lastVideoState;
+        private Video splashVideo;
+        private VideoPlayer splashVideoPlayer;
 
         public SplashScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -27,31 +28,22 @@ namespace FinalProject.Screens
             }
         }
 
+        public override void KeyPressed(Keys key)
+        {
+            if (key == Keys.Space)
+            {
+                SplashScreenFinishedPlaying("");
+            }
+        }
+
         public override void LoadContent()
         {
             splashVideo = content.Load<Video>("Intro");
             base.LoadContent();
         }
 
-        protected override void ScreenUpdate(float secondsPassed)
-        {
-            if (state == ScreenState.Active)
-            {
-                if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
-                {
-                    SplashScreenFinishedPlaying();
-                }
-                lastVideoState = splashVideoPlayer.State;
-            }
-        }
-
         public override void Reset()
         {
-        }
-
-        protected override void Set()
-        {
-            lastVideoState = MediaState.Stopped;
         }
 
         public override void Start()
@@ -67,7 +59,24 @@ namespace FinalProject.Screens
 
         public override void TransitionOut()
         {
-            FinishedTransitioningOut();
+            FinishedTransitioningOut("");
+        }
+
+        protected override void ScreenUpdate(float secondsPassed)
+        {
+            if (state == ScreenState.Active)
+            {
+                if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
+                {
+                    SplashScreenFinishedPlaying("");
+                }
+                lastVideoState = splashVideoPlayer.State;
+            }
+        }
+
+        protected override void Set()
+        {
+            lastVideoState = MediaState.Stopped;
         }
     }
 }

@@ -8,12 +8,10 @@ namespace FinalProject.Screens
 {
     internal abstract class Screen
     {
-        public delegate void ScreenEvent();
-
-        protected enum ScreenState { TransitioningIn, TransitioningOut, Active, Inactive };
-
         protected ContentManager content;
+
         protected GraphicsDevice graphicsDevice;
+
         protected ScreenState state;
 
         protected Screen(ContentManager content, GraphicsDevice graphicsDevice)
@@ -22,22 +20,31 @@ namespace FinalProject.Screens
             this.graphicsDevice = graphicsDevice;
         }
 
-        public void Update(GameTime gameTime)
-        {
-            if (state != ScreenState.Inactive)
-            {
-                ScreenUpdate((float)gameTime.ElapsedGameTime.TotalSeconds);
-            }
-        }
+        public delegate void ScreenEvent(string message);
+
+        protected enum ScreenState { TransitioningIn, TransitioningOut, Active, Inactive };
 
         public abstract void Draw(SpriteBatch spriteBatch);
 
-        protected abstract void ScreenUpdate(float secondsPassed);
+        public virtual void KeyPressed(Keys key)
+        {
+        }
+
+        public virtual void KeyReleased(Keys key)
+        {
+        }
 
         public virtual void LoadContent()
         {
             Set();
         }
+
+        public void LoadContentAsynchronously()
+        {
+            new Thread(LoadContent).Start();
+        }
+
+        public abstract void Reset();
 
         public virtual void Start()
         {
@@ -49,9 +56,10 @@ namespace FinalProject.Screens
             state = ScreenState.Inactive;
         }
 
-        protected abstract void Set();
-
-        public abstract void Reset();
+        public virtual void TransitionOut()
+        {
+            state = ScreenState.TransitioningOut;
+        }
 
         public void UnloadContent()
         {
@@ -59,22 +67,16 @@ namespace FinalProject.Screens
             Reset();
         }
 
-        public virtual void TransitionOut()
+        public void Update(GameTime gameTime)
         {
-            state = ScreenState.TransitioningOut;
+            if (state != ScreenState.Inactive)
+            {
+                ScreenUpdate((float)gameTime.ElapsedGameTime.TotalSeconds);
+            }
         }
 
-        public void LoadContentAsynchronously()
-        {
-            new Thread(LoadContent).Start();
-        }
+        protected abstract void ScreenUpdate(float secondsPassed);
 
-        public virtual void KeyPressed(Keys key)
-        {
-        }
-
-        public virtual void KeyReleased(Keys key)
-        {
-        }
+        protected abstract void Set();
     }
 }
