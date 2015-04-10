@@ -38,7 +38,6 @@ namespace FinalProject.Screens
 
         public override void LoadContent()
         {
-            splashVideo = content.Load<Video>("Intro");
             base.LoadContent();
         }
 
@@ -48,8 +47,7 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
-            state = ScreenState.Active;
-            splashVideoPlayer.Play(splashVideo);
+            SplashScreenFinishedPlaying("");
         }
 
         public override void Stop()
