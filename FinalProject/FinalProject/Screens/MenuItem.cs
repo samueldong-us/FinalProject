@@ -9,7 +9,7 @@ namespace FinalProject.Screens
         public bool Disabled;
         public bool Selected;
         public string Text;
-        private Vector2 position;
+        protected Vector2 position;
 
         public MenuItem(Vector2 position, string text)
         {
@@ -19,7 +19,7 @@ namespace FinalProject.Screens
             Disabled = false;
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             if (Selected && !Disabled)
             {

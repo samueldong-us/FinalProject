@@ -21,6 +21,7 @@ namespace FinalProject
         private MainMenuScreen mainMenuScreen;
         private SplashScreen splashScreen;
         private SpriteBatch spriteBatch;
+        private UpgradeScreen upgradeScreen;
 
         public Game1()
         {
@@ -77,6 +78,9 @@ namespace FinalProject
             commandCenterScreen = new CommandCenterScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             commandCenterScreen.StartingTransitioningOut = CommandCenterStartingTransitioningOut;
             commandCenterScreen.FinishedTransitioningOut = CommandCenterFinishedTransitioningOut;
+            upgradeScreen = new UpgradeScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            upgradeScreen.StartingTransitioningOut = UpgradeScreenStartedTransitioningOut;
+            upgradeScreen.FinishedTransitioningOut = UpgradeScreenFinishedTransitioningOut;
             //Testing Purposes
             for (int i = 0; i < 23; i++)
             {
@@ -157,6 +161,12 @@ namespace FinalProject
                         current = mainMenuScreen;
                         mainMenuScreen.Start();
                     } break;
+                case "UPGRADES":
+                    {
+                        current = upgradeScreen;
+                        upgradeScreen.currentGame = commandCenterScreen.currentGame;
+                        upgradeScreen.Start();
+                    } break;
             }
             commandCenterScreen.Stop();
             commandCenterScreen.UnloadContent();
@@ -169,6 +179,10 @@ namespace FinalProject
                 case "":
                     {
                         mainMenuScreen.LoadContentAsynchronously();
+                    } break;
+                case "UPGRADES":
+                    {
+                        upgradeScreen.LoadContentAsynchronously();
                     } break;
             }
             commandCenterScreen.TransitionOut();
@@ -258,6 +272,22 @@ namespace FinalProject
             mainMenuScreen.Start();
             splashScreen.Stop();
             splashScreen.UnloadContent();
+        }
+
+        private void UpgradeScreenFinishedTransitioningOut(string message)
+        {
+            current = commandCenterScreen;
+            commandCenterScreen.currentGame = upgradeScreen.currentGame;
+            commandCenterScreen.Start();
+            upgradeScreen.Stop();
+            upgradeScreen.UnloadContent();
+        }
+
+        private void UpgradeScreenStartedTransitioningOut(string message)
+        {
+            commandCenterScreen.LoadContentAsynchronously();
+            upgradeScreen.TransitionOut();
+            SaveGameManager.SaveGame(upgradeScreen.currentGame);
         }
     }
 }

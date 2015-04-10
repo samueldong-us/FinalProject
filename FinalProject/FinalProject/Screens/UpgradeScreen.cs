@@ -4,6 +4,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System.Collections.Generic;
 
 namespace FinalProject.Screens
 {
@@ -14,9 +15,9 @@ namespace FinalProject.Screens
         public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private bool firstIteration;
-        private MenuItemGroup menuItems;
         private InterpolatedValue scaleIn, scaleOut;
         private Texture2D snapshot;
+        private UpgradeItemGroup upgrades;
 
         public UpgradeScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -25,9 +26,7 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
-            menuItems = new MenuItemGroup();
-            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LEVEL SELECT"));
-            menuItems.AddItem(new MenuItem(new Vector2(280, 450), "UPGRADES"));
+            upgrades = new UpgradeItemGroup();
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -70,17 +69,24 @@ namespace FinalProject.Screens
                         {
                             case Keys.Enter:
                                 {
+                                    int cost = upgrades.GetSelectedCost();
+                                    if (cost < currentGame.Credits)
+                                    {
+                                        currentGame.Credits -= cost;
+                                        upgrades.UpgradeSelected();
+                                    }
                                 } break;
                             case Keys.Up:
                                 {
-                                    menuItems.MoveUp();
+                                    upgrades.MoveUp();
                                 } break;
                             case Keys.Down:
                                 {
-                                    menuItems.MoveDown();
+                                    upgrades.MoveDown();
                                 } break;
                             case Keys.Escape:
                                 {
+                                    UpdateUpgrades();
                                     StartingTransitioningOut("");
                                 } break;
                         }
@@ -98,10 +104,12 @@ namespace FinalProject.Screens
         {
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
+            upgrades.Reset();
         }
 
         public override void Start()
         {
+            GetUpgrades();
             base.Start();
         }
 
@@ -139,8 +147,19 @@ namespace FinalProject.Screens
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-            menuItems.Draw(spriteBatch);
-            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "Upgrades", new Vector2(320, 210), Fonts.Green);
+            upgrades.Draw(spriteBatch);
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "UPGRADES", new Vector2(320, 210), Fonts.Green);
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeBoldCredits, "CREDITS:", new Vector2(1155, 245), Fonts.Red);
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeLightCredits, "" + currentGame.Credits, new Vector2(1440, 245), Fonts.Red);
+        }
+
+        private void GetUpgrades()
+        {
+            upgrades.AddItem(new UpgradeItem(new Vector2(280, 320), "SHIELDS", currentGame.Shields));
+            upgrades.AddItem(new UpgradeItem(new Vector2(280, 450), "MOVE SPEED", currentGame.MovementSpeed));
+            upgrades.AddItem(new UpgradeItem(new Vector2(280, 580), "DAMAGE", currentGame.Damage));
+            upgrades.AddItem(new UpgradeItem(new Vector2(280, 710), "FIRE RATE", currentGame.FireRate));
+            upgrades.AddItem(new UpgradeItem(new Vector2(280, 840), "WEAPON STR", currentGame.WeaponStrength));
         }
 
         private void ScaleInFinished(float parameter)
@@ -151,6 +170,16 @@ namespace FinalProject.Screens
         private void ScaleOutFinished(float parameter)
         {
             FinishedTransitioningOut("");
+        }
+
+        private void UpdateUpgrades()
+        {
+            Dictionary<string, int> upgradeLevels = upgrades.GetLevels();
+            currentGame.Shields = upgradeLevels["SHIELDS"];
+            currentGame.MovementSpeed = upgradeLevels["MOVE SPEED"];
+            currentGame.Damage = upgradeLevels["DAMAGE"];
+            currentGame.FireRate = upgradeLevels["FIRE RATE"];
+            currentGame.WeaponStrength = upgradeLevels["WEAPON STR"];
         }
     }
 }

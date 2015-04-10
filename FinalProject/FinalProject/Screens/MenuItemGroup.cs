@@ -6,8 +6,8 @@ namespace FinalProject.Screens
 {
     internal class MenuItemGroup
     {
-        private int index;
-        private List<MenuItem> items;
+        protected int index;
+        protected List<MenuItem> items;
 
         public MenuItemGroup()
         {
@@ -71,6 +71,12 @@ namespace FinalProject.Screens
                 }
             } while (items[index].Disabled);
             UpdateItems();
+        }
+
+        public void Reset()
+        {
+            items.Clear();
+            index = -1;
         }
 
         private int LastIndex()

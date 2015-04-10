@@ -86,6 +86,7 @@
     <Compile Include="Screens\MenuItemGroup.cs" />
     <Compile Include="Screens\SplashScreen.cs" />
     <Compile Include="Screens\Screen.cs" />
+    <Compile Include="Screens\UpgradeItemGroup.cs" />
     <Compile Include="Screens\UpgradeScreen.cs" />
     <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\CubicInterpolatedValue.cs" />
@@ -95,7 +96,7 @@
     <Compile Include="Utilities\InterpolatedValue.cs" />
     <Compile Include="Utilities\LinearInterpolatedValue.cs" />
     <Compile Include="Utilities\GraphicsUtilities.cs" />
-    <Compile Include="Screens\UpgradeMenuItem.cs" />
+    <Compile Include="Screens\UpgradeItem.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Game.ico" />
