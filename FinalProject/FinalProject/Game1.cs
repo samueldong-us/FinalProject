@@ -19,6 +19,7 @@ namespace FinalProject
         private Keys[] lastPressedKeys;
         private LoadGameScreen loadGameScreen;
         private MainMenuScreen mainMenuScreen;
+        private SelectStageScreen selectStageScreen;
         private SplashScreen splashScreen;
         private SpriteBatch spriteBatch;
         private UpgradeScreen upgradeScreen;
@@ -81,12 +82,10 @@ namespace FinalProject
             upgradeScreen = new UpgradeScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             upgradeScreen.StartingTransitioningOut = UpgradeScreenStartedTransitioningOut;
             upgradeScreen.FinishedTransitioningOut = UpgradeScreenFinishedTransitioningOut;
-            //Testing Purposes
-            for (int i = 0; i < 23; i++)
-            {
-                SaveGameManager.SaveGame(new SaveGame() { SaveName = "Test Save " + i });
-            }
-            //End Testing
+
+            selectStageScreen = new SelectStageScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            selectStageScreen.StartingTransitioningOut = SelectStageScreenStartingTransitioningOut;
+            selectStageScreen.FinishedTransitioningOut = SelectStageScreenFinishedTransitioningOut;
             base.Initialize();
         }
 
@@ -167,6 +166,12 @@ namespace FinalProject
                         upgradeScreen.currentGame = commandCenterScreen.currentGame;
                         upgradeScreen.Start();
                     } break;
+                case "LEVEL SELECT":
+                    {
+                        current = selectStageScreen;
+                        selectStageScreen.currentGame = commandCenterScreen.currentGame;
+                        selectStageScreen.Start();
+                    } break;
             }
             commandCenterScreen.Stop();
             commandCenterScreen.UnloadContent();
@@ -183,6 +188,10 @@ namespace FinalProject
                 case "UPGRADES":
                     {
                         upgradeScreen.LoadContentAsynchronously();
+                    } break;
+                case "LEVEL SELECT":
+                    {
+                        selectStageScreen.LoadContentAsynchronously();
                     } break;
             }
             commandCenterScreen.TransitionOut();
@@ -259,6 +268,50 @@ namespace FinalProject
                     } break;
             }
             mainMenuScreen.TransitionOut();
+        }
+
+        private void SelectStageScreenFinishedTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        current = commandCenterScreen;
+                        commandCenterScreen.Start();
+                    } break;
+                case "LEVEL 1":
+                    {
+                    } break;
+                case "LEVEL 2":
+                    {
+                    } break;
+                case "LEVEL 3":
+                    {
+                    } break;
+            }
+            selectStageScreen.Stop();
+            selectStageScreen.UnloadContent();
+        }
+
+        private void SelectStageScreenStartingTransitioningOut(string message)
+        {
+            switch (message)
+            {
+                case "":
+                    {
+                        commandCenterScreen.LoadContentAsynchronously();
+                    } break;
+                case "LEVEL 1":
+                    {
+                    } break;
+                case "LEVEL 2":
+                    {
+                    } break;
+                case "LEVEL 3":
+                    {
+                    } break;
+            }
+            selectStageScreen.TransitionOut();
         }
 
         private void SplashScreenFinishedPlaying(string message)
