@@ -20,6 +20,9 @@ namespace FinalProject.Screens
         private bool first = true;
 
         private InterpolatedValue scaleIn, scaleOut;
+        private Texture2D buttonImage;
+        private Texture2D buttonImageBuffer;
+        private SpriteFont menuText;
 
         public MainMenuScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -28,6 +31,7 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(1, .005f, 3);
             scaleOut.InterpolationFinished = ScaleOutFinished;
+            first = true;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -36,6 +40,18 @@ namespace FinalProject.Screens
             {
                 case ScreenState.TransitioningIn:
                     {
+                        /*
+                        if (first == true)
+                        {
+                            first = false;
+                            TextureUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
+                            spriteBatch.Draw(background, new Rectangle(0, 0,  Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
+                            spriteBatch.Draw(buttonImage, new Rectangle(288, 288, buttonImage.Width, buttonImage.Height), Color.White);
+                            TextureUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
+                            buttonImageBuffer = TextureUtilities.DuplicateTexture(TextureUtilities.GetTexture(), graphicsDevice);
+                        }
+                        TextureUtilities.DrawPixelatedTexture(spriteBatch, buttonImageBuffer, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
+                        */
                         if (first)
                         {
                             first = false;
@@ -43,7 +59,7 @@ namespace FinalProject.Screens
                             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
                             spriteBatch.Draw(buttonStale, new Rectangle(buttonX, buttonY, buttonStale.Width, buttonStale.Height), Color.White);
                             spriteBatch.Draw(TextureUtilities.PlainTexture, new Rectangle(buttonX-3,buttonY-1,120, 30), Color.Blue);
-                            spriteBatch.DrawString(currFont, "Butt Stuff", new Vector2(buttonX, buttonY), Color.PaleGoldenrod);
+                            spriteBatch.DrawString(menuText, "Butt Stuff", new Vector2(buttonX, buttonY), Color.PaleGoldenrod);
                             TextureUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
                             screenShot = TextureUtilities.DuplicateTexture(TextureUtilities.GetTexture(), graphicsDevice);
                         }
@@ -51,18 +67,11 @@ namespace FinalProject.Screens
                     } break;
                 case ScreenState.Active:
                     {
-                        TextureUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
-
                         spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-                        spriteBatch.Draw(buttonStale, new Rectangle(buttonX, buttonY, buttonStale.Width, buttonStale.Height), Color.White);
-                        spriteBatch.Draw(TextureUtilities.PlainTexture, new Rectangle(buttonX - 3, buttonY -1, 120, 30), Color.Blue);
-                        spriteBatch.DrawString(currFont, "Butt Stuff", new Vector2(buttonX, buttonY), Color.PaleGoldenrod);
-                        TextureUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
-                        spriteBatch.Draw(TextureUtilities.GetTexture(), new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
                     } break;
                 case ScreenState.TransitioningOut:
                     {
-                        TextureUtilities.DrawPixelatedTexture(spriteBatch, screenShot, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
+                        TextureUtilities.DrawPixelatedTexture(spriteBatch, background, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
                     } break;
             }
         }
@@ -70,9 +79,9 @@ namespace FinalProject.Screens
         public override void LoadContent()
         {
             placeholder = content.Load<Texture2D>("PixelateTest");
-            background = content.Load<Texture2D>("MenuBackground");
+            background = content.Load<Texture2D>("landen");
             buttonStale = content.Load<Texture2D>("Button_0");
-            currFont = content.Load<SpriteFont>("DebugFont");
+            menuText = content.Load<SpriteFont>("DebugFont");
             base.LoadContent();
         }
 
@@ -113,7 +122,6 @@ namespace FinalProject.Screens
 
         public override void TransitionOut()
         {
-            screenShot = TextureUtilities.DuplicateTexture(TextureUtilities.GetTexture(), graphicsDevice);
             base.TransitionOut();
         }
 
