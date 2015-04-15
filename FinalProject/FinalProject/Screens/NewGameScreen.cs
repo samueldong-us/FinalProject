@@ -32,6 +32,7 @@ namespace FinalProject.Screens
             userGameName = new MenuItem(new Vector2(280, 320), "");
             menuItems.AddItem(userGameName);
             lastError = Error.None;
+            selected = "";
         }
 
         private enum Error { None, Exists, Empty }
@@ -100,6 +101,10 @@ namespace FinalProject.Screens
                                 {
                                     menuItems.MoveDown();
                                 } break;
+                            case Keys.Escape:
+                                {
+                                    StartingTransitioningOut("");
+                                } break;
                             case Keys.Space:
                                 {
                                     AddCharacterTo(" ");
@@ -130,6 +135,7 @@ namespace FinalProject.Screens
         public override void Reset()
         {
             selected = "";
+            userGameName.Text = "";
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
         }
