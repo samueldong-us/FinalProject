@@ -96,7 +96,6 @@ namespace FinalProject
             splashScreen.SplashScreenFinishedPlaying = SplashScreenFinishedPlaying;
             upgradeScreen = new UpgradeScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             upgradeScreen.FinishedTransitioningOut = UpgradeScreenFinishedTransitioningOut;
-            upgradeScreen.StartingTransitioningOut = UpgradeScreenStartingTransitioningOut;
             base.Initialize();
         }
 
@@ -447,6 +446,16 @@ namespace FinalProject
             mainMenuScreen.Start();
             splashScreen.Stop();
             splashScreen.UnloadContent();
+        }
+
+        private void Test1()
+        {
+            Console.Write("Test1");
+        }
+
+        private void Test12(string toPrint)
+        {
+            Console.Write("Test1" + toPrint);
         }
 
         private void UpgradeScreenFinishedTransitioningOut(string message)

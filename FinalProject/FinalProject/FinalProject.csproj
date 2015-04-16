@@ -90,6 +90,8 @@
   <ItemGroup>
     <Compile Include="GameResources\SaveGame.cs" />
     <Compile Include="GameResources\SaveGameManager.cs" />
+    <Compile Include="Messaging\Callbacks.cs" />
+    <Compile Include="Messaging\MessageCenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Game1.cs" />
