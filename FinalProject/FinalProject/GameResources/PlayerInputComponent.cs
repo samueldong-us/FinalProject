@@ -11,7 +11,7 @@ namespace FinalProject.GameResources
 {
     internal class PlayerInputComponent : Component
     {
-        private const float Speed = 20;
+        private const float Speed = 100;
         private Dictionary<Keys, bool> arrowKeys;
 
         public PlayerInputComponent(MessageCenter entityMessageCenter)

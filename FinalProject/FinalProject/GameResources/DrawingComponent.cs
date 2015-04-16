@@ -1,4 +1,6 @@
 ﻿using FinalProject.Messaging;
+using FinalProject.Screens;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
@@ -17,14 +19,20 @@ namespace FinalProject.GameResources
         {
             this.texture = texture;
             this.transform = transform;
+            GameScreen.NormalLayer.Add(this);
         }
 
         public override void Dispose()
         {
+            GameScreen.NormalLayer.Remove(this);
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            int textureWidth = (int)(transform.Scale * texture.Width);
+            int textureHeight = (int)(transform.Scale * texture.Height);
+            Rectangle destination = new Rectangle((int)transform.Position.X - textureWidth / 2, (int)transform.Position.Y - textureHeight / 2, textureWidth, textureHeight);
+            spriteBatch.Draw(texture, destination, null, Color.White, MathHelper.ToRadians(transform.Theta), new Vector2(textureWidth / 2, textureHeight / 2), SpriteEffects.None, 0);
         }
 
         public override void Update(float secondsPassed)

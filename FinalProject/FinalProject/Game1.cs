@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Collections.Generic;
 
 namespace FinalProject
 {
@@ -15,6 +16,7 @@ namespace FinalProject
     {
         private CommandCenterScreen commandCenterScreen;
         private Screen current;
+        private GameScreen gameScreen;
         private GraphicsDeviceManager graphics;
         private Keys[] lastPressedKeys;
         private LoadGameScreen loadGameScreen;
@@ -96,6 +98,10 @@ namespace FinalProject
             splashScreen.SplashScreenFinishedPlaying = SplashScreenFinishedPlaying;
             upgradeScreen = new UpgradeScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             upgradeScreen.FinishedTransitioningOut = UpgradeScreenFinishedTransitioningOut;
+            upgradeScreen.StartingTransitioningOut = UpgradeScreenStartingTransitioningOut;
+            gameScreen = new GameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            gameScreen.FinishedTransitioningOut = GameScreenFinishedTransitioningOut;
+            gameScreen.StartingTransitioningOut = GameScreenStartingTransitioningOut;
             base.Initialize();
         }
 
@@ -205,6 +211,20 @@ namespace FinalProject
                     } break;
             }
             commandCenterScreen.TransitionOut();
+        }
+
+        private void GameScreenFinishedTransitioningOut(string message)
+        {
+            current = selectStageScreen;
+            selectStageScreen.Start();
+            gameScreen.Stop();
+            gameScreen.UnloadContent();
+        }
+
+        private void GameScreenStartingTransitioningOut(string message)
+        {
+            selectStageScreen.LoadContentAsynchronously();
+            gameScreen.TransitionOut();
         }
 
         private void LoadGameScreenFinishedTransitioningOut(string message)
@@ -402,6 +422,8 @@ namespace FinalProject
                     } break;
                 case "LEVEL 1":
                     {
+                        current = gameScreen;
+                        gameScreen.Start();
                     } break;
                 case "LEVEL 2":
                     {
@@ -424,6 +446,7 @@ namespace FinalProject
                     } break;
                 case "LEVEL 1":
                     {
+                        gameScreen.LoadContentAsynchronously();
                     } break;
                 case "LEVEL 2":
                     {

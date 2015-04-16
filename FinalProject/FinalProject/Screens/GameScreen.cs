@@ -15,17 +15,19 @@ namespace FinalProject.Screens
     internal class GameScreen : Screen
     {
         public static MessageCenter GameMessageCenter;
-        public static List<DrawingComponent> normalLayer;
+        public static List<DrawingComponent> NormalLayer;
         public SaveGame currentGame;
         public ScreenEvent FinishedTransitioningOut;
         public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
+        private List<Entity> entities;
         private bool firstIteration;
         private MenuItemGroup menuItems;
         private bool paused;
         private InterpolatedValue scaleIn, scaleOut;
         private string selected;
         private Texture2D snapshot;
+        private Texture2D test;
 
         public GameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -38,6 +40,8 @@ namespace FinalProject.Screens
             menuItems = new MenuItemGroup();
             menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LEVEL SELECT"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 450), "UPGRADES"));
+            NormalLayer = new List<DrawingComponent>();
+            entities = new List<Entity>();
             selected = "";
         }
 
@@ -109,6 +113,7 @@ namespace FinalProject.Screens
 
         public override void LoadContent()
         {
+            test = content.Load<Texture2D>("Test");
             background = content.Load<Texture2D>("MenuBackground");
             base.LoadContent();
         }
@@ -118,6 +123,8 @@ namespace FinalProject.Screens
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
             selected = "";
+            entities.Clear();
+            NormalLayer.Clear();
         }
 
         public override void Start()
@@ -148,6 +155,10 @@ namespace FinalProject.Screens
                     {
                         if (!paused)
                         {
+                            foreach (Entity entity in entities)
+                            {
+                                entity.Update(secondsPassed);
+                            }
                         }
                     } break;
                 case ScreenState.TransitioningOut:
@@ -160,15 +171,33 @@ namespace FinalProject.Screens
         protected override void Set()
         {
             firstIteration = true;
+            entities.Add(GeneratePlayer());
         }
 
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
+            foreach (DrawingComponent drawingComponent in NormalLayer)
+            {
+                drawingComponent.Draw(spriteBatch);
+            }
             if (paused)
             {
                 menuItems.Draw(spriteBatch);
             }
+        }
+
+        private Entity GeneratePlayer()
+        {
+            Entity player = new Entity();
+            PlayerInputComponent inputComponent = new PlayerInputComponent(player.messageCenter);
+            TransformComponent transformComponent = new TransformComponent(player.messageCenter);
+            transformComponent.Position = new Vector2(500, 500);
+            DrawingComponent drawingComponent = new DrawingComponent(player.messageCenter, test, transformComponent);
+            player.AddComponent(inputComponent);
+            player.AddComponent(transformComponent);
+            player.AddComponent(drawingComponent);
+            return player;
         }
 
         private void ScaleInFinished(float parameter)
