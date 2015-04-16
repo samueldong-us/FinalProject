@@ -84,7 +84,23 @@ namespace FinalProject.Messaging
             }
         }
 
-        public void RemoveListener(string message, Delegate callback)
+        public void RemoveListener(string message, Callback callback)
+        {
+            if (listeners.ContainsKey(message))
+            {
+                listeners[message].Remove(callback);
+            }
+        }
+
+        public void RemoveListener<A>(string message, Callback<A> callback)
+        {
+            if (listeners.ContainsKey(message))
+            {
+                listeners[message].Remove(callback);
+            }
+        }
+
+        public void RemoveListener<A, B>(string message, Callback<A, B> callback)
         {
             if (listeners.ContainsKey(message))
             {
