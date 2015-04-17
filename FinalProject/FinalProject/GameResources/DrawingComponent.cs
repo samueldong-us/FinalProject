@@ -13,6 +13,7 @@ namespace FinalProject.GameResources
     {
         private Texture2D texture;
         private TransformComponent transform;
+        private List<DrawingComponent> list;
 
         public DrawingComponent(MessageCenter messageCenter, Texture2D texture, TransformComponent transform, List<DrawingComponent> list)
             : base(messageCenter)
@@ -20,11 +21,12 @@ namespace FinalProject.GameResources
             this.texture = texture;
             this.transform = transform;
             list.Add(this);
+            this.list = list;
         }
 
         public override void Dispose()
         {
-            GameScreen.NormalLayer.Remove(this);
+            list.Remove(this);
         }
 
         public void Draw(SpriteBatch spriteBatch)

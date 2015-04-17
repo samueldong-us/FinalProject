@@ -29,6 +29,7 @@ namespace FinalProject.Screens
         private string selected;
         private Texture2D snapshot;
         private Texture2D test;
+        private Texture2D bullet;
 
         public GameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -117,6 +118,7 @@ namespace FinalProject.Screens
         {
             test = content.Load<Texture2D>("Test");
             background = content.Load<Texture2D>("MenuBackground");
+            bullet = content.Load<Texture2D>("TestBullet");
             base.LoadContent();
         }
 
@@ -198,8 +200,10 @@ namespace FinalProject.Screens
             Entity player = new Entity();
             PlayerInputComponent inputComponent = new PlayerInputComponent(player.messageCenter);
             OnScreenTransformComponent transformComponent = new OnScreenTransformComponent(player.messageCenter, 110, 140);
+            WeaponComponent weaponfornow = new WeaponComponent(player.messageCenter, transformComponent, bullet);
             transformComponent.Position = new Vector2(500, 500);
             DrawingComponent drawingComponent = new DrawingComponent(player.messageCenter, test, transformComponent, GameScreen.NormalLayer);
+            player.AddComponent(weaponfornow);
             player.AddComponent(inputComponent);
             player.AddComponent(transformComponent);
             player.AddComponent(drawingComponent);

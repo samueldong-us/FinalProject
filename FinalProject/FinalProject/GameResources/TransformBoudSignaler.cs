@@ -23,7 +23,7 @@ namespace FinalProject.GameResources
 
         public override void Update(float secondsPassed)
         {
-            base.Update(secondsPassed);
+                 base.Update(secondsPassed);
             if (!boundingBox.Contains((int) Position.X, (int) Position.Y)) {
                 messageOut.Broadcast<Entity>("out of bounds", currentGameObject);
             }

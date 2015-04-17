@@ -38,6 +38,10 @@ namespace FinalProject.GameResources
             {
                 arrowKeys[key] = true;
             }
+            if (key == Keys.Space)
+            {
+                messageCenter.Broadcast("start shooting");
+            }
         }
 
         public void KeyReleased(Keys key)
@@ -45,6 +49,10 @@ namespace FinalProject.GameResources
             if (arrowKeys.ContainsKey(key))
             {
                 arrowKeys[key] = false;
+            }
+            if (key == Keys.Space)
+            {
+                messageCenter.Broadcast("stop shooting");
             }
         }
 
