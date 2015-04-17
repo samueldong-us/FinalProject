@@ -14,12 +14,12 @@ namespace FinalProject.GameResources
         private Texture2D texture;
         private TransformComponent transform;
 
-        public DrawingComponent(MessageCenter messageCenter, Texture2D texture, TransformComponent transform)
+        public DrawingComponent(MessageCenter messageCenter, Texture2D texture, TransformComponent transform, List<DrawingComponent> list)
             : base(messageCenter)
         {
             this.texture = texture;
             this.transform = transform;
-            GameScreen.NormalLayer.Add(this);
+            list.Add(this);
         }
 
         public override void Dispose()

@@ -14,6 +14,7 @@ namespace FinalProject.Screens
 {
     internal class GameScreen : Screen
     {
+        public static List<DrawingComponent> BulletLayer;
         public static MessageCenter GameMessageCenter;
         public static List<DrawingComponent> NormalLayer;
         public SaveGame currentGame;
@@ -41,6 +42,7 @@ namespace FinalProject.Screens
             menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LEVEL SELECT"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 450), "UPGRADES"));
             NormalLayer = new List<DrawingComponent>();
+            BulletLayer = new List<DrawingComponent>();
             entities = new List<Entity>();
             selected = "";
         }
@@ -181,6 +183,10 @@ namespace FinalProject.Screens
             {
                 drawingComponent.Draw(spriteBatch);
             }
+            foreach (DrawingComponent drawingComponent in BulletLayer)
+            {
+                drawingComponent.Draw(spriteBatch);
+            }
             if (paused)
             {
                 menuItems.Draw(spriteBatch);
@@ -193,7 +199,7 @@ namespace FinalProject.Screens
             PlayerInputComponent inputComponent = new PlayerInputComponent(player.messageCenter);
             OnScreenTransformComponent transformComponent = new OnScreenTransformComponent(player.messageCenter, 110, 140);
             transformComponent.Position = new Vector2(500, 500);
-            DrawingComponent drawingComponent = new DrawingComponent(player.messageCenter, test, transformComponent);
+            DrawingComponent drawingComponent = new DrawingComponent(player.messageCenter, test, transformComponent, GameScreen.NormalLayer);
             player.AddComponent(inputComponent);
             player.AddComponent(transformComponent);
             player.AddComponent(drawingComponent);
