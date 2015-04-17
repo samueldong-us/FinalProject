@@ -94,7 +94,9 @@
     <Compile Include="GameResources\PlayerInputComponent.cs" />
     <Compile Include="GameResources\SaveGame.cs" />
     <Compile Include="GameResources\SaveGameManager.cs" />
+    <Compile Include="GameResources\TransformBoudSignaler.cs" />
     <Compile Include="GameResources\TransformComponent.cs" />
+    <Compile Include="GameResources\WeaponComponent.cs" />
     <Compile Include="Messaging\Callbacks.cs" />
     <Compile Include="Messaging\MessageCenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
