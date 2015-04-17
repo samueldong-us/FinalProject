@@ -12,7 +12,7 @@ namespace FinalProject.GameResources
         public Vector2 Position;
         public float Scale;
         public float Theta;
-        private Vector2 velocity;
+        protected Vector2 velocity;
 
         public TransformComponent(MessageCenter messageCenter)
             : base(messageCenter)
