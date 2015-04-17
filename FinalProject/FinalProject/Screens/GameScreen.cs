@@ -191,7 +191,7 @@ namespace FinalProject.Screens
         {
             Entity player = new Entity();
             PlayerInputComponent inputComponent = new PlayerInputComponent(player.messageCenter);
-            TransformComponent transformComponent = new TransformComponent(player.messageCenter);
+            OnScreenTransformComponent transformComponent = new OnScreenTransformComponent(player.messageCenter, 110, 140);
             transformComponent.Position = new Vector2(500, 500);
             DrawingComponent drawingComponent = new DrawingComponent(player.messageCenter, test, transformComponent);
             player.AddComponent(inputComponent);

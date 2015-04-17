@@ -91,6 +91,7 @@
     <Compile Include="GameResources\Component.cs" />
     <Compile Include="GameResources\DrawingComponent.cs" />
     <Compile Include="GameResources\Entity.cs" />
+    <Compile Include="GameResources\OnScreenTransformComponent.cs" />
     <Compile Include="GameResources\PlayerInputComponent.cs" />
     <Compile Include="GameResources\SaveGame.cs" />
     <Compile Include="GameResources\SaveGameManager.cs" />
