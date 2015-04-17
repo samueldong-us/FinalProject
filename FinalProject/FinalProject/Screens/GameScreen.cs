@@ -5,22 +5,21 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.Screens
 {
     internal class GameScreen : Screen
     {
-        public static List<DrawingComponent> BulletLayer;
+        public static Rectangle Bounds = new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight);
+        public static List<RenderComponent> BulletLayer;
         public static MessageCenter GameMessageCenter;
-        public static List<DrawingComponent> NormalLayer;
+        public static List<RenderComponent> NormalLayer;
         public SaveGame currentGame;
         public ScreenEvent FinishedTransitioningOut;
         public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
+        private Texture2D bullet;
         private List<Entity> entities;
         private bool firstIteration;
         private MenuItemGroup menuItems;
@@ -29,7 +28,6 @@ namespace FinalProject.Screens
         private string selected;
         private Texture2D snapshot;
         private Texture2D test;
-        private Texture2D bullet;
 
         public GameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -42,8 +40,8 @@ namespace FinalProject.Screens
             menuItems = new MenuItemGroup();
             menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LEVEL SELECT"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 450), "UPGRADES"));
-            NormalLayer = new List<DrawingComponent>();
-            BulletLayer = new List<DrawingComponent>();
+            NormalLayer = new List<RenderComponent>();
+            BulletLayer = new List<RenderComponent>();
             entities = new List<Entity>();
             selected = "";
         }
@@ -181,11 +179,11 @@ namespace FinalProject.Screens
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-            foreach (DrawingComponent drawingComponent in NormalLayer)
+            foreach (RenderComponent drawingComponent in NormalLayer)
             {
                 drawingComponent.Draw(spriteBatch);
             }
-            foreach (DrawingComponent drawingComponent in BulletLayer)
+            foreach (RenderComponent drawingComponent in BulletLayer)
             {
                 drawingComponent.Draw(spriteBatch);
             }
@@ -198,15 +196,15 @@ namespace FinalProject.Screens
         private Entity GeneratePlayer()
         {
             Entity player = new Entity();
-            PlayerInputComponent inputComponent = new PlayerInputComponent(player.messageCenter);
-            OnScreenTransformComponent transformComponent = new OnScreenTransformComponent(player.messageCenter, 110, 140);
-            WeaponComponent weaponfornow = new WeaponComponent(player.messageCenter, transformComponent, bullet);
-            transformComponent.Position = new Vector2(500, 500);
-            DrawingComponent drawingComponent = new DrawingComponent(player.messageCenter, test, transformComponent, GameScreen.NormalLayer);
-            player.AddComponent(weaponfornow);
-            player.AddComponent(inputComponent);
-            player.AddComponent(transformComponent);
-            player.AddComponent(drawingComponent);
+            PlayerInputComponent playerInput = new PlayerInputComponent(player.MessageCenter);
+            BoundedTransformComponent playerTransform = new BoundedTransformComponent(player.MessageCenter, 110, 140, Bounds);
+            playerTransform.Position = new Vector2(500, 500);
+            BasicWeaponComponent playerWeapon = new BasicWeaponComponent(player.MessageCenter, playerTransform, bullet, 0.2f, new Vector2(0, -1000), new Vector2(0, -110));
+            RenderComponent playerRender = new RenderComponent(player.MessageCenter, test, playerTransform, GameScreen.NormalLayer);
+            player.AddComponent(playerWeapon);
+            player.AddComponent(playerInput);
+            player.AddComponent(playerTransform);
+            player.AddComponent(playerRender);
             return player;
         }
 

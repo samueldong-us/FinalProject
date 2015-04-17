@@ -88,16 +88,16 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameResources\BasicWeaponComponent.cs" />
+    <Compile Include="GameResources\BoundedTransformComponent.cs" />
     <Compile Include="GameResources\Component.cs" />
-    <Compile Include="GameResources\DrawingComponent.cs" />
+    <Compile Include="GameResources\ExitSignalingTransformComponent.cs" />
+    <Compile Include="GameResources\RenderComponent.cs" />
     <Compile Include="GameResources\Entity.cs" />
-    <Compile Include="GameResources\OnScreenTransformComponent.cs" />
     <Compile Include="GameResources\PlayerInputComponent.cs" />
     <Compile Include="GameResources\SaveGame.cs" />
     <Compile Include="GameResources\SaveGameManager.cs" />
-    <Compile Include="GameResources\TransformBoudSignaler.cs" />
     <Compile Include="GameResources\TransformComponent.cs" />
-    <Compile Include="GameResources\WeaponComponent.cs" />
     <Compile Include="Messaging\Callbacks.cs" />
     <Compile Include="Messaging\MessageCenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

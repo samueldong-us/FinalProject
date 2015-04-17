@@ -1,9 +1,5 @@
 ﻿using FinalProject.Messaging;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameResources
 {
@@ -12,7 +8,7 @@ namespace FinalProject.GameResources
         public Vector2 Position;
         public float Scale;
         public float Theta;
-        protected Vector2 velocity;
+        public Vector2 Velocity;
 
         public TransformComponent(MessageCenter messageCenter)
             : base(messageCenter)
@@ -29,12 +25,12 @@ namespace FinalProject.GameResources
 
         public void SetVelocity(Vector2 velocity)
         {
-            this.velocity = velocity;
+            this.Velocity = velocity;
         }
 
         public override void Update(float secondsPassed)
         {
-            Position += secondsPassed * velocity;
+            Position += secondsPassed * Velocity;
         }
     }
 }

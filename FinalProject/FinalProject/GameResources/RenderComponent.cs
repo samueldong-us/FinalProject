@@ -1,32 +1,28 @@
 ﻿using FinalProject.Messaging;
-using FinalProject.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameResources
 {
-    internal class DrawingComponent : Component
+    internal class RenderComponent : Component
     {
+        private List<RenderComponent> drawingLayer;
         private Texture2D texture;
         private TransformComponent transform;
-        private List<DrawingComponent> list;
 
-        public DrawingComponent(MessageCenter messageCenter, Texture2D texture, TransformComponent transform, List<DrawingComponent> list)
+        public RenderComponent(MessageCenter messageCenter, Texture2D texture, TransformComponent transform, List<RenderComponent> drawingLayer)
             : base(messageCenter)
         {
             this.texture = texture;
             this.transform = transform;
-            list.Add(this);
-            this.list = list;
+            this.drawingLayer = drawingLayer;
+            drawingLayer.Add(this);
         }
 
         public override void Dispose()
         {
-            list.Remove(this);
+            drawingLayer.Remove(this);
         }
 
         public void Draw(SpriteBatch spriteBatch)

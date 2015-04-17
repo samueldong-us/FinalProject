@@ -2,10 +2,7 @@
 using FinalProject.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameResources
 {
@@ -40,7 +37,7 @@ namespace FinalProject.GameResources
             }
             if (key == Keys.Space)
             {
-                messageCenter.Broadcast("start shooting");
+                messageCenter.Broadcast("Start Shooting");
             }
         }
 
@@ -52,7 +49,7 @@ namespace FinalProject.GameResources
             }
             if (key == Keys.Space)
             {
-                messageCenter.Broadcast("stop shooting");
+                messageCenter.Broadcast("Stop Shooting");
             }
         }
 

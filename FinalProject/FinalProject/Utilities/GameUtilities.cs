@@ -15,8 +15,8 @@ namespace FinalProject.Utilities
 
         public static Matrix GetResizeMatrix(GraphicsDevice graphicsDevice)
         {
-            float widthScale = graphicsDevice.PresentationParameters.BackBufferWidth / (float)Constants.VirtualWidth;
-            float heightScale = graphicsDevice.PresentationParameters.BackBufferHeight / (float)Constants.VirtualHeight;
+            float widthScale = graphicsDevice.Viewport.Width / (float)Constants.VirtualWidth;
+            float heightScale = graphicsDevice.Viewport.Height / (float)Constants.VirtualHeight;
             float scale = Math.Max(widthScale, heightScale);
             float xChange = (graphicsDevice.Viewport.Width / 2) - (Constants.VirtualWidth * scale / 2);
             float yChange = (graphicsDevice.Viewport.Height / 2) - (Constants.VirtualHeight * scale / 2);

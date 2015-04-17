@@ -1,20 +1,17 @@
 ﻿using FinalProject.Messaging;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameResources
 {
     internal class Entity
     {
-        public MessageCenter messageCenter;
+        public MessageCenter MessageCenter;
         private List<Component> components;
 
         public Entity()
         {
             components = new List<Component>();
-            messageCenter = new MessageCenter();
+            MessageCenter = new MessageCenter();
         }
 
         public void AddComponent(Component component)
