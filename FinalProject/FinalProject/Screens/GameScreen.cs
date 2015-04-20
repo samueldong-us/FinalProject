@@ -144,6 +144,7 @@ namespace FinalProject.Screens
             entities.Clear();
             NormalLayer.Clear();
             BulletLayer.Clear();
+            HealthLayer.Clear();
             EnemyColliders.Clear();
             PlayerCollider.Clear();
             PlayerBulletColliders.Clear();
