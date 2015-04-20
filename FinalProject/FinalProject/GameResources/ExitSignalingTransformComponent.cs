@@ -1,5 +1,4 @@
-﻿using FinalProject.Messaging;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 
 namespace FinalProject.GameResources
 {

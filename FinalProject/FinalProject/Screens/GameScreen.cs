@@ -27,12 +27,10 @@ namespace FinalProject.Screens
         private Texture2D background;
         private Texture2D bullet;
         private List<Entity> entities;
-        private bool firstIteration;
         private MenuItemGroup menuItems;
         private bool paused;
         private InterpolatedValue scaleIn, scaleOut;
         private string selected;
-        private Texture2D snapshot;
         private Texture2D test;
         private Texture2D testHealth;
         private List<Entity> toRemove;
@@ -67,26 +65,19 @@ namespace FinalProject.Screens
             {
                 case ScreenState.TransitioningIn:
                     {
-                        if (firstIteration)
-                        {
-                            firstIteration = false;
-                            GraphicsUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
-                            DrawScreen(spriteBatch);
-                            GraphicsUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
-                            snapshot = GraphicsUtilities.DuplicateTexture(GraphicsUtilities.GetTexture(), graphicsDevice);
-                        }
-                        GraphicsUtilities.DrawPixelatedTexture(spriteBatch, snapshot, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleIn.GetValue(), graphicsDevice);
+                        DrawScreen(spriteBatch);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
                     } break;
                 case ScreenState.Active:
                     {
-                        GraphicsUtilities.BeginDrawingToTexture(spriteBatch, graphicsDevice);
                         DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingToTexture(spriteBatch, graphicsDevice);
-                        spriteBatch.Draw(GraphicsUtilities.GetTexture(), new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
                     } break;
                 case ScreenState.TransitioningOut:
                     {
-                        GraphicsUtilities.DrawPixelatedTexture(spriteBatch, snapshot, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleOut.GetValue(), graphicsDevice);
+                        DrawScreen(spriteBatch);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
                     } break;
             }
         }
@@ -163,7 +154,6 @@ namespace FinalProject.Screens
 
         public override void TransitionOut()
         {
-            snapshot = GraphicsUtilities.DuplicateTexture(GraphicsUtilities.GetTexture(), graphicsDevice);
             base.TransitionOut();
         }
 
@@ -205,7 +195,6 @@ namespace FinalProject.Screens
 
         protected override void Set()
         {
-            firstIteration = true;
             entities.Add(GeneratePlayer());
             entities.Add(TestGenerateEnemy());
         }
