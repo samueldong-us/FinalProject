@@ -5,13 +5,13 @@ using System.Collections.Generic;
 
 namespace FinalProject.GameResources
 {
-    internal class RenderComponent : Component
+    internal class RenderComponent : Component, Drawable
     {
-        private List<RenderComponent> drawingLayer;
+        private List<Drawable> drawingLayer;
         private Texture2D texture;
         private TransformComponent transform;
 
-        public RenderComponent(MessageCenter messageCenter, Texture2D texture, TransformComponent transform, List<RenderComponent> drawingLayer)
+        public RenderComponent(MessageCenter messageCenter, Texture2D texture, TransformComponent transform, List<Drawable> drawingLayer)
             : base(messageCenter)
         {
             this.texture = texture;

@@ -92,7 +92,10 @@
     <Compile Include="GameResources\BoundedTransformComponent.cs" />
     <Compile Include="GameResources\ColliderComponent.cs" />
     <Compile Include="GameResources\Component.cs" />
+    <Compile Include="GameResources\Drawable.cs" />
     <Compile Include="GameResources\ExitSignalingTransformComponent.cs" />
+    <Compile Include="GameResources\HealthBarComponent.cs" />
+    <Compile Include="GameResources\HealthComponent.cs" />
     <Compile Include="GameResources\RenderComponent.cs" />
     <Compile Include="GameResources\Entity.cs" />
     <Compile Include="GameResources\PlayerInputComponent.cs" />

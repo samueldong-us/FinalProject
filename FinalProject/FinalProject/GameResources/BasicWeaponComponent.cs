@@ -19,18 +19,15 @@ namespace FinalProject.GameResources
         private float timeUntilReady;
         private TransformComponent transform;
         private float weaponCooldown;
-        private MessageCenter weaponMessenger;
 
         public BasicWeaponComponent(MessageCenter messageCenter, TransformComponent transform, Texture2D bulletImage, float weaponCooldown, Vector2 bulletVelocity, Vector2 bulletOffset)
             : base(messageCenter)
         {
             bullets = new List<Entity>();
-            weaponMessenger = new MessageCenter();
             this.transform = transform;
             this.bulletImage = bulletImage;
             messageCenter.AddListener("Start Shooting", StartShooting);
             messageCenter.AddListener("Stop Shooting", StopShooting);
-            weaponMessenger.AddListener<Entity>("Exited", RemoveBullet);
             this.weaponCooldown = weaponCooldown;
             this.bulletVelocity = bulletVelocity;
             this.bulletOffset = bulletOffset;
@@ -61,7 +58,8 @@ namespace FinalProject.GameResources
         private void FireBullet()
         {
             Entity bullet = new Entity();
-            ExitSignalingTransformComponent bulletTransform = new ExitSignalingTransformComponent(bullet, weaponMessenger, bulletImage.Bounds, GameScreen.Bounds);
+            bullet.MessageCenter.AddListener<Entity>("Exited", RemoveBullet);
+            ExitSignalingTransformComponent bulletTransform = new ExitSignalingTransformComponent(bullet, bulletImage.Bounds, new Rectangle(0, 200, 1920, 1080));
             bulletTransform.Position = transform.Position + bulletOffset;
             bulletTransform.SetVelocity(bulletVelocity);
             ColliderComponent bulletCollider = new ColliderComponent(bullet, 15, bulletImageArray, bulletTransform, GameScreen.PlayerBulletColliders);

@@ -13,11 +13,12 @@ namespace FinalProject.Screens
     internal class GameScreen : Screen
     {
         public static Rectangle Bounds = new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight);
-        public static List<RenderComponent> BulletLayer;
+        public static List<Drawable> BulletLayer;
         public static List<ColliderComponent> EnemyBulletColliders;
         public static List<ColliderComponent> EnemyColliders;
         public static MessageCenter GameMessageCenter;
-        public static List<RenderComponent> NormalLayer;
+        public static List<Drawable> HealthLayer;
+        public static List<Drawable> NormalLayer;
         public static List<ColliderComponent> PlayerBulletColliders;
         public static List<ColliderComponent> PlayerCollider;
         public SaveGame currentGame;
@@ -45,8 +46,9 @@ namespace FinalProject.Screens
             menuItems = new MenuItemGroup();
             menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LEVEL SELECT"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 450), "UPGRADES"));
-            NormalLayer = new List<RenderComponent>();
-            BulletLayer = new List<RenderComponent>();
+            NormalLayer = new List<Drawable>();
+            BulletLayer = new List<Drawable>();
+            HealthLayer = new List<Drawable>();
             PlayerCollider = new List<ColliderComponent>();
             EnemyColliders = new List<ColliderComponent>();
             EnemyBulletColliders = new List<ColliderComponent>();
@@ -232,13 +234,17 @@ namespace FinalProject.Screens
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-            foreach (RenderComponent drawingComponent in NormalLayer)
+            foreach (Drawable drawable in NormalLayer)
             {
-                drawingComponent.Draw(spriteBatch);
+                drawable.Draw(spriteBatch);
             }
-            foreach (RenderComponent drawingComponent in BulletLayer)
+            foreach (Drawable drawable in HealthLayer)
             {
-                drawingComponent.Draw(spriteBatch);
+                drawable.Draw(spriteBatch);
+            }
+            foreach (Drawable drawable in BulletLayer)
+            {
+                drawable.Draw(spriteBatch);
             }
             if (paused)
             {

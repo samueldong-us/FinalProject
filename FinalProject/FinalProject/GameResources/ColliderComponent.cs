@@ -65,8 +65,6 @@ namespace FinalProject.GameResources
         public void NotifyOfCollision(Entity collidedWith)
         {
             messageCenter.Broadcast<Entity>("Collided With", collidedWith);
-            //Test
-            messageCenter.Broadcast<Vector2>("Set Velocity", new Vector2(0, 100));
         }
 
         public override void Update(float secondsPassed)
