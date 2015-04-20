@@ -11,12 +11,16 @@ namespace FinalProject.GameResources
 {
     internal class HealthBarComponent : Component, Drawable
     {
+        protected HealthComponent health;
+        protected TransformComponent transform;
         private Rectangle backing;
         private Rectangle bar;
-        private HealthComponent health;
+        private HealthComponent health1;
+        private HealthComponent health2;
         private List<Drawable> healthBarLayer;
         private Vector2 offset;
-        private TransformComponent transform;
+        private TransformComponent transform1;
+        private int width;
 
         public HealthBarComponent(MessageCenter messageCenter, int width, int height, Vector2 offset, HealthComponent health, TransformComponent transform, List<Drawable> healthBarLayer)
             : base(messageCenter)
@@ -35,7 +39,7 @@ namespace FinalProject.GameResources
             healthBarLayer.Remove(this);
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             float healthNumber = health.Health / (float)health.MaxHealth;
             Vector2 targetOrigin = transform.Position + offset;

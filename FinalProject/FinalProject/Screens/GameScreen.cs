@@ -34,6 +34,7 @@ namespace FinalProject.Screens
         private string selected;
         private Texture2D snapshot;
         private Texture2D test;
+        private Texture2D testHealth;
         private List<Entity> toRemove;
 
         public GameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -131,6 +132,7 @@ namespace FinalProject.Screens
             test = content.Load<Texture2D>("Test");
             background = content.Load<Texture2D>("MenuBackground");
             bullet = content.Load<Texture2D>("TestBullet");
+            testHealth = content.Load<Texture2D>("CircularHealthBarTest");
             base.LoadContent();
         }
 
@@ -303,8 +305,8 @@ namespace FinalProject.Screens
             BoundedTransformComponent enemyTransform = new BoundedTransformComponent(enemy.MessageCenter, 110, 140, Bounds);
             enemyTransform.Position = new Vector2(500, 200);
             enemyTransform.Theta = rng.Next(360);
-            HealthComponent enemyHealth = new HealthComponent(enemy.MessageCenter, 20);
-            HealthBarComponent enemyHealthBar = new HealthBarComponent(enemy.MessageCenter, 100, 15, new Vector2(0, -150), enemyHealth, enemyTransform, HealthLayer);
+            HealthComponent enemyHealth = new HealthComponent(enemy.MessageCenter, 50);
+            TestCircularHealthBar enemyHealthBar = new TestCircularHealthBar(enemy.MessageCenter, 100, 15, new Vector2(0, -150), enemyHealth, enemyTransform, HealthLayer, testHealth);
             RemoveOnDeathComponent enemyRemoveOnDeath = new RemoveOnDeathComponent(enemy);
             ColliderComponent enemyCollider = new ColliderComponent(enemy, 150, GraphicsUtilities.GetColorsFromTexture(test), enemyTransform, EnemyColliders);
             RenderComponent enemyRender = new RenderComponent(enemy.MessageCenter, test, enemyTransform, GameScreen.NormalLayer);
