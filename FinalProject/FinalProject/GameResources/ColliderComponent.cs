@@ -39,13 +39,13 @@ namespace FinalProject.GameResources
                 {
                     for (int y = 0; y < texture.GetLength(1); y++)
                     {
-                        if (texture[x, y].A > 0)
+                        if (texture[x, y].A == 255)
                         {
                             Vector2 thisPoint = new Vector2(x, y);
                             Vector2 thisPointInOther = Vector2.Transform(thisPoint, thisToOther);
                             if (new Rectangle(0, 0, other.texture.GetLength(0), other.texture.GetLength(1)).Contains((int)thisPointInOther.X, (int)thisPointInOther.Y))
                             {
-                                if (other.texture[(int)thisPointInOther.X, (int)thisPointInOther.Y].A > 0)
+                                if (other.texture[(int)thisPointInOther.X, (int)thisPointInOther.Y].A == 255)
                                 {
                                     return true;
                                 }
@@ -64,7 +64,7 @@ namespace FinalProject.GameResources
 
         public void NotifyOfCollision(Entity collidedWith)
         {
-            messageCenter.Broadcast<Entity>("Collided With", collidedWith);
+            messageCenter.Broadcast<Entity, Entity>("Collided With", collidedWith, Entity);
         }
 
         public override void Update(float secondsPassed)

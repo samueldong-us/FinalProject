@@ -176,6 +176,10 @@ namespace FinalProject.Screens
                             CheckForCollisions();
                             foreach (Entity entity in entities)
                             {
+                                entity.MessageCenter.Broadcast("Clean Up");
+                            }
+                            foreach (Entity entity in entities)
+                            {
                                 entity.Update(secondsPassed);
                             }
                         }
@@ -284,8 +288,12 @@ namespace FinalProject.Screens
             BoundedTransformComponent enemyTransform = new BoundedTransformComponent(enemy.MessageCenter, 110, 140, Bounds);
             enemyTransform.Position = new Vector2(500, 200);
             enemyTransform.Theta = rng.Next(360);
+            HealthComponent enemyHealth = new HealthComponent(enemy.MessageCenter, 20);
+            HealthBarComponent enemyHealthBar = new HealthBarComponent(enemy.MessageCenter, 100, 15, new Vector2(0, -150), enemyHealth, enemyTransform, HealthLayer);
             ColliderComponent enemyCollider = new ColliderComponent(enemy, 150, GraphicsUtilities.GetColorsFromTexture(test), enemyTransform, EnemyColliders);
             RenderComponent enemyRender = new RenderComponent(enemy.MessageCenter, test, enemyTransform, GameScreen.NormalLayer);
+            enemy.AddComponent(enemyHealth);
+            enemy.AddComponent(enemyHealthBar);
             enemy.AddComponent(enemyCollider);
             enemy.AddComponent(enemyTransform);
             enemy.AddComponent(enemyRender);

@@ -22,12 +22,11 @@ namespace FinalProject.GameResources
 
         public override void Dispose()
         {
-            throw new NotImplementedException();
+            messageCenter.RemoveListener<int>("Take Damage", TakeDamage);
         }
 
         public override void Update(float secondsPassed)
         {
-            throw new NotImplementedException();
         }
 
         private void TakeDamage(int damage)

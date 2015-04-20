@@ -8,6 +8,6 @@ namespace FinalProject.GameResources
 {
     internal interface Drawable
     {
-        public void Draw(SpriteBatch spriteBatch);
+        void Draw(SpriteBatch spriteBatch);
     }
 }
