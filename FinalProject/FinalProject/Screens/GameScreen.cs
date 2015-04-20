@@ -247,6 +247,7 @@ namespace FinalProject.Screens
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
+
             foreach (Drawable drawable in NormalLayer)
             {
                 drawable.Draw(spriteBatch);

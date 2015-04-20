@@ -12,7 +12,7 @@ float4 PixelShaderFunction(float2 TextureCoordinate : TEXCOORD0) : COLOR0
 	float4 textureColor = tex2D(TextureSampler, TextureCoordinate);
 	float4 gradientColor = tex2D(GradientSampler, TextureCoordinate);
 	if (gradientColor.r < Amount){
-		textureColor.a = 0;
+		textureColor.rgba = 0;
 	}
 	return textureColor;
 }

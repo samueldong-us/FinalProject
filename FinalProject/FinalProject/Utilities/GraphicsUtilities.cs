@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 
@@ -7,6 +8,7 @@ namespace FinalProject.Utilities
     internal static class GraphicsUtilities
     {
         public static Texture2D PlainTexture = null;
+        private static Effect circularWipe;
         private static RenderTarget2D renderTarget = null;
 
         public static void BeginDrawingToTexture(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice)
@@ -20,6 +22,20 @@ namespace FinalProject.Utilities
             else
             {
                 throw new Exception("Render Target Must Be Created First");
+            }
+        }
+
+        public static void BeginDrawingWithCircularWipe(SpriteBatch spriteBatch, float amount)
+        {
+            if (circularWipe != null)
+            {
+                spriteBatch.End();
+                circularWipe.Parameters["Amount"].SetValue(amount);
+                spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, circularWipe);
+            }
+            else
+            {
+                throw new Exception("Circular Wipe Must Be Loaded First");
             }
         }
 
@@ -78,6 +94,19 @@ namespace FinalProject.Utilities
             }
         }
 
+        public static void EndDrawingWithCircularWipe(SpriteBatch spriteBatch)
+        {
+            if (circularWipe != null)
+            {
+                spriteBatch.End();
+                spriteBatch.Begin();
+            }
+            else
+            {
+                throw new Exception("Circular Wipe Must Be Loaded First");
+            }
+        }
+
         public static Color[,] GetColorsFromTexture(Texture2D texture)
         {
             Color[] rawArray = new Color[texture.Width * texture.Height];
@@ -97,6 +126,12 @@ namespace FinalProject.Utilities
         public static Texture2D GetTexture()
         {
             return (Texture2D)renderTarget;
+        }
+
+        public static void LoadCircularWipe(ContentManager contentManager)
+        {
+            circularWipe = contentManager.Load<Effect>("CircularWipe");
+            circularWipe.Parameters["Gradient"].SetValue(contentManager.Load<Texture2D>("Circular Gradient"));
         }
 
         public static void MakePlainTexture(GraphicsDevice graphicsDevice)

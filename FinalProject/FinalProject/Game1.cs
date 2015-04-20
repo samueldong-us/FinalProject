@@ -113,6 +113,7 @@ namespace FinalProject
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Fonts.LoadFonts(Content);
+            GraphicsUtilities.LoadCircularWipe(Content);
             splashScreen.LoadContent();
             mainMenuScreen.LoadContent();
             current = splashScreen;
