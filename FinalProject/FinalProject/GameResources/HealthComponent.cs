@@ -32,7 +32,7 @@ namespace FinalProject.GameResources
         private void TakeDamage(int damage)
         {
             Health -= damage;
-            if (Health < 0)
+            if (Health <= 0)
             {
                 Health = 0;
                 messageCenter.Broadcast("Health Depleted");

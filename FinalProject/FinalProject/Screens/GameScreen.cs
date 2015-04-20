@@ -34,11 +34,14 @@ namespace FinalProject.Screens
         private string selected;
         private Texture2D snapshot;
         private Texture2D test;
+        private List<Entity> toRemove;
 
         public GameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             GameMessageCenter = new MessageCenter();
+            GameMessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
+            toRemove = new List<Entity>();
             scaleIn = new ExponentialInterpolatedValue(.002f, .25f, .5f);
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
@@ -174,6 +177,12 @@ namespace FinalProject.Screens
                         if (!paused)
                         {
                             CheckForCollisions();
+                            foreach (Entity entity in toRemove)
+                            {
+                                entities.Remove(entity);
+                                entity.Dispose();
+                            }
+                            toRemove.Clear();
                             foreach (Entity entity in entities)
                             {
                                 entity.MessageCenter.Broadcast("Clean Up");
@@ -271,6 +280,11 @@ namespace FinalProject.Screens
             return player;
         }
 
+        private void RemoveEntity(Entity entity)
+        {
+            toRemove.Add(entity);
+        }
+
         private void ScaleInFinished(float parameter)
         {
             state = ScreenState.Active;
@@ -290,10 +304,12 @@ namespace FinalProject.Screens
             enemyTransform.Theta = rng.Next(360);
             HealthComponent enemyHealth = new HealthComponent(enemy.MessageCenter, 20);
             HealthBarComponent enemyHealthBar = new HealthBarComponent(enemy.MessageCenter, 100, 15, new Vector2(0, -150), enemyHealth, enemyTransform, HealthLayer);
+            RemoveOnDeathComponent enemyRemoveOnDeath = new RemoveOnDeathComponent(enemy);
             ColliderComponent enemyCollider = new ColliderComponent(enemy, 150, GraphicsUtilities.GetColorsFromTexture(test), enemyTransform, EnemyColliders);
             RenderComponent enemyRender = new RenderComponent(enemy.MessageCenter, test, enemyTransform, GameScreen.NormalLayer);
             enemy.AddComponent(enemyHealth);
             enemy.AddComponent(enemyHealthBar);
+            enemy.AddComponent(enemyRemoveOnDeath);
             enemy.AddComponent(enemyCollider);
             enemy.AddComponent(enemyTransform);
             enemy.AddComponent(enemyRender);

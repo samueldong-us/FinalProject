@@ -96,6 +96,7 @@
     <Compile Include="GameResources\ExitSignalingTransformComponent.cs" />
     <Compile Include="GameResources\HealthBarComponent.cs" />
     <Compile Include="GameResources\HealthComponent.cs" />
+    <Compile Include="GameResources\RemoveOnDeathComponent.cs" />
     <Compile Include="GameResources\RenderComponent.cs" />
     <Compile Include="GameResources\Entity.cs" />
     <Compile Include="GameResources\PlayerInputComponent.cs" />
