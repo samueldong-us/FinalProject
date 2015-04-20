@@ -90,6 +90,7 @@
   <ItemGroup>
     <Compile Include="GameResources\BasicWeaponComponent.cs" />
     <Compile Include="GameResources\BoundedTransformComponent.cs" />
+    <Compile Include="GameResources\ColliderComponent.cs" />
     <Compile Include="GameResources\Component.cs" />
     <Compile Include="GameResources\ExitSignalingTransformComponent.cs" />
     <Compile Include="GameResources\RenderComponent.cs" />

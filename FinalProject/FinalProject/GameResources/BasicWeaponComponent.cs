@@ -1,5 +1,6 @@
 ﻿using FinalProject.Messaging;
 using FinalProject.Screens;
+using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
@@ -10,6 +11,7 @@ namespace FinalProject.GameResources
     internal class BasicWeaponComponent : Component
     {
         private Texture2D bulletImage;
+        private Color[,] bulletImageArray;
         private Vector2 bulletOffset;
         private List<Entity> bullets;
         private Vector2 bulletVelocity;
@@ -32,6 +34,7 @@ namespace FinalProject.GameResources
             this.weaponCooldown = weaponCooldown;
             this.bulletVelocity = bulletVelocity;
             this.bulletOffset = bulletOffset;
+            bulletImageArray = GraphicsUtilities.GetColorsFromTexture(bulletImage);
         }
 
         public override void Dispose()
@@ -61,7 +64,9 @@ namespace FinalProject.GameResources
             ExitSignalingTransformComponent bulletTransform = new ExitSignalingTransformComponent(bullet, weaponMessenger, bulletImage.Bounds, GameScreen.Bounds);
             bulletTransform.Position = transform.Position + bulletOffset;
             bulletTransform.SetVelocity(bulletVelocity);
+            ColliderComponent bulletCollider = new ColliderComponent(bullet, 15, bulletImageArray, bulletTransform, GameScreen.PlayerBulletColliders);
             RenderComponent bulletRender = new RenderComponent(bullet.MessageCenter, bulletImage, bulletTransform, GameScreen.BulletLayer);
+            bullet.AddComponent(bulletCollider);
             bullet.AddComponent(bulletTransform);
             bullet.AddComponent(bulletRender);
             bullets.Add(bullet);

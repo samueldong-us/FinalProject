@@ -5,6 +5,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace FinalProject.Screens
@@ -13,8 +14,12 @@ namespace FinalProject.Screens
     {
         public static Rectangle Bounds = new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight);
         public static List<RenderComponent> BulletLayer;
+        public static List<ColliderComponent> EnemyBulletColliders;
+        public static List<ColliderComponent> EnemyColliders;
         public static MessageCenter GameMessageCenter;
         public static List<RenderComponent> NormalLayer;
+        public static List<ColliderComponent> PlayerBulletColliders;
+        public static List<ColliderComponent> PlayerCollider;
         public SaveGame currentGame;
         public ScreenEvent FinishedTransitioningOut;
         public ScreenEvent StartingTransitioningOut;
@@ -42,6 +47,10 @@ namespace FinalProject.Screens
             menuItems.AddItem(new MenuItem(new Vector2(280, 450), "UPGRADES"));
             NormalLayer = new List<RenderComponent>();
             BulletLayer = new List<RenderComponent>();
+            PlayerCollider = new List<ColliderComponent>();
+            EnemyColliders = new List<ColliderComponent>();
+            EnemyBulletColliders = new List<ColliderComponent>();
+            PlayerBulletColliders = new List<ColliderComponent>();
             entities = new List<Entity>();
             selected = "";
         }
@@ -127,6 +136,11 @@ namespace FinalProject.Screens
             selected = "";
             entities.Clear();
             NormalLayer.Clear();
+            BulletLayer.Clear();
+            EnemyColliders.Clear();
+            PlayerCollider.Clear();
+            PlayerBulletColliders.Clear();
+            EnemyBulletColliders.Clear();
         }
 
         public override void Start()
@@ -157,6 +171,7 @@ namespace FinalProject.Screens
                     {
                         if (!paused)
                         {
+                            CheckForCollisions();
                             foreach (Entity entity in entities)
                             {
                                 entity.Update(secondsPassed);
@@ -174,6 +189,44 @@ namespace FinalProject.Screens
         {
             firstIteration = true;
             entities.Add(GeneratePlayer());
+            entities.Add(TestGenerateEnemy());
+        }
+
+        private void CheckForCollisions()
+        {
+            foreach (ColliderComponent player in PlayerCollider)
+            {
+                foreach (ColliderComponent enemyBullet in EnemyBulletColliders)
+                {
+                    if (enemyBullet.CollidesWith(player))
+                    {
+                        enemyBullet.NotifyOfCollision(player.Entity);
+                        player.NotifyOfCollision(enemyBullet.Entity);
+                    }
+                }
+            }
+            foreach (ColliderComponent player in PlayerCollider)
+            {
+                foreach (ColliderComponent enemy in EnemyColliders)
+                {
+                    if (player.CollidesWith(enemy))
+                    {
+                        enemy.NotifyOfCollision(player.Entity);
+                        player.NotifyOfCollision(enemy.Entity);
+                    }
+                }
+            }
+            foreach (ColliderComponent enemy in EnemyColliders)
+            {
+                foreach (ColliderComponent playerBullet in PlayerBulletColliders)
+                {
+                    if (playerBullet.CollidesWith(enemy))
+                    {
+                        playerBullet.NotifyOfCollision(enemy.Entity);
+                        enemy.NotifyOfCollision(playerBullet.Entity);
+                    }
+                }
+            }
         }
 
         private void DrawScreen(SpriteBatch spriteBatch)
@@ -216,6 +269,21 @@ namespace FinalProject.Screens
         private void ScaleOutFinished(float parameter)
         {
             FinishedTransitioningOut(selected);
+        }
+
+        private Entity TestGenerateEnemy()
+        {
+            Random rng = new Random();
+            Entity enemy = new Entity();
+            BoundedTransformComponent enemyTransform = new BoundedTransformComponent(enemy.MessageCenter, 110, 140, Bounds);
+            enemyTransform.Position = new Vector2(500, 200);
+            enemyTransform.Theta = rng.Next(360);
+            ColliderComponent enemyCollider = new ColliderComponent(enemy, 150, GraphicsUtilities.GetColorsFromTexture(test), enemyTransform, EnemyColliders);
+            RenderComponent enemyRender = new RenderComponent(enemy.MessageCenter, test, enemyTransform, GameScreen.NormalLayer);
+            enemy.AddComponent(enemyCollider);
+            enemy.AddComponent(enemyTransform);
+            enemy.AddComponent(enemyRender);
+            return enemy;
         }
     }
 }
