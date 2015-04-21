@@ -6,6 +6,7 @@ sampler TextureSampler : register(s0);
 texture2D Gradient;
 sampler GradientSampler = sampler_state{ Texture = Gradient; };
 float Amount;
+float PhaseShift;
 struct PixelShaderInput
 {
 	float4 Color : COLOR0;
@@ -15,7 +16,11 @@ float4 PixelShaderFunction(PixelShaderInput input) : COLOR0
 {
 	float4 textureColor = tex2D(TextureSampler, input.TextureCoordinate);
 	float4 gradientColor = tex2D(GradientSampler, input.TextureCoordinate);
-	if (gradientColor.r < Amount){
+	float colorAfterShift = gradientColor.r - PhaseShift;
+	if (colorAfterShift < 0){
+		colorAfterShift += 1;
+	}
+	if (colorAfterShift < Amount){
 		textureColor.rgba = 0;
 	}
 	return textureColor * input.Color;

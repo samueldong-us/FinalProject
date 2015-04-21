@@ -22,7 +22,7 @@ namespace FinalProject.GameComponents
             Rectangle destination = new Rectangle((int)(transform.Position.X - healthBar.Width / 2.0), (int)(transform.Position.Y - healthBar.Height / 2.0), healthBar.Width, healthBar.Height);
             float redComponent = healthNumber > .5 ? MathHelper.Lerp(1, 0, (healthNumber - .5f) * 2) : 1;
             float greenComponent = healthNumber > .5 ? 1 : MathHelper.Lerp(0, 1, healthNumber * 2);
-            GraphicsUtilities.BeginDrawingWithCircularWipe(spriteBatch, 1 - healthNumber);
+            GraphicsUtilities.BeginDrawingWithCircularWipe(spriteBatch, 1 - healthNumber, .5f);
             spriteBatch.Draw(healthBar, destination, new Color(redComponent, greenComponent, 0));
             GraphicsUtilities.EndDrawingWithCircularWipe(spriteBatch);
         }
