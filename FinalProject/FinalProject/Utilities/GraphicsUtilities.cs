@@ -58,12 +58,12 @@ namespace FinalProject.Utilities
             Rectangle destination = new Rectangle((int)position.X, (int)position.Y, width, height);
             Rectangle scaled = new Rectangle(0, 0, (int)(width * scale), (int)(height * scale));
             spriteBatch.End();
-            currentMatrix = GameUtilities.GetResizeMatrix(graphicsDevice);
             graphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, GameUtilities.GetResizeMatrix(graphicsDevice));
             spriteBatch.Draw((Texture2D)renderTarget, destination, scaled, Color.White);
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GameUtilities.GetResizeMatrix(graphicsDevice));
+            currentMatrix = GameUtilities.GetResizeMatrix(graphicsDevice);
         }
 
         public static void EndDrawingWithCircularWipe(SpriteBatch spriteBatch)

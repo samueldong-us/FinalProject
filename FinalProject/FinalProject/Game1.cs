@@ -63,8 +63,8 @@ namespace FinalProject
         /// </summary>
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
             //graphics.IsFullScreen = true;
             graphics.ApplyChanges();
             IsFixedTimeStep = false;
