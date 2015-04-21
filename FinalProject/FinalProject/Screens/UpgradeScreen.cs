@@ -11,8 +11,6 @@ namespace FinalProject.Screens
     internal class UpgradeScreen : Screen
     {
         public SaveGame currentGame;
-        public ScreenEvent FinishedTransitioningOut;
-        public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private InterpolatedValue scaleIn, scaleOut;
         private UpgradeItemGroup upgrades;
@@ -78,7 +76,7 @@ namespace FinalProject.Screens
                             case Keys.Escape:
                                 {
                                     UpdateUpgrades();
-                                    StartingTransitioningOut("");
+                                    RequestingToTransitionOut("");
                                 } break;
                         }
                     } break;

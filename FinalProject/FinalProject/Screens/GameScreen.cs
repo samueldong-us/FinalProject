@@ -22,8 +22,6 @@ namespace FinalProject.Screens
         public static List<ColliderComponent> PlayerBulletColliders;
         public static List<ColliderComponent> PlayerCollider;
         public SaveGame currentGame;
-        public ScreenEvent FinishedTransitioningOut;
-        public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private Texture2D bullet;
         private List<Entity> entities;
@@ -96,7 +94,7 @@ namespace FinalProject.Screens
                             case Keys.Enter:
                                 {
                                     selected = menuItems.GetSelected();
-                                    StartingTransitioningOut(selected);
+                                    RequestingToTransitionOut(selected);
                                 } break;
                             case Keys.Up:
                                 {
@@ -108,7 +106,7 @@ namespace FinalProject.Screens
                                 } break;
                             case Keys.Escape:
                                 {
-                                    StartingTransitioningOut("");
+                                    RequestingToTransitionOut("");
                                 } break;
                         }
                     } break;

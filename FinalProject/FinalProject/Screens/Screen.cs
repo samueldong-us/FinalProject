@@ -8,6 +8,8 @@ namespace FinalProject.Screens
 {
     internal abstract class Screen
     {
+        public ScreenEvent FinishedTransitioningOut;
+        public ScreenEvent RequestingToTransitionOut;
         protected ContentManager content;
 
         protected GraphicsDevice graphicsDevice;

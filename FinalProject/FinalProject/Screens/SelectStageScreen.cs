@@ -10,8 +10,6 @@ namespace FinalProject.Screens
     internal class SelectStageScreen : Screen
     {
         public SaveGame currentGame;
-        public ScreenEvent FinishedTransitioningOut;
-        public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private MenuItemGroup menuItems;
         private InterpolatedValue scaleIn, scaleOut;
@@ -62,7 +60,7 @@ namespace FinalProject.Screens
                             case Keys.Enter:
                                 {
                                     selected = menuItems.GetSelected();
-                                    StartingTransitioningOut(selected);
+                                    RequestingToTransitionOut(selected);
                                 } break;
                             case Keys.Up:
                                 {
@@ -74,7 +72,7 @@ namespace FinalProject.Screens
                                 } break;
                             case Keys.Escape:
                                 {
-                                    StartingTransitioningOut("");
+                                    RequestingToTransitionOut("");
                                 } break;
                         }
                     } break;

@@ -10,8 +10,6 @@ namespace FinalProject.Screens
     internal class NewGameScreen : Screen
     {
         public SaveGame currentGame;
-        public ScreenEvent FinishedTransitioningOut;
-        public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private Error lastError;
         private MenuItemGroup menuItems;
@@ -81,7 +79,7 @@ namespace FinalProject.Screens
                                         currentGame = new SaveGame();
                                         currentGame.SaveName = userGameName.Text;
                                         selected = menuItems.GetSelected();
-                                        StartingTransitioningOut(selected);
+                                        RequestingToTransitionOut(selected);
                                     }
                                 } break;
                             case Keys.Up:
@@ -94,7 +92,7 @@ namespace FinalProject.Screens
                                 } break;
                             case Keys.Escape:
                                 {
-                                    StartingTransitioningOut("");
+                                    RequestingToTransitionOut("");
                                 } break;
                             case Keys.Space:
                                 {

@@ -8,8 +8,6 @@ namespace FinalProject.Screens
 {
     internal class SplashScreen : Screen
     {
-        public ScreenEvent FinishedTransitioningOut;
-        public ScreenEvent SplashScreenFinishedPlaying;
         private MediaState lastVideoState;
         private Video splashVideo;
         private VideoPlayer splashVideoPlayer;
@@ -32,7 +30,7 @@ namespace FinalProject.Screens
         {
             if (key == Keys.Space)
             {
-                SplashScreenFinishedPlaying("");
+                FinishedTransitioningOut("");
             }
         }
 
@@ -47,7 +45,7 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
-            SplashScreenFinishedPlaying("");
+            FinishedTransitioningOut("");
         }
 
         public override void Stop()
@@ -66,7 +64,7 @@ namespace FinalProject.Screens
             {
                 if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
                 {
-                    SplashScreenFinishedPlaying("");
+                    RequestingToTransitionOut("");
                 }
                 lastVideoState = splashVideoPlayer.State;
             }

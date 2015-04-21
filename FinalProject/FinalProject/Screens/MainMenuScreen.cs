@@ -8,8 +8,6 @@ namespace FinalProject.Screens
 {
     internal class MainMenuScreen : Screen
     {
-        public ScreenEvent FinishedTransitioningOut;
-        public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private MenuItemGroup menuItems;
         private InterpolatedValue scaleIn, scaleOut;
@@ -62,7 +60,7 @@ namespace FinalProject.Screens
                         {
                             case Keys.Enter:
                                 {
-                                    StartingTransitioningOut(menuItems.GetSelected());
+                                    RequestingToTransitionOut(menuItems.GetSelected());
                                 } break;
                             case Keys.Up:
                                 {

@@ -10,8 +10,6 @@ namespace FinalProject.Screens
     internal class SelectCharacterScreen : Screen
     {
         public SaveGame currentGame;
-        public ScreenEvent FinishedTransitioningOut;
-        public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private MenuItemGroup menuItems;
         private InterpolatedValue scaleIn, scaleOut;
@@ -80,7 +78,7 @@ namespace FinalProject.Screens
                                                 currentGame.character = SaveGame.Character.Dimmy;
                                             } break;
                                     }
-                                    StartingTransitioningOut(selected);
+                                    RequestingToTransitionOut(selected);
                                 } break;
                             case Keys.Up:
                                 {
@@ -92,7 +90,7 @@ namespace FinalProject.Screens
                                 } break;
                             case Keys.Escape:
                                 {
-                                    StartingTransitioningOut("");
+                                    RequestingToTransitionOut("");
                                 } break;
                         }
                     } break;

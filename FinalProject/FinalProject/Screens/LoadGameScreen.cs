@@ -10,8 +10,6 @@ namespace FinalProject.Screens
 {
     internal class LoadGameScreen : Screen
     {
-        public ScreenEvent FinishedTransitioningOut;
-        public ScreenEvent StartingTransitioningOut;
         private Texture2D background;
         private int currentPage;
         private List<MenuItemGroup> savedGames;
@@ -66,7 +64,7 @@ namespace FinalProject.Screens
                                     if (currentPage != -1)
                                     {
                                         selected = savedGames[currentPage].GetSelected();
-                                        StartingTransitioningOut(selected);
+                                        RequestingToTransitionOut(selected);
                                     }
                                 } break;
                             case Keys.Up:
@@ -99,7 +97,7 @@ namespace FinalProject.Screens
                                 } break;
                             case Keys.Escape:
                                 {
-                                    StartingTransitioningOut("");
+                                    RequestingToTransitionOut("");
                                 } break;
                         }
                     } break;
