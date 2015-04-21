@@ -40,6 +40,8 @@ namespace FinalProject.Screens
         {
             GameMessageCenter = new MessageCenter();
             GameMessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
+            GameMessageCenter.AddListener<Vector2, MessageCenter>("Get Closest Enemy", ClosestEnemy);
+            GameMessageCenter.AddListener<Vector2, MessageCenter>("Get Closest Player", ClosestPlayer);
             toRemove = new List<Entity>();
             scaleIn = new ExponentialInterpolatedValue(.002f, .25f, .5f);
             scaleIn.InterpolationFinished = ScaleInFinished;
@@ -196,7 +198,10 @@ namespace FinalProject.Screens
         protected override void Set()
         {
             entities.Add(GeneratePlayer());
-            entities.Add(TestGenerateEnemy());
+            for (int i = 0; i < 10; i++)
+            {
+                entities.Add(TestGenerateEnemy());
+            }
         }
 
         private void CheckForCollisions()
@@ -236,6 +241,36 @@ namespace FinalProject.Screens
             }
         }
 
+        private Vector2 ClosestCollider(Vector2 position, List<ColliderComponent> colliders)
+        {
+            if (colliders.Count == 0)
+            {
+                return new Vector2(-1, -1);
+            }
+            else
+            {
+                ColliderComponent closest = colliders[0];
+                foreach (ColliderComponent collider in colliders)
+                {
+                    if (Vector2.DistanceSquared(collider.transform.Position, position) < Vector2.DistanceSquared(closest.transform.Position, position))
+                    {
+                        closest = collider;
+                    }
+                }
+                return closest.transform.Position;
+            }
+        }
+
+        private void ClosestEnemy(Vector2 position, MessageCenter messageCenter)
+        {
+            messageCenter.Broadcast<Vector2>("Closest Position", ClosestCollider(position, EnemyColliders));
+        }
+
+        private void ClosestPlayer(Vector2 position, MessageCenter messageCenter)
+        {
+            messageCenter.Broadcast<Vector2>("Closest Position", ClosestCollider(position, PlayerCollider));
+        }
+
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
@@ -264,9 +299,11 @@ namespace FinalProject.Screens
             PlayerInputComponent playerInput = new PlayerInputComponent(player.MessageCenter);
             BoundedTransformComponent playerTransform = new BoundedTransformComponent(player.MessageCenter, 110, 140, Bounds);
             playerTransform.Position = new Vector2(500, 500);
-            BasicWeaponComponent playerWeapon = new BasicWeaponComponent(player.MessageCenter, playerTransform, bullet, 0.2f, new Vector2(0, -1000), new Vector2(0, -110));
+            HomingWeaponComponent playerWeapon = new HomingWeaponComponent(player.MessageCenter, playerTransform, bullet, 0.1f, new Vector2(0, -1000), new Vector2(-50, -50), (float)(Math.PI * 4));
+            HomingWeaponComponent playerWeapon2 = new HomingWeaponComponent(player.MessageCenter, playerTransform, bullet, 0.1f, new Vector2(0, -1000), new Vector2(50, -50), (float)(Math.PI * 4));
             RenderComponent playerRender = new RenderComponent(player.MessageCenter, test, playerTransform, GameScreen.NormalLayer);
             player.AddComponent(playerWeapon);
+            player.AddComponent(playerWeapon2);
             player.AddComponent(playerInput);
             player.AddComponent(playerTransform);
             player.AddComponent(playerRender);
@@ -293,8 +330,9 @@ namespace FinalProject.Screens
             Random rng = new Random();
             Entity enemy = new Entity();
             BoundedTransformComponent enemyTransform = new BoundedTransformComponent(enemy.MessageCenter, 110, 140, Bounds);
-            enemyTransform.Position = new Vector2(500, 200);
+            enemyTransform.Position = new Vector2(rng.Next(200, 1720), rng.Next(200, 880));
             enemyTransform.Theta = rng.Next(360);
+            enemyTransform.Scale = .5f;
             HealthComponent enemyHealth = new HealthComponent(enemy.MessageCenter, 50);
             TestCircularHealthBar enemyHealthBar = new TestCircularHealthBar(enemy.MessageCenter, 100, 15, new Vector2(0, -150), enemyHealth, enemyTransform, HealthLayer, testHealth);
             RemoveOnDeathComponent enemyRemoveOnDeath = new RemoveOnDeathComponent(enemy);

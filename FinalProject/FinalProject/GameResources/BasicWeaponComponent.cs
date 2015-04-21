@@ -10,16 +10,16 @@ namespace FinalProject.GameResources
 {
     internal class BasicWeaponComponent : Component
     {
-        private Texture2D bulletImage;
-        private Color[,] bulletImageArray;
-        private Vector2 bulletOffset;
-        private List<Entity> bullets;
-        private Vector2 bulletVelocity;
-        private bool shooting;
-        private float timeUntilReady;
-        private List<Entity> toRemove;
-        private TransformComponent transform;
-        private float weaponCooldown;
+        protected Texture2D bulletImage;
+        protected Color[,] bulletImageArray;
+        protected Vector2 bulletOffset;
+        protected List<Entity> bullets;
+        protected Vector2 bulletVelocity;
+        protected bool shooting;
+        protected float timeUntilReady;
+        protected List<Entity> toRemove;
+        protected TransformComponent transform;
+        protected float weaponCooldown;
 
         public BasicWeaponComponent(MessageCenter messageCenter, TransformComponent transform, Texture2D bulletImage, float weaponCooldown, Vector2 bulletVelocity, Vector2 bulletOffset)
             : base(messageCenter)
@@ -61,23 +61,13 @@ namespace FinalProject.GameResources
             }
         }
 
-        private void CleanUp()
-        {
-            foreach (Entity bullet in toRemove)
-            {
-                bullets.Remove(bullet);
-                bullet.Dispose();
-            }
-            toRemove.Clear();
-        }
-
-        private void CollidedWithEntity(Entity entity, Entity bullet)
+        protected virtual void CollidedWithEntity(Entity entity, Entity bullet)
         {
             entity.MessageCenter.Broadcast<int>("Take Damage", 1);
             RemoveBullet(bullet);
         }
 
-        private void FireBullet()
+        protected virtual void FireBullet()
         {
             Entity bullet = new Entity();
             bullet.MessageCenter.AddListener<Entity>("Exited", RemoveBullet);
@@ -93,9 +83,19 @@ namespace FinalProject.GameResources
             bullets.Add(bullet);
         }
 
-        private void RemoveBullet(Entity bullet)
+        protected void RemoveBullet(Entity bullet)
         {
             toRemove.Add(bullet);
+        }
+
+        private void CleanUp()
+        {
+            foreach (Entity bullet in toRemove)
+            {
+                bullets.Remove(bullet);
+                bullet.Dispose();
+            }
+            toRemove.Clear();
         }
 
         private void StartShooting()

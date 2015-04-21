@@ -8,7 +8,6 @@ namespace FinalProject.GameResources
         private int boundingRadius;
         private List<ColliderComponent> colliderList;
         private Color[,] texture;
-        private TransformComponent transform;
 
         public ColliderComponent(Entity entity, int boundingRadius, Color[,] texture, TransformComponent transform, List<ColliderComponent> colliderList)
             : base(entity.MessageCenter)
@@ -22,6 +21,8 @@ namespace FinalProject.GameResources
         }
 
         public Entity Entity { get; private set; }
+
+        public TransformComponent transform { get; private set; }
 
         public bool CollidesWith(ColliderComponent other)
         {

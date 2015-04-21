@@ -73,6 +73,9 @@
   <PropertyGroup>
     <SignManifests>true</SignManifests>
   </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
     <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
@@ -96,6 +99,8 @@
     <Compile Include="GameResources\ExitSignalingTransformComponent.cs" />
     <Compile Include="GameResources\HealthBarComponent.cs" />
     <Compile Include="GameResources\HealthComponent.cs" />
+    <Compile Include="GameResources\EnemyHomingComponent.cs" />
+    <Compile Include="GameResources\HomingWeaponComponent.cs" />
     <Compile Include="GameResources\RemoveOnDeathComponent.cs" />
     <Compile Include="GameResources\RenderComponent.cs" />
     <Compile Include="GameResources\Entity.cs" />
