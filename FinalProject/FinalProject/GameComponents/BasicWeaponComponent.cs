@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
 
-namespace FinalProject.GameResources
+namespace FinalProject.GameComponents
 {
     internal class BasicWeaponComponent : Component
     {

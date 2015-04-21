@@ -1,4 +1,4 @@
-﻿using FinalProject.GameResources;
+﻿using FinalProject.GameSaving;
 using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -12,9 +12,8 @@ namespace FinalProject.Screens
         public SaveGame currentGame;
         private Texture2D background;
         private Error lastError;
-        private MenuItemGroup menuItems;
+        private Result result;
         private InterpolatedValue scaleIn, scaleOut;
-        private string selected;
         private MenuItem userGameName;
 
         public NewGameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -24,14 +23,13 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
-            menuItems = new MenuItemGroup();
             userGameName = new MenuItem(new Vector2(280, 320), "");
-            menuItems.AddItem(userGameName);
-            lastError = Error.None;
-            selected = "";
+            GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to New Game", SetCurrentGame);
         }
 
         private enum Error { None, Exists, Empty }
+
+        private enum Result { Back, Continue }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -76,38 +74,32 @@ namespace FinalProject.Screens
                                     }
                                     else
                                     {
+                                        lastError = Error.None;
                                         currentGame = new SaveGame();
                                         currentGame.SaveName = userGameName.Text;
-                                        selected = menuItems.GetSelected();
-                                        RequestingToTransitionOut(selected);
+                                        result = Result.Continue;
+                                        BeginTransitioningOut();
                                     }
-                                } break;
-                            case Keys.Up:
-                                {
-                                    menuItems.MoveUp();
-                                } break;
-                            case Keys.Down:
-                                {
-                                    menuItems.MoveDown();
                                 } break;
                             case Keys.Escape:
                                 {
-                                    RequestingToTransitionOut("");
+                                    result = Result.Back;
+                                    BeginTransitioningOut();
                                 } break;
                             case Keys.Space:
                                 {
-                                    AddCharacterTo(" ");
+                                    AddCharacter(" ");
                                 } break;
                             case Keys.Back:
                                 {
-                                    RemoveCharacterFrom();
+                                    RemoveCharacter();
                                 } break;
                             default:
                                 {
                                     string KeyPress = "" + key;
                                     if (KeyPress.Length == 1 && KeyPress[0] >= 'A' && KeyPress[0] <= 'Z')
                                     {
-                                        AddCharacterTo(KeyPress);
+                                        AddCharacter(KeyPress);
                                     }
                                 } break;
                         }
@@ -118,30 +110,55 @@ namespace FinalProject.Screens
         public override void LoadContent()
         {
             background = content.Load<Texture2D>("MenuBackground");
-            base.LoadContent();
-        }
-
-        public override void Reset()
-        {
-            selected = "";
-            userGameName.Text = "";
-            scaleIn.SetParameter(0);
-            scaleOut.SetParameter(0);
         }
 
         public override void Start()
         {
+            if (currentGame != null)
+            {
+                userGameName.Text = currentGame.SaveName;
+            }
             base.Start();
         }
 
-        public override void Stop()
+        protected override void BeginTransitioningOut()
         {
-            base.Stop();
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Select Character", currentGame);
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Select Character");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Main Menu");
+                    } break;
+            }
+            TransitionOut();
         }
 
-        public override void TransitionOut()
+        protected override void FinishTransitioningOut()
         {
-            base.TransitionOut();
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Character");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Main Menu");
+                    } break;
+            }
+        }
+
+        protected override void Reset()
+        {
+            currentGame = null;
+            userGameName.Text = "";
+            scaleIn.SetParameter(0);
+            scaleOut.SetParameter(0);
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -159,11 +176,7 @@ namespace FinalProject.Screens
             }
         }
 
-        protected override void Set()
-        {
-        }
-
-        private void AddCharacterTo(string userKeyPress)
+        private void AddCharacter(string userKeyPress)
         {
             if (Fonts.MenuItems.MeasureString(userGameName.Text + userKeyPress).X < 840)
             {
@@ -174,7 +187,7 @@ namespace FinalProject.Screens
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-            menuItems.Draw(spriteBatch);
+            userGameName.Draw(spriteBatch);
             GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "NAME PROFILE", new Vector2(380, 210), Fonts.Green);
             switch (lastError)
             {
@@ -189,7 +202,7 @@ namespace FinalProject.Screens
             }
         }
 
-        private void RemoveCharacterFrom()
+        private void RemoveCharacter()
         {
             if (userGameName.Text.Length > 0)
             {
@@ -204,7 +217,12 @@ namespace FinalProject.Screens
 
         private void ScaleOutFinished(float parameter)
         {
-            FinishedTransitioningOut(selected);
+            FinishTransitioningOut();
+        }
+
+        private void SetCurrentGame(SaveGame saveGame)
+        {
+            currentGame = saveGame;
         }
     }
 }

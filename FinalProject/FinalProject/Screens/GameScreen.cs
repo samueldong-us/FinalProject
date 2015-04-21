@@ -1,4 +1,5 @@
-﻿using FinalProject.GameResources;
+﻿using FinalProject.GameComponents;
+using FinalProject.GameSaving;
 using FinalProject.Messaging;
 using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
@@ -124,10 +125,39 @@ namespace FinalProject.Screens
             background = content.Load<Texture2D>("MenuBackground");
             bullet = content.Load<Texture2D>("TestBullet");
             testHealth = content.Load<Texture2D>("CircularHealthBarTest");
-            base.LoadContent();
         }
 
-        public override void Reset()
+        public override void Start()
+        {
+            entities.Add(GeneratePlayer());
+            for (int i = 0; i < 10; i++)
+            {
+                entities.Add(TestGenerateEnemy());
+            }
+            base.Start();
+        }
+
+        public override void Stop()
+        {
+            base.Stop();
+        }
+
+        public override void TransitionOut()
+        {
+            base.TransitionOut();
+        }
+
+        protected override void BeginTransitioningOut()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void FinishTransitioningOut()
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void Reset()
         {
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
@@ -140,21 +170,6 @@ namespace FinalProject.Screens
             PlayerCollider.Clear();
             PlayerBulletColliders.Clear();
             EnemyBulletColliders.Clear();
-        }
-
-        public override void Start()
-        {
-            base.Start();
-        }
-
-        public override void Stop()
-        {
-            base.Stop();
-        }
-
-        public override void TransitionOut()
-        {
-            base.TransitionOut();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -190,15 +205,6 @@ namespace FinalProject.Screens
                     {
                         scaleOut.Update(secondsPassed);
                     } break;
-            }
-        }
-
-        protected override void Set()
-        {
-            entities.Add(GeneratePlayer());
-            for (int i = 0; i < 10; i++)
-            {
-                entities.Add(TestGenerateEnemy());
             }
         }
 

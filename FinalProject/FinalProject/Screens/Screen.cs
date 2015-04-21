@@ -8,8 +8,6 @@ namespace FinalProject.Screens
 {
     internal abstract class Screen
     {
-        public ScreenEvent FinishedTransitioningOut;
-        public ScreenEvent RequestingToTransitionOut;
         protected ContentManager content;
 
         protected GraphicsDevice graphicsDevice;
@@ -36,17 +34,12 @@ namespace FinalProject.Screens
         {
         }
 
-        public virtual void LoadContent()
-        {
-            Set();
-        }
+        public abstract void LoadContent();
 
         public void LoadContentAsynchronously()
         {
             new Thread(LoadContent).Start();
         }
-
-        public abstract void Reset();
 
         public virtual void Start()
         {
@@ -77,8 +70,12 @@ namespace FinalProject.Screens
             }
         }
 
-        protected abstract void ScreenUpdate(float secondsPassed);
+        protected abstract void BeginTransitioningOut();
 
-        protected abstract void Set();
+        protected abstract void FinishTransitioningOut();
+
+        protected abstract void Reset();
+
+        protected abstract void ScreenUpdate(float secondsPassed);
     }
 }

@@ -30,22 +30,18 @@ namespace FinalProject.Screens
         {
             if (key == Keys.Space)
             {
-                FinishedTransitioningOut("");
+                FinishTransitioningOut();
             }
         }
 
         public override void LoadContent()
         {
-            base.LoadContent();
-        }
-
-        public override void Reset()
-        {
         }
 
         public override void Start()
         {
-            FinishedTransitioningOut("");
+            lastVideoState = MediaState.Stopped;
+            FinishTransitioningOut();
         }
 
         public override void Stop()
@@ -55,7 +51,19 @@ namespace FinalProject.Screens
 
         public override void TransitionOut()
         {
-            FinishedTransitioningOut("");
+        }
+
+        protected override void BeginTransitioningOut()
+        {
+        }
+
+        protected override void FinishTransitioningOut()
+        {
+            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Main Menu");
+        }
+
+        protected override void Reset()
+        {
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -64,15 +72,10 @@ namespace FinalProject.Screens
             {
                 if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
                 {
-                    RequestingToTransitionOut("");
+                    BeginTransitioningOut();
                 }
                 lastVideoState = splashVideoPlayer.State;
             }
-        }
-
-        protected override void Set()
-        {
-            lastVideoState = MediaState.Stopped;
         }
     }
 }

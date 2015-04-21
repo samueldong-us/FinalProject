@@ -1,6 +1,6 @@
 ﻿using FinalProject.Screens;
 
-namespace FinalProject.GameResources
+namespace FinalProject.GameComponents
 {
     internal class RemoveOnDeathComponent : Component
     {

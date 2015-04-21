@@ -1,9 +1,10 @@
-﻿using FinalProject.GameResources;
+﻿using FinalProject.GameSaving;
 using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace FinalProject.Screens
 {
@@ -12,8 +13,8 @@ namespace FinalProject.Screens
         public SaveGame currentGame;
         private Texture2D background;
         private MenuItemGroup menuItems;
+        private Result result;
         private InterpolatedValue scaleIn, scaleOut;
-        private string selected;
 
         public SelectDifficultyScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -22,12 +23,11 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
-            menuItems = new MenuItemGroup();
-            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "EASY"));
-            menuItems.AddItem(new MenuItem(new Vector2(280, 450), "NORMAL"));
-            menuItems.AddItem(new MenuItem(new Vector2(280, 580), "HARD"));
-            selected = "";
+            InitializeMenu();
+            GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Select Difficulty", SetCurrentGame);
         }
+
+        private enum Result { Back, Continue }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -62,8 +62,7 @@ namespace FinalProject.Screens
                         {
                             case Keys.Enter:
                                 {
-                                    selected = menuItems.GetSelected();
-                                    switch (selected)
+                                    switch (menuItems.GetSelected())
                                     {
                                         case "EASY":
                                             {
@@ -78,7 +77,8 @@ namespace FinalProject.Screens
                                                 currentGame.difficulty = SaveGame.Difficulty.Hard;
                                             } break;
                                     }
-                                    RequestingToTransitionOut(selected);
+                                    result = Result.Continue;
+                                    BeginTransitioningOut();
                                 } break;
                             case Keys.Up:
                                 {
@@ -90,7 +90,8 @@ namespace FinalProject.Screens
                                 } break;
                             case Keys.Escape:
                                 {
-                                    RequestingToTransitionOut("");
+                                    result = Result.Back;
+                                    BeginTransitioningOut();
                                 } break;
                         }
                     } break;
@@ -100,29 +101,56 @@ namespace FinalProject.Screens
         public override void LoadContent()
         {
             background = content.Load<Texture2D>("MenuBackground");
-            base.LoadContent();
-        }
-
-        public override void Reset()
-        {
-            scaleIn.SetParameter(0);
-            scaleOut.SetParameter(0);
-            selected = "";
         }
 
         public override void Start()
         {
+            if (currentGame == null)
+            {
+                throw new Exception("A Save Game Must Be Passed In");
+            }
             base.Start();
         }
 
-        public override void Stop()
+        protected override void BeginTransitioningOut()
         {
-            base.Stop();
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Select Character", currentGame);
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Select Character");
+                    } break;
+            }
+            TransitionOut();
         }
 
-        public override void TransitionOut()
+        protected override void FinishTransitioningOut()
         {
-            base.TransitionOut();
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Character");
+                    } break;
+            }
+        }
+
+        protected override void Reset()
+        {
+            currentGame = null;
+            scaleIn.SetParameter(0);
+            scaleOut.SetParameter(0);
+            menuItems.Reset();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -140,15 +168,19 @@ namespace FinalProject.Screens
             }
         }
 
-        protected override void Set()
-        {
-        }
-
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
             menuItems.Draw(spriteBatch);
             GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "SELECT DIFFICULTY", new Vector2(320, 210), Fonts.Green);
+        }
+
+        private void InitializeMenu()
+        {
+            menuItems = new MenuItemGroup();
+            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "EASY"));
+            menuItems.AddItem(new MenuItem(new Vector2(280, 450), "NORMAL"));
+            menuItems.AddItem(new MenuItem(new Vector2(280, 580), "HARD"));
         }
 
         private void ScaleInFinished(float parameter)
@@ -158,7 +190,12 @@ namespace FinalProject.Screens
 
         private void ScaleOutFinished(float parameter)
         {
-            FinishedTransitioningOut(selected);
+            FinishTransitioningOut();
+        }
+
+        private void SetCurrentGame(SaveGame saveGame)
+        {
+            currentGame = saveGame;
         }
     }
 }

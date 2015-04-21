@@ -1,4 +1,4 @@
-﻿namespace FinalProject.GameResources
+﻿namespace FinalProject.GameSaving
 {
     public class SaveGame
     {

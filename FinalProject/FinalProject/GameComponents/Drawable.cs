@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework.Graphics;
 
-namespace FinalProject.GameResources
+namespace FinalProject.GameComponents
 {
     internal interface Drawable
     {

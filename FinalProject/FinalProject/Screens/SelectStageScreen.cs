@@ -1,4 +1,4 @@
-﻿using FinalProject.GameResources;
+﻿using FinalProject.GameSaving;
 using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
@@ -82,15 +82,6 @@ namespace FinalProject.Screens
         public override void LoadContent()
         {
             background = content.Load<Texture2D>("MenuBackground");
-            base.LoadContent();
-        }
-
-        public override void Reset()
-        {
-            scaleIn.SetParameter(0);
-            scaleOut.SetParameter(0);
-            menuItems.Reset();
-            selected = "";
         }
 
         public override void Start()
@@ -129,6 +120,24 @@ namespace FinalProject.Screens
             base.TransitionOut();
         }
 
+        protected override void BeginTransitioningOut()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        protected override void FinishTransitioningOut()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        protected override void Reset()
+        {
+            scaleIn.SetParameter(0);
+            scaleOut.SetParameter(0);
+            menuItems.Reset();
+            selected = "";
+        }
+
         protected override void ScreenUpdate(float secondsPassed)
         {
             switch (state)
@@ -142,10 +151,6 @@ namespace FinalProject.Screens
                         scaleOut.Update(secondsPassed);
                     } break;
             }
-        }
-
-        protected override void Set()
-        {
         }
 
         private void DrawScreen(SpriteBatch spriteBatch)

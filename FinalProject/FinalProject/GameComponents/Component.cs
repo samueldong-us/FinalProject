@@ -1,6 +1,6 @@
 ﻿using FinalProject.Messaging;
 
-namespace FinalProject.GameResources
+namespace FinalProject.GameComponents
 {
     internal abstract class Component
     {

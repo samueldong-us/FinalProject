@@ -1,6 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 
-namespace FinalProject.GameResources
+namespace FinalProject.GameComponents
 {
     internal class ExitSignalingTransformComponent : TransformComponent
     {

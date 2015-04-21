@@ -92,24 +92,24 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameMain.cs" />
-    <Compile Include="GameResources\BasicWeaponComponent.cs" />
-    <Compile Include="GameResources\BoundedTransformComponent.cs" />
-    <Compile Include="GameResources\ColliderComponent.cs" />
-    <Compile Include="GameResources\Component.cs" />
-    <Compile Include="GameResources\Drawable.cs" />
-    <Compile Include="GameResources\ExitSignalingTransformComponent.cs" />
-    <Compile Include="GameResources\HealthBarComponent.cs" />
-    <Compile Include="GameResources\HealthComponent.cs" />
-    <Compile Include="GameResources\EnemyHomingComponent.cs" />
-    <Compile Include="GameResources\HomingWeaponComponent.cs" />
-    <Compile Include="GameResources\RemoveOnDeathComponent.cs" />
-    <Compile Include="GameResources\RenderComponent.cs" />
-    <Compile Include="GameResources\Entity.cs" />
-    <Compile Include="GameResources\PlayerInputComponent.cs" />
-    <Compile Include="GameResources\SaveGame.cs" />
-    <Compile Include="GameResources\SaveGameManager.cs" />
-    <Compile Include="GameResources\TestCircularHealthBar.cs" />
-    <Compile Include="GameResources\TransformComponent.cs" />
+    <Compile Include="GameComponents\BasicWeaponComponent.cs" />
+    <Compile Include="GameComponents\BoundedTransformComponent.cs" />
+    <Compile Include="GameComponents\ColliderComponent.cs" />
+    <Compile Include="GameComponents\Component.cs" />
+    <Compile Include="GameComponents\Drawable.cs" />
+    <Compile Include="GameComponents\ExitSignalingTransformComponent.cs" />
+    <Compile Include="GameComponents\HealthBarComponent.cs" />
+    <Compile Include="GameComponents\HealthComponent.cs" />
+    <Compile Include="GameComponents\EnemyHomingComponent.cs" />
+    <Compile Include="GameComponents\HomingWeaponComponent.cs" />
+    <Compile Include="GameComponents\RemoveOnDeathComponent.cs" />
+    <Compile Include="GameComponents\RenderComponent.cs" />
+    <Compile Include="GameComponents\Entity.cs" />
+    <Compile Include="GameComponents\PlayerInputComponent.cs" />
+    <Compile Include="GameSaving\SaveGame.cs" />
+    <Compile Include="GameSaving\SaveGameManager.cs" />
+    <Compile Include="GameComponents\TestCircularHealthBar.cs" />
+    <Compile Include="GameComponents\TransformComponent.cs" />
     <Compile Include="Messaging\Callbacks.cs" />
     <Compile Include="Messaging\MessageCenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -175,6 +175,7 @@
   <ItemGroup>
     <None Include="FinalProject_TemporaryKey.pfx" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />
   <!--

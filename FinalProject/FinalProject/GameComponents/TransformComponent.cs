@@ -1,7 +1,7 @@
 ﻿using FinalProject.Messaging;
 using Microsoft.Xna.Framework;
 
-namespace FinalProject.GameResources
+namespace FinalProject.GameComponents
 {
     internal class TransformComponent : Component
     {

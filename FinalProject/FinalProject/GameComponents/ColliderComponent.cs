@@ -1,7 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
-namespace FinalProject.GameResources
+namespace FinalProject.GameComponents
 {
     internal class ColliderComponent : Component
     {

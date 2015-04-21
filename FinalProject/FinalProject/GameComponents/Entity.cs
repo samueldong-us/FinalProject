@@ -1,7 +1,7 @@
 ﻿using FinalProject.Messaging;
 using System.Collections.Generic;
 
-namespace FinalProject.GameResources
+namespace FinalProject.GameComponents
 {
     internal class Entity
     {

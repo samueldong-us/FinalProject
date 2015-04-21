@@ -1,4 +1,4 @@
-﻿using FinalProject.GameResources;
+﻿using FinalProject.GameSaving;
 using FinalProject.Messaging;
 using FinalProject.Screens;
 using FinalProject.Utilities;
@@ -12,7 +12,7 @@ namespace FinalProject
 {
     public class GameMain : Microsoft.Xna.Framework.Game
     {
-        public static MessageCenter MainMessageCenter;
+        public static MessageCenter MessageCenter;
         private Screen currentScreen;
         private GraphicsDeviceManager graphics;
         private Keys[] lastPressedKeys;
@@ -51,9 +51,7 @@ namespace FinalProject
             GraphicsUtilities.CreateRenderTarget(GraphicsDevice);
             GraphicsUtilities.MakePlainTexture(GraphicsDevice);
             SaveGameManager.CreateSaveDirectory();
-            MainMessageCenter = new MessageCenter();
-            MainMessageCenter.AddListener<string>("Switch Screens", SwitchScreens);
-            MainMessageCenter.AddListener<string>("Start Loading Content", StartLoadingContent);
+            InitializeMessageCenter();
             InitializeScreens();
             base.Initialize();
         }
@@ -104,6 +102,14 @@ namespace FinalProject
                 }
             }
             lastPressedKeys = Keyboard.GetState().GetPressedKeys();
+        }
+
+        private void InitializeMessageCenter()
+        {
+            MessageCenter = new MessageCenter();
+            MessageCenter.AddListener<string>("Start Loading Content", StartLoadingContent);
+            MessageCenter.AddListener<string>("Switch Screens", SwitchScreens);
+            MessageCenter.AddListener("Quit", Exit);
         }
 
         private void InitializeScreens()
