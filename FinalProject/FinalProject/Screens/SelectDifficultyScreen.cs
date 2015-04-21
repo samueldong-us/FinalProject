@@ -10,8 +10,8 @@ namespace FinalProject.Screens
 {
     internal class SelectDifficultyScreen : Screen
     {
-        public SaveGame currentGame;
         private Texture2D background;
+        private SaveGame currentGame;
         private MenuItemGroup menuItems;
         private Result result;
         private InterpolatedValue scaleIn, scaleOut;
@@ -23,6 +23,7 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
+            menuItems = new MenuItemGroup();
             InitializeMenu();
             GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Select Difficulty", SetCurrentGame);
         }
@@ -109,6 +110,7 @@ namespace FinalProject.Screens
             {
                 throw new Exception("A Save Game Must Be Passed In");
             }
+            InitializeMenu();
             base.Start();
         }
 
@@ -118,6 +120,7 @@ namespace FinalProject.Screens
             {
                 case Result.Continue:
                     {
+                        SaveGameManager.SaveGame(currentGame);
                         GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
                         GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
                     } break;
@@ -177,7 +180,6 @@ namespace FinalProject.Screens
 
         private void InitializeMenu()
         {
-            menuItems = new MenuItemGroup();
             menuItems.AddItem(new MenuItem(new Vector2(280, 320), "EASY"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 450), "NORMAL"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 580), "HARD"));

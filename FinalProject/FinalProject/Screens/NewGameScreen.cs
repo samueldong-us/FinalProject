@@ -9,9 +9,10 @@ namespace FinalProject.Screens
 {
     internal class NewGameScreen : Screen
     {
-        public SaveGame currentGame;
         private Texture2D background;
+        private SaveGame currentGame;
         private Error lastError;
+        private MenuItemGroup menuItems;
         private Result result;
         private InterpolatedValue scaleIn, scaleOut;
         private MenuItem userGameName;
@@ -23,7 +24,9 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
+            menuItems = new MenuItemGroup();
             userGameName = new MenuItem(new Vector2(280, 320), "");
+            menuItems.AddItem(userGameName);
             GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to New Game", SetCurrentGame);
         }
 
@@ -187,7 +190,7 @@ namespace FinalProject.Screens
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-            userGameName.Draw(spriteBatch);
+            menuItems.Draw(spriteBatch);
             GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "NAME PROFILE", new Vector2(380, 210), Fonts.Green);
             switch (lastError)
             {

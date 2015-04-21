@@ -10,8 +10,8 @@ namespace FinalProject.Screens
 {
     internal class SelectCharacterScreen : Screen
     {
-        public SaveGame currentGame;
         private Texture2D background;
+        private SaveGame currentGame;
         private MenuItemGroup menuItems;
         private Result result;
         private InterpolatedValue scaleIn, scaleOut;
@@ -23,6 +23,7 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
+            menuItems = new MenuItemGroup();
             InitializeMenu();
             GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Select Character", SetCurrentGame);
         }
@@ -110,6 +111,7 @@ namespace FinalProject.Screens
                 throw new Exception("A Save Game Must Be Passed In");
             }
             base.Start();
+            InitializeMenu();
         }
 
         protected override void BeginTransitioningOut()
@@ -177,7 +179,6 @@ namespace FinalProject.Screens
 
         private void InitializeMenu()
         {
-            menuItems = new MenuItemGroup();
             menuItems.AddItem(new MenuItem(new Vector2(280, 320), "OASON"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 450), "VARLET"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 580), "DIMMY"));

@@ -22,14 +22,14 @@ namespace FinalProject.Screens
         public static List<Drawable> NormalLayer;
         public static List<ColliderComponent> PlayerBulletColliders;
         public static List<ColliderComponent> PlayerCollider;
-        public SaveGame currentGame;
         private Texture2D background;
         private Texture2D bullet;
+        private SaveGame currentGame;
         private List<Entity> entities;
         private MenuItemGroup menuItems;
         private bool paused;
+        private Random rng = new Random();
         private InterpolatedValue scaleIn, scaleOut;
-        private string selected;
         private Texture2D test;
         private Texture2D testHealth;
         private List<Entity> toRemove;
@@ -57,7 +57,7 @@ namespace FinalProject.Screens
             EnemyBulletColliders = new List<ColliderComponent>();
             PlayerBulletColliders = new List<ColliderComponent>();
             entities = new List<Entity>();
-            selected = "";
+            GameMain.MessageCenter.AddListener<SaveGame, string>("Save Game and Stage Pass to Game", SetCurrentGameAndStage);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -94,8 +94,6 @@ namespace FinalProject.Screens
                         {
                             case Keys.Enter:
                                 {
-                                    selected = menuItems.GetSelected();
-                                    RequestingToTransitionOut(selected);
                                 } break;
                             case Keys.Up:
                                 {
@@ -107,7 +105,7 @@ namespace FinalProject.Screens
                                 } break;
                             case Keys.Escape:
                                 {
-                                    RequestingToTransitionOut("");
+                                    BeginTransitioningOut();
                                 } break;
                         }
                     } break;
@@ -137,31 +135,22 @@ namespace FinalProject.Screens
             base.Start();
         }
 
-        public override void Stop()
-        {
-            base.Stop();
-        }
-
-        public override void TransitionOut()
-        {
-            base.TransitionOut();
-        }
-
         protected override void BeginTransitioningOut()
         {
-            throw new NotImplementedException();
+            GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Select Stage", currentGame);
+            GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Select Stage");
+            TransitionOut();
         }
 
         protected override void FinishTransitioningOut()
         {
-            throw new NotImplementedException();
+            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Stage");
         }
 
         protected override void Reset()
         {
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
-            selected = "";
             entities.Clear();
             NormalLayer.Clear();
             BulletLayer.Clear();
@@ -326,12 +315,16 @@ namespace FinalProject.Screens
 
         private void ScaleOutFinished(float parameter)
         {
-            FinishedTransitioningOut(selected);
+            FinishTransitioningOut();
+        }
+
+        private void SetCurrentGameAndStage(SaveGame saveGame, string stage)
+        {
+            currentGame = saveGame;
         }
 
         private Entity TestGenerateEnemy()
         {
-            Random rng = new Random();
             Entity enemy = new Entity();
             BoundedTransformComponent enemyTransform = new BoundedTransformComponent(enemy.MessageCenter, 110, 140, Bounds);
             enemyTransform.Position = new Vector2(rng.Next(200, 1720), rng.Next(200, 880));

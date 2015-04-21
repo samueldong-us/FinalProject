@@ -12,9 +12,9 @@ namespace FinalProject.Screens
     {
         private Texture2D background;
         private int currentPage;
+        private Result result;
         private List<MenuItemGroup> savedGames;
         private InterpolatedValue scaleIn, scaleOut;
-        private string selected;
 
         public LoadGameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -25,8 +25,9 @@ namespace FinalProject.Screens
             scaleOut.InterpolationFinished = ScaleOutFinished;
             savedGames = new List<MenuItemGroup>();
             currentPage = -1;
-            selected = "";
         }
+
+        private enum Result { Back, Continue }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -63,8 +64,8 @@ namespace FinalProject.Screens
                                 {
                                     if (currentPage != -1)
                                     {
-                                        selected = savedGames[currentPage].GetSelected();
-                                        RequestingToTransitionOut(selected);
+                                        result = Result.Continue;
+                                        BeginTransitioningOut();
                                     }
                                 } break;
                             case Keys.Up:
@@ -97,7 +98,8 @@ namespace FinalProject.Screens
                                 } break;
                             case Keys.Escape:
                                 {
-                                    RequestingToTransitionOut("");
+                                    result = Result.Back;
+                                    BeginTransitioningOut();
                                 } break;
                         }
                     } break;
@@ -110,29 +112,37 @@ namespace FinalProject.Screens
             SetupSavedGames();
         }
 
-        public override void Start()
-        {
-            base.Start();
-        }
-
-        public override void Stop()
-        {
-            base.Stop();
-        }
-
-        public override void TransitionOut()
-        {
-            base.TransitionOut();
-        }
-
         protected override void BeginTransitioningOut()
         {
-            throw new System.NotImplementedException();
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        SaveGame currentGame = SaveGameManager.GetSavedGame(savedGames[currentPage].GetSelected() + ".sav");
+                        GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Main Menu");
+                    } break;
+            }
+            TransitionOut();
         }
 
         protected override void FinishTransitioningOut()
         {
-            throw new System.NotImplementedException();
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Main Menu");
+                    } break;
+            }
         }
 
         protected override void Reset()
@@ -141,7 +151,6 @@ namespace FinalProject.Screens
             currentPage = -1;
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
-            selected = "";
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -176,7 +185,7 @@ namespace FinalProject.Screens
 
         private void ScaleOutFinished(float parameter)
         {
-            FinishedTransitioningOut(selected);
+            FinishTransitioningOut();
         }
 
         private void SetupSavedGames()

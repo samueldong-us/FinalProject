@@ -4,14 +4,15 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 using System.Collections.Generic;
 
 namespace FinalProject.Screens
 {
     internal class UpgradeScreen : Screen
     {
-        public SaveGame currentGame;
         private Texture2D background;
+        private SaveGame currentGame;
         private InterpolatedValue scaleIn, scaleOut;
         private UpgradeItemGroup upgrades;
 
@@ -23,6 +24,7 @@ namespace FinalProject.Screens
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
             upgrades = new UpgradeItemGroup();
+            GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Upgrade", SetCurrentGame);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -76,7 +78,7 @@ namespace FinalProject.Screens
                             case Keys.Escape:
                                 {
                                     UpdateUpgrades();
-                                    RequestingToTransitionOut("");
+                                    BeginTransitioningOut();
                                 } break;
                         }
                     } break;
@@ -90,32 +92,30 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
+            if (currentGame == null)
+            {
+                throw new Exception("A Save Game Must Be Passed In");
+            }
             GetUpgrades();
             base.Start();
         }
 
-        public override void Stop()
-        {
-            base.Stop();
-        }
-
-        public override void TransitionOut()
-        {
-            base.TransitionOut();
-        }
-
         protected override void BeginTransitioningOut()
         {
-            throw new System.NotImplementedException();
+            SaveGameManager.SaveGame(currentGame);
+            GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
+            GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
+            TransitionOut();
         }
 
         protected override void FinishTransitioningOut()
         {
-            throw new System.NotImplementedException();
+            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
         }
 
         protected override void Reset()
         {
+            currentGame = null;
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
             upgrades.Reset();
@@ -161,7 +161,12 @@ namespace FinalProject.Screens
 
         private void ScaleOutFinished(float parameter)
         {
-            FinishedTransitioningOut("");
+            FinishTransitioningOut();
+        }
+
+        private void SetCurrentGame(SaveGame saveGame)
+        {
+            currentGame = saveGame;
         }
 
         private void UpdateUpgrades()

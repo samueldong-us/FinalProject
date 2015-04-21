@@ -4,16 +4,17 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using System;
 
 namespace FinalProject.Screens
 {
     internal class SelectStageScreen : Screen
     {
-        public SaveGame currentGame;
         private Texture2D background;
+        private SaveGame currentGame;
         private MenuItemGroup menuItems;
+        private Result result;
         private InterpolatedValue scaleIn, scaleOut;
-        private string selected;
 
         public SelectStageScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -23,8 +24,10 @@ namespace FinalProject.Screens
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
             menuItems = new MenuItemGroup();
-            selected = "";
+            GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Select Stage", SetCurrentGame);
         }
+
+        private enum Result { Back, Continue }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -59,8 +62,8 @@ namespace FinalProject.Screens
                         {
                             case Keys.Enter:
                                 {
-                                    selected = menuItems.GetSelected();
-                                    RequestingToTransitionOut(selected);
+                                    result = Result.Continue;
+                                    BeginTransitioningOut();
                                 } break;
                             case Keys.Up:
                                 {
@@ -72,7 +75,8 @@ namespace FinalProject.Screens
                                 } break;
                             case Keys.Escape:
                                 {
-                                    RequestingToTransitionOut("");
+                                    result = Result.Back;
+                                    BeginTransitioningOut();
                                 } break;
                         }
                     } break;
@@ -86,6 +90,10 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
+            if (currentGame == null)
+            {
+                throw new Exception("A Save Game Must Be Passed In");
+            }
             switch (currentGame.HighestUnlockedStage)
             {
                 case 1:
@@ -110,32 +118,45 @@ namespace FinalProject.Screens
             base.Start();
         }
 
-        public override void Stop()
-        {
-            base.Stop();
-        }
-
-        public override void TransitionOut()
-        {
-            base.TransitionOut();
-        }
-
         protected override void BeginTransitioningOut()
         {
-            throw new System.NotImplementedException();
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        GameMain.MessageCenter.Broadcast<SaveGame, string>("Save Game and Stage Pass to Game", currentGame, menuItems.GetSelected());
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Game");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
+                    } break;
+            }
+            TransitionOut();
         }
 
         protected override void FinishTransitioningOut()
         {
-            throw new System.NotImplementedException();
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Game");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
+                    } break;
+            }
         }
 
         protected override void Reset()
         {
+            currentGame = null;
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
             menuItems.Reset();
-            selected = "";
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -167,7 +188,12 @@ namespace FinalProject.Screens
 
         private void ScaleOutFinished(float parameter)
         {
-            FinishedTransitioningOut(selected);
+            FinishTransitioningOut();
+        }
+
+        private void SetCurrentGame(SaveGame saveGame)
+        {
+            currentGame = saveGame;
         }
     }
 }

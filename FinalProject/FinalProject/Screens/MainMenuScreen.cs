@@ -19,6 +19,7 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
+            menuItems = new MenuItemGroup();
             InitializeMenu();
         }
 
@@ -75,6 +76,12 @@ namespace FinalProject.Screens
             background = content.Load<Texture2D>("MenuBackground");
         }
 
+        public override void Start()
+        {
+            InitializeMenu();
+            base.Start();
+        }
+
         protected override void BeginTransitioningOut()
         {
             switch (menuItems.GetSelected())
@@ -101,9 +108,9 @@ namespace FinalProject.Screens
                     } break;
                 case "LOAD GAME":
                     {
-                        GameMain.MessageCenter.Broadcast<string>("Switch Screen", "Load Game");
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Load Game");
                     } break;
-                case "QUIT":
+                case "QUIT GAME":
                     {
                         GameMain.MessageCenter.Broadcast("Quit");
                     } break;
@@ -114,6 +121,7 @@ namespace FinalProject.Screens
         {
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
+            menuItems.Reset();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -139,7 +147,6 @@ namespace FinalProject.Screens
 
         private void InitializeMenu()
         {
-            menuItems = new MenuItemGroup();
             menuItems.AddItem(new MenuItem(new Vector2(280, 160), "NEW GAME"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LOAD GAME"));
             menuItems.AddItem(new MenuItem(new Vector2(280, 480), "SETTINGS") { Disabled = true });
