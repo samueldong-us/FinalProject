@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace FinalProject.Messaging
 {
-    internal class MessageCenter
+    public class MessageCenter
     {
         private Dictionary<string, List<Delegate>> listeners;
 
