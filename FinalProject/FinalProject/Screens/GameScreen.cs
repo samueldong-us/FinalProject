@@ -13,15 +13,15 @@ namespace FinalProject.Screens
 {
     internal class GameScreen : Screen
     {
-        public static Rectangle Bounds = new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight);
-        public static List<Drawable> BulletLayer;
-        public static List<ColliderComponent> EnemyBulletColliders;
-        public static List<ColliderComponent> EnemyColliders;
-        public static MessageCenter GameMessageCenter;
-        public static List<Drawable> HealthLayer;
-        public static List<Drawable> NormalLayer;
-        public static List<ColliderComponent> PlayerBulletColliders;
-        public static List<ColliderComponent> PlayerCollider;
+        public static Rectangle Bounds = new Rectangle(420, 0, 1080, Constants.VirtualHeight);
+        public static List<ColliderComponent> CollidersEnemies;
+        public static List<ColliderComponent> CollidersEnemyBullets;
+        public static List<ColliderComponent> CollidersPlayer;
+        public static List<ColliderComponent> CollidersPlayerBullets;
+        public static List<Drawable> LayerBullets;
+        public static List<Drawable> LayerHealthBars;
+        public static List<Drawable> LayerUnits;
+        public static MessageCenter MessageCenter;
         private Texture2D background;
         private Texture2D bullet;
         private SaveGame currentGame;
@@ -37,26 +37,15 @@ namespace FinalProject.Screens
         public GameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
-            GameMessageCenter = new MessageCenter();
-            GameMessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
-            GameMessageCenter.AddListener<Vector2, MessageCenter>("Get Closest Enemy", ClosestEnemy);
-            GameMessageCenter.AddListener<Vector2, MessageCenter>("Get Closest Player", ClosestPlayer);
-            toRemove = new List<Entity>();
+            InitializeMessageCenter();
             scaleIn = new ExponentialInterpolatedValue(.002f, .25f, .5f);
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
-            menuItems = new MenuItemGroup();
-            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LEVEL SELECT"));
-            menuItems.AddItem(new MenuItem(new Vector2(280, 450), "UPGRADES"));
-            NormalLayer = new List<Drawable>();
-            BulletLayer = new List<Drawable>();
-            HealthLayer = new List<Drawable>();
-            PlayerCollider = new List<ColliderComponent>();
-            EnemyColliders = new List<ColliderComponent>();
-            EnemyBulletColliders = new List<ColliderComponent>();
-            PlayerBulletColliders = new List<ColliderComponent>();
+            InitializeMenu();
+            InitializeStaticVariables();
             entities = new List<Entity>();
+            toRemove = new List<Entity>();
             GameMain.MessageCenter.AddListener<SaveGame, string>("Save Game and Stage Pass to Game", SetCurrentGameAndStage);
         }
 
@@ -85,7 +74,7 @@ namespace FinalProject.Screens
 
         public override void KeyPressed(Keys key)
         {
-            GameMessageCenter.Broadcast<Keys>("Key Pressed", key);
+            MessageCenter.Broadcast<Keys>("Key Pressed", key);
             switch (state)
             {
                 case ScreenState.Active:
@@ -114,7 +103,7 @@ namespace FinalProject.Screens
 
         public override void KeyReleased(Keys key)
         {
-            GameMessageCenter.Broadcast<Keys>("Key Released", key);
+            MessageCenter.Broadcast<Keys>("Key Released", key);
         }
 
         public override void LoadContent()
@@ -152,13 +141,13 @@ namespace FinalProject.Screens
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
             entities.Clear();
-            NormalLayer.Clear();
-            BulletLayer.Clear();
-            HealthLayer.Clear();
-            EnemyColliders.Clear();
-            PlayerCollider.Clear();
-            PlayerBulletColliders.Clear();
-            EnemyBulletColliders.Clear();
+            LayerUnits.Clear();
+            LayerBullets.Clear();
+            LayerHealthBars.Clear();
+            CollidersEnemies.Clear();
+            CollidersPlayer.Clear();
+            CollidersPlayerBullets.Clear();
+            CollidersEnemyBullets.Clear();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -197,11 +186,22 @@ namespace FinalProject.Screens
             }
         }
 
+        private static void InitializeStaticVariables()
+        {
+            LayerUnits = new List<Drawable>();
+            LayerBullets = new List<Drawable>();
+            LayerHealthBars = new List<Drawable>();
+            CollidersPlayer = new List<ColliderComponent>();
+            CollidersEnemies = new List<ColliderComponent>();
+            CollidersEnemyBullets = new List<ColliderComponent>();
+            CollidersPlayerBullets = new List<ColliderComponent>();
+        }
+
         private void CheckForCollisions()
         {
-            foreach (ColliderComponent player in PlayerCollider)
+            foreach (ColliderComponent player in CollidersPlayer)
             {
-                foreach (ColliderComponent enemyBullet in EnemyBulletColliders)
+                foreach (ColliderComponent enemyBullet in CollidersEnemyBullets)
                 {
                     if (enemyBullet.CollidesWith(player))
                     {
@@ -210,9 +210,9 @@ namespace FinalProject.Screens
                     }
                 }
             }
-            foreach (ColliderComponent player in PlayerCollider)
+            foreach (ColliderComponent player in CollidersPlayer)
             {
-                foreach (ColliderComponent enemy in EnemyColliders)
+                foreach (ColliderComponent enemy in CollidersEnemies)
                 {
                     if (player.CollidesWith(enemy))
                     {
@@ -221,9 +221,9 @@ namespace FinalProject.Screens
                     }
                 }
             }
-            foreach (ColliderComponent enemy in EnemyColliders)
+            foreach (ColliderComponent enemy in CollidersEnemies)
             {
-                foreach (ColliderComponent playerBullet in PlayerBulletColliders)
+                foreach (ColliderComponent playerBullet in CollidersPlayerBullets)
                 {
                     if (playerBullet.CollidesWith(enemy))
                     {
@@ -256,27 +256,27 @@ namespace FinalProject.Screens
 
         private void ClosestEnemy(Vector2 position, MessageCenter messageCenter)
         {
-            messageCenter.Broadcast<Vector2>("Closest Position", ClosestCollider(position, EnemyColliders));
+            messageCenter.Broadcast<Vector2>("Closest Position", ClosestCollider(position, CollidersEnemies));
         }
 
         private void ClosestPlayer(Vector2 position, MessageCenter messageCenter)
         {
-            messageCenter.Broadcast<Vector2>("Closest Position", ClosestCollider(position, PlayerCollider));
+            messageCenter.Broadcast<Vector2>("Closest Position", ClosestCollider(position, CollidersPlayer));
         }
 
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
 
-            foreach (Drawable drawable in NormalLayer)
+            foreach (Drawable drawable in LayerUnits)
             {
                 drawable.Draw(spriteBatch);
             }
-            foreach (Drawable drawable in HealthLayer)
+            foreach (Drawable drawable in LayerHealthBars)
             {
                 drawable.Draw(spriteBatch);
             }
-            foreach (Drawable drawable in BulletLayer)
+            foreach (Drawable drawable in LayerBullets)
             {
                 drawable.Draw(spriteBatch);
             }
@@ -293,12 +293,27 @@ namespace FinalProject.Screens
             BoundedTransformComponent playerTransform = new BoundedTransformComponent(player.MessageCenter, 110, 140, Bounds);
             playerTransform.Position = new Vector2(500, 500);
             BasicWeaponComponent playerWeapon = new BasicWeaponComponent(player.MessageCenter, playerTransform, test, 0.1f, new Vector2(0, -1000), Vector2.Zero);
-            RenderComponent playerRender = new RenderComponent(player.MessageCenter, test, playerTransform, GameScreen.NormalLayer);
+            RenderComponent playerRender = new RenderComponent(player.MessageCenter, test, playerTransform, GameScreen.LayerUnits);
             player.AddComponent(playerWeapon);
             player.AddComponent(playerInput);
             player.AddComponent(playerTransform);
             player.AddComponent(playerRender);
             return player;
+        }
+
+        private void InitializeMenu()
+        {
+            menuItems = new MenuItemGroup();
+            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LEVEL SELECT"));
+            menuItems.AddItem(new MenuItem(new Vector2(280, 450), "UPGRADES"));
+        }
+
+        private void InitializeMessageCenter()
+        {
+            MessageCenter = new MessageCenter();
+            MessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
+            MessageCenter.AddListener<Vector2, MessageCenter>("Get Closest Enemy", ClosestEnemy);
+            MessageCenter.AddListener<Vector2, MessageCenter>("Get Closest Player", ClosestPlayer);
         }
 
         private void RemoveEntity(Entity entity)
@@ -329,10 +344,10 @@ namespace FinalProject.Screens
             enemyTransform.Theta = rng.Next(360);
             enemyTransform.Scale = .5f;
             HealthComponent enemyHealth = new HealthComponent(enemy.MessageCenter, 50);
-            TestCircularHealthBar enemyHealthBar = new TestCircularHealthBar(enemy.MessageCenter, 100, 15, new Vector2(0, -150), enemyHealth, enemyTransform, HealthLayer, testHealth);
+            TestCircularHealthBar enemyHealthBar = new TestCircularHealthBar(enemy.MessageCenter, 100, 15, new Vector2(0, -150), enemyHealth, enemyTransform, LayerHealthBars, testHealth);
             RemoveOnDeathComponent enemyRemoveOnDeath = new RemoveOnDeathComponent(enemy);
-            ColliderComponent enemyCollider = new ColliderComponent(enemy, 150, GraphicsUtilities.GetColorsFromTexture(test), enemyTransform, EnemyColliders);
-            RenderComponent enemyRender = new RenderComponent(enemy.MessageCenter, test, enemyTransform, GameScreen.NormalLayer);
+            ColliderComponent enemyCollider = new ColliderComponent(enemy, 150, GraphicsUtilities.GetColorsFromTexture(test), enemyTransform, CollidersEnemies);
+            RenderComponent enemyRender = new RenderComponent(enemy.MessageCenter, test, enemyTransform, GameScreen.LayerUnits);
             enemy.AddComponent(enemyHealth);
             enemy.AddComponent(enemyHealthBar);
             enemy.AddComponent(enemyRemoveOnDeath);

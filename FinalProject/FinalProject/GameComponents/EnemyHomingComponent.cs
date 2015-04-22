@@ -37,7 +37,7 @@ namespace FinalProject.GameComponents
 
         public override void Update(float secondsPassed)
         {
-            GameScreen.GameMessageCenter.Broadcast<Vector2, MessageCenter>("Get Closest Enemy", transform.Position, messageCenter);
+            GameScreen.MessageCenter.Broadcast<Vector2, MessageCenter>("Get Closest Enemy", transform.Position, messageCenter);
             if (GameScreen.Bounds.Contains((int)closestPosition.X, (int)closestPosition.Y))
             {
                 float targetAngle = (float)Math.Atan2((closestPosition - transform.Position).Y, (closestPosition - transform.Position).X);

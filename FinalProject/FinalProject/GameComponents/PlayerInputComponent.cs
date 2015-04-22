@@ -19,14 +19,14 @@ namespace FinalProject.GameComponents
             arrowKeys[Keys.Right] = false;
             arrowKeys[Keys.Up] = false;
             arrowKeys[Keys.Down] = false;
-            GameScreen.GameMessageCenter.AddListener<Keys>("Key Pressed", KeyPressed);
-            GameScreen.GameMessageCenter.AddListener<Keys>("Key Released", KeyReleased);
+            GameScreen.MessageCenter.AddListener<Keys>("Key Pressed", KeyPressed);
+            GameScreen.MessageCenter.AddListener<Keys>("Key Released", KeyReleased);
         }
 
         public override void Dispose()
         {
-            GameScreen.GameMessageCenter.RemoveListener<Keys>("Key Pressed", KeyPressed);
-            GameScreen.GameMessageCenter.RemoveListener<Keys>("Key Released", KeyReleased);
+            GameScreen.MessageCenter.RemoveListener<Keys>("Key Pressed", KeyPressed);
+            GameScreen.MessageCenter.RemoveListener<Keys>("Key Released", KeyReleased);
         }
 
         public void KeyPressed(Keys key)

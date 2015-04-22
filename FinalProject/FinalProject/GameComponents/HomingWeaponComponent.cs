@@ -34,8 +34,8 @@ namespace FinalProject.GameComponents
             bulletTransform.Position = transform.Position + bulletOffset;
             bulletTransform.SetVelocity(bulletVelocity);
             EnemyHomingComponent bulletEnemyHoming = new EnemyHomingComponent(bullet.MessageCenter, maxAngularSpeed, bulletVelocity, bulletTransform);
-            ColliderComponent bulletCollider = new ColliderComponent(bullet, 15, bulletImageArray, bulletTransform, GameScreen.PlayerBulletColliders);
-            RenderComponent bulletRender = new RenderComponent(bullet.MessageCenter, bulletImage, bulletTransform, GameScreen.BulletLayer);
+            ColliderComponent bulletCollider = new ColliderComponent(bullet, 15, bulletImageArray, bulletTransform, GameScreen.CollidersPlayerBullets);
+            RenderComponent bulletRender = new RenderComponent(bullet.MessageCenter, bulletImage, bulletTransform, GameScreen.LayerBullets);
             bullet.AddComponent(bulletEnemyHoming);
             bullet.AddComponent(bulletCollider);
             bullet.AddComponent(bulletTransform);
