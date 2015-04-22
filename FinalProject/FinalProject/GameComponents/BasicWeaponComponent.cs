@@ -69,18 +69,24 @@ namespace FinalProject.GameComponents
 
         protected virtual void FireBullet()
         {
-            Entity bullet = new Entity();
-            bullet.MessageCenter.AddListener<Entity>("Exited", RemoveBullet);
-            bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", CollidedWithEntity);
-            ExitSignalingTransformComponent bulletTransform = new ExitSignalingTransformComponent(bullet, bulletImage.Bounds, GameScreen.Bounds);
-            bulletTransform.Position = transform.Position + bulletOffset;
-            bulletTransform.SetVelocity(bulletVelocity);
-            ColliderComponent bulletCollider = new ColliderComponent(bullet, 15, bulletImageArray, bulletTransform, GameScreen.PlayerBulletColliders);
-            RenderComponent bulletRender = new RenderComponent(bullet.MessageCenter, bulletImage, bulletTransform, GameScreen.BulletLayer);
-            bullet.AddComponent(bulletCollider);
-            bullet.AddComponent(bulletTransform);
-            bullet.AddComponent(bulletRender);
-            bullets.Add(bullet);
+            float speed = bulletVelocity.Length();
+            for (int i = 0; i < 360; i += 12)
+            {
+                Entity bullet = new Entity();
+                bullet.MessageCenter.AddListener<Entity>("Exited", RemoveBullet);
+                bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", CollidedWithEntity);
+                ExitSignalingTransformComponent bulletTransform = new ExitSignalingTransformComponent(bullet, bulletImage.Bounds, GameScreen.Bounds);
+                bulletTransform.Position = transform.Position + bulletOffset;
+                bulletTransform.SetVelocity(new Vector2((float)Math.Cos(MathHelper.ToRadians(i)) * speed, (float)Math.Sin(MathHelper.ToRadians(i)) * speed));
+                bulletTransform.Theta = i;
+                bulletTransform.Scale = .1f;
+                ColliderComponent bulletCollider = new ColliderComponent(bullet, 15, bulletImageArray, bulletTransform, GameScreen.PlayerBulletColliders);
+                RenderComponent bulletRender = new RenderComponent(bullet.MessageCenter, bulletImage, bulletTransform, GameScreen.BulletLayer);
+                bullet.AddComponent(bulletCollider);
+                bullet.AddComponent(bulletTransform);
+                bullet.AddComponent(bulletRender);
+                bullets.Add(bullet);
+            }
         }
 
         protected void RemoveBullet(Entity bullet)

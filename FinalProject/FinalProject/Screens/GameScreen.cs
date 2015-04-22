@@ -292,11 +292,9 @@ namespace FinalProject.Screens
             PlayerInputComponent playerInput = new PlayerInputComponent(player.MessageCenter);
             BoundedTransformComponent playerTransform = new BoundedTransformComponent(player.MessageCenter, 110, 140, Bounds);
             playerTransform.Position = new Vector2(500, 500);
-            HomingWeaponComponent playerWeapon = new HomingWeaponComponent(player.MessageCenter, playerTransform, bullet, 0.1f, new Vector2(0, -1000), new Vector2(-50, -50), (float)(Math.PI * 4));
-            HomingWeaponComponent playerWeapon2 = new HomingWeaponComponent(player.MessageCenter, playerTransform, bullet, 0.1f, new Vector2(0, -1000), new Vector2(50, -50), (float)(Math.PI * 4));
+            BasicWeaponComponent playerWeapon = new BasicWeaponComponent(player.MessageCenter, playerTransform, test, 0.1f, new Vector2(0, -1000), Vector2.Zero);
             RenderComponent playerRender = new RenderComponent(player.MessageCenter, test, playerTransform, GameScreen.NormalLayer);
             player.AddComponent(playerWeapon);
-            player.AddComponent(playerWeapon2);
             player.AddComponent(playerInput);
             player.AddComponent(playerTransform);
             player.AddComponent(playerRender);
