@@ -60,14 +60,14 @@ namespace FinalProject.GameComponents
                 {
                     if (positiveChange < (float)(Math.PI / 2))
                     {
-                        currentAngle += MathHelper.Clamp(positiveChange / timeToReach, 0, maxAngularSpeed) * secondsPassed;
+                        currentAngle += MathHelper.Clamp(positiveChange, 0, maxAngularSpeed) * secondsPassed;
                     }
                 }
                 else
                 {
                     if (negativeChange < (float)(Math.PI / 2))
                     {
-                        currentAngle -= MathHelper.Clamp(negativeChange / timeToReach, 0, maxAngularSpeed) * secondsPassed;
+                        currentAngle -= MathHelper.Clamp(negativeChange, 0, maxAngularSpeed) * secondsPassed;
                     }
                 }
                 if (currentAngle < 0)

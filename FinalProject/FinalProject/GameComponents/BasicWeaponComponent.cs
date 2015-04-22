@@ -79,9 +79,8 @@ namespace FinalProject.GameComponents
                 bulletTransform.Position = transform.Position + bulletOffset;
                 bulletTransform.SetVelocity(new Vector2((float)Math.Cos(MathHelper.ToRadians(i)) * speed, (float)Math.Sin(MathHelper.ToRadians(i)) * speed));
                 bulletTransform.Theta = i;
-                bulletTransform.Scale = .1f;
-                ColliderComponent bulletCollider = new ColliderComponent(bullet, 15, bulletImageArray, bulletTransform, GameScreen.CollidersPlayerBullets);
-                RenderComponent bulletRender = new RenderComponent(bullet.MessageCenter, bulletImage, bulletTransform, GameScreen.LayerBullets);
+                ColliderComponent bulletCollider = new ColliderComponent(bullet, 15, 50, 50, new List<Triangle>() { new Triangle(new Vector2(10, 10), new Vector2(10, 40), new Vector2(45, 25)) }, bulletTransform, GameScreen.CollidersPlayerBullets);
+                RenderComponent bulletRender = new RenderComponent(bullet.MessageCenter, bulletImage, bulletTransform, bulletCollider, GameScreen.LayerBullets);
                 bullet.AddComponent(bulletCollider);
                 bullet.AddComponent(bulletTransform);
                 bullet.AddComponent(bulletRender);

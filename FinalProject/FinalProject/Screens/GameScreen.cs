@@ -108,9 +108,9 @@ namespace FinalProject.Screens
 
         public override void LoadContent()
         {
-            test = content.Load<Texture2D>("Test");
+            test = content.Load<Texture2D>("TestTri");
             background = content.Load<Texture2D>("MenuBackground");
-            bullet = content.Load<Texture2D>("TestBullet");
+            bullet = content.Load<Texture2D>("TestBulletTri");
             testHealth = content.Load<Texture2D>("CircularHealthBarTest");
         }
 
@@ -292,8 +292,9 @@ namespace FinalProject.Screens
             PlayerInputComponent playerInput = new PlayerInputComponent(player.MessageCenter);
             BoundedTransformComponent playerTransform = new BoundedTransformComponent(player.MessageCenter, 110, 140, Bounds);
             playerTransform.Position = new Vector2(500, 500);
-            BasicWeaponComponent playerWeapon = new BasicWeaponComponent(player.MessageCenter, playerTransform, test, 0.1f, new Vector2(0, -1000), Vector2.Zero);
-            RenderComponent playerRender = new RenderComponent(player.MessageCenter, test, playerTransform, GameScreen.LayerUnits);
+            playerTransform.Theta = -90;
+            BasicWeaponComponent playerWeapon = new BasicWeaponComponent(player.MessageCenter, playerTransform, bullet, 0.1f, new Vector2(0, -1000), Vector2.Zero);
+            RenderComponent playerRender = new RenderComponent(player.MessageCenter, test, playerTransform, null, GameScreen.LayerUnits);
             player.AddComponent(playerWeapon);
             player.AddComponent(playerInput);
             player.AddComponent(playerTransform);
@@ -346,8 +347,8 @@ namespace FinalProject.Screens
             HealthComponent enemyHealth = new HealthComponent(enemy.MessageCenter, 50);
             TestCircularHealthBar enemyHealthBar = new TestCircularHealthBar(enemy.MessageCenter, 100, 15, new Vector2(0, -150), enemyHealth, enemyTransform, LayerHealthBars, testHealth);
             RemoveOnDeathComponent enemyRemoveOnDeath = new RemoveOnDeathComponent(enemy);
-            ColliderComponent enemyCollider = new ColliderComponent(enemy, 150, GraphicsUtilities.GetColorsFromTexture(test), enemyTransform, CollidersEnemies);
-            RenderComponent enemyRender = new RenderComponent(enemy.MessageCenter, test, enemyTransform, GameScreen.LayerUnits);
+            ColliderComponent enemyCollider = new ColliderComponent(enemy, 150, 300, 300, new List<Triangle>() { new Triangle(new Vector2(25, 50), new Vector2(25, 250), new Vector2(275, 150)) }, enemyTransform, CollidersEnemies);
+            RenderComponent enemyRender = new RenderComponent(enemy.MessageCenter, test, enemyTransform, enemyCollider, GameScreen.LayerUnits);
             enemy.AddComponent(enemyHealth);
             enemy.AddComponent(enemyHealthBar);
             enemy.AddComponent(enemyRemoveOnDeath);

@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FinalProject.Utilities;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace FinalProject.GameComponents
@@ -8,16 +9,20 @@ namespace FinalProject.GameComponents
         private int boundingRadius;
         private List<ColliderComponent> colliderList;
         private Color[,] texture;
+        private List<Triangle> triangles;
+        private int width, height;
 
-        public ColliderComponent(Entity entity, int boundingRadius, Color[,] texture, TransformComponent transform, List<ColliderComponent> colliderList)
+        public ColliderComponent(Entity entity, int boundingRadius, int width, int height, List<Triangle> triangles, TransformComponent transform, List<ColliderComponent> colliderList)
             : base(entity.MessageCenter)
         {
             this.boundingRadius = boundingRadius;
-            this.texture = texture;
+            this.triangles = triangles;
             this.transform = transform;
             this.colliderList = colliderList;
             colliderList.Add(this);
             this.Entity = entity;
+            this.width = width;
+            this.height = height;
         }
 
         public Entity Entity { get; private set; }
@@ -29,25 +34,17 @@ namespace FinalProject.GameComponents
             TransformComponent otherTransform = other.transform;
             if (Vector2.DistanceSquared(transform.Position, otherTransform.Position) < (boundingRadius + other.boundingRadius) * (boundingRadius + other.boundingRadius))
             {
-                Matrix thisToOther = ToScreenMatrix() * Matrix.Invert(other.ToScreenMatrix());
-                for (int x = 0; x < texture.GetLength(0); x++)
+                foreach (Triangle triangle in TransformedTriangles())
                 {
-                    for (int y = 0; y < texture.GetLength(1); y++)
+                    foreach (Triangle otherTriangle in other.TransformedTriangles())
                     {
-                        if (texture[x, y].A == 255)
+                        if (triangle.Intersects(otherTriangle))
                         {
-                            Vector2 thisPoint = new Vector2(x, y);
-                            Vector2 thisPointInOther = Vector2.Transform(thisPoint, thisToOther);
-                            if (new Rectangle(0, 0, other.texture.GetLength(0), other.texture.GetLength(1)).Contains((int)thisPointInOther.X, (int)thisPointInOther.Y))
-                            {
-                                if (other.texture[(int)thisPointInOther.X, (int)thisPointInOther.Y].A == 255)
-                                {
-                                    return true;
-                                }
-                            }
+                            return true;
                         }
                     }
                 }
+                return false;
             }
             return false;
         }
@@ -62,13 +59,23 @@ namespace FinalProject.GameComponents
             messageCenter.Broadcast<Entity, Entity>("Collided With", collidedWith, Entity);
         }
 
+        public List<Triangle> TransformedTriangles()
+        {
+            List<Triangle> transformed = new List<Triangle>();
+            foreach (Triangle triangle in triangles)
+            {
+                transformed.Add(triangle.Transform(ToScreenMatrix()));
+            }
+            return transformed;
+        }
+
         public override void Update(float secondsPassed)
         {
         }
 
         private Matrix ToScreenMatrix()
         {
-            return Matrix.CreateTranslation(-texture.GetLength(0) / 2, -texture.GetLength(1) / 2, 0) * Matrix.CreateScale(transform.Scale) * Matrix.CreateRotationZ(MathHelper.ToRadians(transform.Theta)) * Matrix.CreateTranslation(transform.Position.X, transform.Position.Y, 0);
+            return Matrix.CreateTranslation(-width / 2, -height / 2, 0) * Matrix.CreateScale(transform.Scale) * Matrix.CreateRotationZ(MathHelper.ToRadians(transform.Theta)) * Matrix.CreateTranslation(transform.Position.X, transform.Position.Y, 0);
         }
     }
 }
