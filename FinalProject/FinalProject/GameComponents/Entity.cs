@@ -37,6 +37,13 @@ namespace FinalProject.GameComponents
             }
         }
 
+        public void MoveComponent(int from, int to)
+        {
+            Component temporary = components[from];
+            components.Remove(temporary);
+            components.Insert(to, temporary);
+        }
+
         public void RemoveComponent(Component component)
         {
             toRemove.Add(component);

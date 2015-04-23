@@ -91,24 +91,19 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\ProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\RestrictPositionComponent.cs" />
     <Compile Include="GameComponents\SignalOnExitComponent.cs" />
     <Compile Include="GameComponents\TextureRendererComponent.cs" />
+    <Compile Include="GameComponents\VelocityAcclerationComponent.cs" />
     <Compile Include="GameMain.cs" />
-    <Compile Include="GameComponents\BasicWeaponComponent.cs" />
     <Compile Include="GameComponents\ColliderComponent.cs" />
     <Compile Include="GameComponents\Component.cs" />
     <Compile Include="GameComponents\Drawable.cs" />
-    <Compile Include="GameComponents\HealthBarComponent.cs" />
     <Compile Include="GameComponents\HealthComponent.cs" />
-    <Compile Include="GameComponents\EnemyHomingComponent.cs" />
-    <Compile Include="GameComponents\HomingWeaponComponent.cs" />
-    <Compile Include="GameComponents\RemoveOnDeathComponent.cs" />
     <Compile Include="GameComponents\Entity.cs" />
-    <Compile Include="GameComponents\PlayerInputComponent.cs" />
     <Compile Include="GameSaving\SaveGame.cs" />
     <Compile Include="GameSaving\SaveGameManager.cs" />
-    <Compile Include="GameComponents\TestCircularHealthBar.cs" />
     <Compile Include="Messaging\Callbacks.cs" />
     <Compile Include="Messaging\MessageCenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
