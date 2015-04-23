@@ -91,11 +91,14 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\ExampleProjectileWeaponComponent.cs" />
+    <Compile Include="GameComponents\GameAssets.cs" />
     <Compile Include="GameComponents\ProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\RestrictPositionComponent.cs" />
     <Compile Include="GameComponents\SignalOnExitComponent.cs" />
     <Compile Include="GameComponents\TextureRendererComponent.cs" />
     <Compile Include="GameComponents\VelocityAcclerationComponent.cs" />
+    <Compile Include="GameComponents\VelocityBasedRotationComponent.cs" />
     <Compile Include="GameMain.cs" />
     <Compile Include="GameComponents\ColliderComponent.cs" />
     <Compile Include="GameComponents\Component.cs" />

@@ -31,6 +31,7 @@ namespace FinalProject.Screens
         private Random rng = new Random();
         private InterpolatedValue scaleIn, scaleOut;
         private Texture2D test;
+        private Entity testEntity;
         private Texture2D testHealth;
         private List<Entity> toRemove;
 
@@ -75,6 +76,7 @@ namespace FinalProject.Screens
         public override void KeyPressed(Keys key)
         {
             MessageCenter.Broadcast<Keys>("Key Pressed", key);
+            testEntity.MessageCenter.Broadcast("Fire");
             switch (state)
             {
                 case ScreenState.Active:
@@ -112,10 +114,15 @@ namespace FinalProject.Screens
             background = content.Load<Texture2D>("MenuBackground");
             bullet = content.Load<Texture2D>("TestBulletTri");
             testHealth = content.Load<Texture2D>("CircularHealthBarTest");
+            GameAssets.LoadContent(content);
         }
 
         public override void Start()
         {
+            testEntity = new Entity();
+            testEntity.Position = new Vector2(500, 500);
+            new ExampleProjectileWeaponComponent(testEntity, Vector2.Zero);
+            entities.Add(testEntity);
             base.Start();
         }
 
