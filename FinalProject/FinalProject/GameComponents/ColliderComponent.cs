@@ -52,6 +52,11 @@ namespace FinalProject.GameComponents
             colliderList.Remove(this);
         }
 
+        public Entity GetEntity()
+        {
+            return entity;
+        }
+
         public void NotifyOfCollision(Entity collidedWith)
         {
             entity.MessageCenter.Broadcast<Entity, Entity>("Collided With", collidedWith, entity);

@@ -116,11 +116,6 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
-            entities.Add(GeneratePlayer());
-            for (int i = 0; i < 10; i++)
-            {
-                entities.Add(TestGenerateEnemy());
-            }
             base.Start();
         }
 
@@ -205,8 +200,8 @@ namespace FinalProject.Screens
                 {
                     if (enemyBullet.CollidesWith(player))
                     {
-                        enemyBullet.NotifyOfCollision(player.Entity);
-                        player.NotifyOfCollision(enemyBullet.Entity);
+                        enemyBullet.NotifyOfCollision(player.GetEntity());
+                        player.NotifyOfCollision(enemyBullet.GetEntity());
                     }
                 }
             }
@@ -216,8 +211,8 @@ namespace FinalProject.Screens
                 {
                     if (player.CollidesWith(enemy))
                     {
-                        enemy.NotifyOfCollision(player.Entity);
-                        player.NotifyOfCollision(enemy.Entity);
+                        enemy.NotifyOfCollision(player.GetEntity());
+                        player.NotifyOfCollision(enemy.GetEntity());
                     }
                 }
             }
@@ -227,41 +222,11 @@ namespace FinalProject.Screens
                 {
                     if (playerBullet.CollidesWith(enemy))
                     {
-                        playerBullet.NotifyOfCollision(enemy.Entity);
-                        enemy.NotifyOfCollision(playerBullet.Entity);
+                        playerBullet.NotifyOfCollision(enemy.GetEntity());
+                        enemy.NotifyOfCollision(playerBullet.GetEntity());
                     }
                 }
             }
-        }
-
-        private Vector2 ClosestCollider(Vector2 position, List<ColliderComponent> colliders)
-        {
-            if (colliders.Count == 0)
-            {
-                return new Vector2(-1, -1);
-            }
-            else
-            {
-                ColliderComponent closest = colliders[0];
-                foreach (ColliderComponent collider in colliders)
-                {
-                    if (Vector2.DistanceSquared(collider.transform.Position, position) < Vector2.DistanceSquared(closest.transform.Position, position))
-                    {
-                        closest = collider;
-                    }
-                }
-                return closest.transform.Position;
-            }
-        }
-
-        private void ClosestEnemy(Vector2 position, MessageCenter messageCenter)
-        {
-            messageCenter.Broadcast<Vector2>("Closest Position", ClosestCollider(position, CollidersEnemies));
-        }
-
-        private void ClosestPlayer(Vector2 position, MessageCenter messageCenter)
-        {
-            messageCenter.Broadcast<Vector2>("Closest Position", ClosestCollider(position, CollidersPlayer));
         }
 
         private void DrawScreen(SpriteBatch spriteBatch)
@@ -286,22 +251,6 @@ namespace FinalProject.Screens
             }
         }
 
-        private Entity GeneratePlayer()
-        {
-            Entity player = new Entity();
-            PlayerInputComponent playerInput = new PlayerInputComponent(player.MessageCenter);
-            BoundedTransformComponent playerTransform = new BoundedTransformComponent(player.MessageCenter, 110, 140, Bounds);
-            playerTransform.Position = new Vector2(500, 500);
-            playerTransform.Theta = -90;
-            BasicWeaponComponent playerWeapon = new BasicWeaponComponent(player.MessageCenter, playerTransform, bullet, 0.1f, new Vector2(0, -1000), Vector2.Zero);
-            RenderComponent playerRender = new RenderComponent(player.MessageCenter, test, playerTransform, null, GameScreen.LayerUnits);
-            player.AddComponent(playerWeapon);
-            player.AddComponent(playerInput);
-            player.AddComponent(playerTransform);
-            player.AddComponent(playerRender);
-            return player;
-        }
-
         private void InitializeMenu()
         {
             menuItems = new MenuItemGroup();
@@ -313,8 +262,6 @@ namespace FinalProject.Screens
         {
             MessageCenter = new MessageCenter();
             MessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
-            MessageCenter.AddListener<Vector2, MessageCenter>("Get Closest Enemy", ClosestEnemy);
-            MessageCenter.AddListener<Vector2, MessageCenter>("Get Closest Player", ClosestPlayer);
         }
 
         private void RemoveEntity(Entity entity)
@@ -335,27 +282,6 @@ namespace FinalProject.Screens
         private void SetCurrentGameAndStage(SaveGame saveGame, string stage)
         {
             currentGame = saveGame;
-        }
-
-        private Entity TestGenerateEnemy()
-        {
-            Entity enemy = new Entity();
-            BoundedTransformComponent enemyTransform = new BoundedTransformComponent(enemy.MessageCenter, 110, 140, Bounds);
-            enemyTransform.Position = new Vector2(rng.Next(200, 1720), rng.Next(200, 880));
-            enemyTransform.Theta = rng.Next(360);
-            enemyTransform.Scale = .5f;
-            HealthComponent enemyHealth = new HealthComponent(enemy.MessageCenter, 50);
-            TestCircularHealthBar enemyHealthBar = new TestCircularHealthBar(enemy.MessageCenter, 100, 15, new Vector2(0, -150), enemyHealth, enemyTransform, LayerHealthBars, testHealth);
-            RemoveOnDeathComponent enemyRemoveOnDeath = new RemoveOnDeathComponent(enemy);
-            ColliderComponent enemyCollider = new ColliderComponent(enemy, 150, 300, 300, new List<Triangle>() { new Triangle(new Vector2(25, 50), new Vector2(25, 250), new Vector2(275, 150)) }, enemyTransform, CollidersEnemies);
-            RenderComponent enemyRender = new RenderComponent(enemy.MessageCenter, test, enemyTransform, enemyCollider, GameScreen.LayerUnits);
-            enemy.AddComponent(enemyHealth);
-            enemy.AddComponent(enemyHealthBar);
-            enemy.AddComponent(enemyRemoveOnDeath);
-            enemy.AddComponent(enemyCollider);
-            enemy.AddComponent(enemyTransform);
-            enemy.AddComponent(enemyRender);
-            return enemy;
         }
     }
 }
