@@ -91,6 +91,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\TextureRendererComponent.cs" />
     <Compile Include="GameMain.cs" />
     <Compile Include="GameComponents\BasicWeaponComponent.cs" />
     <Compile Include="GameComponents\BoundedTransformComponent.cs" />

@@ -1,4 +1,5 @@
 ﻿using FinalProject.Messaging;
+using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace FinalProject.GameComponents
@@ -6,12 +7,21 @@ namespace FinalProject.GameComponents
     internal class Entity
     {
         public MessageCenter MessageCenter;
+        public Vector2 Position;
+        public float Rotation;
+        public float Scale;
         private List<Component> components;
+        private List<Component> toRemove;
 
         public Entity()
         {
             components = new List<Component>();
+            toRemove = new List<Component>();
             MessageCenter = new MessageCenter();
+            MessageCenter.AddListener("Clean Up", CleanUp);
+            Position = Vector2.Zero;
+            Scale = 1;
+            Rotation = 0;
         }
 
         public void AddComponent(Component component)
@@ -27,12 +37,27 @@ namespace FinalProject.GameComponents
             }
         }
 
+        public void RemoveComponent(Component component)
+        {
+            toRemove.Add(component);
+        }
+
         public void Update(float secondsPassed)
         {
             foreach (Component component in components)
             {
                 component.Update(secondsPassed);
             }
+        }
+
+        private void CleanUp()
+        {
+            foreach (Component component in toRemove)
+            {
+                components.Remove(component);
+                component.Dispose();
+            }
+            toRemove.Clear();
         }
     }
 }

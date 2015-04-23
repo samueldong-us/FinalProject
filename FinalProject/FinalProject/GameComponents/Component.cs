@@ -4,11 +4,12 @@ namespace FinalProject.GameComponents
 {
     internal abstract class Component
     {
-        protected MessageCenter messageCenter;
+        protected Entity entity;
 
-        public Component(MessageCenter messageCenter)
+        public Component(Entity entity)
         {
-            this.messageCenter = messageCenter;
+            entity.AddComponent(this);
+            this.entity = entity;
         }
 
         public abstract void Dispose();
