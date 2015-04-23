@@ -42,6 +42,11 @@ namespace FinalProject.GameComponents
             toRemove.Add(component);
         }
 
+        public Matrix ToScreenMatrix(Rectangle source)
+        {
+            return Matrix.CreateTranslation(-source.Width / 2, -source.Height / 2, 0) * Matrix.CreateScale(Scale) * Matrix.CreateRotationZ(Rotation) * Matrix.CreateTranslation(Position.X, Position.Y, 0);
+        }
+
         public void Update(float secondsPassed)
         {
             foreach (Component component in components)

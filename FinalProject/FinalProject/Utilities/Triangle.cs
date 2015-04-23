@@ -8,41 +8,39 @@ namespace FinalProject.Utilities
 {
     internal class Triangle
     {
-        public Vector2 a, b, c;
-        private Vector2 bVector, cVector;
-        private float dotBB, dotBC, dotCC, denominator;
+        public Vector2 A, B, C;
 
-        public Triangle(Vector2 a, Vector2 b, Vector2 c)
+        public Triangle(Vector2 A, Vector2 B, Vector2 C)
         {
-            this.a = a;
-            this.b = b;
-            this.c = c;
-            bVector = b - a;
-            cVector = c - a;
-            dotBB = Vector2.Dot(bVector, bVector);
-            dotBC = Vector2.Dot(bVector, cVector);
-            dotCC = Vector2.Dot(cVector, cVector);
-            denominator = dotBB * dotCC - dotBC * dotBC;
+            this.A = A;
+            this.B = B;
+            this.C = C;
         }
 
         public bool Intersects(Triangle other)
         {
-            return ContainsPoint(other.a) || ContainsPoint(other.b) || ContainsPoint(other.c) || other.ContainsPoint(a) || other.ContainsPoint(b) || other.ContainsPoint(c);
+            return ContainsPoint(other.A) || ContainsPoint(other.B) || ContainsPoint(other.C) || other.ContainsPoint(A) || other.ContainsPoint(B) || other.ContainsPoint(C);
         }
 
         public Triangle Transform(Matrix matrix)
         {
-            Vector2 newA = Vector2.Transform(a, matrix);
-            Vector2 newB = Vector2.Transform(b, matrix);
-            Vector2 newC = Vector2.Transform(c, matrix);
+            Vector2 newA = Vector2.Transform(A, matrix);
+            Vector2 newB = Vector2.Transform(B, matrix);
+            Vector2 newC = Vector2.Transform(C, matrix);
             return new Triangle(newA, newB, newC);
         }
 
         private bool ContainsPoint(Vector2 p)
         {
-            Vector2 pVector = p - a;
+            Vector2 bVector = B - A;
+            Vector2 cVector = C - A;
+            Vector2 pVector = p - A;
+            float dotBB = Vector2.Dot(bVector, bVector);
+            float dotBC = Vector2.Dot(bVector, cVector);
+            float dotCC = Vector2.Dot(cVector, cVector);
             float dotPB = Vector2.Dot(pVector, bVector);
             float dotPC = Vector2.Dot(pVector, cVector);
+            float denominator = dotBB * dotCC - dotBC * dotBC;
             float u = (dotBB * dotPC - dotBC * dotPB) / denominator;
             float v = (dotCC * dotPB - dotBC * dotPC) / denominator;
             return u >= 0 && v >= 0 && u + v < 1;

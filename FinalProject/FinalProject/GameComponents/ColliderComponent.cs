@@ -6,33 +6,31 @@ namespace FinalProject.GameComponents
 {
     internal class ColliderComponent : Component
     {
-        private int boundingRadius;
+        private float boundingRadius;
         private List<ColliderComponent> colliderList;
-        private Color[,] texture;
+        private Rectangle source;
         private List<Triangle> triangles;
-        private int width, height;
 
-        public ColliderComponent(Entity entity, int boundingRadius, int width, int height, List<Triangle> triangles, TransformComponent transform, List<ColliderComponent> colliderList)
-            : base(entity.MessageCenter)
+        public ColliderComponent(Entity entity, Rectangle source, List<Triangle> triangles, List<ColliderComponent> colliderList)
+            : base(entity)
         {
-            this.boundingRadius = boundingRadius;
+            this.source = source;
             this.triangles = triangles;
-            this.transform = transform;
+            boundingRadius = 0;
+            foreach (Triangle triangle in triangles)
+            {
+                float aDistance = Vector2.Distance(entity.Position, triangle.A);
+                float bDistance = Vector2.Distance(entity.Position, triangle.B);
+                float cDistance = Vector2.Distance(entity.Position, triangle.C);
+                boundingRadius = MathHelper.Max(MathHelper.Max(boundingRadius, aDistance), MathHelper.Max(bDistance, cDistance));
+            }
             this.colliderList = colliderList;
             colliderList.Add(this);
-            this.Entity = entity;
-            this.width = width;
-            this.height = height;
         }
-
-        public Entity Entity { get; private set; }
-
-        public TransformComponent transform { get; private set; }
 
         public bool CollidesWith(ColliderComponent other)
         {
-            TransformComponent otherTransform = other.transform;
-            if (Vector2.DistanceSquared(transform.Position, otherTransform.Position) < (boundingRadius + other.boundingRadius) * (boundingRadius + other.boundingRadius))
+            if (Vector2.DistanceSquared(other.entity.Position, other.entity.Position) < (boundingRadius + other.boundingRadius) * (boundingRadius + other.boundingRadius))
             {
                 foreach (Triangle triangle in TransformedTriangles())
                 {
@@ -56,26 +54,21 @@ namespace FinalProject.GameComponents
 
         public void NotifyOfCollision(Entity collidedWith)
         {
-            messageCenter.Broadcast<Entity, Entity>("Collided With", collidedWith, Entity);
-        }
-
-        public List<Triangle> TransformedTriangles()
-        {
-            List<Triangle> transformed = new List<Triangle>();
-            foreach (Triangle triangle in triangles)
-            {
-                transformed.Add(triangle.Transform(ToScreenMatrix()));
-            }
-            return transformed;
+            entity.MessageCenter.Broadcast<Entity, Entity>("Collided With", collidedWith, entity);
         }
 
         public override void Update(float secondsPassed)
         {
         }
 
-        private Matrix ToScreenMatrix()
+        private List<Triangle> TransformedTriangles()
         {
-            return Matrix.CreateTranslation(-width / 2, -height / 2, 0) * Matrix.CreateScale(transform.Scale) * Matrix.CreateRotationZ(MathHelper.ToRadians(transform.Theta)) * Matrix.CreateTranslation(transform.Position.X, transform.Position.Y, 0);
+            List<Triangle> transformed = new List<Triangle>();
+            foreach (Triangle triangle in triangles)
+            {
+                transformed.Add(triangle.Transform(entity.ToScreenMatrix(source)));
+            }
+            return transformed;
         }
     }
 }
