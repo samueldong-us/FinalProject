@@ -59,7 +59,7 @@ namespace FinalProject.GameComponents
 
         public void NotifyOfCollision(Entity collidedWith)
         {
-            entity.MessageCenter.Broadcast<Entity, Entity>("Collided With", collidedWith, entity);
+            entity.MessageCenter.Broadcast<Entity, Entity>("Collided With", entity, collidedWith);
         }
 
         public override void Update(float secondsPassed)

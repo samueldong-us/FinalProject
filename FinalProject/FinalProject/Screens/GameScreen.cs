@@ -110,7 +110,7 @@ namespace FinalProject.Screens
 
         public override void LoadContent()
         {
-            test = content.Load<Texture2D>("TestTri");
+            test = content.Load<Texture2D>("ship01");
             background = content.Load<Texture2D>("MenuBackground");
             bullet = content.Load<Texture2D>("TestBulletTri");
             testHealth = content.Load<Texture2D>("CircularHealthBarTest");
@@ -123,6 +123,12 @@ namespace FinalProject.Screens
             testEntity.Position = new Vector2(500, 500);
             new ExampleProjectileWeaponComponent(testEntity, Vector2.Zero);
             entities.Add(testEntity);
+            Entity ship = new Entity();
+            ship.Position = new Vector2(700, 700);
+            ship.Rotation = -(float)(Math.PI / 2);
+            new ColliderComponent(ship, test.Bounds, new List<Triangle>() { new Triangle(new Vector2(42, 50), new Vector2(50, 44), new Vector2(58, 50)), new Triangle(new Vector2(42, 50), new Vector2(50, 56), new Vector2(58, 50)) }, CollidersEnemies);
+            new TextureRendererComponent(ship, test, test.Bounds, LayerUnits);
+            entities.Add(ship);
             base.Start();
         }
 

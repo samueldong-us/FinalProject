@@ -19,10 +19,17 @@ namespace FinalProject.GameComponents
         {
             for (int i = 0; i < 100; i++)
             {
-                Entity centerBullet = CreateProjectile(1000, -(float)(Math.PI * i / 50), GameAssets.BulletTexture, GameAssets.BulletTexture.Bounds, new List<Triangle>(), GameScreen.LayerBullets, GameScreen.CollidersPlayerBullets);
+                Entity centerBullet = CreateProjectile(1000, -(float)(Math.PI * i / 50), GameAssets.BulletTexture, GameAssets.BulletTexture.Bounds, new List<Triangle>() { new Triangle(new Vector2(10, 10), new Vector2(10, 40), new Vector2(45, 25)) }, GameScreen.LayerBullets, GameScreen.CollidersPlayerBullets);
                 centerBullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
+                centerBullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
                 projectiles.Add(centerBullet);
             }
+        }
+
+        private void DealDamage(Entity projectile, Entity entity)
+        {
+            entity.MessageCenter.Broadcast<int>("Take Damage", 1);
+            RemoveProjectile(projectile);
         }
     }
 }
