@@ -154,6 +154,7 @@ namespace FinalProject.Screens
             LayerPlayer.Clear();
             LayerBullets.Clear();
             LayerHealthBars.Clear();
+            LayerDebug.Clear();
             CollidersEnemies.Clear();
             CollidersPlayer.Clear();
             CollidersPlayerBullets.Clear();
