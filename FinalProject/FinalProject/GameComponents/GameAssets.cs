@@ -23,6 +23,12 @@ namespace FinalProject.GameComponents
             UnitTexture = content.Load<Texture2D>("UnitTexture");
             Unit = new Dictionary<string, Rectangle>();
             Unit["Spread Shot Ship"] = new Rectangle(0, 0, 100, 100);
+            Unit["Homing Ship"] = new Rectangle(100, 0, 100, 100);
+            Unit["Laser Ship"] = new Rectangle(200, 0, 100, 100);
+            Unit["Walking Fish01"] = new Rectangle(300, 0, 100, 100);
+            Unit["Walking Fish02"] = new Rectangle(400, 0, 100, 100);
+            Unit["Jelly"] = new Rectangle(500, 0, 100, 100);
+            Unit["Sea Slug"] = new Rectangle(600, 0, 100, 100);
             BulletTexture = content.Load<Texture2D>("BulletTexture");
             Bullet = new List<Rectangle>();
             for (int i = 0; i < 18; i++)
@@ -39,7 +45,14 @@ namespace FinalProject.GameComponents
             BulletTriangles = new List<List<Triangle>>();
             BulletTriangles.Add(new List<Triangle>() { new Triangle(new Vector2(40, 53), new Vector2(55, 45), new Vector2(45, 56)) });
             UnitTriangles = new Dictionary<string, List<Triangle>>();
-            UnitTriangles["Spread Shot Ship"] = new List<Triangle>() { new Triangle(new Vector2(42, 50), new Vector2(50, 44), new Vector2(58, 50)), new Triangle(new Vector2(42, 50), new Vector2(50, 56), new Vector2(58, 50)) };
+            UnitTriangles["Spread Shot Ship"] = new List<Triangle>() {
+                new Triangle(new Vector2(42, 50), new Vector2(50, 44), new Vector2(58, 50)),
+                new Triangle(new Vector2(42, 50), new Vector2(50, 56), new Vector2(58, 50))
+            };
+            UnitTriangles["Homing Ship"] = new List<Triangle>()
+            {
+
+            };
         }
     }
 }
