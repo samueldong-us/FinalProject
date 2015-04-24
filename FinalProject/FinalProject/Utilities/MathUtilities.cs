@@ -13,5 +13,10 @@ namespace FinalProject.Utilities
             float cos = Vector2.Dot(one, two) / (one.Length() * two.Length());
             return (float)Math.Acos(cos);
         }
+
+        public static Vector2 VectorFromMagnitude(float magnitude, float angle)
+        {
+            return new Vector2((float)(magnitude * Math.Cos(angle)), (float)(magnitude * Math.Sin(angle)));
+        }
     }
 }

@@ -27,17 +27,15 @@ namespace FinalProject.GameComponents
 
         protected override void Fire()
         {
-            GameScreen.MessageCenter.Broadcast<Entity>("Find Closest Player", entity);
-            Vector2 fromTo = closestPosition - entity.Position;
-            float angle = (float)Math.Atan2(fromTo.Y, fromTo.X);
-            if (closestPosition.Equals(new Vector2(-1, -1)))
+            for (int i = 0; i < 6; i++)
             {
-                angle = (float)(Math.PI / 2);
-            }
-            Entity centerBullet = CreateProjectile(100, angle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, GameScreen.LayerBullets, GameScreen.CollidersEnemyBullets);
-            centerBullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
-            centerBullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
-            projectiles.Add(centerBullet);
+                Entity centerBullet = CreateProjectile(100, (float)(Math.PI * i / 3), GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, GameScreen.LayerBullets, GameScreen.CollidersEnemyBullets);
+                centerBullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
+                centerBullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
+                new DelayedTargetingComponent(centerBullet, .5f,.1f * i, 300);
+                centerBullet.MoveComponent(5, 1);
+                projectiles.Add(centerBullet);
+            }   
         }
 
         private void DealDamage(Entity projectile, Entity entity)

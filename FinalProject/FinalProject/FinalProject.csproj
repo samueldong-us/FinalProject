@@ -91,6 +91,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\DelayedTargetingComponent.cs" />
     <Compile Include="GameComponents\ExampleProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />
     <Compile Include="GameComponents\ProjectileWeaponComponent.cs" />
