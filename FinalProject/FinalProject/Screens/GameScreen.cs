@@ -128,7 +128,7 @@ namespace FinalProject.Screens
             Entity ship = new Entity();
             ship.Position = new Vector2(700, 700);
             ship.Rotation = -(float)(Math.PI / 2);
-            new ColliderComponent(ship, GameAssets.Unit["Spread Shot Ship"], GameAssets.UnitTriangles["Spread Shot Ship"], CollidersEnemies).DebugDraw();
+            new ColliderComponent(ship, GameAssets.Unit["Spread Shot Ship"], GameAssets.UnitTriangles["Spread Shot Ship"], CollidersPlayer).DebugDraw();
             new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Spread Shot Ship"], Color.White, LayerPlayer);
             entities.Add(ship);
             base.Start();
@@ -246,6 +246,31 @@ namespace FinalProject.Screens
             }
         }
 
+        private Vector2 ClosestCollider(Entity entity, List<ColliderComponent> colliderList, float maxAngle)
+        {
+            ColliderComponent closest = null;
+            Vector2 closestFromTo = Vector2.Zero;
+            Vector2 entityVector = Vector2.Transform(Vector2.UnitX, Matrix.CreateRotationZ(entity.Rotation));
+            foreach (ColliderComponent collider in colliderList)
+            {
+                Vector2 fromTo = collider.GetEntity().Position - entity.Position;
+                if (MathUtilities.angleBetween(entityVector, fromTo) < maxAngle)
+                {
+                    if (closest == null || fromTo.LengthSquared() < closestFromTo.LengthSquared())
+                    {
+                        closest = collider;
+                        closestFromTo = fromTo;
+                    }
+                }
+            }
+            return closest == null ? new Vector2(-1, -1) : closest.GetEntity().Position;
+        }
+
+        private void ClosestPlayer(Entity parameterOne)
+        {
+            parameterOne.MessageCenter.Broadcast<Vector2>("Closest Player", ClosestCollider(parameterOne, CollidersPlayer, (float)Math.PI));
+        }
+
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
@@ -283,6 +308,7 @@ namespace FinalProject.Screens
         {
             MessageCenter = new MessageCenter();
             MessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
+            MessageCenter.AddListener<Entity>("Find Closest Player", ClosestPlayer);
         }
 
         private void RemoveEntity(Entity entity)

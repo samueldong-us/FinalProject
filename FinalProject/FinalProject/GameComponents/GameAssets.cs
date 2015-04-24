@@ -37,9 +37,14 @@ namespace FinalProject.GameComponents
         private static void SetupTriangles()
         {
             BulletTriangles = new List<List<Triangle>>();
-            BulletTriangles.Add(new List<Triangle>() { new Triangle(new Vector2(40, 53), new Vector2(55, 45), new Vector2(45, 56)) });
+            BulletTriangles.Add(new List<Triangle>() {
+                new Triangle(new Vector2(40, 53), new Vector2(55, 45), new Vector2(45, 56))
+            });
             UnitTriangles = new Dictionary<string, List<Triangle>>();
-            UnitTriangles["Spread Shot Ship"] = new List<Triangle>() { new Triangle(new Vector2(42, 50), new Vector2(50, 44), new Vector2(58, 50)), new Triangle(new Vector2(42, 50), new Vector2(50, 56), new Vector2(58, 50)) };
+            UnitTriangles["Spread Shot Ship"] = new List<Triangle>() {
+                new Triangle(new Vector2(42, 50), new Vector2(50, 44), new Vector2(58, 50)),
+                new Triangle(new Vector2(42, 50), new Vector2(50, 56), new Vector2(58, 50))
+            };
         }
     }
 }
