@@ -19,8 +19,10 @@ namespace FinalProject.Screens
         public static List<ColliderComponent> CollidersPlayer;
         public static List<ColliderComponent> CollidersPlayerBullets;
         public static List<Drawable> LayerBullets;
+        public static List<Drawable> LayerDebug;
+        public static List<Drawable> LayerEnemies;
         public static List<Drawable> LayerHealthBars;
-        public static List<Drawable> LayerUnits;
+        public static List<Drawable> LayerPlayer;
         public static MessageCenter MessageCenter;
         private Texture2D background;
         private Texture2D bullet;
@@ -126,8 +128,8 @@ namespace FinalProject.Screens
             Entity ship = new Entity();
             ship.Position = new Vector2(700, 700);
             ship.Rotation = -(float)(Math.PI / 2);
-            new ColliderComponent(ship, test.Bounds, new List<Triangle>() { new Triangle(new Vector2(42, 50), new Vector2(50, 44), new Vector2(58, 50)), new Triangle(new Vector2(42, 50), new Vector2(50, 56), new Vector2(58, 50)) }, CollidersEnemies);
-            new TextureRendererComponent(ship, test, test.Bounds, LayerUnits);
+            new ColliderComponent(ship, GameAssets.Unit["Spread Shot Ship"], GameAssets.UnitTriangles["Spread Shot Ship"], CollidersEnemies).DebugDraw();
+            new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Spread Shot Ship"], Color.White, LayerPlayer);
             entities.Add(ship);
             base.Start();
         }
@@ -149,7 +151,7 @@ namespace FinalProject.Screens
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
             entities.Clear();
-            LayerUnits.Clear();
+            LayerPlayer.Clear();
             LayerBullets.Clear();
             LayerHealthBars.Clear();
             CollidersEnemies.Clear();
@@ -196,9 +198,11 @@ namespace FinalProject.Screens
 
         private static void InitializeStaticVariables()
         {
-            LayerUnits = new List<Drawable>();
+            LayerPlayer = new List<Drawable>();
+            LayerEnemies = new List<Drawable>();
             LayerBullets = new List<Drawable>();
             LayerHealthBars = new List<Drawable>();
+            LayerDebug = new List<Drawable>();
             CollidersPlayer = new List<ColliderComponent>();
             CollidersEnemies = new List<ColliderComponent>();
             CollidersEnemyBullets = new List<ColliderComponent>();
@@ -246,7 +250,7 @@ namespace FinalProject.Screens
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
 
-            foreach (Drawable drawable in LayerUnits)
+            foreach (Drawable drawable in LayerPlayer)
             {
                 drawable.Draw(spriteBatch);
             }
@@ -255,6 +259,10 @@ namespace FinalProject.Screens
                 drawable.Draw(spriteBatch);
             }
             foreach (Drawable drawable in LayerBullets)
+            {
+                drawable.Draw(spriteBatch);
+            }
+            foreach (Drawable drawable in LayerDebug)
             {
                 drawable.Draw(spriteBatch);
             }

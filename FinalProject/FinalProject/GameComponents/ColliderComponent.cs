@@ -1,10 +1,11 @@
-﻿using FinalProject.Utilities;
+﻿using FinalProject.Screens;
+using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 
 namespace FinalProject.GameComponents
 {
-    internal class ColliderComponent : Component
+    internal class ColliderComponent : Component, Drawable
     {
         private float boundingRadius;
         private List<ColliderComponent> colliderList;
@@ -47,9 +48,25 @@ namespace FinalProject.GameComponents
             return false;
         }
 
+        public void DebugDraw()
+        {
+            GameScreen.LayerDebug.Add(this);
+        }
+
         public override void Dispose()
         {
             colliderList.Remove(this);
+            GameScreen.LayerDebug.Remove(this);
+        }
+
+        public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        {
+            foreach (Triangle triangle in TransformedTriangles())
+            {
+                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle((int)triangle.A.X - 2, (int)triangle.A.Y - 2, 4, 4), Color.Green);
+                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle((int)triangle.B.X - 2, (int)triangle.B.Y - 2, 4, 4), Color.Green);
+                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle((int)triangle.C.X - 2, (int)triangle.C.Y - 2, 4, 4), Color.Green);
+            }
         }
 
         public Entity GetEntity()
