@@ -128,8 +128,8 @@ namespace FinalProject.Screens
             Entity ship = new Entity();
             ship.Position = new Vector2(700, 700);
             ship.Rotation = -(float)(Math.PI / 2);
-            new ColliderComponent(ship, GameAssets.Unit["Spread Shot Ship"], GameAssets.UnitTriangles["Spread Shot Ship"], CollidersPlayer).DebugDraw();
-            new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Spread Shot Ship"], Color.White, LayerPlayer);
+            new ColliderComponent(ship, GameAssets.Unit["Sea Slug"], GameAssets.UnitTriangles["Sea Slug"], CollidersPlayer).DebugDraw();
+            new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Sea Slug"], Color.White, LayerPlayer);
             entities.Add(ship);
             base.Start();
         }

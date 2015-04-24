@@ -53,7 +53,35 @@ namespace FinalProject.GameComponents
             };
             UnitTriangles["Homing Ship"] = new List<Triangle>()
             {
-
+                new Triangle(new Vector2(43, 49), new Vector2(51, 46), new Vector2(51, 52)),
+                new Triangle(new Vector2(60, 49), new Vector2(51, 46), new Vector2(51, 52))
+            };
+            UnitTriangles["Laser Ship"] = new List<Triangle>()
+            {
+                new Triangle(new Vector2(34, 50), new Vector2(42, 45), new Vector2(42, 55)),
+                new Triangle(new Vector2(50, 50), new Vector2(42, 45), new Vector2(42, 55))
+            };
+            UnitTriangles["Walking Fish01"] = new List<Triangle>()
+            {
+                new Triangle(new Vector2(32, 50), new Vector2(51, 28), new Vector2(51, 72)),
+                new Triangle(new Vector2(68, 50), new Vector2(51, 28), new Vector2(51, 72))
+            };
+            UnitTriangles["Walking Fish02"] = new List<Triangle>()
+            {
+                new Triangle(new Vector2(30, 50), new Vector2(51, 22), new Vector2(51, 79)),
+                new Triangle(new Vector2(74, 50), new Vector2(51, 22), new Vector2(51, 78))
+            };
+            UnitTriangles["Jelly"] = new List<Triangle>()
+            {
+                new Triangle(new Vector2(25, 50), new Vector2(36, 9), new Vector2(36, 91)),
+                new Triangle(new Vector2(80, 50), new Vector2(36, 9), new Vector2(36, 91))
+            };
+            UnitTriangles["Sea Slug"] = new List<Triangle>()
+            {
+                new Triangle(new Vector2(30, 39), new Vector2(65, 22), new Vector2(76, 50)),
+                new Triangle(new Vector2(30, 39), new Vector2(51, 52), new Vector2(76, 50)),
+                new Triangle(new Vector2(26, 69), new Vector2(51, 52), new Vector2(76, 50)),
+                new Triangle(new Vector2(26, 69), new Vector2(65, 72), new Vector2(76, 50))
             };
         }
     }
