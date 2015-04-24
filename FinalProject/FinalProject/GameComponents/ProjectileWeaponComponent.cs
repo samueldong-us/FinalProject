@@ -57,7 +57,7 @@ namespace FinalProject.GameComponents
             Entity projectile = new Entity();
             projectile.Position = entity.Position + offset;
             new ColliderComponent(projectile, source, triangles, colliderList).DebugDraw();
-            new VelocityAcclerationComponent(projectile, VectorFromMagnitude(speed, rotation), Vector2.Zero);
+            new VelocityAcclerationComponent(projectile, MathUtilities.VectorFromMagnitude(speed, rotation), Vector2.Zero);
             new VelocityBasedRotationComponent(projectile);
             new SignalOnExitComponent(projectile, source, GameScreen.Bounds);
             new TextureRendererComponent(projectile, texture, source, tint, drawingLayer);
@@ -71,9 +71,5 @@ namespace FinalProject.GameComponents
             toRemove.Add(projectile);
         }
 
-        protected Vector2 VectorFromMagnitude(float magnitude, float angle)
-        {
-            return new Vector2((float)(magnitude * Math.Cos(angle)), (float)(magnitude * Math.Sin(angle)));
-        }
     }
 }
