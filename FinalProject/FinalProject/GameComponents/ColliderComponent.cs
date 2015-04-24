@@ -20,9 +20,9 @@ namespace FinalProject.GameComponents
             boundingRadius = 0;
             foreach (Triangle triangle in triangles)
             {
-                float aDistance = Vector2.Distance(entity.Position, triangle.A);
-                float bDistance = Vector2.Distance(entity.Position, triangle.B);
-                float cDistance = Vector2.Distance(entity.Position, triangle.C);
+                float aDistance = Vector2.Distance(new Vector2(source.Width / 2f, source.Height / 2f), triangle.A);
+                float bDistance = Vector2.Distance(new Vector2(source.Width / 2f, source.Height / 2f), triangle.B);
+                float cDistance = Vector2.Distance(new Vector2(source.Width / 2f, source.Height / 2f), triangle.C);
                 boundingRadius = MathHelper.Max(MathHelper.Max(boundingRadius, aDistance), MathHelper.Max(bDistance, cDistance));
             }
             this.colliderList = colliderList;
