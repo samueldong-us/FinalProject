@@ -96,6 +96,7 @@
     <Compile Include="GameComponents\ExampleProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />
     <Compile Include="GameComponents\HealthBarComponent.cs" />
+    <Compile Include="GameComponents\PlayerControllerComponent.cs" />
     <Compile Include="GameComponents\ProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\RemoveOnDeathComponent.cs" />
     <Compile Include="GameComponents\RestrictPositionComponent.cs" />

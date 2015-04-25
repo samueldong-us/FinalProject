@@ -122,12 +122,15 @@ namespace FinalProject.Screens
         public override void Start()
         {
             testEntity = new Entity();
-            testEntity.Position = new Vector2(500, 500);
+            testEntity.Position = new Vector2(1000, 500);
             new ExampleProjectileWeaponComponent(testEntity, Vector2.Zero);
             entities.Add(testEntity);
             Entity ship = new Entity();
             ship.Position = new Vector2(700, 700);
             ship.Rotation = -(float)(Math.PI / 2);
+            new PlayerControllerComponent(ship, 200);
+            new VelocityAcclerationComponent(ship, Vector2.Zero, Vector2.Zero);
+            new RestrictPositionComponent(ship, 50, 50, Bounds);
             new ColliderComponent(ship, GameAssets.Unit["Sea Slug"], GameAssets.UnitTriangles["Sea Slug"], CollidersPlayer).DebugDraw();
             new HealthComponent(ship, 20);
             new CircularHealthBarComponent(ship);

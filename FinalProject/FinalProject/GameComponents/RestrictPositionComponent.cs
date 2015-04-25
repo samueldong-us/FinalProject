@@ -28,7 +28,7 @@ namespace FinalProject.GameComponents
         public override void Update(float secondsPassed)
         {
             entity.Position.X = MathHelper.Clamp(entity.Position.X, bounds.Left + horizontalPadding, bounds.Right - horizontalPadding);
-            entity.Position.Y = MathHelper.Clamp(entity.Position.Y, bounds.Bottom + verticalPadding, bounds.Top - verticalPadding);
+            entity.Position.Y = MathHelper.Clamp(entity.Position.Y, bounds.Top + verticalPadding, bounds.Bottom - verticalPadding);
         }
     }
 }
