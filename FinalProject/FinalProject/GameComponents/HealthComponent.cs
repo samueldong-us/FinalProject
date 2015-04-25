@@ -4,32 +4,39 @@ namespace FinalProject.GameComponents
 {
     internal class HealthComponent : Component
     {
-        public int Health;
-        public int MaxHealth;
+        private int health;
+        private int maxHealth;
 
         public HealthComponent(Entity entity, int maxHealth)
             : base(entity)
         {
-            MaxHealth = maxHealth;
-            Health = maxHealth;
+            this.maxHealth = maxHealth;
+            health = maxHealth;
             entity.MessageCenter.AddListener<int>("Take Damage", TakeDamage);
+            entity.MessageCenter.AddListener("Get Health", ReturnHealth);
         }
 
         public override void Dispose()
         {
             entity.MessageCenter.RemoveListener<int>("Take Damage", TakeDamage);
+            entity.MessageCenter.RemoveListener("Get Health", ReturnHealth);
         }
 
         public override void Update(float secondsPassed)
         {
         }
 
+        private void ReturnHealth()
+        {
+            entity.MessageCenter.Broadcast<int, int>("Health", health, maxHealth);
+        }
+
         private void TakeDamage(int damage)
         {
-            Health -= damage;
-            if (Health <= 0)
+            health -= damage;
+            if (health <= 0)
             {
-                Health = 0;
+                health = 0;
                 entity.MessageCenter.Broadcast("Health Depleted");
             }
         }

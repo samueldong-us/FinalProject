@@ -14,12 +14,14 @@ namespace FinalProject.GameComponents
         public static List<Rectangle> Bullet;
         public static Texture2D BulletTexture;
         public static List<List<Triangle>> BulletTriangles;
+        public static Texture2D CircularHealthBar1;
         public static Dictionary<string, Rectangle> Unit;
         public static Texture2D UnitTexture;
         public static Dictionary<string, List<Triangle>> UnitTriangles;
 
         public static void LoadContent(ContentManager content)
         {
+            CircularHealthBar1 = content.Load<Texture2D>("CircularHealthBarTest");
             UnitTexture = content.Load<Texture2D>("UnitTexture");
             Unit = new Dictionary<string, Rectangle>();
             Unit["Spread Shot Ship"] = new Rectangle(0, 0, 100, 100);

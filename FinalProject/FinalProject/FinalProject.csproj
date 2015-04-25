@@ -91,10 +91,13 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\CircularHealthBarComponent.cs" />
     <Compile Include="GameComponents\DelayedTargetingComponent.cs" />
     <Compile Include="GameComponents\ExampleProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />
+    <Compile Include="GameComponents\HealthBarComponent.cs" />
     <Compile Include="GameComponents\ProjectileWeaponComponent.cs" />
+    <Compile Include="GameComponents\RemoveOnDeathComponent.cs" />
     <Compile Include="GameComponents\RestrictPositionComponent.cs" />
     <Compile Include="GameComponents\SignalOnExitComponent.cs" />
     <Compile Include="GameComponents\TextureRendererComponent.cs" />

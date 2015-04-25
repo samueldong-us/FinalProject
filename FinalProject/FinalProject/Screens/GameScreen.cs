@@ -129,6 +129,9 @@ namespace FinalProject.Screens
             ship.Position = new Vector2(700, 700);
             ship.Rotation = -(float)(Math.PI / 2);
             new ColliderComponent(ship, GameAssets.Unit["Sea Slug"], GameAssets.UnitTriangles["Sea Slug"], CollidersPlayer).DebugDraw();
+            new HealthComponent(ship, 20);
+            new CircularHealthBarComponent(ship);
+            new RemoveOnDeathComponent(ship);
             new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Sea Slug"], Color.White, LayerPlayer);
             entities.Add(ship);
             base.Start();
