@@ -57,7 +57,7 @@ namespace FinalProject.GameComponents
             Entity projectile = new Entity();
             projectile.Position = entity.Position + offset;
             new ColliderComponent(projectile, source, triangles, colliderList).DebugDraw();
-            new VelocityAcclerationComponent(projectile, MathUtilities.VectorFromMagnitude(speed, rotation), Vector2.Zero);
+            new VelocityAccelerationComponent(projectile, MathUtilities.VectorFromMagnitude(speed, rotation), Vector2.Zero);
             new VelocityBasedRotationComponent(projectile);
             new SignalOnExitComponent(projectile, source, GameScreen.Bounds);
             new TextureRendererComponent(projectile, texture, source, tint, drawingLayer);

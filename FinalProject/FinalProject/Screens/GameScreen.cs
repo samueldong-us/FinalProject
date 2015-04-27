@@ -18,11 +18,12 @@ namespace FinalProject.Screens
         public static List<ColliderComponent> CollidersEnemyBullets;
         public static List<ColliderComponent> CollidersPlayer;
         public static List<ColliderComponent> CollidersPlayerBullets;
-        public static List<Drawable> LayerBullets;
         public static List<Drawable> LayerDebug;
         public static List<Drawable> LayerEnemies;
+        public static List<Drawable> LayerEnemyBullets;
         public static List<Drawable> LayerHealthBars;
         public static List<Drawable> LayerPlayer;
+        public static List<Drawable> LayerPlayerBullets;
         public static MessageCenter MessageCenter;
         private Texture2D background;
         private Texture2D bullet;
@@ -33,7 +34,6 @@ namespace FinalProject.Screens
         private Random rng = new Random();
         private InterpolatedValue scaleIn, scaleOut;
         private Texture2D test;
-        private Entity testEntity;
         private Texture2D testHealth;
         private List<Entity> toRemove;
 
@@ -99,10 +99,6 @@ namespace FinalProject.Screens
                                 {
                                     BeginTransitioningOut();
                                 } break;
-                            case Keys.Space:
-                                {
-                                    testEntity.MessageCenter.Broadcast("Start Firing");
-                                } break;
                         }
                     } break;
             }
@@ -111,13 +107,6 @@ namespace FinalProject.Screens
         public override void KeyReleased(Keys key)
         {
             MessageCenter.Broadcast<Keys>("Key Released", key);
-            switch (key)
-            {
-                case Keys.Space:
-                    {
-                        testEntity.MessageCenter.Broadcast("Stop Firing");
-                    } break;
-            }
         }
 
         public override void LoadContent()
@@ -131,20 +120,21 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
-            testEntity = new Entity();
-            testEntity.Position = new Vector2(1000, 500);
-            new ConstantRateFireComponent(testEntity, .5f);
-            new ExampleProjectileWeaponComponent(testEntity, Vector2.Zero);
-            entities.Add(testEntity);
+            entities.Add(UnitFactory.CreateJellyFish(new Vector2(500, -200), new Vector2(700, 200)));
+            entities.Add(UnitFactory.CreateJellyFish(new Vector2(1420, -200), new Vector2(1220, 200)));
             Entity ship = new Entity();
             ship.Position = new Vector2(700, 700);
             ship.Rotation = -(float)(Math.PI / 2);
             new PlayerControllerComponent(ship, 200);
-            new VelocityAcclerationComponent(ship, Vector2.Zero, Vector2.Zero);
+            new ConstantRateFireComponent(ship, 0.1f);
+            new SpreadShotProjectileWeaponComponent(ship, 1, (float)(-Math.PI / 2), new Vector2(0, -50));
+            new SpreadShotProjectileWeaponComponent(ship, 1, (float)(-Math.PI / 2 - Math.PI / 16), new Vector2(-5, -50));
+            new SpreadShotProjectileWeaponComponent(ship, 1, (float)(-Math.PI / 2 + Math.PI / 16), new Vector2(5, -50));
+            new VelocityAccelerationComponent(ship, Vector2.Zero, Vector2.Zero);
             new RestrictPositionComponent(ship, 50, 50, Bounds);
             new ColliderComponent(ship, GameAssets.Unit["Spread Shot Ship"], GameAssets.UnitTriangles["Spread Shot Ship"], CollidersPlayer).DebugDraw();
             new HealthComponent(ship, 20);
-            new CircularHealthBarComponent(ship);
+            new CircularHealthBarComponent(ship, (float)(Math.PI * 4 / 5));
             new RemoveOnDeathComponent(ship);
             new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Spread Shot Ship"], Color.White, LayerPlayer);
             entities.Add(ship);
@@ -168,14 +158,15 @@ namespace FinalProject.Screens
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
             entities.Clear();
-            LayerPlayer.Clear();
-            LayerBullets.Clear();
-            LayerHealthBars.Clear();
-            LayerDebug.Clear();
             CollidersEnemies.Clear();
+            CollidersEnemyBullets.Clear();
             CollidersPlayer.Clear();
             CollidersPlayerBullets.Clear();
-            CollidersEnemyBullets.Clear();
+            LayerDebug.Clear();
+            LayerEnemyBullets.Clear();
+            LayerHealthBars.Clear();
+            LayerPlayer.Clear();
+            LayerPlayerBullets.Clear();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -216,15 +207,16 @@ namespace FinalProject.Screens
 
         private static void InitializeStaticVariables()
         {
-            LayerPlayer = new List<Drawable>();
-            LayerEnemies = new List<Drawable>();
-            LayerBullets = new List<Drawable>();
-            LayerHealthBars = new List<Drawable>();
-            LayerDebug = new List<Drawable>();
-            CollidersPlayer = new List<ColliderComponent>();
             CollidersEnemies = new List<ColliderComponent>();
             CollidersEnemyBullets = new List<ColliderComponent>();
+            CollidersPlayer = new List<ColliderComponent>();
             CollidersPlayerBullets = new List<ColliderComponent>();
+            LayerDebug = new List<Drawable>();
+            LayerEnemies = new List<Drawable>();
+            LayerEnemyBullets = new List<Drawable>();
+            LayerHealthBars = new List<Drawable>();
+            LayerPlayer = new List<Drawable>();
+            LayerPlayerBullets = new List<Drawable>();
         }
 
         private void CheckForCollisions()
@@ -292,7 +284,10 @@ namespace FinalProject.Screens
         private void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-
+            foreach (Drawable drawable in LayerPlayerBullets)
+            {
+                drawable.Draw(spriteBatch);
+            }
             foreach (Drawable drawable in LayerPlayer)
             {
                 drawable.Draw(spriteBatch);
@@ -301,7 +296,11 @@ namespace FinalProject.Screens
             {
                 drawable.Draw(spriteBatch);
             }
-            foreach (Drawable drawable in LayerBullets)
+            foreach (Drawable drawable in LayerEnemyBullets)
+            {
+                drawable.Draw(spriteBatch);
+            }
+            foreach (Drawable drawable in LayerEnemies)
             {
                 drawable.Draw(spriteBatch);
             }
@@ -347,6 +346,13 @@ namespace FinalProject.Screens
         private void SetCurrentGameAndStage(SaveGame saveGame, string stage)
         {
             currentGame = saveGame;
+            UnitFactory.Difficulty = currentGame.difficulty;
+            switch (stage)
+            {
+                case "LEVEL 1": { UnitFactory.Stage = 1; } break;
+                case "LEVEL 2": { UnitFactory.Stage = 2; } break;
+                case "LEVEL 3": { UnitFactory.Stage = 3; } break;
+            }
         }
     }
 }

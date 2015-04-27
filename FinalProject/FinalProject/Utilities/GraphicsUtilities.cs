@@ -21,13 +21,12 @@ namespace FinalProject.Utilities
             currentMatrix = Matrix.CreateScale(scale);
         }
 
-        public static void BeginDrawingWithCircularWipe(SpriteBatch spriteBatch, float amount, float shift)
+        public static void BeginDrawingWithCircularWipe(SpriteBatch spriteBatch, float amount)
         {
             if (circularWipe != null)
             {
                 spriteBatch.End();
                 circularWipe.Parameters["Amount"].SetValue(amount);
-                circularWipe.Parameters["PhaseShift"].SetValue(shift);
                 spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, circularWipe, currentMatrix);
             }
             else

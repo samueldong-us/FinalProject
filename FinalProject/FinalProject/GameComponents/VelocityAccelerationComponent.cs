@@ -6,11 +6,11 @@ using System.Text;
 
 namespace FinalProject.GameComponents
 {
-    internal class VelocityAcclerationComponent : Component
+    internal class VelocityAccelerationComponent : Component
     {
         private Vector2 velocity, acceleration;
 
-        public VelocityAcclerationComponent(Entity entity, Vector2 velocity, Vector2 acceleration)
+        public VelocityAccelerationComponent(Entity entity, Vector2 velocity, Vector2 acceleration)
             : base(entity)
         {
             this.velocity = velocity;

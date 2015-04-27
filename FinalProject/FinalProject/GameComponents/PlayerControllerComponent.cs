@@ -57,11 +57,19 @@ namespace FinalProject.GameComponents
         private void KeyPressed(Keys parameterOne)
         {
             isDown[parameterOne] = true;
+            if (parameterOne == Keys.Space)
+            {
+                entity.MessageCenter.Broadcast("Start Firing");
+            }
         }
 
         private void KeyReleased(Keys parameterOne)
         {
             isDown[parameterOne] = false;
+            if (parameterOne == Keys.Space)
+            {
+                entity.MessageCenter.Broadcast("Stop Firing");
+            }
         }
     }
 }

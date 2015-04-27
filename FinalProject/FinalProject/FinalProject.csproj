@@ -91,19 +91,23 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\CircularFireProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\CircularHealthBarComponent.cs" />
     <Compile Include="GameComponents\ConstantRateFireComponent.cs" />
     <Compile Include="GameComponents\DelayedTargetingComponent.cs" />
     <Compile Include="GameComponents\ExampleProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />
     <Compile Include="GameComponents\HealthBarComponent.cs" />
+    <Compile Include="GameComponents\InFireOutBehaviorComponent.cs" />
     <Compile Include="GameComponents\PlayerControllerComponent.cs" />
     <Compile Include="GameComponents\ProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\RemoveOnDeathComponent.cs" />
     <Compile Include="GameComponents\RestrictPositionComponent.cs" />
     <Compile Include="GameComponents\SignalOnExitComponent.cs" />
+    <Compile Include="GameComponents\SpreadShotProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\TextureRendererComponent.cs" />
-    <Compile Include="GameComponents\VelocityAcclerationComponent.cs" />
+    <Compile Include="GameComponents\UnitFactory.cs" />
+    <Compile Include="GameComponents\VelocityAccelerationComponent.cs" />
     <Compile Include="GameComponents\VelocityBasedRotationComponent.cs" />
     <Compile Include="GameMain.cs" />
     <Compile Include="GameComponents\ColliderComponent.cs" />
