@@ -78,7 +78,6 @@ namespace FinalProject.Screens
         public override void KeyPressed(Keys key)
         {
             MessageCenter.Broadcast<Keys>("Key Pressed", key);
-            testEntity.MessageCenter.Broadcast("Fire");
             switch (state)
             {
                 case ScreenState.Active:
@@ -100,6 +99,10 @@ namespace FinalProject.Screens
                                 {
                                     BeginTransitioningOut();
                                 } break;
+                            case Keys.Space:
+                                {
+                                    testEntity.MessageCenter.Broadcast("Start Firing");
+                                } break;
                         }
                     } break;
             }
@@ -108,6 +111,13 @@ namespace FinalProject.Screens
         public override void KeyReleased(Keys key)
         {
             MessageCenter.Broadcast<Keys>("Key Released", key);
+            switch (key)
+            {
+                case Keys.Space:
+                    {
+                        testEntity.MessageCenter.Broadcast("Stop Firing");
+                    } break;
+            }
         }
 
         public override void LoadContent()
@@ -123,6 +133,7 @@ namespace FinalProject.Screens
         {
             testEntity = new Entity();
             testEntity.Position = new Vector2(1000, 500);
+            new ConstantRateFireComponent(testEntity, .5f);
             new ExampleProjectileWeaponComponent(testEntity, Vector2.Zero);
             entities.Add(testEntity);
             Entity ship = new Entity();
@@ -131,11 +142,11 @@ namespace FinalProject.Screens
             new PlayerControllerComponent(ship, 200);
             new VelocityAcclerationComponent(ship, Vector2.Zero, Vector2.Zero);
             new RestrictPositionComponent(ship, 50, 50, Bounds);
-            new ColliderComponent(ship, GameAssets.Unit["Sea Slug"], GameAssets.UnitTriangles["Sea Slug"], CollidersPlayer).DebugDraw();
+            new ColliderComponent(ship, GameAssets.Unit["Spread Shot Ship"], GameAssets.UnitTriangles["Spread Shot Ship"], CollidersPlayer).DebugDraw();
             new HealthComponent(ship, 20);
             new CircularHealthBarComponent(ship);
             new RemoveOnDeathComponent(ship);
-            new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Sea Slug"], Color.White, LayerPlayer);
+            new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Spread Shot Ship"], Color.White, LayerPlayer);
             entities.Add(ship);
             base.Start();
         }

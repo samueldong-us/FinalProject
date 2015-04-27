@@ -29,7 +29,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>3</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameComponents\CircularHealthBarComponent.cs" />
+    <Compile Include="GameComponents\ConstantRateFireComponent.cs" />
     <Compile Include="GameComponents\DelayedTargetingComponent.cs" />
     <Compile Include="GameComponents\ExampleProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />

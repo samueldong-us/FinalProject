@@ -22,7 +22,6 @@ namespace FinalProject.GameComponents
 
         public override void Dispose()
         {
-            throw new NotImplementedException();
         }
 
         public override void Update(float secondsPassed)
