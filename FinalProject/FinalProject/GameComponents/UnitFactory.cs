@@ -29,7 +29,7 @@ namespace FinalProject.GameComponents
             new CircularFireProjectileWeaponComponent(jellyfish, numberOfBullets, damage, 0);
             new ColliderComponent(jellyfish, GameAssets.Unit["Jelly"], GameAssets.UnitTriangles["Jelly"], GameScreen.CollidersEnemies);
             new HealthComponent(jellyfish, health);
-            new HealthBarComponent(jellyfish, new Rectangle(0, 0, 100, 15), new Vector2(0, -50));
+            new HealthBarComponent(jellyfish, new Rectangle(0, 0, 100, 7), new Vector2(0, -50));
             new RemoveOnDeathComponent(jellyfish);
             new TextureRendererComponent(jellyfish, GameAssets.UnitTexture, GameAssets.Unit["Jelly"], Color.White, GameScreen.LayerEnemies);
             return jellyfish;

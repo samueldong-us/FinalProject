@@ -12,8 +12,15 @@ namespace FinalProject.Screens
     internal class UpgradeScreen : Screen
     {
         private Texture2D background;
+
         private SaveGame currentGame;
+
+        private bool otherScreenReady;
+
+        private bool readyToSwitch;
+
         private InterpolatedValue scaleIn, scaleOut;
+
         private UpgradeItemGroup upgrades;
 
         public UpgradeScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -23,6 +30,8 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
+            readyToSwitch = false;
+            otherScreenReady = false;
             upgrades = new UpgradeItemGroup();
             GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Upgrade", SetCurrentGame);
         }
@@ -88,6 +97,7 @@ namespace FinalProject.Screens
         public override void LoadContent()
         {
             background = content.Load<Texture2D>("MenuBackground");
+            base.LoadContent();
         }
 
         public override void Start()
@@ -105,12 +115,25 @@ namespace FinalProject.Screens
             SaveGameManager.SaveGame(currentGame);
             GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
             GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
+            GameMain.MessageCenter.AddListener("Finished Loading", OtherScreenFinishedLoading);
             TransitionOut();
+        }
+
+        protected override void FinishedLoading()
+        {
+            GameMain.MessageCenter.Broadcast("Finished Loading");
         }
 
         protected override void FinishTransitioningOut()
         {
-            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
+            if (otherScreenReady)
+            {
+                SwitchScreens();
+            }
+            else
+            {
+                readyToSwitch = true;
+            }
         }
 
         protected override void Reset()
@@ -119,6 +142,7 @@ namespace FinalProject.Screens
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
             upgrades.Reset();
+            GameMain.MessageCenter.RemoveListener("Finished Loading", OtherScreenFinishedLoading);
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -134,6 +158,11 @@ namespace FinalProject.Screens
                         scaleOut.Update(secondsPassed);
                     } break;
             }
+        }
+
+        private static void SwitchScreens()
+        {
+            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
         }
 
         private void DrawScreen(SpriteBatch spriteBatch)
@@ -152,6 +181,18 @@ namespace FinalProject.Screens
             upgrades.AddItem(new UpgradeItem(new Vector2(280, 580), "DAMAGE", currentGame.Damage));
             upgrades.AddItem(new UpgradeItem(new Vector2(280, 710), "FIRE RATE", currentGame.FireRate));
             upgrades.AddItem(new UpgradeItem(new Vector2(280, 840), "WEAPON STR", currentGame.WeaponStrength));
+        }
+
+        private void OtherScreenFinishedLoading()
+        {
+            if (readyToSwitch)
+            {
+                SwitchScreens();
+            }
+            else
+            {
+                otherScreenReady = true;
+            }
         }
 
         private void ScaleInFinished(float parameter)

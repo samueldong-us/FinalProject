@@ -36,6 +36,7 @@ namespace FinalProject.Screens
 
         public override void LoadContent()
         {
+            base.LoadContent();
         }
 
         public override void Start()
@@ -54,6 +55,10 @@ namespace FinalProject.Screens
         }
 
         protected override void BeginTransitioningOut()
+        {
+        }
+
+        protected override void FinishedLoading()
         {
         }
 

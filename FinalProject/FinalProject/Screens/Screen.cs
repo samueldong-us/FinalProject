@@ -34,7 +34,10 @@ namespace FinalProject.Screens
         {
         }
 
-        public abstract void LoadContent();
+        public virtual void LoadContent()
+        {
+            FinishedLoading();
+        }
 
         public void LoadContentAsynchronously()
         {
@@ -71,6 +74,8 @@ namespace FinalProject.Screens
         }
 
         protected abstract void BeginTransitioningOut();
+
+        protected abstract void FinishedLoading();
 
         protected abstract void FinishTransitioningOut();
 

@@ -11,9 +11,17 @@ namespace FinalProject.Screens
     internal class SelectStageScreen : Screen
     {
         private Texture2D background;
+
         private SaveGame currentGame;
+
         private MenuItemGroup menuItems;
+
+        private bool otherScreenReady;
+
+        private bool readyToSwitch;
+
         private Result result;
+
         private InterpolatedValue scaleIn, scaleOut;
 
         public SelectStageScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -23,6 +31,8 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
+            readyToSwitch = false;
+            otherScreenReady = false;
             menuItems = new MenuItemGroup();
             GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Select Stage", SetCurrentGame);
         }
@@ -86,6 +96,7 @@ namespace FinalProject.Screens
         public override void LoadContent()
         {
             background = content.Load<Texture2D>("MenuBackground");
+            base.LoadContent();
         }
 
         public override void Start()
@@ -133,21 +144,24 @@ namespace FinalProject.Screens
                         GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
                     } break;
             }
+            GameMain.MessageCenter.AddListener("Finished Loading", OtherScreenFinishedLoading);
             TransitionOut();
+        }
+
+        protected override void FinishedLoading()
+        {
+            GameMain.MessageCenter.Broadcast("Finished Loading");
         }
 
         protected override void FinishTransitioningOut()
         {
-            switch (result)
+            if (otherScreenReady)
             {
-                case Result.Continue:
-                    {
-                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Game");
-                    } break;
-                case Result.Back:
-                    {
-                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
-                    } break;
+                SwitchScreens();
+            }
+            else
+            {
+                readyToSwitch = true;
             }
         }
 
@@ -157,6 +171,7 @@ namespace FinalProject.Screens
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
             menuItems.Reset();
+            GameMain.MessageCenter.RemoveListener("Finished Loading", OtherScreenFinishedLoading);
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -181,6 +196,18 @@ namespace FinalProject.Screens
             GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "STAGE SELECT", new Vector2(320, 210), Fonts.Green);
         }
 
+        private void OtherScreenFinishedLoading()
+        {
+            if (readyToSwitch)
+            {
+                SwitchScreens();
+            }
+            else
+            {
+                otherScreenReady = true;
+            }
+        }
+
         private void ScaleInFinished(float parameter)
         {
             state = ScreenState.Active;
@@ -194,6 +221,21 @@ namespace FinalProject.Screens
         private void SetCurrentGame(SaveGame saveGame)
         {
             currentGame = saveGame;
+        }
+
+        private void SwitchScreens()
+        {
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Game");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
+                    } break;
+            }
         }
     }
 }
