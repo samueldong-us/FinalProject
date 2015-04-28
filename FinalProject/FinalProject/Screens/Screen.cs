@@ -9,9 +9,7 @@ namespace FinalProject.Screens
     internal abstract class Screen
     {
         protected ContentManager content;
-
         protected GraphicsDevice graphicsDevice;
-
         protected ScreenState state;
 
         protected Screen(ContentManager content, GraphicsDevice graphicsDevice)

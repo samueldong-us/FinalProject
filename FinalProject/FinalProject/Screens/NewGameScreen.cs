@@ -10,21 +10,13 @@ namespace FinalProject.Screens
     internal class NewGameScreen : Screen
     {
         private Texture2D background;
-
         private SaveGame currentGame;
-
         private Error lastError;
-
         private MenuItemGroup menuItems;
-
         private bool otherScreenReady;
-
         private bool readyToSwitch;
-
         private Result result;
-
         private InterpolatedValue scaleIn, scaleOut;
-
         private MenuItem userGameName;
 
         public NewGameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)

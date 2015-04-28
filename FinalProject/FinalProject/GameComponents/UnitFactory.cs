@@ -20,7 +20,7 @@ namespace FinalProject.GameComponents
                         Vector2 spawnPosition = (Vector2)spawnInformation.Information["Spawn Position"];
                         Vector2 shootPosition = (Vector2)spawnInformation.Information["Shoot Position"];
                         return CreateJellyFish(spawnPosition, shootPosition);
-                    } break;
+                    }
             }
             return null;
         }

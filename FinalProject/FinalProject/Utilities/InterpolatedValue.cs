@@ -5,9 +5,7 @@ namespace FinalProject.Utilities
     internal abstract class InterpolatedValue
     {
         public InterpolationEvent InterpolationFinished;
-
         protected float parameter;
-
         protected float timeScale;
 
         protected InterpolatedValue(float timeToFinish)

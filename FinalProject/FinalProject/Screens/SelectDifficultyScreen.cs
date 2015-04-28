@@ -11,17 +11,11 @@ namespace FinalProject.Screens
     internal class SelectDifficultyScreen : Screen
     {
         private Texture2D background;
-
         private SaveGame currentGame;
-
         private MenuItemGroup menuItems;
-
         private bool otherScreenReady;
-
         private bool readyToSwitch;
-
         private Result result;
-
         private InterpolatedValue scaleIn, scaleOut;
 
         public SelectDifficultyScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)

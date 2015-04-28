@@ -9,13 +9,9 @@ namespace FinalProject.Screens
     internal class MainMenuScreen : Screen
     {
         private Texture2D background;
-
         private MenuItemGroup menuItems;
-
         private bool otherScreenReady;
-
         private bool readyToSwitch;
-
         private InterpolatedValue scaleIn, scaleOut;
 
         public MainMenuScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)

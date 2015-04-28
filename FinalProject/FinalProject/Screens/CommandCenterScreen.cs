@@ -11,17 +11,11 @@ namespace FinalProject.Screens
     internal class CommandCenterScreen : Screen
     {
         private Texture2D background;
-
         private SaveGame currentGame;
-
         private MenuItemGroup menuItems;
-
         private bool otherScreenReady;
-
         private bool readyToSwitch;
-
         private Result result;
-
         private InterpolatedValue scaleIn, scaleOut;
 
         public CommandCenterScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)

@@ -12,15 +12,10 @@ namespace FinalProject.Screens
     internal class UpgradeScreen : Screen
     {
         private Texture2D background;
-
         private SaveGame currentGame;
-
         private bool otherScreenReady;
-
         private bool readyToSwitch;
-
         private InterpolatedValue scaleIn, scaleOut;
-
         private UpgradeItemGroup upgrades;
 
         public UpgradeScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
