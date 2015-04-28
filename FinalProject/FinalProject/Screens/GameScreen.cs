@@ -1,5 +1,6 @@
 ﻿using FinalProject.GameComponents;
 using FinalProject.GameSaving;
+using FinalProject.GameWaves;
 using FinalProject.Messaging;
 using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
@@ -14,54 +15,31 @@ namespace FinalProject.Screens
     internal class GameScreen : Screen
     {
         public static Rectangle Bounds = new Rectangle(420, 0, 1080, Constants.VirtualHeight);
-
         public static List<ColliderComponent> CollidersEnemies;
-
         public static List<ColliderComponent> CollidersEnemyBullets;
-
         public static List<ColliderComponent> CollidersPlayer;
-
         public static List<ColliderComponent> CollidersPlayerBullets;
-
         public static List<Drawable> LayerDebug;
-
         public static List<Drawable> LayerEnemies;
-
         public static List<Drawable> LayerEnemyBullets;
-
         public static List<Drawable> LayerHealthBars;
-
         public static List<Drawable> LayerPlayer;
-
         public static List<Drawable> LayerPlayerBullets;
-
         public static MessageCenter MessageCenter;
-
         private Texture2D background;
-
         private Texture2D bullet;
-
         private SaveGame currentGame;
-
         private List<Entity> entities;
-
         private MenuItemGroup menuItems;
-
         private bool otherScreenReady;
-
         private bool paused;
-
         private bool readyToSwitch;
-
         private Random rng = new Random();
-
         private InterpolatedValue scaleIn, scaleOut;
-
         private Texture2D test;
-
         private Texture2D testHealth;
-
         private List<Entity> toRemove;
+        private WaveManager waveManager;
 
         public GameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -149,8 +127,23 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
-            entities.Add(UnitFactory.CreateJellyFish(new Vector2(500, -200), new Vector2(700, 200)));
-            entities.Add(UnitFactory.CreateJellyFish(new Vector2(2020, -200), new Vector2(1220, 200)));
+            List<Wave> waves = new List<Wave>();
+            SpawnInformation test1 = new SpawnInformation(0);
+            test1.Information["Unit Type"] = "Jellyfish";
+            test1.Information["Spawn Position"] = new Vector2(500, -200);
+            test1.Information["Shoot Position"] = new Vector2(700, 200);
+            SpawnInformation test2 = new SpawnInformation(0);
+            test2.Information["Unit Type"] = "Jellyfish";
+            test2.Information["Spawn Position"] = new Vector2(1420, -200);
+            test2.Information["Shoot Position"] = new Vector2(1220, 200);
+            for (int i = 0; i < 4; i++)
+            {
+                Wave wave = new Wave();
+                wave.AddSpawnInformation(test1);
+                wave.AddSpawnInformation(test2);
+                waves.Add(wave);
+            }
+            waveManager = new WaveManager(waves);
             Entity ship = new Entity();
             ship.Position = new Vector2(700, 700);
             ship.Rotation = -(float)(Math.PI / 2);
@@ -225,6 +218,15 @@ namespace FinalProject.Screens
                     {
                         if (!paused)
                         {
+                            waveManager.Update(secondsPassed);
+                            List<Entity> toSpawn = waveManager.GetToSpawn();
+                            if (toSpawn != null)
+                            {
+                                foreach (Entity entity in toSpawn)
+                                {
+                                    entities.Add(entity);
+                                }
+                            }
                             CheckForCollisions();
                             foreach (Entity entity in toRemove)
                             {

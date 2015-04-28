@@ -9,7 +9,7 @@ namespace FinalProject.GameWaves
 {
     internal class WaveManager
     {
-        private const float TimeBetweenWaves = 3;
+        private const float TimeBetweenWaves = 2;
         private float timePassed;
         private List<Wave> waves;
 
@@ -45,11 +45,11 @@ namespace FinalProject.GameWaves
                 if (waves.Count > 0)
                 {
                     waves[0].Update(secondsPassed);
-                }
-                if (waves[0].Finished() && GameScreen.CollidersEnemies.Count == 0)
-                {
-                    waves.RemoveAt(0);
-                    timePassed = 0;
+                    if (waves[0].Finished() && GameScreen.CollidersEnemies.Count == 0)
+                    {
+                        waves.RemoveAt(0);
+                        timePassed = 0;
+                    }
                 }
             }
         }
