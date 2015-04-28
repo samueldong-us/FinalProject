@@ -1,10 +1,8 @@
 ﻿using FinalProject.GameSaving;
+using FinalProject.GameWaves;
 using FinalProject.Screens;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameComponents
 {
@@ -12,6 +10,20 @@ namespace FinalProject.GameComponents
     {
         public static SaveGame.Difficulty Difficulty;
         public static int Stage;
+
+        public static Entity CreateFromSpawnInformation(SpawnInformation spawnInformation)
+        {
+            switch ((string)spawnInformation.Information["Unit Type"])
+            {
+                case "Jellyfish":
+                    {
+                        Vector2 spawnPosition = (Vector2)spawnInformation.Information["Spawn Position"];
+                        Vector2 shootPosition = (Vector2)spawnInformation.Information["Shoot Position"];
+                        return CreateJellyFish(spawnPosition, shootPosition);
+                    } break;
+            }
+            return null;
+        }
 
         public static Entity CreateJellyFish(Vector2 spawnPosition, Vector2 shootPosition)
         {

@@ -2,21 +2,19 @@
 using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameComponents
 {
-    class DelayedTargetingComponent : Component
+    internal class DelayedTargetingComponent : Component
     {
-        private float timePassed;
+        private Vector2 closestPosition;
         private float delay;
+        private bool happened;
+        private Vector2 lastVelocity;
         private float secondDelay;
         private float speed;
-        private Vector2 closestPosition;
-        private Vector2 lastVelocity;
-        private bool happened;
+        private float timePassed;
+
         public DelayedTargetingComponent(Entity entity, float delay, float secondDelay, float speed)
             : base(entity)
         {
@@ -29,15 +27,6 @@ namespace FinalProject.GameComponents
             entity.MessageCenter.AddListener<Vector2>("Velocity", SetVelocity);
         }
 
-        private void SetVelocity(Vector2 parameterOne)
-        {
-            lastVelocity = parameterOne;
-        }
-
-        private void SetClosestPosition(Vector2 parameterOne)
-        {
-            closestPosition = parameterOne;
-        }
         public override void Dispose()
         {
             entity.MessageCenter.RemoveListener<Vector2>("Closest Player", SetClosestPosition);
@@ -75,6 +64,16 @@ namespace FinalProject.GameComponents
                     entity.MessageCenter.Broadcast<Vector2>("Set Velocity", MathUtilities.VectorFromMagnitude(speed, angle));
                 }
             }
+        }
+
+        private void SetClosestPosition(Vector2 parameterOne)
+        {
+            closestPosition = parameterOne;
+        }
+
+        private void SetVelocity(Vector2 parameterOne)
+        {
+            lastVelocity = parameterOne;
         }
     }
 }

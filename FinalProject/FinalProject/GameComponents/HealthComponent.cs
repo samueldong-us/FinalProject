@@ -1,6 +1,4 @@
-﻿using FinalProject.Messaging;
-
-namespace FinalProject.GameComponents
+﻿namespace FinalProject.GameComponents
 {
     internal class HealthComponent : Component
     {

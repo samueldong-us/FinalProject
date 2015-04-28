@@ -117,6 +117,9 @@
     <Compile Include="GameComponents\Entity.cs" />
     <Compile Include="GameSaving\SaveGame.cs" />
     <Compile Include="GameSaving\SaveGameManager.cs" />
+    <Compile Include="GameWaves\SpawnInformation.cs" />
+    <Compile Include="GameWaves\Wave.cs" />
+    <Compile Include="GameWaves\WaveManager.cs" />
     <Compile Include="Messaging\Callbacks.cs" />
     <Compile Include="Messaging\MessageCenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
