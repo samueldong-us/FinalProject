@@ -134,8 +134,8 @@ namespace FinalProject.Screens
             test1.Information["Shoot Position"] = new Vector2(700, 200);
             SpawnInformation test2 = new SpawnInformation(2);
             test2.Information["Unit Type"] = "Jellyfish";
-            test2.Information["Spawn Position"] = new Vector2(500, -200);
-            test2.Information["Shoot Position"] = new Vector2(700, 200);
+            test2.Information["Spawn Position"] = new Vector2(1420, -200);
+            test2.Information["Shoot Position"] = new Vector2(1220, 200);
             for (int i = 0; i < 4; i++)
             {
                 Wave wave = new Wave();

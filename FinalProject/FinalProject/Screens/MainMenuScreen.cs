@@ -99,6 +99,10 @@ namespace FinalProject.Screens
                     {
                         GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Load Game");
                     } break;
+                case "QUIT GAME":
+                    {
+                        otherScreenReady = true;
+                    } break;
             }
             GameMain.MessageCenter.AddListener("Finished Loading", OtherScreenFinishedLoading);
             TransitionOut();
