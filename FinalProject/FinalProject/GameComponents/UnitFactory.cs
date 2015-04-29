@@ -38,7 +38,7 @@ namespace FinalProject.GameComponents
             new VelocityAccelerationComponent(jellyfish, Vector2.Zero, Vector2.Zero);
             new InFireOutBehaviorComponent(jellyfish, shootPosition, 200, 50);
             new ConstantRateFireComponent(jellyfish, fireRate);
-            new CircularFireProjectileWeaponComponent(jellyfish, numberOfBullets, damage, 0);
+            new CircularFireProjectileWeaponComponent(jellyfish, numberOfBullets, damage, (float)(Math.PI * Math.PI));
             new ColliderComponent(jellyfish, GameAssets.Unit["Jelly"], GameAssets.UnitTriangles["Jelly"], GameScreen.CollidersEnemies);
             new HealthComponent(jellyfish, health);
             new HealthBarComponent(jellyfish, new Rectangle(0, 0, 100, 7), new Vector2(0, -50));

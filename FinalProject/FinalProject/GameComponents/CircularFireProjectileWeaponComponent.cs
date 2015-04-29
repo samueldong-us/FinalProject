@@ -35,7 +35,7 @@ namespace FinalProject.GameComponents
 
         private void DealDamage(Entity projectile, Entity collidedEntity)
         {
-            collidedEntity.MessageCenter.Broadcast<int>("Take Damage", damage);
+            collidedEntity.MessageCenter.Broadcast<float>("Take Damage", damage);
             RemoveProjectile(projectile);
         }
     }

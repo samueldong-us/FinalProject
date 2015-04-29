@@ -7,8 +7,8 @@ namespace FinalProject.GameComponents
 {
     internal class HealthBarComponent : Component, Drawable
     {
-        protected int health;
-        protected int maxHealth;
+        protected float health;
+        protected float maxHealth;
         private Rectangle backing;
         private Rectangle bar;
 
@@ -20,7 +20,7 @@ namespace FinalProject.GameComponents
             bar = new Rectangle(x, y, size.Width, size.Height);
             backing = new Rectangle(x - 3, y - 3, size.Width + 6, size.Height + 6);
             GameScreen.LayerHealthBars.Add(this);
-            entity.MessageCenter.AddListener<int, int>("Health", UpdateHealth);
+            entity.MessageCenter.AddListener<float, float>("Health", UpdateHealth);
             health = 1;
             maxHealth = 1;
         }
@@ -28,12 +28,12 @@ namespace FinalProject.GameComponents
         public override void Dispose()
         {
             GameScreen.LayerHealthBars.Remove(this);
-            entity.MessageCenter.RemoveListener<int, int>("Health", UpdateHealth);
+            entity.MessageCenter.RemoveListener<float, float>("Health", UpdateHealth);
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            float healthAmount = health / (float)maxHealth;
+            float healthAmount = health / maxHealth;
             Vector3 healthColor = Vector3.Zero;
             if (healthAmount > .5f)
             {
@@ -52,7 +52,7 @@ namespace FinalProject.GameComponents
             entity.MessageCenter.Broadcast("Get Health");
         }
 
-        protected void UpdateHealth(int parameterOne, int parameterTwo)
+        protected void UpdateHealth(float parameterOne, float parameterTwo)
         {
             health = parameterOne;
             maxHealth = parameterTwo;

@@ -2,21 +2,21 @@
 {
     internal class HealthComponent : Component
     {
-        private int health;
-        private int maxHealth;
+        private float health;
+        private float maxHealth;
 
         public HealthComponent(Entity entity, int maxHealth)
             : base(entity)
         {
             this.maxHealth = maxHealth;
             health = maxHealth;
-            entity.MessageCenter.AddListener<int>("Take Damage", TakeDamage);
+            entity.MessageCenter.AddListener<float>("Take Damage", TakeDamage);
             entity.MessageCenter.AddListener("Get Health", ReturnHealth);
         }
 
         public override void Dispose()
         {
-            entity.MessageCenter.RemoveListener<int>("Take Damage", TakeDamage);
+            entity.MessageCenter.RemoveListener<float>("Take Damage", TakeDamage);
             entity.MessageCenter.RemoveListener("Get Health", ReturnHealth);
         }
 
@@ -26,10 +26,10 @@
 
         private void ReturnHealth()
         {
-            entity.MessageCenter.Broadcast<int, int>("Health", health, maxHealth);
+            entity.MessageCenter.Broadcast<float, float>("Health", health, maxHealth);
         }
 
-        private void TakeDamage(int damage)
+        private void TakeDamage(float damage)
         {
             health -= damage;
             if (health <= 0)

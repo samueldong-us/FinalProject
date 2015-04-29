@@ -14,7 +14,7 @@ namespace FinalProject.Screens
 {
     internal class GameScreen : Screen
     {
-        public static Rectangle Bounds = new Rectangle(420, 0, 1080, Constants.VirtualHeight);
+        public static Rectangle Bounds = new Rectangle(420, 0, 1080, 1050);
         public static List<ColliderComponent> CollidersEnemies;
         public static List<ColliderComponent> CollidersEnemyBullets;
         public static List<ColliderComponent> CollidersPlayer;
@@ -132,10 +132,10 @@ namespace FinalProject.Screens
             test1.Information["Unit Type"] = "Jellyfish";
             test1.Information["Spawn Position"] = new Vector2(500, -200);
             test1.Information["Shoot Position"] = new Vector2(700, 200);
-            SpawnInformation test2 = new SpawnInformation(0);
+            SpawnInformation test2 = new SpawnInformation(2);
             test2.Information["Unit Type"] = "Jellyfish";
-            test2.Information["Spawn Position"] = new Vector2(1420, -200);
-            test2.Information["Shoot Position"] = new Vector2(1220, 200);
+            test2.Information["Spawn Position"] = new Vector2(500, -200);
+            test2.Information["Shoot Position"] = new Vector2(700, 200);
             for (int i = 0; i < 4; i++)
             {
                 Wave wave = new Wave();
@@ -148,17 +148,20 @@ namespace FinalProject.Screens
             ship.Position = new Vector2(700, 700);
             ship.Rotation = -(float)(Math.PI / 2);
             new PlayerControllerComponent(ship, 200);
+            /*
             new ConstantRateFireComponent(ship, 0.1f);
             new SpreadShotProjectileWeaponComponent(ship, 1, (float)(-Math.PI / 2), new Vector2(0, -50));
             new SpreadShotProjectileWeaponComponent(ship, 1, (float)(-Math.PI / 2 - Math.PI / 16), new Vector2(-5, -50));
             new SpreadShotProjectileWeaponComponent(ship, 1, (float)(-Math.PI / 2 + Math.PI / 16), new Vector2(5, -50));
+             */
             new VelocityAccelerationComponent(ship, Vector2.Zero, Vector2.Zero);
             new RestrictPositionComponent(ship, 50, 50, Bounds);
-            new ColliderComponent(ship, GameAssets.Unit["Spread Shot Ship"], GameAssets.UnitTriangles["Spread Shot Ship"], CollidersPlayer).DebugDraw();
+            new LaserWeaponComponent(ship, 10);
+            new ColliderComponent(ship, GameAssets.Unit["Laser Ship"], GameAssets.UnitTriangles["Laser Ship"], CollidersPlayer).DebugDraw();
             new HealthComponent(ship, 20);
             new CircularHealthBarComponent(ship, (float)(Math.PI * 4 / 5));
             new RemoveOnDeathComponent(ship);
-            new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Spread Shot Ship"], Color.White, LayerPlayer);
+            new TextureRendererComponent(ship, GameAssets.UnitTexture, GameAssets.Unit["Laser Ship"], Color.White, LayerPlayer);
             entities.Add(ship);
             base.Start();
         }
@@ -192,6 +195,10 @@ namespace FinalProject.Screens
         {
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
+            foreach (Entity entity in entities)
+            {
+                entity.Dispose();
+            }
             entities.Clear();
             CollidersEnemies.Clear();
             CollidersEnemyBullets.Clear();

@@ -96,9 +96,11 @@
     <Compile Include="GameComponents\ConstantRateFireComponent.cs" />
     <Compile Include="GameComponents\DelayedTargetingComponent.cs" />
     <Compile Include="GameComponents\ExampleProjectileWeaponComponent.cs" />
+    <Compile Include="GameComponents\FollowWithOffsetComponent.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />
     <Compile Include="GameComponents\HealthBarComponent.cs" />
     <Compile Include="GameComponents\InFireOutBehaviorComponent.cs" />
+    <Compile Include="GameComponents\LaserWeaponComponent.cs" />
     <Compile Include="GameComponents\PlayerControllerComponent.cs" />
     <Compile Include="GameComponents\ProjectileWeaponComponent.cs" />
     <Compile Include="GameComponents\RemoveOnDeathComponent.cs" />
