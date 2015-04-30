@@ -16,13 +16,12 @@ namespace FinalProject.GameWaves
             timePassed = 0;
         }
 
-        public List<Entity> GetToSpawn()
+        public List<Entity> GetEntitiesToSpawn()
         {
             if (waves.Count > 0)
             {
                 List<Entity> toSpawn = new List<Entity>();
-                List<SpawnInformation> spawnInformation = waves[0].GetToSpawn();
-                foreach (SpawnInformation info in spawnInformation)
+                foreach (SpawnInformation info in waves[0].GetSpawnInformationToSpawn())
                 {
                     toSpawn.Add(UnitFactory.CreateFromSpawnInformation(info));
                 }
@@ -42,13 +41,18 @@ namespace FinalProject.GameWaves
                 if (waves.Count > 0)
                 {
                     waves[0].Update(secondsPassed);
-                    if (waves[0].Finished() && GameScreen.CollidersEnemies.Count == 0)
+                    if (CurrentWaveOver())
                     {
                         waves.RemoveAt(0);
                         timePassed = 0;
                     }
                 }
             }
+        }
+
+        private bool CurrentWaveOver()
+        {
+            return waves[0].Finished() && GameScreen.CollidersEnemies.Count == 0;
         }
     }
 }

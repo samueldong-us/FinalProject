@@ -4,34 +4,34 @@ namespace FinalProject.GameWaves
 {
     internal class Wave
     {
-        private List<SpawnInformation> spawnInformation;
+        private List<SpawnInformation> contents;
         private float timePassed;
 
         public Wave()
         {
-            spawnInformation = new List<SpawnInformation>();
+            contents = new List<SpawnInformation>();
             timePassed = 0;
         }
 
         public void AddSpawnInformation(SpawnInformation spawnInformation)
         {
-            this.spawnInformation.Add(spawnInformation);
+            contents.Add(spawnInformation);
         }
 
         public bool Finished()
         {
-            return spawnInformation.Count == 0;
+            return contents.Count == 0;
         }
 
-        public List<SpawnInformation> GetToSpawn()
+        public List<SpawnInformation> GetSpawnInformationToSpawn()
         {
             List<SpawnInformation> toSpawn = new List<SpawnInformation>();
-            for (int i = spawnInformation.Count - 1; i >= 0; i--)
+            for (int i = contents.Count - 1; i >= 0; i--)
             {
-                if (spawnInformation[i].SpawnTime < timePassed)
+                if (contents[i].SpawnTime < timePassed)
                 {
-                    toSpawn.Add(spawnInformation[i]);
-                    spawnInformation.RemoveAt(i);
+                    toSpawn.Add(contents[i]);
+                    contents.RemoveAt(i);
                 }
             }
             return toSpawn;
