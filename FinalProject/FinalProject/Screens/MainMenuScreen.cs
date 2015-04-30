@@ -6,46 +6,17 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FinalProject.Screens
 {
-    internal class MainMenuScreen : Screen
+    internal class MainMenuScreen : PixelateScreen
     {
         private Texture2D background;
 
         private MenuItemGroup menuItems;
 
-        private InterpolatedValue scaleIn, scaleOut;
-
         public MainMenuScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
-            scaleIn = new ExponentialInterpolatedValue(.002f, .25f, .5f);
-            scaleIn.InterpolationFinished = ScaleInFinished;
-            scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
-            scaleOut.InterpolationFinished = ScaleOutFinished;
             menuItems = new MenuItemGroup();
             InitializeMenu();
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            switch (state)
-            {
-                case ScreenState.TransitioningIn:
-                    {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
-                        DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
-                    } break;
-                case ScreenState.Active:
-                    {
-                        DrawScreen(spriteBatch);
-                    } break;
-                case ScreenState.TransitioningOut:
-                    {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
-                        DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
-                    } break;
-            }
         }
 
         public override void KeyPressed(Keys key)
@@ -105,27 +76,16 @@ namespace FinalProject.Screens
             base.BeginTransitioningOut();
         }
 
-        protected override void Reset()
+        protected override void DrawScreen(SpriteBatch spriteBatch)
         {
-            scaleIn.SetParameter(0);
-            scaleOut.SetParameter(0);
-            menuItems.Reset();
-            base.Reset();
+            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
+            menuItems.Draw(spriteBatch);
         }
 
-        protected override void ScreenUpdate(float secondsPassed)
+        protected override void Reset()
         {
-            switch (state)
-            {
-                case ScreenState.TransitioningIn:
-                    {
-                        scaleIn.Update(secondsPassed);
-                    } break;
-                case ScreenState.TransitioningOut:
-                    {
-                        scaleOut.Update(secondsPassed);
-                    } break;
-            }
+            menuItems.Reset();
+            base.Reset();
         }
 
         protected override void SwitchScreens()
@@ -147,12 +107,6 @@ namespace FinalProject.Screens
             }
         }
 
-        private void DrawScreen(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
-            menuItems.Draw(spriteBatch);
-        }
-
         private void InitializeMenu()
         {
             menuItems.AddItem(new MenuItem(new Vector2(280, 160), "NEW GAME"));
@@ -160,16 +114,6 @@ namespace FinalProject.Screens
             menuItems.AddItem(new MenuItem(new Vector2(280, 480), "SETTINGS") { Disabled = true });
             menuItems.AddItem(new MenuItem(new Vector2(280, 640), "CREDITS") { Disabled = true });
             menuItems.AddItem(new MenuItem(new Vector2(280, 800), "QUIT GAME"));
-        }
-
-        private void ScaleInFinished(float parameter)
-        {
-            state = ScreenState.Active;
-        }
-
-        private void ScaleOutFinished(float parameter)
-        {
-            FinishTransitioningOut();
         }
     }
 }

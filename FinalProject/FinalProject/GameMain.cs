@@ -106,7 +106,7 @@ namespace FinalProject
         private void InitializeMessageCenter()
         {
             MessageCenter = new MessageCenter();
-            MessageCenter.AddListener<string>("Start Loading Content", StartLoadingContent);
+            MessageCenter.AddListener<string>("Start Loading Content", screen => screens[screen].LoadContentAsynchronously());
             MessageCenter.AddListener<string>("Switch Screens", SwitchScreens);
             MessageCenter.AddListener("Quit", Exit);
         }
@@ -124,11 +124,6 @@ namespace FinalProject
             screens["Splash Screen"] = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Upgrade"] = new UpgradeScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Game"] = new GameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-        }
-
-        private void StartLoadingContent(string screen)
-        {
-            screens[screen].LoadContentAsynchronously();
         }
 
         private void SwitchScreens(string screen)

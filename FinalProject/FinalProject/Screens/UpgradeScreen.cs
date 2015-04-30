@@ -9,48 +9,19 @@ using System.Collections.Generic;
 
 namespace FinalProject.Screens
 {
-    internal class UpgradeScreen : Screen
+    internal class UpgradeScreen : PixelateScreen
     {
         private Texture2D background;
 
         private SaveGame currentGame;
-
-        private InterpolatedValue scaleIn, scaleOut;
 
         private UpgradeItemGroup upgrades;
 
         public UpgradeScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
-            scaleIn = new ExponentialInterpolatedValue(.002f, .25f, .5f);
-            scaleIn.InterpolationFinished = ScaleInFinished;
-            scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
-            scaleOut.InterpolationFinished = ScaleOutFinished;
             upgrades = new UpgradeItemGroup();
-            GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Upgrade", SetCurrentGame);
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            switch (state)
-            {
-                case ScreenState.TransitioningIn:
-                    {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
-                        DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
-                    } break;
-                case ScreenState.Active:
-                    {
-                        DrawScreen(spriteBatch);
-                    } break;
-                case ScreenState.TransitioningOut:
-                    {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
-                        DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
-                    } break;
-            }
+            GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Upgrade", saveGame => currentGame = saveGame);
         }
 
         public override void KeyPressed(Keys key)
@@ -112,41 +83,24 @@ namespace FinalProject.Screens
             base.BeginTransitioningOut();
         }
 
-        protected override void Reset()
-        {
-            currentGame = null;
-            scaleIn.SetParameter(0);
-            scaleOut.SetParameter(0);
-            upgrades.Reset(); base.Reset();
-        }
-
-        protected override void ScreenUpdate(float secondsPassed)
-        {
-            switch (state)
-            {
-                case ScreenState.TransitioningIn:
-                    {
-                        scaleIn.Update(secondsPassed);
-                    } break;
-                case ScreenState.TransitioningOut:
-                    {
-                        scaleOut.Update(secondsPassed);
-                    } break;
-            }
-        }
-
-        protected override void SwitchScreens()
-        {
-            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
-        }
-
-        private void DrawScreen(SpriteBatch spriteBatch)
+        protected override void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             upgrades.Draw(spriteBatch);
             GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "UPGRADES");
             GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditTextFont, Fonts.Red, new Vector2(1155, 245), "CREDITS:");
             GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditsFont, Fonts.Red, new Vector2(1440, 245), "" + currentGame.Credits);
+        }
+
+        protected override void Reset()
+        {
+            currentGame = null;
+            upgrades.Reset(); base.Reset();
+        }
+
+        protected override void SwitchScreens()
+        {
+            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
         }
 
         private void GetUpgrades()
@@ -156,21 +110,6 @@ namespace FinalProject.Screens
             upgrades.AddItem(new UpgradeItem(new Vector2(280, 580), "DAMAGE", currentGame.Damage));
             upgrades.AddItem(new UpgradeItem(new Vector2(280, 710), "FIRE RATE", currentGame.FireRate));
             upgrades.AddItem(new UpgradeItem(new Vector2(280, 840), "WEAPON STR", currentGame.WeaponStrength));
-        }
-
-        private void ScaleInFinished(float parameter)
-        {
-            state = ScreenState.Active;
-        }
-
-        private void ScaleOutFinished(float parameter)
-        {
-            FinishTransitioningOut();
-        }
-
-        private void SetCurrentGame(SaveGame saveGame)
-        {
-            currentGame = saveGame;
         }
 
         private void UpdateUpgrades()

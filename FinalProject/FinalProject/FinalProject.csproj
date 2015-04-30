@@ -133,6 +133,7 @@
     <Compile Include="Screens\MenuItem.cs" />
     <Compile Include="Screens\MenuItemGroup.cs" />
     <Compile Include="Screens\NewGameScreen.cs" />
+    <Compile Include="Screens\PixelateScreen.cs" />
     <Compile Include="Screens\SelectCharacterScreen.cs" />
     <Compile Include="Screens\SelectDifficultyScreen.cs" />
     <Compile Include="Screens\SelectStageScreen.cs" />
