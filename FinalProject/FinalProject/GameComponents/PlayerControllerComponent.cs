@@ -8,6 +8,7 @@ namespace FinalProject.GameComponents
     internal class PlayerControllerComponent : Component
     {
         private Dictionary<Keys, bool> isDown;
+
         private float speed;
 
         public PlayerControllerComponent(Entity entity, float speed)

@@ -9,9 +9,9 @@ namespace FinalProject.Screens
     internal class MainMenuScreen : Screen
     {
         private Texture2D background;
+
         private MenuItemGroup menuItems;
-        private bool otherScreenReady;
-        private bool readyToSwitch;
+
         private InterpolatedValue scaleIn, scaleOut;
 
         public MainMenuScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -21,8 +21,6 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
-            readyToSwitch = false;
-            otherScreenReady = false;
             menuItems = new MenuItemGroup();
             InitializeMenu();
         }
@@ -33,9 +31,9 @@ namespace FinalProject.Screens
             {
                 case ScreenState.TransitioningIn:
                     {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                         DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                     } break;
                 case ScreenState.Active:
                     {
@@ -43,9 +41,9 @@ namespace FinalProject.Screens
                     } break;
                 case ScreenState.TransitioningOut:
                     {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                         DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                     } break;
             }
         }
@@ -104,25 +102,7 @@ namespace FinalProject.Screens
                         otherScreenReady = true;
                     } break;
             }
-            GameMain.MessageCenter.AddListener("Finished Loading", OtherScreenFinishedLoading);
-            TransitionOut();
-        }
-
-        protected override void FinishedLoading()
-        {
-            GameMain.MessageCenter.Broadcast("Finished Loading");
-        }
-
-        protected override void FinishTransitioningOut()
-        {
-            if (otherScreenReady)
-            {
-                SwitchScreens();
-            }
-            else
-            {
-                readyToSwitch = true;
-            }
+            base.BeginTransitioningOut();
         }
 
         protected override void Reset()
@@ -130,7 +110,7 @@ namespace FinalProject.Screens
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
             menuItems.Reset();
-            GameMain.MessageCenter.RemoveListener("Finished Loading", OtherScreenFinishedLoading);
+            base.Reset();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -148,44 +128,7 @@ namespace FinalProject.Screens
             }
         }
 
-        private void DrawScreen(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
-            menuItems.Draw(spriteBatch);
-        }
-
-        private void InitializeMenu()
-        {
-            menuItems.AddItem(new MenuItem(new Vector2(280, 160), "NEW GAME"));
-            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LOAD GAME"));
-            menuItems.AddItem(new MenuItem(new Vector2(280, 480), "SETTINGS") { Disabled = true });
-            menuItems.AddItem(new MenuItem(new Vector2(280, 640), "CREDITS") { Disabled = true });
-            menuItems.AddItem(new MenuItem(new Vector2(280, 800), "QUIT GAME"));
-        }
-
-        private void OtherScreenFinishedLoading()
-        {
-            if (readyToSwitch)
-            {
-                SwitchScreens();
-            }
-            else
-            {
-                otherScreenReady = true;
-            }
-        }
-
-        private void ScaleInFinished(float parameter)
-        {
-            state = ScreenState.Active;
-        }
-
-        private void ScaleOutFinished(float parameter)
-        {
-            FinishTransitioningOut();
-        }
-
-        private void SwitchScreens()
+        protected override void SwitchScreens()
         {
             switch (menuItems.GetSelected())
             {
@@ -202,6 +145,31 @@ namespace FinalProject.Screens
                         GameMain.MessageCenter.Broadcast("Quit");
                     } break;
             }
+        }
+
+        private void DrawScreen(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
+            menuItems.Draw(spriteBatch);
+        }
+
+        private void InitializeMenu()
+        {
+            menuItems.AddItem(new MenuItem(new Vector2(280, 160), "NEW GAME"));
+            menuItems.AddItem(new MenuItem(new Vector2(280, 320), "LOAD GAME"));
+            menuItems.AddItem(new MenuItem(new Vector2(280, 480), "SETTINGS") { Disabled = true });
+            menuItems.AddItem(new MenuItem(new Vector2(280, 640), "CREDITS") { Disabled = true });
+            menuItems.AddItem(new MenuItem(new Vector2(280, 800), "QUIT GAME"));
+        }
+
+        private void ScaleInFinished(float parameter)
+        {
+            state = ScreenState.Active;
+        }
+
+        private void ScaleOutFinished(float parameter)
+        {
+            FinishTransitioningOut();
         }
     }
 }

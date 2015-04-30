@@ -12,10 +12,11 @@ namespace FinalProject.Screens
     internal class UpgradeScreen : Screen
     {
         private Texture2D background;
+
         private SaveGame currentGame;
-        private bool otherScreenReady;
-        private bool readyToSwitch;
+
         private InterpolatedValue scaleIn, scaleOut;
+
         private UpgradeItemGroup upgrades;
 
         public UpgradeScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -25,8 +26,6 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
-            readyToSwitch = false;
-            otherScreenReady = false;
             upgrades = new UpgradeItemGroup();
             GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Upgrade", SetCurrentGame);
         }
@@ -37,9 +36,9 @@ namespace FinalProject.Screens
             {
                 case ScreenState.TransitioningIn:
                     {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                         DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                     } break;
                 case ScreenState.Active:
                     {
@@ -47,9 +46,9 @@ namespace FinalProject.Screens
                     } break;
                 case ScreenState.TransitioningOut:
                     {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                         DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                     } break;
             }
         }
@@ -110,25 +109,7 @@ namespace FinalProject.Screens
             SaveGameManager.SaveGame(currentGame);
             GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
             GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
-            GameMain.MessageCenter.AddListener("Finished Loading", OtherScreenFinishedLoading);
-            TransitionOut();
-        }
-
-        protected override void FinishedLoading()
-        {
-            GameMain.MessageCenter.Broadcast("Finished Loading");
-        }
-
-        protected override void FinishTransitioningOut()
-        {
-            if (otherScreenReady)
-            {
-                SwitchScreens();
-            }
-            else
-            {
-                readyToSwitch = true;
-            }
+            base.BeginTransitioningOut();
         }
 
         protected override void Reset()
@@ -136,8 +117,7 @@ namespace FinalProject.Screens
             currentGame = null;
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
-            upgrades.Reset();
-            GameMain.MessageCenter.RemoveListener("Finished Loading", OtherScreenFinishedLoading);
+            upgrades.Reset(); base.Reset();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -155,18 +135,18 @@ namespace FinalProject.Screens
             }
         }
 
-        private static void SwitchScreens()
+        protected override void SwitchScreens()
         {
             GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
         }
 
         private void DrawScreen(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
+            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             upgrades.Draw(spriteBatch);
-            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "UPGRADES", new Vector2(320, 210), Fonts.Green);
-            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeBoldCredits, "CREDITS:", new Vector2(1155, 245), Fonts.Red);
-            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeLightCredits, "" + currentGame.Credits, new Vector2(1440, 245), Fonts.Red);
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "UPGRADES");
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditTextFont, Fonts.Red, new Vector2(1155, 245), "CREDITS:");
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditsFont, Fonts.Red, new Vector2(1440, 245), "" + currentGame.Credits);
         }
 
         private void GetUpgrades()
@@ -176,18 +156,6 @@ namespace FinalProject.Screens
             upgrades.AddItem(new UpgradeItem(new Vector2(280, 580), "DAMAGE", currentGame.Damage));
             upgrades.AddItem(new UpgradeItem(new Vector2(280, 710), "FIRE RATE", currentGame.FireRate));
             upgrades.AddItem(new UpgradeItem(new Vector2(280, 840), "WEAPON STR", currentGame.WeaponStrength));
-        }
-
-        private void OtherScreenFinishedLoading()
-        {
-            if (readyToSwitch)
-            {
-                SwitchScreens();
-            }
-            else
-            {
-                otherScreenReady = true;
-            }
         }
 
         private void ScaleInFinished(float parameter)

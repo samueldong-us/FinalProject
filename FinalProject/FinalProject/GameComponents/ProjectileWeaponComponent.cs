@@ -9,7 +9,9 @@ namespace FinalProject.GameComponents
     internal abstract class ProjectileWeaponComponent : Component
     {
         protected Vector2 offset;
+
         protected List<Entity> projectiles;
+
         protected List<Entity> toRemove;
 
         protected ProjectileWeaponComponent(Entity entity, Vector2 offset)
@@ -54,7 +56,7 @@ namespace FinalProject.GameComponents
             Entity projectile = new Entity();
             projectile.Position = entity.Position + offset;
             new ColliderComponent(projectile, source, triangles, colliderList).DebugDraw();
-            new VelocityAccelerationComponent(projectile, MathUtilities.VectorFromMagnitude(speed, rotation), Vector2.Zero);
+            new VelocityAccelerationComponent(projectile, MathUtilities.VectorFromMagnitudeAndAngle(speed, rotation), Vector2.Zero);
             new VelocityBasedRotationComponent(projectile);
             new SignalOnExitComponent(projectile, source, GameScreen.Bounds);
             new TextureRendererComponent(projectile, texture, source, tint, drawingLayer);

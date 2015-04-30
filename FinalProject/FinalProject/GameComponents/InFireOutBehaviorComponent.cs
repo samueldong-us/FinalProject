@@ -6,9 +6,13 @@ namespace FinalProject.GameComponents
     internal class InFireOutBehaviorComponent : Component
     {
         private const float CeaseFireY = 700;
+
         private float outSpeed;
+
         private float outTime;
+
         private float switchTime;
+
         private float timePassed;
 
         public InFireOutBehaviorComponent(Entity entity, Vector2 switchingPoint, float inSpeed, float outSpeed)

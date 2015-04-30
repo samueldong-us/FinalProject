@@ -7,7 +7,9 @@ namespace FinalProject.GameWaves
     internal class WaveManager
     {
         private const float TimeBetweenWaves = 2;
+
         private float timePassed;
+
         private List<Wave> waves;
 
         public WaveManager(List<Wave> waves)

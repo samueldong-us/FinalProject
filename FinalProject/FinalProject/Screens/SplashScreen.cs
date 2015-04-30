@@ -9,7 +9,9 @@ namespace FinalProject.Screens
     internal class SplashScreen : Screen
     {
         private MediaState lastVideoState;
+
         private Video splashVideo;
+
         private VideoPlayer splashVideoPlayer;
 
         public SplashScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -42,6 +44,7 @@ namespace FinalProject.Screens
         public override void Start()
         {
             lastVideoState = MediaState.Stopped;
+            otherScreenReady = true;
             FinishTransitioningOut();
         }
 
@@ -56,19 +59,12 @@ namespace FinalProject.Screens
 
         protected override void BeginTransitioningOut()
         {
-        }
-
-        protected override void FinishedLoading()
-        {
-        }
-
-        protected override void FinishTransitioningOut()
-        {
-            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Main Menu");
+            base.BeginTransitioningOut();
         }
 
         protected override void Reset()
         {
+            base.Reset();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -81,6 +77,11 @@ namespace FinalProject.Screens
                 }
                 lastVideoState = splashVideoPlayer.State;
             }
+        }
+
+        protected override void SwitchScreens()
+        {
+            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Main Menu");
         }
     }
 }

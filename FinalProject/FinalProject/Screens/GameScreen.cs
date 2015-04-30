@@ -15,30 +15,45 @@ namespace FinalProject.Screens
     internal class GameScreen : Screen
     {
         public static Rectangle Bounds = new Rectangle(420, 0, 1080, 1050);
+
         public static List<ColliderComponent> CollidersEnemies;
+
         public static List<ColliderComponent> CollidersEnemyBullets;
+
         public static List<ColliderComponent> CollidersPlayer;
+
         public static List<ColliderComponent> CollidersPlayerBullets;
+
         public static List<Drawable> LayerDebug;
+
         public static List<Drawable> LayerEnemies;
+
         public static List<Drawable> LayerEnemyBullets;
+
         public static List<Drawable> LayerHealthBars;
+
         public static List<Drawable> LayerPlayer;
+
         public static List<Drawable> LayerPlayerBullets;
+
         public static MessageCenter MessageCenter;
+
         private Texture2D background;
-        private Texture2D bullet;
+
         private SaveGame currentGame;
+
         private List<Entity> entities;
+
         private MenuItemGroup menuItems;
-        private bool otherScreenReady;
+
         private bool paused;
-        private bool readyToSwitch;
+
         private Random rng = new Random();
+
         private InterpolatedValue scaleIn, scaleOut;
-        private Texture2D test;
-        private Texture2D testHealth;
+
         private List<Entity> toRemove;
+
         private WaveManager waveManager;
 
         public GameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -49,8 +64,6 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
-            readyToSwitch = false;
-            otherScreenReady = false;
             InitializeMenu();
             InitializeStaticVariables();
             entities = new List<Entity>();
@@ -64,9 +77,9 @@ namespace FinalProject.Screens
             {
                 case ScreenState.TransitioningIn:
                     {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                         DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                     } break;
                 case ScreenState.Active:
                     {
@@ -74,9 +87,9 @@ namespace FinalProject.Screens
                     } break;
                 case ScreenState.TransitioningOut:
                     {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                         DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                     } break;
             }
         }
@@ -117,10 +130,7 @@ namespace FinalProject.Screens
 
         public override void LoadContent()
         {
-            test = content.Load<Texture2D>("ship01");
             background = content.Load<Texture2D>("MenuBackground");
-            bullet = content.Load<Texture2D>("TestBulletTri");
-            testHealth = content.Load<Texture2D>("CircularHealthBarTest");
             GameAssets.LoadContent(content);
             base.LoadContent();
         }
@@ -129,13 +139,13 @@ namespace FinalProject.Screens
         {
             List<Wave> waves = new List<Wave>();
             SpawnInformation test1 = new SpawnInformation(0);
-            test1.Information["Unit Type"] = "Jellyfish";
-            test1.Information["Spawn Position"] = new Vector2(500, -200);
-            test1.Information["Shoot Position"] = new Vector2(700, 200);
+            test1.AddInformation("Unit Type", "Jellyfish");
+            test1.AddInformation("Spawn Position", new Vector2(500, -200));
+            test1.AddInformation("Shoot Position", new Vector2(700, 200));
             SpawnInformation test2 = new SpawnInformation(2);
-            test2.Information["Unit Type"] = "Jellyfish";
-            test2.Information["Spawn Position"] = new Vector2(1420, -200);
-            test2.Information["Shoot Position"] = new Vector2(1220, 200);
+            test2.AddInformation("Unit Type", "Jellyfish");
+            test2.AddInformation("Spawn Position", new Vector2(1420, -200));
+            test2.AddInformation("Shoot Position", new Vector2(1220, 200));
             for (int i = 0; i < 4; i++)
             {
                 Wave wave = new Wave();
@@ -170,25 +180,7 @@ namespace FinalProject.Screens
         {
             GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Select Stage", currentGame);
             GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Select Stage");
-            GameMain.MessageCenter.AddListener("Finished Loading", OtherScreenFinishedLoading);
-            TransitionOut();
-        }
-
-        protected override void FinishedLoading()
-        {
-            GameMain.MessageCenter.Broadcast("Finished Loading");
-        }
-
-        protected override void FinishTransitioningOut()
-        {
-            if (otherScreenReady)
-            {
-                SwitchScreens();
-            }
-            else
-            {
-                readyToSwitch = true;
-            }
+            base.BeginTransitioningOut();
         }
 
         protected override void Reset()
@@ -210,7 +202,7 @@ namespace FinalProject.Screens
             LayerHealthBars.Clear();
             LayerPlayer.Clear();
             LayerPlayerBullets.Clear();
-            GameMain.MessageCenter.RemoveListener("Finished Loading", OtherScreenFinishedLoading);
+            base.Reset();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -226,7 +218,7 @@ namespace FinalProject.Screens
                         if (!paused)
                         {
                             waveManager.Update(secondsPassed);
-                            List<Entity> toSpawn = waveManager.GetToSpawn();
+                            List<Entity> toSpawn = waveManager.GetEntitiesToSpawn();
                             if (toSpawn != null)
                             {
                                 foreach (Entity entity in toSpawn)
@@ -258,6 +250,11 @@ namespace FinalProject.Screens
             }
         }
 
+        protected override void SwitchScreens()
+        {
+            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Stage");
+        }
+
         private static void InitializeStaticVariables()
         {
             CollidersEnemies = new List<ColliderComponent>();
@@ -270,11 +267,6 @@ namespace FinalProject.Screens
             LayerHealthBars = new List<Drawable>();
             LayerPlayer = new List<Drawable>();
             LayerPlayerBullets = new List<Drawable>();
-        }
-
-        private static void SwitchScreens()
-        {
-            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Stage");
         }
 
         private void CheckForCollisions()
@@ -322,7 +314,7 @@ namespace FinalProject.Screens
             foreach (ColliderComponent collider in colliderList)
             {
                 Vector2 fromTo = collider.GetEntity().Position - entity.Position;
-                if (MathUtilities.angleBetween(entityVector, fromTo) < maxAngle)
+                if (MathUtilities.AngleBetween(entityVector, fromTo) < maxAngle)
                 {
                     if (closest == null || fromTo.LengthSquared() < closestFromTo.LengthSquared())
                     {
@@ -341,7 +333,7 @@ namespace FinalProject.Screens
 
         private void DrawScreen(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
+            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             foreach (Drawable drawable in LayerPlayerBullets)
             {
                 drawable.Draw(spriteBatch);
@@ -384,18 +376,6 @@ namespace FinalProject.Screens
             MessageCenter = new MessageCenter();
             MessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
             MessageCenter.AddListener<Entity>("Find Closest Player", ClosestPlayer);
-        }
-
-        private void OtherScreenFinishedLoading()
-        {
-            if (readyToSwitch)
-            {
-                SwitchScreens();
-            }
-            else
-            {
-                otherScreenReady = true;
-            }
         }
 
         private void RemoveEntity(Entity entity)

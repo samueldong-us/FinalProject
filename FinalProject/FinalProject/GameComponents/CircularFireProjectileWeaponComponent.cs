@@ -7,9 +7,13 @@ namespace FinalProject.GameComponents
     internal class CircularFireProjectileWeaponComponent : ProjectileWeaponComponent
     {
         private const int Speed = 200;
+
         private int damage;
+
         private int numberOfBullets;
+
         private float rotation;
+
         private float rotationalDelta;
 
         public CircularFireProjectileWeaponComponent(Entity entity, int numberOfBullets, int damage, float rotationalDelta)

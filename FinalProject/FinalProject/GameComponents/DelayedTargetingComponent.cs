@@ -8,11 +8,17 @@ namespace FinalProject.GameComponents
     internal class DelayedTargetingComponent : Component
     {
         private Vector2 closestPosition;
+
         private float delay;
+
         private bool happened;
+
         private Vector2 lastVelocity;
+
         private float secondDelay;
+
         private float speed;
+
         private float timePassed;
 
         public DelayedTargetingComponent(Entity entity, float delay, float secondDelay, float speed)
@@ -61,7 +67,7 @@ namespace FinalProject.GameComponents
                     {
                         angle = (float)(Math.PI / 2);
                     }
-                    entity.MessageCenter.Broadcast<Vector2>("Set Velocity", MathUtilities.VectorFromMagnitude(speed, angle));
+                    entity.MessageCenter.Broadcast<Vector2>("Set Velocity", MathUtilities.VectorFromMagnitudeAndAngle(speed, angle));
                 }
             }
         }

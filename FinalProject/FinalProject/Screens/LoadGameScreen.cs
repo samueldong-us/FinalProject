@@ -10,12 +10,16 @@ namespace FinalProject.Screens
 {
     internal class LoadGameScreen : Screen
     {
+        private enum Result { Back, Continue }
+
         private Texture2D background;
+
         private int currentPage;
-        private bool otherScreenReady;
-        private bool readyToSwitch;
+
         private Result result;
+
         private List<MenuItemGroup> savedGames;
+
         private InterpolatedValue scaleIn, scaleOut;
 
         public LoadGameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -25,13 +29,9 @@ namespace FinalProject.Screens
             scaleIn.InterpolationFinished = ScaleInFinished;
             scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
-            readyToSwitch = false;
-            otherScreenReady = false;
             savedGames = new List<MenuItemGroup>();
             currentPage = -1;
         }
-
-        private enum Result { Back, Continue }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
@@ -39,9 +39,9 @@ namespace FinalProject.Screens
             {
                 case ScreenState.TransitioningIn:
                     {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                         DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleIn.GetValue(), graphicsDevice);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                     } break;
                 case ScreenState.Active:
                     {
@@ -49,9 +49,9 @@ namespace FinalProject.Screens
                     } break;
                 case ScreenState.TransitioningOut:
                     {
-                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, Vector2.Zero, Constants.VirtualWidth, Constants.VirtualHeight, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                         DrawScreen(spriteBatch);
-                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, Constants.VirtualWidth, Constants.VirtualHeight, Vector2.Zero, scaleOut.GetValue(), graphicsDevice);
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                     } break;
             }
         }
@@ -123,7 +123,7 @@ namespace FinalProject.Screens
             {
                 case Result.Continue:
                     {
-                        SaveGame currentGame = SaveGameManager.GetSavedGame(savedGames[currentPage].GetSelected() + ".sav");
+                        SaveGame currentGame = SaveGameManager.GetSavedGame(savedGames[currentPage].GetSelected());
                         GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
                         GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
                     } break;
@@ -132,25 +132,7 @@ namespace FinalProject.Screens
                         GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Main Menu");
                     } break;
             }
-            GameMain.MessageCenter.AddListener("Finished Loading", OtherScreenFinishedLoading);
-            TransitionOut();
-        }
-
-        protected override void FinishedLoading()
-        {
-            GameMain.MessageCenter.Broadcast("Finished Loading");
-        }
-
-        protected override void FinishTransitioningOut()
-        {
-            if (otherScreenReady)
-            {
-                SwitchScreens();
-            }
-            else
-            {
-                readyToSwitch = true;
-            }
+            base.BeginTransitioningOut();
         }
 
         protected override void Reset()
@@ -159,7 +141,7 @@ namespace FinalProject.Screens
             currentPage = -1;
             scaleIn.SetParameter(0);
             scaleOut.SetParameter(0);
-            GameMain.MessageCenter.RemoveListener("Finished Loading", OtherScreenFinishedLoading);
+            base.Reset();
         }
 
         protected override void ScreenUpdate(float secondsPassed)
@@ -177,26 +159,29 @@ namespace FinalProject.Screens
             }
         }
 
+        protected override void SwitchScreens()
+        {
+            switch (result)
+            {
+                case Result.Continue:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
+                    } break;
+                case Result.Back:
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Main Menu");
+                    } break;
+            }
+        }
+
         private void DrawScreen(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, new Rectangle(0, 0, Constants.VirtualWidth, Constants.VirtualHeight), Color.White);
+            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             if (currentPage != -1)
             {
                 savedGames[currentPage].Draw(spriteBatch);
             }
-            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitle, "SELECT PROFILE", new Vector2(380, 210), Fonts.Green);
-        }
-
-        private void OtherScreenFinishedLoading()
-        {
-            if (readyToSwitch)
-            {
-                SwitchScreens();
-            }
-            else
-            {
-                otherScreenReady = true;
-            }
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(380, 210), "SELECT PROFILE");
         }
 
         private void ScaleInFinished(float parameter)
@@ -232,21 +217,6 @@ namespace FinalProject.Screens
                         savedGames[i].AddItem(new MenuItem(new Vector2(280, 320 + j * 130), currentName));
                     }
                 }
-            }
-        }
-
-        private void SwitchScreens()
-        {
-            switch (result)
-            {
-                case Result.Continue:
-                    {
-                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
-                    } break;
-                case Result.Back:
-                    {
-                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Main Menu");
-                    } break;
             }
         }
     }

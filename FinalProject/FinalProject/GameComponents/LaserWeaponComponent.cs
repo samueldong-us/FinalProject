@@ -2,15 +2,15 @@
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameComponents
 {
     internal class LaserWeaponComponent : Component
     {
         private float damagePerSecond;
+
         private Entity laser;
+
         private List<Entity> toDamage;
 
         public LaserWeaponComponent(Entity entity, float damagePerSecond)

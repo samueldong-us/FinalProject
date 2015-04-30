@@ -52,8 +52,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MenuItems.spritefont">
-      <Name>MenuItems</Name>
+    <Compile Include="MenuItem.spritefont">
+      <Name>MenuItem</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
@@ -66,22 +66,22 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UpgradeBoldCredits.spritefont">
-      <Name>UpgradeBoldCredits</Name>
+    <Compile Include="UpgradeCreditText.spritefont">
+      <Name>UpgradeCreditText</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UpgradeOptions.spritefont">
-      <Name>UpgradeOptions</Name>
+    <Compile Include="UpgradeName.spritefont">
+      <Name>UpgradeName</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="UpgradeLightCredits.spritefont">
-      <Name>UpgradeLightCredits</Name>
+    <Compile Include="UpgradeCredits.spritefont">
+      <Name>UpgradeCredits</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
     </Compile>

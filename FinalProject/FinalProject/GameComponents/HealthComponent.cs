@@ -3,6 +3,7 @@
     internal class HealthComponent : Component
     {
         private float health;
+
         private float maxHealth;
 
         public HealthComponent(Entity entity, int maxHealth)

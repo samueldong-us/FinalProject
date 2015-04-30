@@ -7,10 +7,15 @@ namespace FinalProject.GameComponents
     internal class Entity
     {
         public MessageCenter MessageCenter;
+
         public Vector2 Position;
+
         public float Rotation;
+
         public float Scale;
+
         private List<Component> components;
+
         private List<Component> toRemove;
 
         public Entity()

@@ -5,7 +5,9 @@ namespace FinalProject.GameComponents
     internal class RestrictPositionComponent : Component
     {
         private Rectangle bounds;
+
         private float horizontalPadding;
+
         private float verticalPadding;
 
         public RestrictPositionComponent(Entity entity, float horizontalPadding, float verticalPadding, Rectangle bounds)

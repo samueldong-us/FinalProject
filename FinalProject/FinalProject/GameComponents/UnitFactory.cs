@@ -9,16 +9,17 @@ namespace FinalProject.GameComponents
     internal static class UnitFactory
     {
         public static SaveGame.Difficulty Difficulty;
+
         public static int Stage;
 
         public static Entity CreateFromSpawnInformation(SpawnInformation spawnInformation)
         {
-            switch ((string)spawnInformation.Information["Unit Type"])
+            switch (spawnInformation.GetInformation<string>("Unit Type"))
             {
                 case "Jellyfish":
                     {
-                        Vector2 spawnPosition = (Vector2)spawnInformation.Information["Spawn Position"];
-                        Vector2 shootPosition = (Vector2)spawnInformation.Information["Shoot Position"];
+                        Vector2 spawnPosition = spawnInformation.GetInformation<Vector2>("Spawn Position");
+                        Vector2 shootPosition = spawnInformation.GetInformation<Vector2>("Shoot Position");
                         return CreateJellyFish(spawnPosition, shootPosition);
                     }
             }

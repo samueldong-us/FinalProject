@@ -8,8 +8,11 @@ namespace FinalProject.GameComponents
     internal class ColliderComponent : Component, Drawable
     {
         private float boundingRadius;
+
         private List<ColliderComponent> colliderList;
+
         private Rectangle source;
+
         private List<Triangle> triangles;
 
         public ColliderComponent(Entity entity, Rectangle source, List<Triangle> triangles, List<ColliderComponent> colliderList)

@@ -5,6 +5,7 @@ namespace FinalProject.GameComponents
     internal class SignalOnExitComponent : Component
     {
         private Rectangle bounds;
+
         private Rectangle source;
 
         public SignalOnExitComponent(Entity entity, Rectangle source, Rectangle bounds)

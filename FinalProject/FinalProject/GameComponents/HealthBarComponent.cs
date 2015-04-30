@@ -8,8 +8,11 @@ namespace FinalProject.GameComponents
     internal class HealthBarComponent : Component, Drawable
     {
         protected float health;
+
         protected float maxHealth;
+
         private Rectangle backing;
+
         private Rectangle bar;
 
         public HealthBarComponent(Entity entity, Rectangle size, Vector2 offset)

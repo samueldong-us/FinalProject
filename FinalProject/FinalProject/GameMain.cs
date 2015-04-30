@@ -10,11 +10,20 @@ namespace FinalProject
 {
     public class GameMain : Microsoft.Xna.Framework.Game
     {
+        public const int VirtualHeight = 1080;
+
+        public const int VirtualWidth = 1920;
+
         public static MessageCenter MessageCenter;
+
         private Screen currentScreen;
+
         private GraphicsDeviceManager graphics;
+
         private KeyboardManager keyboardManager;
+
         private Dictionary<string, Screen> screens;
+
         private SpriteBatch spriteBatch;
 
         public GameMain()
@@ -81,7 +90,7 @@ namespace FinalProject
         {
             if (gameTime.ElapsedGameTime.TotalSeconds != 0)
             {
-                spriteBatch.DrawString(Fonts.Debug, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Fonts.Red);
+                spriteBatch.DrawString(Fonts.DebugFont, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Fonts.Red);
             }
         }
 

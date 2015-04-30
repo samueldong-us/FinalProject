@@ -140,7 +140,6 @@
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\UpgradeItemGroup.cs" />
     <Compile Include="Screens\UpgradeScreen.cs" />
-    <Compile Include="Utilities\Constants.cs" />
     <Compile Include="Utilities\CubicInterpolatedValue.cs" />
     <Compile Include="Utilities\ExponentialnterpolatedValue.cs" />
     <Compile Include="Utilities\Fonts.cs" />

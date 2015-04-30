@@ -5,6 +5,7 @@ namespace FinalProject.GameWaves
     internal class Wave
     {
         private List<SpawnInformation> contents;
+
         private float timePassed;
 
         public Wave()
