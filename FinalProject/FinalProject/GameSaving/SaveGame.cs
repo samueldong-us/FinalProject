@@ -2,6 +2,10 @@
 {
     public class SaveGame
     {
+        public enum Character { Varlet, Oason, Dimmy }
+
+        public enum Difficulty { Easy, Normal, Hard }
+
         public Character character;
         public int Credits = 1000;
         public int Damage = 1;
@@ -12,9 +16,5 @@
         public string SaveName;
         public int Shields = 1;
         public int WeaponStrength = 1;
-
-        public enum Character { Varlet, Oason, Dimmy }
-
-        public enum Difficulty { Easy, Normal, Hard }
     }
 }

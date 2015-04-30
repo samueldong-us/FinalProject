@@ -4,8 +4,6 @@ using FinalProject.Screens;
 using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-using System;
 using System.Collections.Generic;
 
 namespace FinalProject
@@ -15,7 +13,7 @@ namespace FinalProject
         public static MessageCenter MessageCenter;
         private Screen currentScreen;
         private GraphicsDeviceManager graphics;
-        private Keys[] lastPressedKeys;
+        private KeyboardManager keyboardManager;
         private Dictionary<string, Screen> screens;
         private SpriteBatch spriteBatch;
 
@@ -29,36 +27,26 @@ namespace FinalProject
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GameUtilities.GetResizeMatrix(GraphicsDevice));
-            if (currentScreen != null)
-            {
-                currentScreen.Draw(spriteBatch);
-            }
-            if (gameTime.ElapsedGameTime.TotalSeconds != 0)
-            {
-                spriteBatch.DrawString(Fonts.Debug, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Fonts.Red);
-            }
+            DrawCurrentScreen();
+            DrawFPSCounter(gameTime);
             spriteBatch.End();
             base.Draw(gameTime);
         }
 
         protected override void Initialize()
         {
-            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            //graphics.IsFullScreen = true;
-            graphics.ApplyChanges();
-            IsFixedTimeStep = false;
-            GraphicsUtilities.CreateRenderTarget(GraphicsDevice);
-            GraphicsUtilities.MakePlainTexture(GraphicsDevice);
-            SaveGameManager.CreateSaveDirectory();
+            InitializeGraphicsSettings();
             InitializeMessageCenter();
             InitializeScreens();
+            GraphicsUtilities.Initialize(GraphicsDevice);
+            SaveGameManager.CreateSaveDirectory();
+            spriteBatch = new SpriteBatch(GraphicsDevice);
+            keyboardManager = new KeyboardManager();
             base.Initialize();
         }
 
         protected override void LoadContent()
         {
-            spriteBatch = new SpriteBatch(GraphicsDevice);
             Fonts.LoadFonts(Content);
             GraphicsUtilities.LoadCircularWipe(Content);
             screens["Splash Screen"].LoadContent();
@@ -73,7 +61,7 @@ namespace FinalProject
 
         protected override void Update(GameTime gameTime)
         {
-            CheckPressedKeys();
+            keyboardManager.BroadcastChanges(currentScreen);
             if (currentScreen != null)
             {
                 currentScreen.Update(gameTime);
@@ -81,27 +69,29 @@ namespace FinalProject
             base.Update(gameTime);
         }
 
-        private void CheckPressedKeys()
+        private void DrawCurrentScreen()
         {
-            if (lastPressedKeys != null && currentScreen != null)
+            if (currentScreen != null)
             {
-                Keys[] currentPressedKeys = Keyboard.GetState().GetPressedKeys();
-                foreach (Keys key in currentPressedKeys)
-                {
-                    if (!Array.Exists<Keys>(lastPressedKeys, element => element == key))
-                    {
-                        currentScreen.KeyPressed(key);
-                    }
-                }
-                foreach (Keys key in lastPressedKeys)
-                {
-                    if (!Array.Exists<Keys>(currentPressedKeys, element => element == key))
-                    {
-                        currentScreen.KeyReleased(key);
-                    }
-                }
+                currentScreen.Draw(spriteBatch);
             }
-            lastPressedKeys = Keyboard.GetState().GetPressedKeys();
+        }
+
+        private void DrawFPSCounter(GameTime gameTime)
+        {
+            if (gameTime.ElapsedGameTime.TotalSeconds != 0)
+            {
+                spriteBatch.DrawString(Fonts.Debug, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Fonts.Red);
+            }
+        }
+
+        private void InitializeGraphicsSettings()
+        {
+            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            //graphics.IsFullScreen = true;
+            IsFixedTimeStep = false;
+            graphics.ApplyChanges();
         }
 
         private void InitializeMessageCenter()

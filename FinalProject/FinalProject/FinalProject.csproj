@@ -146,6 +146,7 @@
     <Compile Include="Utilities\Fonts.cs" />
     <Compile Include="Utilities\GameUtilities.cs" />
     <Compile Include="Utilities\InterpolatedValue.cs" />
+    <Compile Include="Utilities\KeyboardManager.cs" />
     <Compile Include="Utilities\LinearInterpolatedValue.cs" />
     <Compile Include="Utilities\GraphicsUtilities.cs" />
     <Compile Include="Screens\UpgradeItem.cs" />

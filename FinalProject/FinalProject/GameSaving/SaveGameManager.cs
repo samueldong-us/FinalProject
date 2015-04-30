@@ -28,10 +28,9 @@ namespace FinalProject.GameSaving
 
         public static SaveGame GetSavedGame(string name)
         {
-            string pathToFile = "./Saved Games/" + name;
             if (SaveExists(name))
             {
-                using (StreamReader reader = new StreamReader(File.OpenRead(pathToFile)))
+                using (StreamReader reader = new StreamReader(File.OpenRead(PathToFile(name))))
                 {
                     XmlSerializer serializer = new XmlSerializer(typeof(SaveGame));
                     return (SaveGame)serializer.Deserialize(reader);
@@ -45,26 +44,29 @@ namespace FinalProject.GameSaving
 
         public static bool SaveExists(string name)
         {
-            string pathToFile = "./Saved Games/" + name;
-            return File.Exists(pathToFile);
+            return File.Exists(PathToFile(name));
         }
 
         public static void SaveGame(SaveGame saveGame)
         {
-            if (saveGame.Equals(".sav"))
+            if (saveGame.SaveName.Equals(""))
             {
                 throw new Exception("A SaveGame Must Have Its Name Set");
             }
-            string pathToFile = "./Saved Games/" + saveGame.SaveName + ".sav";
-            if (File.Exists(pathToFile))
+            if (File.Exists(PathToFile(saveGame.SaveName)))
             {
-                File.Delete(pathToFile);
+                File.Delete(PathToFile(saveGame.SaveName));
             }
-            using (StreamWriter writer = new StreamWriter(File.Create(pathToFile)))
+            using (StreamWriter writer = new StreamWriter(File.Create(PathToFile(saveGame.SaveName))))
             {
                 XmlSerializer serializer = new XmlSerializer(typeof(SaveGame));
                 serializer.Serialize(writer, saveGame);
             }
+        }
+
+        private static string PathToFile(string name)
+        {
+            return "./Saved Games/" + name + ".sav";
         }
     }
 }
