@@ -54,7 +54,7 @@ namespace FinalProject.GameWaves
 
         private bool CurrentWaveOver()
         {
-            return waves[0].Finished() && GameScreen.CollidersEnemies.Count == 0;
+            return waves[0].Finished() && ScreenGame.CollidersEnemies.Count == 0;
         }
     }
 }

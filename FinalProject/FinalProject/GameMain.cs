@@ -35,7 +35,7 @@ namespace FinalProject
         protected override void Draw(GameTime gameTime)
         {
             GraphicsDevice.Clear(Color.CornflowerBlue);
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GameUtilities.GetResizeMatrix(GraphicsDevice));
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, UtilitiesGame.GetResizeMatrix(GraphicsDevice));
             DrawCurrentScreen();
             DrawFPSCounter(gameTime);
             spriteBatch.End();
@@ -47,7 +47,7 @@ namespace FinalProject
             InitializeGraphicsSettings();
             InitializeMessageCenter();
             InitializeScreens();
-            GraphicsUtilities.Initialize(GraphicsDevice);
+            UtilitiesGraphics.Initialize(GraphicsDevice);
             SaveGameManager.CreateSaveDirectory();
             spriteBatch = new SpriteBatch(GraphicsDevice);
             keyboardManager = new KeyboardManager();
@@ -57,7 +57,7 @@ namespace FinalProject
         protected override void LoadContent()
         {
             Fonts.LoadFonts(Content);
-            GraphicsUtilities.LoadCircularWipe(Content);
+            UtilitiesGraphics.LoadCircularWipe(Content);
             screens["Splash Screen"].LoadContent();
             screens["Main Menu"].LoadContent();
             currentScreen = screens["Splash Screen"];
@@ -114,16 +114,16 @@ namespace FinalProject
         private void InitializeScreens()
         {
             screens = new Dictionary<string, Screen>();
-            screens["Command Center"] = new CommandCenterScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["Load Game"] = new LoadGameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["Main Menu"] = new MainMenuScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["New Game"] = new NewGameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["Select Character"] = new SelectCharacterScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["Select Difficulty"] = new SelectDifficultyScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["Select Stage"] = new SelectStageScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["Splash Screen"] = new SplashScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["Upgrade"] = new UpgradeScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["Game"] = new GameScreen(GameUtilities.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Command Center"] = new ScreenCommandCenter(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Load Game"] = new ScreenLoadGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Main Menu"] = new ScreenMainMenu(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["New Game"] = new ScreenNewGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Select Character"] = new ScreenSelectCharacter(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Select Difficulty"] = new ScreenSelectDifficulty(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Select Stage"] = new ScreenSelectStage(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Splash Screen"] = new ScreenSplash(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Upgrade"] = new ScreenUpgrade(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Game"] = new ScreenGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
         }
 
         private void SwitchScreens(string screen)

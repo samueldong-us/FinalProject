@@ -1,0 +1,27 @@
+﻿using FinalProject.Screens;
+
+namespace FinalProject.GameComponents
+{
+    internal class ComponentRemoveOnDeath : Component
+    {
+        public ComponentRemoveOnDeath(Entity entity)
+            : base(entity)
+        {
+            entity.MessageCenter.AddListener("Health Depleted", RequestRemove);
+        }
+
+        public override void Dispose()
+        {
+            entity.MessageCenter.RemoveListener("Health Depleted", RequestRemove);
+        }
+
+        public override void Update(float secondsPassed)
+        {
+        }
+
+        private void RequestRemove()
+        {
+            ScreenGame.MessageCenter.Broadcast<Entity>("Remove Entity", entity);
+        }
+    }
+}

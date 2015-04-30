@@ -36,15 +36,15 @@ namespace FinalProject.GameComponents
             Entity jellyfish = new Entity();
             jellyfish.Position = spawnPosition;
             jellyfish.Rotation = (float)(Math.PI / 2);
-            new VelocityAccelerationComponent(jellyfish, Vector2.Zero, Vector2.Zero);
-            new InFireOutBehaviorComponent(jellyfish, shootPosition, 200, 50);
-            new ConstantRateFireComponent(jellyfish, fireRate);
-            new CircularFireProjectileWeaponComponent(jellyfish, numberOfBullets, damage, (float)(Math.PI * Math.PI));
-            new ColliderComponent(jellyfish, GameAssets.Unit["Jelly"], GameAssets.UnitTriangles["Jelly"], GameScreen.CollidersEnemies);
-            new HealthComponent(jellyfish, health);
-            new HealthBarComponent(jellyfish, new Rectangle(0, 0, 100, 7), new Vector2(0, -50));
-            new RemoveOnDeathComponent(jellyfish);
-            new TextureRendererComponent(jellyfish, GameAssets.UnitTexture, GameAssets.Unit["Jelly"], Color.White, GameScreen.LayerEnemies);
+            new ComponentVelocityAcceleration(jellyfish, Vector2.Zero, Vector2.Zero);
+            new ComponentInFireOutBehavior(jellyfish, shootPosition, 200, 50);
+            new ComponentConstantRateFire(jellyfish, fireRate);
+            new ComponentProjectileWeaponCircularFire(jellyfish, numberOfBullets, damage, (float)(Math.PI * Math.PI));
+            new ComponentCollider(jellyfish, GameAssets.Unit["Jelly"], GameAssets.UnitTriangles["Jelly"], ScreenGame.CollidersEnemies);
+            new ComponentHealth(jellyfish, health);
+            new ComponentHealthBar(jellyfish, new Rectangle(0, 0, 100, 7), new Vector2(0, -50));
+            new ComponentRemoveOnDeath(jellyfish);
+            new ComponentTextureRenderer(jellyfish, GameAssets.UnitTexture, GameAssets.Unit["Jelly"], Color.White, ScreenGame.LayerEnemies);
             return jellyfish;
         }
 
