@@ -39,6 +39,24 @@ namespace FinalProject.Messaging
             listeners[message].Add(callback);
         }
 
+        public void AddListener<A, B, C>(string message, Callback<A, B, C> callback)
+        {
+            if (!listeners.ContainsKey(message))
+            {
+                listeners[message] = new List<Delegate>();
+            }
+            listeners[message].Add(callback);
+        }
+
+        public void AddListener<A, B, C, D>(string message, Callback<A, B, C, D> callback)
+        {
+            if (!listeners.ContainsKey(message))
+            {
+                listeners[message] = new List<Delegate>();
+            }
+            listeners[message].Add(callback);
+        }
+
         public void Broadcast(string message)
         {
             if (listeners.ContainsKey(message))
@@ -54,7 +72,7 @@ namespace FinalProject.Messaging
             }
         }
 
-        public void Broadcast<A>(string message, A parameterA)
+        public void Broadcast<A>(string message, A parameterOne)
         {
             if (listeners.ContainsKey(message))
             {
@@ -63,13 +81,13 @@ namespace FinalProject.Messaging
                     Callback<A> callback = callbackDelegate as Callback<A>;
                     if (callback != null)
                     {
-                        callback(parameterA);
+                        callback(parameterOne);
                     }
                 }
             }
         }
 
-        public void Broadcast<A, B>(string message, A parameterA, B parameterB)
+        public void Broadcast<A, B>(string message, A parameterOne, B parameterTwo)
         {
             if (listeners.ContainsKey(message))
             {
@@ -78,7 +96,37 @@ namespace FinalProject.Messaging
                     Callback<A, B> callback = callbackDelegate as Callback<A, B>;
                     if (callback != null)
                     {
-                        callback(parameterA, parameterB);
+                        callback(parameterOne, parameterTwo);
+                    }
+                }
+            }
+        }
+
+        public void Broadcast<A, B, C>(string message, A parameterOne, B parameterTwo, C parameterThree)
+        {
+            if (listeners.ContainsKey(message))
+            {
+                foreach (Delegate callbackDelegate in listeners[message])
+                {
+                    Callback<A, B, C> callback = callbackDelegate as Callback<A, B, C>;
+                    if (callback != null)
+                    {
+                        callback(parameterOne, parameterTwo, parameterThree);
+                    }
+                }
+            }
+        }
+
+        public void Broadcast<A, B, C, D>(string message, A parameterOne, B parameterTwo, C parameterThree, D parameterFour)
+        {
+            if (listeners.ContainsKey(message))
+            {
+                foreach (Delegate callbackDelegate in listeners[message])
+                {
+                    Callback<A, B, C, D> callback = callbackDelegate as Callback<A, B, C, D>;
+                    if (callback != null)
+                    {
+                        callback(parameterOne, parameterTwo, parameterThree, parameterFour);
                     }
                 }
             }
@@ -101,6 +149,22 @@ namespace FinalProject.Messaging
         }
 
         public void RemoveListener<A, B>(string message, Callback<A, B> callback)
+        {
+            if (listeners.ContainsKey(message))
+            {
+                listeners[message].Remove(callback);
+            }
+        }
+
+        public void RemoveListener<A, B, C>(string message, Callback<A, B, C> callback)
+        {
+            if (listeners.ContainsKey(message))
+            {
+                listeners[message].Remove(callback);
+            }
+        }
+
+        public void RemoveListener<A, B, C, D>(string message, Callback<A, B, C, D> callback)
         {
             if (listeners.ContainsKey(message))
             {
