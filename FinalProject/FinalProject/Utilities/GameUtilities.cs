@@ -15,13 +15,13 @@ namespace FinalProject.Utilities
 
         public static Matrix GetResizeMatrix(GraphicsDevice graphicsDevice)
         {
-            float widthScale = graphicsDevice.Viewport.Width / (float)Constants.VirtualWidth;
-            float heightScale = graphicsDevice.Viewport.Height / (float)Constants.VirtualHeight;
-            float scale = Math.Max(widthScale, heightScale);
-            float xChange = (graphicsDevice.Viewport.Width / 2) - (Constants.VirtualWidth * scale / 2);
-            float yChange = (graphicsDevice.Viewport.Height / 2) - (Constants.VirtualHeight * scale / 2);
-            Matrix scaleMatrix = Matrix.CreateScale(scale);
-            Matrix translateMatrix = Matrix.CreateTranslation(new Vector3(xChange, yChange, 0));
+            float requiredWidthScale = graphicsDevice.Viewport.Width / (float)GameMain.VirtualWidth;
+            float requiredHeightScale = graphicsDevice.Viewport.Height / (float)GameMain.VirtualHeight;
+            float desiredScale = Math.Max(requiredWidthScale, requiredHeightScale);
+            float requiredXTranslation = (graphicsDevice.Viewport.Width / 2) - (GameMain.VirtualWidth * desiredScale / 2);
+            float requiredYTranslation = (graphicsDevice.Viewport.Height / 2) - (GameMain.VirtualHeight * desiredScale / 2);
+            Matrix scaleMatrix = Matrix.CreateScale(desiredScale);
+            Matrix translateMatrix = Matrix.CreateTranslation(new Vector3(requiredXTranslation, requiredYTranslation, 0));
             return translateMatrix * scaleMatrix;
         }
     }

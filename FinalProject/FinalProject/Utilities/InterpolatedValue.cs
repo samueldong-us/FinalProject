@@ -4,6 +4,8 @@ namespace FinalProject.Utilities
 {
     internal abstract class InterpolatedValue
     {
+        public delegate void InterpolationEvent(float parameter);
+
         public InterpolationEvent InterpolationFinished;
         protected float parameter;
         protected float timeScale;
@@ -13,8 +15,6 @@ namespace FinalProject.Utilities
             timeScale = 1 / timeToFinish;
             parameter = 0;
         }
-
-        public delegate void InterpolationEvent(float parameter);
 
         public abstract float GetValue();
 

@@ -12,9 +12,8 @@ namespace FinalProject.Utilities
         private static Matrix currentMatrix;
         private static RenderTarget2D renderTarget = null;
 
-        public static void BeginDrawingPixelated(SpriteBatch spriteBatch, Vector2 position, int width, int height, float scale, GraphicsDevice graphicsDevice)
+        public static void BeginDrawingPixelated(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, float scale)
         {
-            Rectangle scaled = new Rectangle(0, 0, (int)(width * scale), (int)(height * scale));
             spriteBatch.End();
             graphicsDevice.SetRenderTarget(renderTarget);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, Matrix.CreateScale(scale));
@@ -35,32 +34,21 @@ namespace FinalProject.Utilities
             }
         }
 
-        public static void CreateRenderTarget(GraphicsDevice graphicsDevice)
-        {
-            renderTarget = new RenderTarget2D(
-                graphicsDevice,
-               Constants.VirtualWidth,
-                Constants.VirtualHeight,
-                false,
-                graphicsDevice.PresentationParameters.BackBufferFormat,
-                DepthFormat.Depth24);
-        }
-
-        public static void DrawStringVerticallyCentered(SpriteBatch spriteBatch, SpriteFont spriteFont, String text, Vector2 location, Color color)
+        public static void DrawStringVerticallyCentered(SpriteBatch spriteBatch, SpriteFont spriteFont, Color color, Vector2 position, String text)
         {
             Vector2 stringSize = spriteFont.MeasureString(text);
-            location.Y -= stringSize.Y / 2;
-            spriteBatch.DrawString(spriteFont, text, location, color);
+            Vector2 centeredPosition = position - new Vector2(0, stringSize.Y / 2);
+            spriteBatch.DrawString(spriteFont, text, centeredPosition, color);
         }
 
-        public static void EndDrawingPixelated(SpriteBatch spriteBatch, int width, int height, Vector2 position, float scale, GraphicsDevice graphicsDevice)
+        public static void EndDrawingPixelated(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, float scale)
         {
-            Rectangle destination = new Rectangle((int)position.X, (int)position.Y, width, height);
-            Rectangle scaled = new Rectangle(0, 0, (int)(width * scale), (int)(height * scale));
+            Rectangle destinationRectangle = new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight);
+            Rectangle scaledRectangle = new Rectangle(0, 0, (int)(GameMain.VirtualWidth * scale), (int)(GameMain.VirtualHeight * scale));
             spriteBatch.End();
             graphicsDevice.SetRenderTarget(null);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, GameUtilities.GetResizeMatrix(graphicsDevice));
-            spriteBatch.Draw((Texture2D)renderTarget, destination, scaled, Color.White);
+            spriteBatch.Draw((Texture2D)renderTarget, destinationRectangle, scaledRectangle, Color.White);
             spriteBatch.End();
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GameUtilities.GetResizeMatrix(graphicsDevice));
             currentMatrix = GameUtilities.GetResizeMatrix(graphicsDevice);
@@ -79,20 +67,10 @@ namespace FinalProject.Utilities
             }
         }
 
-        public static Color[,] GetColorsFromTexture(Texture2D texture)
+        public static void Initialize(GraphicsDevice graphicsDevice)
         {
-            Color[] rawArray = new Color[texture.Width * texture.Height];
-            texture.GetData<Color>(rawArray);
-            Color[,] colorArray = new Color[texture.Width, texture.Height];
-            for (int x = 0; x < texture.Width; x++)
-            {
-                for (int y = 0; y < texture.Height; y++)
-                {
-                    int rawIndex = y * texture.Width + x;
-                    colorArray[x, y] = rawArray[rawIndex];
-                }
-            }
-            return colorArray;
+            CreateRenderTarget(graphicsDevice);
+            MakePlainTexture(graphicsDevice);
         }
 
         public static void LoadCircularWipe(ContentManager contentManager)
@@ -101,7 +79,18 @@ namespace FinalProject.Utilities
             circularWipe.Parameters["Gradient"].SetValue(contentManager.Load<Texture2D>("Circular Gradient"));
         }
 
-        public static void MakePlainTexture(GraphicsDevice graphicsDevice)
+        private static void CreateRenderTarget(GraphicsDevice graphicsDevice)
+        {
+            renderTarget = new RenderTarget2D(
+                graphicsDevice,
+               GameMain.VirtualWidth,
+                GameMain.VirtualHeight,
+                false,
+                graphicsDevice.PresentationParameters.BackBufferFormat,
+                DepthFormat.Depth24);
+        }
+
+        private static void MakePlainTexture(GraphicsDevice graphicsDevice)
         {
             PlainTexture = new Texture2D(graphicsDevice, 1, 1);
             PlainTexture.SetData<Color>(new Color[] { Color.White });
