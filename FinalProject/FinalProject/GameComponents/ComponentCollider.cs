@@ -34,7 +34,7 @@ namespace FinalProject.GameComponents
 
         public bool CollidesWith(ComponentCollider other)
         {
-            if (Vector2.DistanceSquared(other.entity.Position, other.entity.Position) < (boundingRadius + other.boundingRadius) * (boundingRadius + other.boundingRadius))
+            if (Vector2.DistanceSquared(entity.Position, other.entity.Position) < (boundingRadius + other.boundingRadius) * (boundingRadius + other.boundingRadius))
             {
                 foreach (Triangle triangle in TransformedTriangles())
                 {
