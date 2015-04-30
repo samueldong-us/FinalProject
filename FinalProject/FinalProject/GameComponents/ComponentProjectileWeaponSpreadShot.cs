@@ -20,7 +20,7 @@ namespace FinalProject.GameComponents
 
         protected override void Fire()
         {
-            Entity bullet = CreateProjectile(Speed, rotation, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, ScreenGame.LayerPlayerBullets, ScreenGame.CollidersPlayerBullets);
+            Entity bullet = CreateProjectile(Speed, rotation, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "PlayerBullet", "PlayerBullet");
             bullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
             bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
             projectiles.Add(bullet);

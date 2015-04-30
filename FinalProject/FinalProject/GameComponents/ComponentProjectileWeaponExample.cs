@@ -25,7 +25,7 @@ namespace FinalProject.GameComponents
         {
             for (int i = 0; i < 6; i++)
             {
-                Entity centerBullet = CreateProjectile(100, (float)(Math.PI * i / 3), GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, ScreenGame.LayerPlayerBullets, ScreenGame.CollidersEnemyBullets);
+                Entity centerBullet = CreateProjectile(100, (float)(Math.PI * i / 3), GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "PlayerBullet", "EnemyBullet");
                 centerBullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
                 centerBullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
                 new ComponentDelayedTargeting(centerBullet, .5f, .1f * i, 300);

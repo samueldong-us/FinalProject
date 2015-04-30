@@ -108,6 +108,7 @@
     <Compile Include="GameComponents\ComponentSignalOnExit.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponSpreadShot.cs" />
     <Compile Include="GameComponents\ComponentTextureRenderer.cs" />
+    <Compile Include="GameComponents\SystemDrawing.cs" />
     <Compile Include="GameComponents\UnitFactory.cs" />
     <Compile Include="GameComponents\ComponentVelocityAcceleration.cs" />
     <Compile Include="GameComponents\ComponentVelocityBasedRotation.cs" />
@@ -141,6 +142,7 @@
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ItemGroupUpgrade.cs" />
     <Compile Include="Screens\ScreenUpgrade.cs" />
+    <Compile Include="GameComponents\SystemCollisions.cs" />
     <Compile Include="Utilities\InterpolatedValueCubic.cs" />
     <Compile Include="Utilities\InterpolatedValueExponential.cs" />
     <Compile Include="Utilities\Fonts.cs" />

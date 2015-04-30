@@ -40,12 +40,51 @@ namespace FinalProject.GameComponents
             new ComponentInFireOutBehavior(jellyfish, shootPosition, 200, 50);
             new ComponentConstantRateFire(jellyfish, fireRate);
             new ComponentProjectileWeaponCircularFire(jellyfish, numberOfBullets, damage, (float)(Math.PI * Math.PI));
-            new ComponentCollider(jellyfish, GameAssets.Unit["Jelly"], GameAssets.UnitTriangles["Jelly"], ScreenGame.CollidersEnemies);
+            new ComponentCollider(jellyfish, GameAssets.Unit["Jelly"], GameAssets.UnitTriangles["Jelly"], "Enemy");
             new ComponentHealth(jellyfish, health);
             new ComponentHealthBar(jellyfish, new Rectangle(0, 0, 100, 7), new Vector2(0, -50));
             new ComponentRemoveOnDeath(jellyfish);
-            new ComponentTextureRenderer(jellyfish, GameAssets.UnitTexture, GameAssets.Unit["Jelly"], Color.White, ScreenGame.LayerEnemies);
+            new ComponentTextureRenderer(jellyfish, GameAssets.UnitTexture, GameAssets.Unit["Jelly"], Color.White, "Enemy");
             return jellyfish;
+        }
+
+        public static Entity CreatePlayer(SaveGame saveGame)
+        {
+            Entity player = new Entity();
+            player.Position = new Vector2(700, 700);
+            player.Rotation = (float)(-Math.PI / 2);
+            switch (saveGame.character)
+            {
+                case SaveGame.Character.Dimmy:
+                    {
+                        CreateLaserShip(saveGame, player);
+                    } break;
+                case SaveGame.Character.Oason:
+                    {
+                        CreateLaserShip(saveGame, player);
+                    } break;
+                case SaveGame.Character.Varlet:
+                    {
+                        CreateLaserShip(saveGame, player);
+                    } break;
+            }
+            return player;
+        }
+
+        private static void CreateLaserShip(SaveGame saveGame, Entity player)
+        {
+            float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
+            float damagePerSecond = (10 + 1 * saveGame.Damage + 1 * saveGame.WeaponStrength) * (1 + saveGame.FireRate / 10.0f);
+            int health = 20 + 2 * saveGame.Shields;
+            new ComponentPlayerController(player, movementSpeed);
+            new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
+            new ComponentRestrictPosition(player, 50, 50, ScreenGame.Bounds);
+            new ComponentWeaponLaser(player, damagePerSecond);
+            new ComponentCollider(player, GameAssets.Unit["Laser Ship"], GameAssets.UnitTriangles["Laser Ship"], "Player");
+            new ComponentHealth(player, health);
+            new ComponentHealthBarCircular(player, (float)(Math.PI * 4 / 5));
+            new ComponentRemoveOnDeath(player);
+            new ComponentTextureRenderer(player, GameAssets.UnitTexture, GameAssets.Unit["Laser Ship"], Color.White, "Player");
         }
 
         private static void GetJellyFishValues(out int health, out int numberOfBullets, out int damage, out float fireRate)

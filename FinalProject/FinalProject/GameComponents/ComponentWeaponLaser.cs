@@ -56,8 +56,8 @@ namespace FinalProject.GameComponents
             laser.Position = entity.Position + new Vector2(0, -500);
             laser.Rotation = (float)(-Math.PI / 2);
             new ComponentFollowWithOffset(laser, entity, new Vector2(0, -500));
-            new ComponentCollider(laser, GameAssets.Unit["Laser Beam"], GameAssets.UnitTriangles["Laser Beam"], ScreenGame.CollidersPlayerBullets).DebugDraw();
-            new ComponentTextureRenderer(laser, GameAssets.UnitTexture, GameAssets.Unit["Laser Beam"], Color.White, ScreenGame.LayerPlayerBullets);
+            new ComponentCollider(laser, GameAssets.Unit["Laser Beam"], GameAssets.UnitTriangles["Laser Beam"], "PlayerBullet");
+            new ComponentTextureRenderer(laser, GameAssets.UnitTexture, GameAssets.Unit["Laser Beam"], Color.White, "PlayerBullet");
             laser.MessageCenter.AddListener<Entity, Entity>("Collided With", AddToList);
         }
 

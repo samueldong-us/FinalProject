@@ -5,18 +5,18 @@ using System.Collections.Generic;
 
 namespace FinalProject.GameComponents
 {
-    internal class ComponentCollider : Component, Drawable
+    internal class ComponentCollider : DrawableComponent
     {
         private float boundingRadius;
 
-        private List<ComponentCollider> colliderList;
+        private string colliderLayer;
 
         private Rectangle source;
 
         private List<Triangle> triangles;
 
-        public ComponentCollider(Entity entity, Rectangle source, List<Triangle> triangles, List<ComponentCollider> colliderList)
-            : base(entity)
+        public ComponentCollider(Entity entity, Rectangle source, List<Triangle> triangles, string colliderLayer)
+            : base(entity, "Debug")
         {
             this.source = source;
             this.triangles = triangles;
@@ -28,8 +28,8 @@ namespace FinalProject.GameComponents
                 float cDistance = Vector2.Distance(new Vector2(source.Width / 2f, source.Height / 2f), triangle.C);
                 boundingRadius = MathHelper.Max(MathHelper.Max(boundingRadius, aDistance), MathHelper.Max(bDistance, cDistance));
             }
-            this.colliderList = colliderList;
-            colliderList.Add(this);
+            ScreenGame.Collisions.AddCollider(colliderLayer, this);
+            this.colliderLayer = colliderLayer;
         }
 
         public bool CollidesWith(ComponentCollider other)
@@ -51,18 +51,13 @@ namespace FinalProject.GameComponents
             return false;
         }
 
-        public void DebugDraw()
-        {
-            ScreenGame.LayerDebug.Add(this);
-        }
-
         public override void Dispose()
         {
-            colliderList.Remove(this);
-            ScreenGame.LayerDebug.Remove(this);
+            ScreenGame.Collisions.RemoveCollider(colliderLayer, this);
+            base.Dispose();
         }
 
-        public void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
+        public override void Draw(Microsoft.Xna.Framework.Graphics.SpriteBatch spriteBatch)
         {
             foreach (Triangle triangle in TransformedTriangles())
             {

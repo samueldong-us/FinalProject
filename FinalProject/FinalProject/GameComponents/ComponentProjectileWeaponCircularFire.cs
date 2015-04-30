@@ -29,7 +29,7 @@ namespace FinalProject.GameComponents
         {
             for (int i = 0; i < numberOfBullets; i++)
             {
-                Entity bullet = CreateProjectile(Speed, (float)(2 * Math.PI * i / numberOfBullets + rotation), GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, ScreenGame.LayerEnemyBullets, ScreenGame.CollidersEnemyBullets);
+                Entity bullet = CreateProjectile(Speed, (float)(2 * Math.PI * i / numberOfBullets + rotation), GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
                 bullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
                 bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
                 projectiles.Add(bullet);

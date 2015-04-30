@@ -16,25 +16,8 @@ namespace FinalProject.Screens
     {
         public static Rectangle Bounds = new Rectangle(420, 0, 1080, 1050);
 
-        public static List<ComponentCollider> CollidersEnemies;
-
-        public static List<ComponentCollider> CollidersEnemyBullets;
-
-        public static List<ComponentCollider> CollidersPlayer;
-
-        public static List<ComponentCollider> CollidersPlayerBullets;
-
-        public static List<Drawable> LayerDebug;
-
-        public static List<Drawable> LayerEnemies;
-
-        public static List<Drawable> LayerEnemyBullets;
-
-        public static List<Drawable> LayerHealthBars;
-
-        public static List<Drawable> LayerPlayer;
-
-        public static List<Drawable> LayerPlayerBullets;
+        public static SystemCollisions Collisions;
+        public static SystemDrawing Drawing;
 
         public static MessageCenter MessageCenter;
 
@@ -57,9 +40,9 @@ namespace FinalProject.Screens
         public ScreenGame(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
+            InitializeSystems();
             InitializeMessageCenter();
             InitializeMenu();
-            InitializeStaticVariables();
             entities = new List<Entity>();
             toRemove = new List<Entity>();
             GameMain.MessageCenter.AddListener<SaveGame, string>("Save Game and Stage Pass to Game", SetCurrentGameAndStage);
@@ -125,25 +108,7 @@ namespace FinalProject.Screens
                 waves.Add(wave);
             }
             waveManager = new WaveManager(waves);
-            Entity ship = new Entity();
-            ship.Position = new Vector2(700, 700);
-            ship.Rotation = -(float)(Math.PI / 2);
-            new ComponentPlayerController(ship, 200);
-            /*
-            new ConstantRateFireComponent(ship, 0.1f);
-            new SpreadShotProjectileWeaponComponent(ship, 1, (float)(-Math.PI / 2), new Vector2(0, -50));
-            new SpreadShotProjectileWeaponComponent(ship, 1, (float)(-Math.PI / 2 - Math.PI / 16), new Vector2(-5, -50));
-            new SpreadShotProjectileWeaponComponent(ship, 1, (float)(-Math.PI / 2 + Math.PI / 16), new Vector2(5, -50));
-             */
-            new ComponentVelocityAcceleration(ship, Vector2.Zero, Vector2.Zero);
-            new ComponentRestrictPosition(ship, 50, 50, Bounds);
-            new ComponentWeaponLaser(ship, 10);
-            new ComponentCollider(ship, GameAssets.Unit["Laser Ship"], GameAssets.UnitTriangles["Laser Ship"], CollidersPlayer).DebugDraw();
-            new ComponentHealth(ship, 20);
-            new ComponentHealthBarCircular(ship, (float)(Math.PI * 4 / 5));
-            new ComponentRemoveOnDeath(ship);
-            new ComponentTextureRenderer(ship, GameAssets.UnitTexture, GameAssets.Unit["Laser Ship"], Color.White, LayerPlayer);
-            entities.Add(ship);
+            entities.Add(UnitFactory.CreatePlayer(currentGame));
             base.Start();
         }
 
@@ -160,7 +125,7 @@ namespace FinalProject.Screens
                         entities.Add(entity);
                     }
                 }
-                CheckForCollisions();
+                Collisions.Update();
                 foreach (Entity entity in toRemove)
                 {
                     entities.Remove(entity);
@@ -188,30 +153,7 @@ namespace FinalProject.Screens
         protected override void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
-            foreach (Drawable drawable in LayerPlayerBullets)
-            {
-                drawable.Draw(spriteBatch);
-            }
-            foreach (Drawable drawable in LayerPlayer)
-            {
-                drawable.Draw(spriteBatch);
-            }
-            foreach (Drawable drawable in LayerHealthBars)
-            {
-                drawable.Draw(spriteBatch);
-            }
-            foreach (Drawable drawable in LayerEnemyBullets)
-            {
-                drawable.Draw(spriteBatch);
-            }
-            foreach (Drawable drawable in LayerEnemies)
-            {
-                drawable.Draw(spriteBatch);
-            }
-            foreach (Drawable drawable in LayerDebug)
-            {
-                drawable.Draw(spriteBatch);
-            }
+            Drawing.Draw(spriteBatch);
             if (paused)
             {
                 menuItems.Draw(spriteBatch);
@@ -225,98 +167,13 @@ namespace FinalProject.Screens
                 entity.Dispose();
             }
             entities.Clear();
-            CollidersEnemies.Clear();
-            CollidersEnemyBullets.Clear();
-            CollidersPlayer.Clear();
-            CollidersPlayerBullets.Clear();
-            LayerDebug.Clear();
-            LayerEnemies.Clear();
-            LayerEnemyBullets.Clear();
-            LayerHealthBars.Clear();
-            LayerPlayer.Clear();
-            LayerPlayerBullets.Clear();
+            Collisions.Dispose(); Drawing.Dispose();
             base.Reset();
         }
 
         protected override void SwitchScreens()
         {
             GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Stage");
-        }
-
-        private static void InitializeStaticVariables()
-        {
-            CollidersEnemies = new List<ComponentCollider>();
-            CollidersEnemyBullets = new List<ComponentCollider>();
-            CollidersPlayer = new List<ComponentCollider>();
-            CollidersPlayerBullets = new List<ComponentCollider>();
-            LayerDebug = new List<Drawable>();
-            LayerEnemies = new List<Drawable>();
-            LayerEnemyBullets = new List<Drawable>();
-            LayerHealthBars = new List<Drawable>();
-            LayerPlayer = new List<Drawable>();
-            LayerPlayerBullets = new List<Drawable>();
-        }
-
-        private void CheckForCollisions()
-        {
-            foreach (ComponentCollider player in CollidersPlayer)
-            {
-                foreach (ComponentCollider enemyBullet in CollidersEnemyBullets)
-                {
-                    if (enemyBullet.CollidesWith(player))
-                    {
-                        enemyBullet.NotifyOfCollision(player.GetEntity());
-                        player.NotifyOfCollision(enemyBullet.GetEntity());
-                    }
-                }
-            }
-            foreach (ComponentCollider player in CollidersPlayer)
-            {
-                foreach (ComponentCollider enemy in CollidersEnemies)
-                {
-                    if (player.CollidesWith(enemy))
-                    {
-                        enemy.NotifyOfCollision(player.GetEntity());
-                        player.NotifyOfCollision(enemy.GetEntity());
-                    }
-                }
-            }
-            foreach (ComponentCollider enemy in CollidersEnemies)
-            {
-                foreach (ComponentCollider playerBullet in CollidersPlayerBullets)
-                {
-                    if (playerBullet.CollidesWith(enemy))
-                    {
-                        playerBullet.NotifyOfCollision(enemy.GetEntity());
-                        enemy.NotifyOfCollision(playerBullet.GetEntity());
-                    }
-                }
-            }
-        }
-
-        private Vector2 ClosestCollider(Entity entity, List<ComponentCollider> colliderList, float maxAngle)
-        {
-            ComponentCollider closest = null;
-            Vector2 closestFromTo = Vector2.Zero;
-            Vector2 entityVector = Vector2.Transform(Vector2.UnitX, Matrix.CreateRotationZ(entity.Rotation));
-            foreach (ComponentCollider collider in colliderList)
-            {
-                Vector2 fromTo = collider.GetEntity().Position - entity.Position;
-                if (UtilitiesMath.AngleBetween(entityVector, fromTo) < maxAngle)
-                {
-                    if (closest == null || fromTo.LengthSquared() < closestFromTo.LengthSquared())
-                    {
-                        closest = collider;
-                        closestFromTo = fromTo;
-                    }
-                }
-            }
-            return closest == null ? new Vector2(-1, -1) : closest.GetEntity().Position;
-        }
-
-        private void ClosestPlayer(Entity parameterOne)
-        {
-            parameterOne.MessageCenter.Broadcast<Vector2>("Closest Player", ClosestCollider(parameterOne, CollidersPlayer, (float)Math.PI));
         }
 
         private void InitializeMenu()
@@ -330,7 +187,13 @@ namespace FinalProject.Screens
         {
             MessageCenter = new MessageCenter();
             MessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
-            MessageCenter.AddListener<Entity>("Find Closest Player", ClosestPlayer);
+            MessageCenter.AddListener<Entity>("Find Closest Player", Collisions.ClosestPlayer);
+        }
+
+        private void InitializeSystems()
+        {
+            Collisions = new SystemCollisions();
+            Drawing = new SystemDrawing();
         }
 
         private void RemoveEntity(Entity entity)

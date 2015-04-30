@@ -5,7 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace FinalProject.GameComponents
 {
-    internal class ComponentHealthBar : Component, Drawable
+    internal class ComponentHealthBar : DrawableComponent
     {
         protected float health;
 
@@ -16,13 +16,12 @@ namespace FinalProject.GameComponents
         private Rectangle bar;
 
         public ComponentHealthBar(Entity entity, Rectangle size, Vector2 offset)
-            : base(entity)
+            : base(entity, "HealthBar")
         {
             int x = (int)(offset.X - size.Width / 2.0);
             int y = (int)(offset.Y - size.Height / 2.0);
             bar = new Rectangle(x, y, size.Width, size.Height);
             backing = new Rectangle(x - 3, y - 3, size.Width + 6, size.Height + 6);
-            ScreenGame.LayerHealthBars.Add(this);
             entity.MessageCenter.AddListener<float, float>("Health", UpdateHealth);
             health = 1;
             maxHealth = 1;
@@ -30,11 +29,11 @@ namespace FinalProject.GameComponents
 
         public override void Dispose()
         {
-            ScreenGame.LayerHealthBars.Remove(this);
             entity.MessageCenter.RemoveListener<float, float>("Health", UpdateHealth);
+            base.Dispose();
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public override void Draw(SpriteBatch spriteBatch)
         {
             float healthAmount = health / maxHealth;
             Vector3 healthColor = Vector3.Zero;

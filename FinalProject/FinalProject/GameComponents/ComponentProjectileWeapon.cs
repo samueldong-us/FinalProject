@@ -51,11 +51,11 @@ namespace FinalProject.GameComponents
             toRemove.Clear();
         }
 
-        protected Entity CreateProjectile(float speed, float rotation, Texture2D texture, Rectangle source, List<Triangle> triangles, Color tint, List<Drawable> drawingLayer, List<ComponentCollider> colliderList)
+        protected Entity CreateProjectile(float speed, float rotation, Texture2D texture, Rectangle source, List<Triangle> triangles, Color tint, string drawingLayer, string colliderLayer)
         {
             Entity projectile = new Entity();
             projectile.Position = entity.Position + offset;
-            new ComponentCollider(projectile, source, triangles, colliderList).DebugDraw();
+            new ComponentCollider(projectile, source, triangles, colliderLayer);
             new ComponentVelocityAcceleration(projectile, UtilitiesMath.VectorFromMagnitudeAndAngle(speed, rotation), Vector2.Zero);
             new ComponentVelocityBasedRotation(projectile);
             new ComponentSignalOnExit(projectile, source, ScreenGame.Bounds);
