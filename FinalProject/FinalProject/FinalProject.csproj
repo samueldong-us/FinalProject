@@ -97,6 +97,7 @@
     <Compile Include="GameComponents\ComponentDelayedTargeting.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponExample.cs" />
     <Compile Include="GameComponents\ComponentFollowWithOffset.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponSingleShot.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />
     <Compile Include="GameComponents\ComponentHealthBar.cs" />
     <Compile Include="GameComponents\ComponentInFireOutBehavior.cs" />

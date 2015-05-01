@@ -22,6 +22,12 @@ namespace FinalProject.GameComponents
                         Vector2 shootPosition = spawnInformation.GetInformation<Vector2>("Shoot Position");
                         return CreateJellyFish(spawnPosition, shootPosition);
                     }
+                case "Walking Fish01":
+                    {
+                        Vector2 spawnPosition = spawnInformation.GetInformation<Vector2>("Spawn Position");
+                        Vector2 shootPosition = spawnInformation.GetInformation<Vector2>("Shoot Position");
+                        return CreateWalkingFish01(spawnPosition, shootPosition);
+                    }
             }
             return null;
         }
@@ -46,6 +52,27 @@ namespace FinalProject.GameComponents
             new ComponentRemoveOnDeath(jellyfish);
             new ComponentTextureRenderer(jellyfish, GameAssets.UnitTexture, GameAssets.Unit["Jelly"], Color.White, "Enemy");
             return jellyfish;
+        }
+
+        public static Entity CreateWalkingFish01(Vector2 spawnPosition, Vector2 shootPosition)
+        {
+            int health;
+            int damage;
+            float fireRate;
+            GetWalkingFish01Values(out health, out damage, out fireRate);
+            Entity walkingFish01 = new Entity();
+            walkingFish01.Position = spawnPosition;
+            walkingFish01.Rotation = (float)(Math.PI / 2);
+            new ComponentVelocityAcceleration(walkingFish01, Vector2.Zero, Vector2.Zero);
+            new ComponentInFireOutBehavior(walkingFish01, shootPosition, 200, 50);
+            new ComponentConstantRateFire(walkingFish01, fireRate);
+            new ComponentProjectileWeaponSingleShot(walkingFish01, damage, fireRate);
+            new ComponentCollider(walkingFish01, GameAssets.Unit["Walking Fish01"], GameAssets.UnitTriangles["Walking Fish01"], "Enemy");
+            new ComponentHealth(walkingFish01, health);
+            new ComponentHealthBar(walkingFish01, new Rectangle(0, 0, 100, 7), new Vector2(0, -50));
+            new ComponentRemoveOnDeath(walkingFish01);
+            new ComponentTextureRenderer(walkingFish01, GameAssets.UnitTexture, GameAssets.Unit["Walking Fish01"], Color.White, "Enemy");
+            return walkingFish01;
         }
 
         public static Entity CreatePlayer(SaveGame saveGame)
@@ -141,6 +168,70 @@ namespace FinalProject.GameComponents
                                 {
                                     health = 60;
                                     numberOfBullets = 50;
+                                    damage = 3;
+                                    fireRate = 1;
+                                } break;
+                            case 2:
+                                {
+                                } break;
+                            case 3:
+                                {
+                                } break;
+                        }
+                    } break;
+            }
+        }
+
+        private static void GetWalkingFish01Values(out int health, out int damage, out float fireRate)
+        {
+            health = 1;
+            damage = 1;
+            fireRate = 1;
+            switch (Difficulty)
+            {
+                case SaveGame.Difficulty.Easy:
+                    {
+                        switch (Stage)
+                        {
+                            case 1:
+                                {
+                                    health = 30;
+                                    damage = 1;
+                                    fireRate = 3;
+                                } break;
+                            case 2:
+                                {
+                                } break;
+                            case 3:
+                                {
+                                } break;
+                        }
+                    } break;
+                case SaveGame.Difficulty.Normal:
+                    {
+                        switch (Stage)
+                        {
+                            case 1:
+                                {
+                                    health = 45;
+                                    damage = 2;
+                                    fireRate = 2;
+                                } break;
+                            case 2:
+                                {
+                                } break;
+                            case 3:
+                                {
+                                } break;
+                        }
+                    } break;
+                case SaveGame.Difficulty.Hard:
+                    {
+                        switch (Stage)
+                        {
+                            case 1:
+                                {
+                                    health = 60;
                                     damage = 3;
                                     fireRate = 1;
                                 } break;
