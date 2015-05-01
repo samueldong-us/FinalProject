@@ -91,6 +91,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\ComponentCatmullRomBehavior.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponCircularFire.cs" />
     <Compile Include="GameComponents\ComponentHealthBarCircular.cs" />
     <Compile Include="GameComponents\ComponentConstantRateFire.cs" />
