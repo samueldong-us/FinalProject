@@ -50,36 +50,36 @@ namespace FinalProject.Screens
 
         public override void KeyPressed(Keys key)
         {
-            MessageCenter.Broadcast<Keys>("Key Pressed", key);
-            switch (state)
+            if (state == ScreenState.Active)
             {
-                case ScreenState.Active:
-                    {
-                        switch (key)
+                MessageCenter.Broadcast<Keys>("Key Pressed", key);
+                switch (key)
+                {
+                    case Keys.Enter:
                         {
-                            case Keys.Enter:
-                                {
-                                } break;
-                            case Keys.Up:
-                                {
-                                    menuItems.MoveUp();
-                                } break;
-                            case Keys.Down:
-                                {
-                                    menuItems.MoveDown();
-                                } break;
-                            case Keys.Escape:
-                                {
-                                    BeginTransitioningOut();
-                                } break;
-                        }
-                    } break;
+                        } break;
+                    case Keys.Up:
+                        {
+                            menuItems.MoveUp();
+                        } break;
+                    case Keys.Down:
+                        {
+                            menuItems.MoveDown();
+                        } break;
+                    case Keys.Escape:
+                        {
+                            BeginTransitioningOut();
+                        } break;
+                }
             }
         }
 
         public override void KeyReleased(Keys key)
         {
-            MessageCenter.Broadcast<Keys>("Key Released", key);
+            if (state == ScreenState.Active)
+            {
+                MessageCenter.Broadcast<Keys>("Key Released", key);
+            }
         }
 
         public override void LoadContent()
@@ -97,9 +97,17 @@ namespace FinalProject.Screens
             test1.AddInformation("Spawn Position", new Vector2(500, -200));
             test1.AddInformation("Shoot Position", new Vector2(700, 200));
             SpawnInformation test2 = new SpawnInformation(2);
-            test2.AddInformation("Unit Type", "Walking Fish01");
+            test2.AddInformation("Unit Type", "Jellyfish");
             test2.AddInformation("Spawn Position", new Vector2(1420, -200));
             test2.AddInformation("Shoot Position", new Vector2(1220, 200));
+            List<Vector2> path = new List<Vector2>();
+            path.Add(new Vector2(320, 200));
+            path.Add(new Vector2(1010, 400));
+            path.Add(new Vector2(1010, 600));
+            path.Add(new Vector2(910, 600));
+            path.Add(new Vector2(910, 400));
+            path.Add(new Vector2(1600, 200));
+            test2.AddInformation("Path", path);
             for (int i = 0; i < 4; i++)
             {
                 Wave wave = new Wave();

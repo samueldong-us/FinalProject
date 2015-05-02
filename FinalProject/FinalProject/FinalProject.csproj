@@ -98,7 +98,7 @@
     <Compile Include="GameComponents\ComponentDelayedTargeting.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponExample.cs" />
     <Compile Include="GameComponents\ComponentFollowWithOffset.cs" />
-    <Compile Include="GameComponents\ComponentProjectileWeaponFan.cs" />
+    <Compile Include="GameComponents\ComponentRemoveOnExit.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />
     <Compile Include="GameComponents\ComponentHealthBar.cs" />
     <Compile Include="GameComponents\ComponentInFireOutBehavior.cs" />
@@ -117,7 +117,7 @@
     <Compile Include="GameMain.cs" />
     <Compile Include="GameComponents\ComponentCollider.cs" />
     <Compile Include="GameComponents\Component.cs" />
-    <Compile Include="GameComponents\Drawable.cs" />
+    <Compile Include="GameComponents\ComponentDrawable.cs" />
     <Compile Include="GameComponents\ComponentHealth.cs" />
     <Compile Include="GameComponents\Entity.cs" />
     <Compile Include="GameSaving\SaveGame.cs" />

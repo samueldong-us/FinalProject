@@ -63,8 +63,11 @@ namespace FinalProject.GameComponents
 
         private void StopFiring()
         {
-            laser.Dispose();
-            laser = null;
+            if (laser != null)
+            {
+                laser.Dispose();
+                laser = null;
+            }
         }
     }
 }
