@@ -1,5 +1,4 @@
-﻿using FinalProject.Screens;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 
 namespace FinalProject.GameComponents

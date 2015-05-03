@@ -3,9 +3,9 @@ using Microsoft.Xna.Framework;
 
 namespace FinalProject.GameComponents
 {
-    internal class ComponentInFireOutBehavior : Component
+    internal class ComponentBehaviorInFireOut : Component
     {
-        private const float CeaseFireY = 700;
+        private int ceaseFireY;
 
         private float outSpeed;
 
@@ -15,7 +15,8 @@ namespace FinalProject.GameComponents
 
         private float timePassed;
 
-        public ComponentInFireOutBehavior(Entity entity, Vector2 switchingPoint, float inSpeed, float outSpeed)
+        public ComponentBehaviorInFireOut(Entity entity, Vector2 switchingPoint, float inSpeed, float outSpeed, int ceaseFireY)
+
             : base(entity)
         {
             Vector2 direction = (switchingPoint - entity.Position);
@@ -25,6 +26,7 @@ namespace FinalProject.GameComponents
             direction.Normalize();
             entity.MessageCenter.Broadcast<Vector2>("Set Velocity", direction * inSpeed);
             this.outSpeed = outSpeed;
+            this.ceaseFireY = ceaseFireY;
         }
 
         public override void Dispose()
@@ -40,7 +42,7 @@ namespace FinalProject.GameComponents
                 entity.MessageCenter.Broadcast("Start Firing");
                 switchTime = outTime + 1;
             }
-            if (entity.Position.Y > CeaseFireY)
+            if (entity.Position.Y > ceaseFireY)
             {
                 entity.MessageCenter.Broadcast("Stop Firing");
             }

@@ -91,7 +91,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="GameComponents\ComponentCatmullRomBehavior.cs" />
+    <Compile Include="GameComponents\ComponentBehaviorCatmullRom.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponCircularFire.cs" />
     <Compile Include="GameComponents\ComponentHealthBarCircular.cs" />
     <Compile Include="GameComponents\ComponentConstantRateFire.cs" />
@@ -100,9 +100,12 @@
     <Compile Include="GameComponents\ComponentFollowWithOffset.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponFan.cs" />
     <Compile Include="GameComponents\ComponentRemoveOnExit.cs" />
+    <Compile Include="GameComponents\FactoryBehavior.cs" />
+    <Compile Include="GameComponents\FactoryUnit.cs" />
+    <Compile Include="GameComponents\FactoryWeapon.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />
     <Compile Include="GameComponents\ComponentHealthBar.cs" />
-    <Compile Include="GameComponents\ComponentInFireOutBehavior.cs" />
+    <Compile Include="GameComponents\ComponentBehaviorInFireOut.cs" />
     <Compile Include="GameComponents\ComponentWeaponLaser.cs" />
     <Compile Include="GameComponents\ComponentPlayerController.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeapon.cs" />

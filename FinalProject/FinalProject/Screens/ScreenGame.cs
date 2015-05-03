@@ -2,7 +2,6 @@
 using FinalProject.GameSaving;
 using FinalProject.GameWaves;
 using FinalProject.Messaging;
-using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;

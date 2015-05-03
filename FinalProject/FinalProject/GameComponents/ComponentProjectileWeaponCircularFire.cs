@@ -1,5 +1,4 @@
-﻿using FinalProject.Screens;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 
 namespace FinalProject.GameComponents
@@ -24,7 +23,7 @@ namespace FinalProject.GameComponents
             this.rotationalDelta = rotationalDelta;
             rotation = 0;
         }
-        
+
         protected override void Fire()
         {
             for (int i = 0; i < numberOfBullets; i++)

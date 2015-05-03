@@ -4,26 +4,24 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameComponents
 {
-    internal class ComponentCatmullRomBehavior : DrawableComponent
+    internal class ComponentBehaviorCatmullRom : DrawableComponent
     {
         private const float alpha = 1f;
         private const float deltaTime = .01f;
-        private const float StartFiringPoint = .10f;
-        private const float StopFiringPoint = .90f;
         private float parameter;
         private List<float> pathLength;
         private List<Vector2> pointList;
         private List<float> pointTimes;
         private float speed;
+        private float startFiringPercentage;
+        private float stopFiringPercentage;
         private float timePassed;
         private float timeToFinish;
 
-        public ComponentCatmullRomBehavior(Entity entity, List<Vector2> path, float speed)
+        public ComponentBehaviorCatmullRom(Entity entity, List<Vector2> path, float speed, float startFiringPercentage, float stopFiringPercentage)
             : base(entity, "Debug")
         {
             pointList = path;
@@ -40,6 +38,8 @@ namespace FinalProject.GameComponents
             timeToFinish = time;
             this.speed = speed;
             parameter = 0;
+            this.startFiringPercentage = startFiringPercentage;
+            this.stopFiringPercentage = stopFiringPercentage;
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -60,14 +60,14 @@ namespace FinalProject.GameComponents
         {
             if (timePassed + secondsPassed >= timeToFinish)
             {
-                ScreenGame.MessageCenter.Broadcast<Entity>("Remove Entity", entity);
+                ScreenGame.Entities.RemoveEntity(entity);
                 return;
             }
-            else if (timePassed > StopFiringPoint * timeToFinish)
+            else if (timePassed > stopFiringPercentage * timeToFinish)
             {
                 entity.MessageCenter.Broadcast("Stop Firing");
             }
-            else if (timePassed > StartFiringPoint * timeToFinish)
+            else if (timePassed > startFiringPercentage * timeToFinish)
             {
                 entity.MessageCenter.Broadcast("Start Firing");
             }

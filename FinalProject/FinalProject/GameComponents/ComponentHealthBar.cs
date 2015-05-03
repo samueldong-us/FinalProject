@@ -1,5 +1,4 @@
-﻿using FinalProject.Screens;
-using FinalProject.Utilities;
+﻿using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
