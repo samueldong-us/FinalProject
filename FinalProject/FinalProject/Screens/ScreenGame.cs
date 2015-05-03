@@ -152,26 +152,24 @@ namespace FinalProject.Screens
         private void SetCurrentGameAndStage(SaveGame saveGame, string stage)
         {
             currentGame = saveGame;
-            UnitFactory.Difficulty = currentGame.difficulty;
+            FactoryUnit.Difficulty = currentGame.difficulty;
             switch (stage)
             {
-                case "LEVEL 1": { UnitFactory.Stage = 1; } break;
-                case "LEVEL 2": { UnitFactory.Stage = 2; } break;
-                case "LEVEL 3": { UnitFactory.Stage = 3; } break;
+                case "LEVEL 1": { FactoryUnit.Stage = 1; } break;
+                case "LEVEL 2": { FactoryUnit.Stage = 2; } break;
+                case "LEVEL 3": { FactoryUnit.Stage = 3; } break;
             }
         }
 
         private void TestSetup()
         {
             List<Wave> waves = new List<Wave>();
-            SpawnInformation test1 = new SpawnInformation(0);
-            test1.AddInformation("Unit Type", "Walking Fish01");
-            test1.AddInformation("Spawn Position", new Vector2(500, -200));
-            test1.AddInformation("Shoot Position", new Vector2(700, 200));
             SpawnInformation test2 = new SpawnInformation(2);
-            test2.AddInformation("Unit Type", "Jellyfish");
-            test2.AddInformation("Spawn Position", new Vector2(1420, -200));
-            test2.AddInformation("Shoot Position", new Vector2(1220, 200));
+            test2.AddInformation("Unit Name", "Walking Fish01");
+            test2.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+            test2.AddInformation("Rotate Based On Velocity", false);
+            test2.AddInformation("Behavior Name", "Catmull Rom");
+            test2.AddInformation("Weapon Name", "Circular Fire");
             List<Vector2> path = new List<Vector2>();
             path.Add(new Vector2(320, 200));
             path.Add(new Vector2(1010, 400));
@@ -180,15 +178,16 @@ namespace FinalProject.Screens
             path.Add(new Vector2(910, 400));
             path.Add(new Vector2(1600, 200));
             test2.AddInformation("Path", path);
+            test2.AddInformation("Start Firing Percentage", 0.1f);
+            test2.AddInformation("Stop Firing Percentage", 0.9f);
             for (int i = 0; i < 4; i++)
             {
                 Wave wave = new Wave();
-                wave.AddSpawnInformation(test1);
                 wave.AddSpawnInformation(test2);
                 waves.Add(wave);
             }
             waveManager = new SystemWaves(waves);
-            Entities.AddEntity(UnitFactory.CreatePlayer(currentGame));
+            Entities.AddEntity(FactoryPlayer.CreatePlayer(currentGame));
         }
     }
 }

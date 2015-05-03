@@ -116,9 +116,10 @@
     <Compile Include="GameComponents\ComponentTextureRenderer.cs" />
     <Compile Include="GameComponents\SystemDrawing.cs" />
     <Compile Include="GameComponents\SystemEntity.cs" />
-    <Compile Include="GameComponents\UnitFactory.cs" />
     <Compile Include="GameComponents\ComponentVelocityAcceleration.cs" />
     <Compile Include="GameComponents\ComponentVelocityBasedRotation.cs" />
+    <Compile Include="GameComponents\FactoryPlayer.cs" />
+    <Compile Include="GameComponents\UnitHealthBarInformation.cs" />
     <Compile Include="GameComponents\UnitValues.cs" />
     <Compile Include="GameComponents\Values.cs" />
     <Compile Include="GameMain.cs" />

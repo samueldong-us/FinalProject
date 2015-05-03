@@ -10,11 +10,11 @@ namespace FinalProject.GameComponents
         {
             switch (spawnInformation.GetInformation<string>("Behavior Name"))
             {
-                case "CatmullRom":
+                case "Catmull Rom":
                     {
                         AddCatmullRomBehavior(entity, spawnInformation);
                     } break;
-                case "InFireOut":
+                case "In Fire Out":
                     {
                         AddInFireOutBehavior(entity, spawnInformation);
                     } break;
@@ -24,7 +24,7 @@ namespace FinalProject.GameComponents
         private static void AddCatmullRomBehavior(Entity entity, SpawnInformation spawnInformation)
         {
             List<Vector2> path = spawnInformation.GetInformation<List<Vector2>>("Path");
-            float speed = spawnInformation.GetInformation<float>("Speed");
+            float speed = Values.UnitMovementSpeeds[spawnInformation.GetInformation<string>("Unit Name")];
             float startFiringPercentage = spawnInformation.GetInformation<float>("Start Firing Percentage");
             float stopFiringPercentage = spawnInformation.GetInformation<float>("Stop Firing Percentage");
             entity.Position = path[0];

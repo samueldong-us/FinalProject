@@ -1,4 +1,5 @@
 ﻿using FinalProject.GameSaving;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +9,8 @@ namespace FinalProject.GameComponents
 {
     internal static class Values
     {
+        public static Dictionary<string, UnitHealthBarInformation> UnitHealthBars;
+        public static Dictionary<string, float> UnitMovementSpeeds;
         public static Dictionary<SaveGame.Difficulty, Dictionary<int, Dictionary<string, UnitValues>>> UnitValues;
         public static Dictionary<SaveGame.Difficulty, Dictionary<int, Dictionary<string, Dictionary<string, object>>>> WeaponValues;
         private static SaveGame.Difficulty[] difficultyValues = { SaveGame.Difficulty.Easy, SaveGame.Difficulty.Normal, SaveGame.Difficulty.Hard };
@@ -18,9 +21,24 @@ namespace FinalProject.GameComponents
             UnitValues = new Dictionary<SaveGame.Difficulty, Dictionary<int, Dictionary<string, UnitValues>>>();
             InitializeUnitValues();
             FillUnitValues();
+            UnitMovementSpeeds = new Dictionary<string, float>();
+            FillUnitMovementSpeeds();
+            UnitHealthBars = new Dictionary<string, UnitHealthBarInformation>();
+            FillUnitHealthBars();
             WeaponValues = new Dictionary<SaveGame.Difficulty, Dictionary<int, Dictionary<string, Dictionary<string, object>>>>();
             InitalizeWeaponValues();
             FillWeaponValues();
+        }
+
+        private static void FillUnitHealthBars()
+        {
+            UnitHealthBars["Jellyfish"] = new UnitHealthBarInformation(new Rectangle(0, 0, 100, 10), new Vector2(0, -75));
+        }
+
+        private static void FillUnitMovementSpeeds()
+        {
+            UnitMovementSpeeds["Jellyfish"] = 200f;
+            UnitMovementSpeeds["Walking Fish01"] = 200f;
         }
 
         private static void FillUnitValues()
@@ -28,6 +46,10 @@ namespace FinalProject.GameComponents
             UnitValues[SaveGame.Difficulty.Easy][1]["Jellyfish"] = new UnitValues(30);
             UnitValues[SaveGame.Difficulty.Normal][1]["Jellyfish"] = new UnitValues(45);
             UnitValues[SaveGame.Difficulty.Hard][1]["Jellyfish"] = new UnitValues(60);
+
+            UnitValues[SaveGame.Difficulty.Easy][1]["Walking Fish01"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Walking Fish01"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Walking Fish01"] = new UnitValues(30);
         }
 
         private static void FillWeaponValues()

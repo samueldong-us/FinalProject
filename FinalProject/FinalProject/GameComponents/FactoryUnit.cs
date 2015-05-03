@@ -13,19 +13,24 @@ namespace FinalProject.GameComponents
 
         public static Entity CreateEntityFromSpawnInformation(SpawnInformation spawnInformation)
         {
+            string unitName = spawnInformation.GetInformation<string>("Unit Name");
             Entity unit = new Entity();
             unit.Rotation = spawnInformation.GetInformation<float>("Starting Rotation");
             new ComponentVelocityAcceleration(unit, Vector2.Zero, Vector2.Zero);
             FactoryBehavior.AddBehavior(unit, spawnInformation);
             FactoryWeapon.AddWeapon(unit, spawnInformation, Difficulty, Stage);
             new ComponentHealth(unit, Values.UnitValues[Difficulty][Stage][spawnInformation.GetInformation<string>("Unit Name")].Health);
-            new ComponentCollider(unit, GameAssets.Unit[spawnInformation.GetInformation<string>("Unit Name")], GameAssets.UnitTriangles[spawnInformation.GetInformation<string>("Unit Name")], "Enemy");
+            if (Values.UnitHealthBars.ContainsKey(unitName))
+            {
+                new ComponentHealthBar(unit, Values.UnitHealthBars[unitName].BarRectangle, Values.UnitHealthBars[unitName].Offset);
+            }
+            new ComponentCollider(unit, GameAssets.Unit[unitName], GameAssets.UnitTriangles[unitName], "Enemy");
             new ComponentRemoveOnDeath(unit);
             if (spawnInformation.GetInformation<bool>("Rotate Based On Velocity"))
             {
                 new ComponentVelocityBasedRotation(unit);
             }
-            new ComponentTextureRenderer(unit, GameAssets.UnitTexture, GameAssets.Unit[spawnInformation.GetInformation<string>("Unit Name")], Color.White, "Enemy");
+            new ComponentTextureRenderer(unit, GameAssets.UnitTexture, GameAssets.Unit[unitName], Color.White, "Enemy");
             return unit;
         }
     }

@@ -35,7 +35,7 @@ namespace FinalProject.GameWaves
             }
             foreach (SpawnInformation info in waves[0].GetSpawnInformationToSpawn())
             {
-                ScreenGame.Entities.AddEntity(UnitFactory.CreateFromSpawnInformation(info));
+                ScreenGame.Entities.AddEntity(FactoryUnit.CreateEntityFromSpawnInformation(info));
             }
         }
 
