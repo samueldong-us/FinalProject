@@ -33,10 +33,13 @@ namespace FinalProject.GameWaves
                     }
                 }
             }
+            if (waves.Count > 0)
+            {
             foreach (SpawnInformation info in waves[0].GetSpawnInformationToSpawn())
             {
                 ScreenGame.Entities.AddEntity(FactoryUnit.CreateEntityFromSpawnInformation(info));
             }
+        }
         }
 
         private bool CurrentWaveOver()
