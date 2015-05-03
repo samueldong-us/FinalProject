@@ -18,6 +18,7 @@ namespace FinalProject.Screens
 
         public static SystemCollisions Collisions;
         public static SystemDrawing Drawing;
+        public static SystemEntity Entities;
 
         public static MessageCenter MessageCenter;
 
@@ -25,17 +26,13 @@ namespace FinalProject.Screens
 
         private SaveGame currentGame;
 
-        private List<Entity> entities;
-
         private ItemGroupMenu menuItems;
 
         private bool paused;
 
         private Random rng = new Random();
 
-        private List<Entity> toRemove;
-
-        private WaveManager waveManager;
+        private SystemWaves waveManager;
 
         public ScreenGame(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -43,8 +40,6 @@ namespace FinalProject.Screens
             InitializeSystems();
             InitializeMessageCenter();
             InitializeMenu();
-            entities = new List<Entity>();
-            toRemove = new List<Entity>();
             GameMain.MessageCenter.AddListener<SaveGame, string>("Save Game and Stage Pass to Game", SetCurrentGameAndStage);
         }
 
@@ -91,6 +86,84 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
+            TestSetup();
+            base.Start();
+        }
+
+        protected override void ActiveUpdate(float secondsPassed)
+        {
+            if (!paused)
+            {
+                waveManager.Update(secondsPassed);
+                Collisions.Update();
+                Entities.Update(secondsPassed);
+            }
+        }
+
+        protected override void BeginTransitioningOut()
+        {
+            GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Select Stage", currentGame);
+            GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Select Stage");
+            base.BeginTransitioningOut();
+        }
+
+        protected override void DrawScreen(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
+            Drawing.Draw(spriteBatch);
+            if (paused)
+            {
+                menuItems.Draw(spriteBatch);
+            }
+        }
+
+        protected override void Reset()
+        {
+            Entities.Dispose();
+            Collisions.Dispose();
+            Drawing.Dispose();
+            base.Reset();
+        }
+
+        protected override void SwitchScreens()
+        {
+            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Stage");
+        }
+
+        private void InitializeMenu()
+        {
+            menuItems = new ItemGroupMenu();
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "LEVEL SELECT"));
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 450), "UPGRADES"));
+        }
+
+        private void InitializeMessageCenter()
+        {
+            MessageCenter = new MessageCenter();
+            MessageCenter.AddListener<Entity>("Find Closest Player", Collisions.ClosestPlayer);
+        }
+
+        private void InitializeSystems()
+        {
+            Collisions = new SystemCollisions();
+            Drawing = new SystemDrawing();
+            Entities = new SystemEntity();
+        }
+
+        private void SetCurrentGameAndStage(SaveGame saveGame, string stage)
+        {
+            currentGame = saveGame;
+            UnitFactory.Difficulty = currentGame.difficulty;
+            switch (stage)
+            {
+                case "LEVEL 1": { UnitFactory.Stage = 1; } break;
+                case "LEVEL 2": { UnitFactory.Stage = 2; } break;
+                case "LEVEL 3": { UnitFactory.Stage = 3; } break;
+            }
+        }
+
+        private void TestSetup()
+        {
             List<Wave> waves = new List<Wave>();
             SpawnInformation test1 = new SpawnInformation(0);
             test1.AddInformation("Unit Type", "Walking Fish01");
@@ -115,110 +188,8 @@ namespace FinalProject.Screens
                 wave.AddSpawnInformation(test2);
                 waves.Add(wave);
             }
-            waveManager = new WaveManager(waves);
-            entities.Add(UnitFactory.CreatePlayer(currentGame));
-            base.Start();
-        }
-
-        protected override void ActiveUpdate(float secondsPassed)
-        {
-            if (!paused)
-            {
-                waveManager.Update(secondsPassed);
-                List<Entity> toSpawn = waveManager.GetEntitiesToSpawn();
-                if (toSpawn != null)
-                {
-                    foreach (Entity entity in toSpawn)
-                    {
-                        entities.Add(entity);
-                    }
-                }
-                Collisions.Update();
-                foreach (Entity entity in toRemove)
-                {
-                    entities.Remove(entity);
-                    entity.Dispose();
-                }
-                toRemove.Clear();
-                foreach (Entity entity in entities)
-                {
-                    entity.MessageCenter.Broadcast("Clean Up");
-                }
-                foreach (Entity entity in entities)
-                {
-                    entity.Update(secondsPassed);
-                }
-            }
-        }
-
-        protected override void BeginTransitioningOut()
-        {
-            GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Select Stage", currentGame);
-            GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Select Stage");
-            base.BeginTransitioningOut();
-        }
-
-        protected override void DrawScreen(SpriteBatch spriteBatch)
-        {
-            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
-            Drawing.Draw(spriteBatch);
-            if (paused)
-            {
-                menuItems.Draw(spriteBatch);
-            }
-        }
-
-        protected override void Reset()
-        {
-            foreach (Entity entity in entities)
-            {
-                entity.Dispose();
-            }
-            entities.Clear();
-            Collisions.Dispose(); Drawing.Dispose();
-            base.Reset();
-        }
-
-        protected override void SwitchScreens()
-        {
-            GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Stage");
-        }
-
-        private void InitializeMenu()
-        {
-            menuItems = new ItemGroupMenu();
-            menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "LEVEL SELECT"));
-            menuItems.AddItem(new ItemMenu(new Vector2(280, 450), "UPGRADES"));
-        }
-
-        private void InitializeMessageCenter()
-        {
-            MessageCenter = new MessageCenter();
-            MessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
-            MessageCenter.AddListener<Entity>("Find Closest Player", Collisions.ClosestPlayer);
-        }
-
-        private void InitializeSystems()
-        {
-            Collisions = new SystemCollisions();
-            Drawing = new SystemDrawing();
-        }
-
-        private void RemoveEntity(Entity entity)
-        {
-            toRemove.Add(entity);
-        }
-
-        private void SetCurrentGameAndStage(SaveGame saveGame, string stage)
-        {
-            currentGame = saveGame;
-            UnitFactory.Difficulty = currentGame.difficulty;
-            switch (stage)
-            {
-                case "LEVEL 1": { UnitFactory.Stage = 1; } break;
-                case "LEVEL 2": { UnitFactory.Stage = 2; } break;
-                case "LEVEL 3": { UnitFactory.Stage = 3; } break;
-            }
+            waveManager = new SystemWaves(waves);
+            Entities.AddEntity(UnitFactory.CreatePlayer(currentGame));
         }
     }
 }

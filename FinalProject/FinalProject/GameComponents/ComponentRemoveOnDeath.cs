@@ -21,7 +21,7 @@ namespace FinalProject.GameComponents
 
         private void RequestRemove()
         {
-            ScreenGame.MessageCenter.Broadcast<Entity>("Remove Entity", entity);
+            ScreenGame.Entities.RemoveEntity(entity);
         }
     }
 }
