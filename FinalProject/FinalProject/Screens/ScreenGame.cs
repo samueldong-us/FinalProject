@@ -93,7 +93,7 @@ namespace FinalProject.Screens
         {
             List<Wave> waves = new List<Wave>();
             SpawnInformation test1 = new SpawnInformation(0);
-            test1.AddInformation("Unit Type", "Jellyfish");
+            test1.AddInformation("Unit Type", "Walking Fish01");
             test1.AddInformation("Spawn Position", new Vector2(500, -200));
             test1.AddInformation("Shoot Position", new Vector2(700, 200));
             SpawnInformation test2 = new SpawnInformation(2);

@@ -26,11 +26,13 @@ namespace FinalProject.GameComponents
                     {
                         Vector2 spawnPosition = spawnInformation.GetInformation<Vector2>("Spawn Position");
                         Vector2 shootPosition = spawnInformation.GetInformation<Vector2>("Shoot Position");
-                        return CreateWalkingFish01(spawnPosition, shootPosition);
-                    }
+                        return CreateWalkingFish(spawnPosition, shootPosition);
+            }
             }
             return null;
         }
+
+
 
         public static Entity CreateJellyFish(Vector2 spawnPosition, Vector2 shootPosition)
         {
@@ -75,6 +77,28 @@ namespace FinalProject.GameComponents
             return walkingFish01;
         }
 
+        public static Entity CreateWalkingFish(Vector2 spawnPosition, Vector2 shootPosition)
+        {
+            int health;
+            int numberOfBullets;
+            int damage;
+            float fireRate;
+            GetWalkingFishValues(out health, out numberOfBullets, out damage, out fireRate);
+            Entity walkingfish = new Entity();
+            walkingfish.Position = spawnPosition;
+            walkingfish.Rotation = (float)(Math.PI / 2);
+            new ComponentVelocityAcceleration(walkingfish, Vector2.Zero, Vector2.Zero);
+            new ComponentInFireOutBehavior(walkingfish, shootPosition, 200, 50);
+            new ComponentConstantRateFire(walkingfish, fireRate);
+            new ComponentProjectileWeaponFan(walkingfish, numberOfBullets, damage);
+            new ComponentCollider(walkingfish, GameAssets.Unit["Walking Fish01"], GameAssets.UnitTriangles["Walking Fish01"], "Enemy");
+            new ComponentHealth(walkingfish, health);
+            new ComponentHealthBar(walkingfish, new Rectangle(0, 0, 100, 7), new Vector2(0, -50));
+            new ComponentRemoveOnDeath(walkingfish);
+            new ComponentTextureRenderer(walkingfish, GameAssets.UnitTexture, GameAssets.Unit["Walking Fish01"], Color.White, "Enemy");
+            return walkingfish;
+        }
+
         public static Entity CreatePlayer(SaveGame saveGame)
         {
             Entity player = new Entity();
@@ -112,6 +136,74 @@ namespace FinalProject.GameComponents
             new ComponentHealthBarCircular(player, (float)(Math.PI * 4 / 5));
             new ComponentRemoveOnDeath(player);
             new ComponentTextureRenderer(player, GameAssets.UnitTexture, GameAssets.Unit["Laser Ship"], Color.White, "Player");
+        }
+
+        private static void GetWalkingFishValues(out int health, out int numberOfBullets, out int damage, out float fireRate)
+        {
+            health = 1;
+            numberOfBullets = 1;
+            damage = 1;
+            fireRate = 1;
+            switch (Difficulty)
+            {
+                case SaveGame.Difficulty.Easy:
+                    {
+                        switch (Stage)
+                        {
+                            case 1:
+                                {
+                                    health = 30;
+                                    numberOfBullets = 3;
+                                    damage = 1;
+                                    fireRate = 3;
+                                } break;
+                            case 2:
+                                {
+                                } break;
+                            case 3:
+                                {
+                                } break;
+                        }
+                    } break;
+                case SaveGame.Difficulty.Normal:
+                    {
+                        switch (Stage)
+                        {
+                            case 1:
+                                {
+                                    health = 45;
+                                    numberOfBullets = 5;
+                                    damage = 2;
+                                    fireRate = 2;
+                                } break;
+                            case 2:
+                                {
+                                } break;
+                            case 3:
+                                {
+                                } break;
+                        }
+                    } break;
+                case SaveGame.Difficulty.Hard:
+                    {
+                        switch (Stage)
+                        {
+                            case 1:
+                                {
+                                    health = 60;
+                                    numberOfBullets = 7;
+                                    damage = 3;
+                                    fireRate = 1;
+                                } break;
+                            case 2:
+                                {
+                                } break;
+                            case 3:
+                                {
+                                } break;
+                        }
+                    } break;
+            }
         }
 
         private static void GetJellyFishValues(out int health, out int numberOfBullets, out int damage, out float fireRate)
