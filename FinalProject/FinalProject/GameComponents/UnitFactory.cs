@@ -47,7 +47,7 @@ namespace FinalProject.GameComponents
             new ComponentVelocityAcceleration(jellyfish, Vector2.Zero, Vector2.Zero);
             new ComponentBehaviorCatmullRom(jellyfish, path, 150, .1f, .9f);
             new ComponentConstantRateFire(jellyfish, fireRate);
-            new ComponentProjectileWeaponCircularFire(jellyfish, numberOfBullets, damage, (float)(Math.PI * Math.PI));
+            new ComponentProjectileWeaponCircularBounce(jellyfish, numberOfBullets, damage, (float)Math.PI / 6);
             new ComponentCollider(jellyfish, GameAssets.Unit["Jelly"], GameAssets.UnitTriangles["Jelly"], "Enemy");
             new ComponentHealth(jellyfish, health);
             new ComponentHealthBar(jellyfish, new Rectangle(0, 0, 100, 7), new Vector2(0, -50));
@@ -91,8 +91,8 @@ namespace FinalProject.GameComponents
             walkingfish.Rotation = (float)(Math.PI / 2);
             new ComponentVelocityAcceleration(walkingfish, Vector2.Zero, Vector2.Zero);
             new ComponentBehaviorInFireOut(walkingfish, shootPosition, 200, 50, 700);
-            new ComponentConstantRateFire(walkingfish, fireRate);
-            new ComponentProjectileWeaponFan(walkingfish, numberOfBullets, damage);
+            new ComponentConstantRateFire(walkingfish, 2f);
+            new ComponentProjectileWeaponCircularBounce(walkingfish, numberOfBullets, damage, (float)Math.PI / 6);
             new ComponentCollider(walkingfish, GameAssets.Unit["Walking Fish01"], GameAssets.UnitTriangles["Walking Fish01"], "Enemy");
             new ComponentHealth(walkingfish, health);
             new ComponentHealthBar(walkingfish, new Rectangle(0, 0, 100, 7), new Vector2(0, -50));

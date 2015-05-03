@@ -92,6 +92,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameComponents\ComponentBehaviorCatmullRom.cs" />
+    <Compile Include="GameComponents\ComponentBounce.cs" />
+    <Compile Include="GameComponents\ComponentDelayedSetVelocity.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponBullet.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponBulletStream.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponCircularBounce.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponCircularFire.cs" />
     <Compile Include="GameComponents\ComponentHealthBarCircular.cs" />
     <Compile Include="GameComponents\ComponentConstantRateFire.cs" />
@@ -99,6 +104,8 @@
     <Compile Include="GameComponents\ComponentProjectileWeaponExample.cs" />
     <Compile Include="GameComponents\ComponentFollowWithOffset.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponFan.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponFanStream.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponSplitShot.cs" />
     <Compile Include="GameComponents\ComponentRemoveOnExit.cs" />
     <Compile Include="GameComponents\FactoryBehavior.cs" />
     <Compile Include="GameComponents\FactoryUnit.cs" />
