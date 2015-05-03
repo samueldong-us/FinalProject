@@ -32,7 +32,7 @@ namespace FinalProject.GameComponents
             Unit["Laser Ship"] = new Rectangle(200, 0, 100, 100);
             Unit["Walking Fish01"] = new Rectangle(300, 0, 100, 100);
             Unit["Walking Fish02"] = new Rectangle(400, 0, 100, 100);
-            Unit["Jelly"] = new Rectangle(500, 0, 100, 100);
+            Unit["Jellyfish"] = new Rectangle(500, 0, 100, 100);
             Unit["Sea Slug"] = new Rectangle(600, 0, 100, 100);
             Unit["Laser Beam"] = new Rectangle(0, 924, 1024, 100);
             BulletTexture = content.Load<Texture2D>("BulletTexture");
@@ -80,7 +80,7 @@ namespace FinalProject.GameComponents
                 new Triangle(new Vector2(30, 50), new Vector2(51, 22), new Vector2(51, 79)),
                 new Triangle(new Vector2(74, 50), new Vector2(51, 22), new Vector2(51, 78))
             };
-            UnitTriangles["Jelly"] = new List<Triangle>()
+            UnitTriangles["Jellyfish"] = new List<Triangle>()
             {
                 new Triangle(new Vector2(25, 50), new Vector2(36, 9), new Vector2(36, 91)),
                 new Triangle(new Vector2(80, 50), new Vector2(36, 9), new Vector2(36, 91))

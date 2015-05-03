@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FinalProject.GameWaves
 {
-    internal class WaveManager
+    internal class SystemWaves
     {
         private const float TimeBetweenWaves = 2;
 
@@ -12,27 +12,10 @@ namespace FinalProject.GameWaves
 
         private List<Wave> waves;
 
-        public WaveManager(List<Wave> waves)
+        public SystemWaves(List<Wave> waves)
         {
             this.waves = waves;
             timePassed = 0;
-        }
-
-        public List<Entity> GetEntitiesToSpawn()
-        {
-            if (waves.Count > 0)
-            {
-                List<Entity> toSpawn = new List<Entity>();
-                foreach (SpawnInformation info in waves[0].GetSpawnInformationToSpawn())
-                {
-                    toSpawn.Add(UnitFactory.CreateFromSpawnInformation(info));
-                }
-                return toSpawn;
-            }
-            else
-            {
-                return null;
-            }
         }
 
         public void Update(float secondsPassed)
@@ -50,6 +33,13 @@ namespace FinalProject.GameWaves
                     }
                 }
             }
+            if (waves.Count > 0)
+            {
+            foreach (SpawnInformation info in waves[0].GetSpawnInformationToSpawn())
+            {
+                ScreenGame.Entities.AddEntity(FactoryUnit.CreateEntityFromSpawnInformation(info));
+            }
+        }
         }
 
         private bool CurrentWaveOver()

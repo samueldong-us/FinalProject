@@ -1,5 +1,4 @@
-﻿using FinalProject.Screens;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 
@@ -63,8 +62,11 @@ namespace FinalProject.GameComponents
 
         private void StopFiring()
         {
-            laser.Dispose();
-            laser = null;
+            if (laser != null)
+            {
+                laser.Dispose();
+                laser = null;
+            }
         }
     }
 }

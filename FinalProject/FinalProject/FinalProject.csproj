@@ -91,6 +91,12 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\ComponentBehaviorCatmullRom.cs" />
+    <Compile Include="GameComponents\ComponentBounce.cs" />
+    <Compile Include="GameComponents\ComponentDelayedSetVelocity.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponBullet.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponBulletStream.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponCircularBounce.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponCircularFire.cs" />
     <Compile Include="GameComponents\ComponentHealthBarCircular.cs" />
     <Compile Include="GameComponents\ComponentConstantRateFire.cs" />
@@ -98,10 +104,16 @@
     <Compile Include="GameComponents\ComponentProjectileWeaponExample.cs" />
     <Compile Include="GameComponents\ComponentFollowWithOffset.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponFan.cs" />
-    <Compile Include="GameComponents\ComponentProjectileWeaponSingleShot.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponFanStream.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponSplitShot.cs" />
+    <Compile Include="GameComponents\ComponentRemoveOnExit.cs" />
+    <Compile Include="GameComponents\FactoryBehavior.cs" />
+    <Compile Include="GameComponents\FactoryPlayer.cs" />
+    <Compile Include="GameComponents\FactoryUnit.cs" />
+    <Compile Include="GameComponents\FactoryWeapon.cs" />
     <Compile Include="GameComponents\GameAssets.cs" />
     <Compile Include="GameComponents\ComponentHealthBar.cs" />
-    <Compile Include="GameComponents\ComponentInFireOutBehavior.cs" />
+    <Compile Include="GameComponents\ComponentBehaviorInFireOut.cs" />
     <Compile Include="GameComponents\ComponentWeaponLaser.cs" />
     <Compile Include="GameComponents\ComponentPlayerController.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeapon.cs" />
@@ -111,13 +123,16 @@
     <Compile Include="GameComponents\ComponentProjectileWeaponSpreadShot.cs" />
     <Compile Include="GameComponents\ComponentTextureRenderer.cs" />
     <Compile Include="GameComponents\SystemDrawing.cs" />
-    <Compile Include="GameComponents\UnitFactory.cs" />
+    <Compile Include="GameComponents\SystemEntity.cs" />
     <Compile Include="GameComponents\ComponentVelocityAcceleration.cs" />
     <Compile Include="GameComponents\ComponentVelocityBasedRotation.cs" />
+    <Compile Include="GameComponents\UnitHealthBarInformation.cs" />
+    <Compile Include="GameComponents\UnitValues.cs" />
+    <Compile Include="GameComponents\Values.cs" />
     <Compile Include="GameMain.cs" />
     <Compile Include="GameComponents\ComponentCollider.cs" />
     <Compile Include="GameComponents\Component.cs" />
-    <Compile Include="GameComponents\Drawable.cs" />
+    <Compile Include="GameComponents\ComponentDrawable.cs" />
     <Compile Include="GameComponents\ComponentHealth.cs" />
     <Compile Include="GameComponents\Entity.cs" />
     <Compile Include="GameSaving\SaveGame.cs" />

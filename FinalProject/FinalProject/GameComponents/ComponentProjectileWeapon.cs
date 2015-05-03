@@ -21,7 +21,6 @@ namespace FinalProject.GameComponents
             projectiles = new List<Entity>();
             toRemove = new List<Entity>();
             entity.MessageCenter.AddListener("Fire", Fire);
-            entity.MessageCenter.AddListener("Clean Up", CleanUp);
         }
 
         public override void Dispose()
@@ -39,10 +38,6 @@ namespace FinalProject.GameComponents
             {
                 projectile.Update(secondsPassed);
             }
-        }
-
-        protected void CleanUp()
-        {
             foreach (Entity projectile in toRemove)
             {
                 projectiles.Remove(projectile);

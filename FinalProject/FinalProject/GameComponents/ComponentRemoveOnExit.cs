@@ -2,24 +2,24 @@
 
 namespace FinalProject.GameComponents
 {
-    internal class ComponentRemoveOnDeath : Component
+    internal class ComponentRemoveOnExit : Component
     {
-        public ComponentRemoveOnDeath(Entity entity)
+        public ComponentRemoveOnExit(Entity entity)
             : base(entity)
         {
-            entity.MessageCenter.AddListener("Health Depleted", RequestRemove);
+            entity.MessageCenter.AddListener<Entity>("Exited Bounds", RequestRemove);
         }
 
         public override void Dispose()
         {
-            entity.MessageCenter.RemoveListener("Health Depleted", RequestRemove);
+            entity.MessageCenter.RemoveListener<Entity>("Exited Bounds", RequestRemove);
         }
 
         public override void Update(float secondsPassed)
         {
         }
 
-        private void RequestRemove()
+        private void RequestRemove(Entity entity)
         {
             ScreenGame.Entities.RemoveEntity(entity);
         }

@@ -23,7 +23,6 @@ namespace FinalProject.GameComponents
             components = new List<Component>();
             toRemove = new List<Component>();
             MessageCenter = new MessageCenter();
-            MessageCenter.AddListener("Clean Up", CleanUp);
             Position = Vector2.Zero;
             Scale = 1;
             Rotation = 0;
@@ -65,10 +64,6 @@ namespace FinalProject.GameComponents
             {
                 component.Update(secondsPassed);
             }
-        }
-
-        private void CleanUp()
-        {
             foreach (Component component in toRemove)
             {
                 components.Remove(component);

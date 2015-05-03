@@ -2,7 +2,6 @@
 using FinalProject.GameSaving;
 using FinalProject.GameWaves;
 using FinalProject.Messaging;
-using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,6 +17,7 @@ namespace FinalProject.Screens
 
         public static SystemCollisions Collisions;
         public static SystemDrawing Drawing;
+        public static SystemEntity Entities;
 
         public static MessageCenter MessageCenter;
 
@@ -25,17 +25,13 @@ namespace FinalProject.Screens
 
         private SaveGame currentGame;
 
-        private List<Entity> entities;
-
         private ItemGroupMenu menuItems;
 
         private bool paused;
 
         private Random rng = new Random();
 
-        private List<Entity> toRemove;
-
-        private WaveManager waveManager;
+        private SystemWaves waveManager;
 
         public ScreenGame(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -43,43 +39,41 @@ namespace FinalProject.Screens
             InitializeSystems();
             InitializeMessageCenter();
             InitializeMenu();
-            entities = new List<Entity>();
-            toRemove = new List<Entity>();
             GameMain.MessageCenter.AddListener<SaveGame, string>("Save Game and Stage Pass to Game", SetCurrentGameAndStage);
         }
 
         public override void KeyPressed(Keys key)
         {
-            MessageCenter.Broadcast<Keys>("Key Pressed", key);
-            switch (state)
+            if (state == ScreenState.Active)
             {
-                case ScreenState.Active:
-                    {
-                        switch (key)
+                MessageCenter.Broadcast<Keys>("Key Pressed", key);
+                switch (key)
+                {
+                    case Keys.Enter:
                         {
-                            case Keys.Enter:
-                                {
-                                } break;
-                            case Keys.Up:
-                                {
-                                    menuItems.MoveUp();
-                                } break;
-                            case Keys.Down:
-                                {
-                                    menuItems.MoveDown();
-                                } break;
-                            case Keys.Escape:
-                                {
-                                    BeginTransitioningOut();
-                                } break;
-                        }
-                    } break;
+                        } break;
+                    case Keys.Up:
+                        {
+                            menuItems.MoveUp();
+                        } break;
+                    case Keys.Down:
+                        {
+                            menuItems.MoveDown();
+                        } break;
+                    case Keys.Escape:
+                        {
+                            BeginTransitioningOut();
+                        } break;
+                }
             }
         }
 
         public override void KeyReleased(Keys key)
         {
-            MessageCenter.Broadcast<Keys>("Key Released", key);
+            if (state == ScreenState.Active)
+            {
+                MessageCenter.Broadcast<Keys>("Key Released", key);
+            }
         }
 
         public override void LoadContent()
@@ -91,24 +85,7 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
-            List<Wave> waves = new List<Wave>();
-            SpawnInformation test1 = new SpawnInformation(0);
-            test1.AddInformation("Unit Type", "Walking Fish01");
-            test1.AddInformation("Spawn Position", new Vector2(500, -200));
-            test1.AddInformation("Shoot Position", new Vector2(700, 200));
-            SpawnInformation test2 = new SpawnInformation(2);
-            test2.AddInformation("Unit Type", "Walking Fish01");
-            test2.AddInformation("Spawn Position", new Vector2(1420, -200));
-            test2.AddInformation("Shoot Position", new Vector2(1220, 200));
-            for (int i = 0; i < 4; i++)
-            {
-                Wave wave = new Wave();
-                wave.AddSpawnInformation(test1);
-                wave.AddSpawnInformation(test2);
-                waves.Add(wave);
-            }
-            waveManager = new WaveManager(waves);
-            entities.Add(UnitFactory.CreatePlayer(currentGame));
+            TestSetup();
             base.Start();
         }
 
@@ -117,29 +94,8 @@ namespace FinalProject.Screens
             if (!paused)
             {
                 waveManager.Update(secondsPassed);
-                List<Entity> toSpawn = waveManager.GetEntitiesToSpawn();
-                if (toSpawn != null)
-                {
-                    foreach (Entity entity in toSpawn)
-                    {
-                        entities.Add(entity);
-                    }
-                }
                 Collisions.Update();
-                foreach (Entity entity in toRemove)
-                {
-                    entities.Remove(entity);
-                    entity.Dispose();
-                }
-                toRemove.Clear();
-                foreach (Entity entity in entities)
-                {
-                    entity.MessageCenter.Broadcast("Clean Up");
-                }
-                foreach (Entity entity in entities)
-                {
-                    entity.Update(secondsPassed);
-                }
+                Entities.Update(secondsPassed);
             }
         }
 
@@ -162,12 +118,9 @@ namespace FinalProject.Screens
 
         protected override void Reset()
         {
-            foreach (Entity entity in entities)
-            {
-                entity.Dispose();
-            }
-            entities.Clear();
-            Collisions.Dispose(); Drawing.Dispose();
+            Entities.Dispose();
+            Collisions.Dispose();
+            Drawing.Dispose();
             base.Reset();
         }
 
@@ -186,7 +139,6 @@ namespace FinalProject.Screens
         private void InitializeMessageCenter()
         {
             MessageCenter = new MessageCenter();
-            MessageCenter.AddListener<Entity>("Remove Entity", RemoveEntity);
             MessageCenter.AddListener<Entity>("Find Closest Player", Collisions.ClosestPlayer);
         }
 
@@ -194,23 +146,48 @@ namespace FinalProject.Screens
         {
             Collisions = new SystemCollisions();
             Drawing = new SystemDrawing();
-        }
-
-        private void RemoveEntity(Entity entity)
-        {
-            toRemove.Add(entity);
+            Entities = new SystemEntity();
         }
 
         private void SetCurrentGameAndStage(SaveGame saveGame, string stage)
         {
             currentGame = saveGame;
-            UnitFactory.Difficulty = currentGame.difficulty;
+            FactoryUnit.Difficulty = currentGame.difficulty;
             switch (stage)
             {
-                case "LEVEL 1": { UnitFactory.Stage = 1; } break;
-                case "LEVEL 2": { UnitFactory.Stage = 2; } break;
-                case "LEVEL 3": { UnitFactory.Stage = 3; } break;
+                case "LEVEL 1": { FactoryUnit.Stage = 1; } break;
+                case "LEVEL 2": { FactoryUnit.Stage = 2; } break;
+                case "LEVEL 3": { FactoryUnit.Stage = 3; } break;
             }
+        }
+
+        private void TestSetup()
+        {
+            List<Wave> waves = new List<Wave>();
+            SpawnInformation test2 = new SpawnInformation(2);
+            test2.AddInformation("Unit Name", "Walking Fish01");
+            test2.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+            test2.AddInformation("Rotate Based On Velocity", false);
+            test2.AddInformation("Behavior Name", "Catmull Rom");
+            test2.AddInformation("Weapon Name", "Circular Fire");
+            List<Vector2> path = new List<Vector2>();
+            path.Add(new Vector2(320, 200));
+            path.Add(new Vector2(1010, 400));
+            path.Add(new Vector2(1010, 600));
+            path.Add(new Vector2(910, 600));
+            path.Add(new Vector2(910, 400));
+            path.Add(new Vector2(1600, 200));
+            test2.AddInformation("Path", path);
+            test2.AddInformation("Start Firing Percentage", 0.1f);
+            test2.AddInformation("Stop Firing Percentage", 0.9f);
+            for (int i = 0; i < 4; i++)
+            {
+                Wave wave = new Wave();
+                wave.AddSpawnInformation(test2);
+                waves.Add(wave);
+            }
+            waveManager = new SystemWaves(waves);
+            Entities.AddEntity(FactoryPlayer.CreatePlayer(currentGame));
         }
     }
 }

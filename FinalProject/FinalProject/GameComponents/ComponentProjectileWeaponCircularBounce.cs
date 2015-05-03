@@ -3,7 +3,7 @@ using System;
 
 namespace FinalProject.GameComponents
 {
-    internal class ComponentProjectileWeaponCircularFire : ComponentProjectileWeapon
+    internal class ComponentProjectileWeaponCircularBounce : ComponentProjectileWeapon
     {
         private const int Speed = 200;
 
@@ -15,7 +15,7 @@ namespace FinalProject.GameComponents
 
         private float rotationalDelta;
 
-        public ComponentProjectileWeaponCircularFire(Entity entity, int numberOfBullets, int damage, float rotationalDelta)
+        public ComponentProjectileWeaponCircularBounce(Entity entity, int numberOfBullets, int damage, float rotationalDelta)
             : base(entity, Vector2.Zero)
         {
             this.numberOfBullets = numberOfBullets;
@@ -29,6 +29,7 @@ namespace FinalProject.GameComponents
             for (int i = 0; i < numberOfBullets; i++)
             {
                 Entity bullet = CreateProjectile(Speed, (float)(2 * Math.PI * i / numberOfBullets + rotation), GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
+                new ComponentBounce(bullet);
                 bullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
                 bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
                 projectiles.Add(bullet);
