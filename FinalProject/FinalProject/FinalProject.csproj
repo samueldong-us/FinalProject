@@ -119,6 +119,8 @@
     <Compile Include="GameComponents\UnitFactory.cs" />
     <Compile Include="GameComponents\ComponentVelocityAcceleration.cs" />
     <Compile Include="GameComponents\ComponentVelocityBasedRotation.cs" />
+    <Compile Include="GameComponents\UnitValues.cs" />
+    <Compile Include="GameComponents\Values.cs" />
     <Compile Include="GameMain.cs" />
     <Compile Include="GameComponents\ComponentCollider.cs" />
     <Compile Include="GameComponents\Component.cs" />
