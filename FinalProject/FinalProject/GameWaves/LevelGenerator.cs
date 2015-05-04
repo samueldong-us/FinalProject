@@ -10,13 +10,12 @@ namespace FinalProject.GameWaves
     internal static class LevelGenerator
     {
         private const float LengthOfWave = 5;
-        private const int NumberOfWaves = 6;
 
         public static List<Wave> GenerateLevel1()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
             listOfUnits["Jellyfish"] = 6;
-            listOfUnits["Walking Fish01"] = 20;
+            listOfUnits["Walking Fish01"] = 50;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Jellyfish"] = 6;
             worthOfUnits["Walking Fish01"] = 1;
@@ -37,7 +36,7 @@ namespace FinalProject.GameWaves
             Dictionary<string, List<string>> possibleBehaviors = new Dictionary<string, List<string>>();
             possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Walking Fish01"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors);
+            return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 8);
         }
 
         private static void AddBehaviorToSpawn(string behavior, SpawnInformation spawnInformation)
@@ -81,10 +80,10 @@ namespace FinalProject.GameWaves
             spawnInformation.AddInformation("Weapon Name", weapon);
         }
 
-        private static List<Wave> CreateLevel(Dictionary<string, int> listOfUnits, Dictionary<string, int> worthOfUnits, Dictionary<string, SpawnInformation> spawnInformation, Dictionary<string, List<string>> possibleWeapons, Dictionary<string, List<string>> possibleBehaviors)
+        private static List<Wave> CreateLevel(Dictionary<string, int> listOfUnits, Dictionary<string, int> worthOfUnits, Dictionary<string, SpawnInformation> spawnInformation, Dictionary<string, List<string>> possibleWeapons, Dictionary<string, List<string>> possibleBehaviors, int numberOfWaves)
         {
             List<Wave> waves = new List<Wave>();
-            for (int i = 0; i < NumberOfWaves; i++)
+            for (int i = 0; i < numberOfWaves; i++)
             {
                 waves.Add(new Wave());
             }
@@ -93,7 +92,7 @@ namespace FinalProject.GameWaves
             {
                 total += listOfUnits[unit] * worthOfUnits[unit];
             }
-            List<int> distribution = GenerateWaveDistribution(total, NumberOfWaves);
+            List<int> distribution = GenerateWaveDistribution(total, numberOfWaves);
             List<string> sortedByWorth = new List<string>();
             while (sortedByWorth.Count < worthOfUnits.Keys.Count)
             {
@@ -111,25 +110,36 @@ namespace FinalProject.GameWaves
             }
             foreach (string unit in sortedByWorth)
             {
-                while (listOfUnits[unit] > 0)
+                for (int i = 0; i < listOfUnits[unit]; i++)
                 {
-                    for (int i = 0; i < NumberOfWaves; i++)
+                    List<int> possibleWaves = new List<int>();
+                    int distributionRange = 0;
+                    for (int j = 0; j < distribution.Count; j++)
                     {
-                        if (worthOfUnits[unit] <= distribution[i])
+                        if (worthOfUnits[unit] <= distribution[j])
                         {
-                            float probability = .85f - .75f * worthOfUnits[unit] / distribution[i];
-                            if (GameMain.RNG.NextDouble() < probability)
-                            {
-                                distribution[i] -= worthOfUnits[unit];
-                                listOfUnits[unit]--;
-                                SpawnInformation clone = spawnInformation[unit].Clone();
-                                clone.SpawnTime = (float)GameMain.RNG.NextDouble() * LengthOfWave;
-                                int weaponIndex = GameMain.RNG.Next(possibleWeapons[unit].Count);
-                                int behaviorIndex = GameMain.RNG.Next(possibleBehaviors[unit].Count);
-                                AddBehaviorToSpawn(possibleBehaviors[unit][behaviorIndex], clone);
-                                AddWeaponToSpawn(possibleWeapons[unit][weaponIndex], clone);
-                                waves[i].AddSpawnInformation(clone);
-                            }
+                            possibleWaves.Add(j);
+                            distributionRange += distribution[j];
+                        }
+                    }
+                    int generatedNumber = GameMain.RNG.Next(distributionRange);
+                    foreach (int possibleWave in possibleWaves)
+                    {
+                        if (generatedNumber < distribution[possibleWave])
+                        {
+                            distribution[possibleWave] -= worthOfUnits[unit];
+                            SpawnInformation clone = spawnInformation[unit].Clone();
+                            clone.SpawnTime = (float)GameMain.RNG.NextDouble() * LengthOfWave;
+                            int weaponIndex = GameMain.RNG.Next(possibleWeapons[unit].Count);
+                            int behaviorIndex = GameMain.RNG.Next(possibleBehaviors[unit].Count);
+                            AddBehaviorToSpawn(possibleBehaviors[unit][behaviorIndex], clone);
+                            AddWeaponToSpawn(possibleWeapons[unit][weaponIndex], clone);
+                            waves[possibleWave].AddSpawnInformation(clone);
+                            break;
+                        }
+                        else
+                        {
+                            generatedNumber -= distribution[possibleWave];
                         }
                     }
                 }
