@@ -13,6 +13,10 @@ namespace FinalProject.GameComponents
                     {
                         AddCircularFireWeapon(entity, difficulty, stage);
                     } break;
+                case "Fan":
+                    {
+                        AddFanWeapon(entity, difficulty, stage);
+                    } break;
             }
         }
 
@@ -26,8 +30,11 @@ namespace FinalProject.GameComponents
             new ComponentProjectileWeaponCircularFire(entity, numberOfBullets, damage, rotationalDelta);
         }
 
-        private static void AddFanWeapon(Entity entity, float fireRate, int numberOfBullets, int damage)
+        private static void AddFanWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
         {
+            float fireRate = (float)Values.WeaponValues[difficulty][stage]["Fan"]["Fire Rate"];
+            int numberOfBullets = (int)Values.WeaponValues[difficulty][stage]["Fan"]["Number Of Bullets"];
+            int damage = (int)Values.WeaponValues[difficulty][stage]["Fan"]["Damage"];
             new ComponentConstantRateFire(entity, fireRate);
             new ComponentProjectileWeaponFan(entity, numberOfBullets, damage);
         }

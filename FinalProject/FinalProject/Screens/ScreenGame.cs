@@ -222,26 +222,7 @@ namespace FinalProject.Screens
 
         private void TestSetup()
         {
-            List<Wave> waves = new List<Wave>();
-            for (int i = 0; i < 4; i++)
-            {
-                Wave wave = new Wave();
-                for (int j = 0; j < 5; j++)
-                {
-                    SpawnInformation test2 = new SpawnInformation(j);
-                    test2.AddInformation("Unit Name", "Walking Fish01");
-                    test2.AddInformation("Starting Rotation", (float)(Math.PI / 2));
-                    test2.AddInformation("Rotate Based On Velocity", false);
-                    test2.AddInformation("Behavior Name", "Catmull Rom");
-                    test2.AddInformation("Weapon Name", "Circular Fire");
-                    test2.AddInformation("Path", CatmullRomGenerator.GenerateSigmoid());
-                    test2.AddInformation("Start Firing Percentage", 0.1f);
-                    test2.AddInformation("Stop Firing Percentage", 0.9f);
-                    wave.AddSpawnInformation(test2);
-                }
-                waves.Add(wave);
-            }
-            waveManager = new SystemWaves(waves);
+            waveManager = new SystemWaves(LevelGenerator.GenerateLevel1());
             Entities.AddEntity(FactoryPlayer.CreatePlayer(currentGame));
         }
 

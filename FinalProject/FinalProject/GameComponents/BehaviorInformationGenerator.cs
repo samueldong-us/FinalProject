@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace FinalProject.GameComponents
 {
-    internal static class CatmullRomGenerator
+    internal static class BehaviorInformationGenerator
     {
         public static List<Vector2> GenerateLoopBack()
         {
@@ -52,6 +52,15 @@ namespace FinalProject.GameComponents
                 row = 2;
             }
             return StraightWithLoopFromQuadrant(row, column);
+        }
+
+        public static Vector4 RandomSpawnAndSwitchPosition()
+        {
+            int column = GameMain.RNG.Next(4);
+            int newColumn = column > 1 ? 2 : 1;
+            Vector2 spawnPosition = RandomPointInQuadrant(0, column);
+            Vector2 switchPosition = RandomPointInQuadrant(1, newColumn);
+            return new Vector4(spawnPosition.X, spawnPosition.Y, switchPosition.X, switchPosition.Y);
         }
 
         private static List<Vector2> LoopBackFromQuadrant(int row, int column)
