@@ -42,6 +42,7 @@ namespace FinalProject.GameComponents
             Unit["Jellyfish"] = new Rectangle(500, 0, 100, 100);
             Unit["Sea Slug"] = new Rectangle(600, 0, 100, 100);
             Unit["Laser Beam"] = new Rectangle(0, 924, 1024, 100);
+            //Unit["Laser Beam"] = new Rectangle(0, 924, 1024, 100);
             BulletTexture = content.Load<Texture2D>("BulletTexture");
             Bullet = new List<Rectangle>();
             for (int i = 0; i < 18; i++)
