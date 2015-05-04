@@ -4,6 +4,7 @@ using FinalProject.Screens;
 using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 using System.Collections.Generic;
 
 namespace FinalProject
@@ -11,16 +12,12 @@ namespace FinalProject
     public class GameMain : Microsoft.Xna.Framework.Game
     {
         public const int VirtualHeight = 1080;
-
         public const int VirtualWidth = 1920;
-
         public static MessageCenter MessageCenter;
-
+        public static Random RNG;
         private Screen currentScreen;
 
         private GraphicsDeviceManager graphics;
-
-        private KeyboardManager keyboardManager;
 
         private Dictionary<string, Screen> screens;
 
@@ -30,6 +27,7 @@ namespace FinalProject
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            RNG = new Random();
         }
 
         protected override void Draw(GameTime gameTime)
@@ -50,7 +48,6 @@ namespace FinalProject
             UtilitiesGraphics.Initialize(GraphicsDevice);
             SaveGameManager.CreateSaveDirectory();
             spriteBatch = new SpriteBatch(GraphicsDevice);
-            keyboardManager = new KeyboardManager();
             base.Initialize();
         }
 
@@ -70,7 +67,7 @@ namespace FinalProject
 
         protected override void Update(GameTime gameTime)
         {
-            keyboardManager.BroadcastChanges(currentScreen);
+            KeyboardManager.BroadcastChanges(currentScreen);
             if (currentScreen != null)
             {
                 currentScreen.Update(gameTime);

@@ -8,6 +8,7 @@ namespace FinalProject.GameComponents
 {
     internal class GameAssets
     {
+        public static Texture2D BGTexture;
         public static List<Rectangle> Bullet;
 
         public static Texture2D BulletTexture;
@@ -21,6 +22,11 @@ namespace FinalProject.GameComponents
         public static Texture2D UnitTexture;
 
         public static Dictionary<string, List<Triangle>> UnitTriangles;
+
+        public static void LoadBackground(ContentManager content, string file)
+        {
+            BGTexture = content.Load<Texture2D>(file);
+        }
 
         public static void LoadContent(ContentManager content)
         {

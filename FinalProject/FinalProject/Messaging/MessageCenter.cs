@@ -6,10 +6,12 @@ namespace FinalProject.Messaging
     public class MessageCenter
     {
         private Dictionary<string, List<Delegate>> listeners;
+        private Dictionary<string, List<Delegate>> toRemove;
 
         public MessageCenter()
         {
             listeners = new Dictionary<string, List<Delegate>>();
+            toRemove = new Dictionary<string, List<Delegate>>();
         }
 
         public void AddListener(string message, Callback callback)
@@ -17,6 +19,7 @@ namespace FinalProject.Messaging
             if (!listeners.ContainsKey(message))
             {
                 listeners[message] = new List<Delegate>();
+                toRemove[message] = new List<Delegate>();
             }
             listeners[message].Add(callback);
         }
@@ -26,6 +29,7 @@ namespace FinalProject.Messaging
             if (!listeners.ContainsKey(message))
             {
                 listeners[message] = new List<Delegate>();
+                toRemove[message] = new List<Delegate>();
             }
             listeners[message].Add(callback);
         }
@@ -35,6 +39,7 @@ namespace FinalProject.Messaging
             if (!listeners.ContainsKey(message))
             {
                 listeners[message] = new List<Delegate>();
+                toRemove[message] = new List<Delegate>();
             }
             listeners[message].Add(callback);
         }
@@ -44,6 +49,7 @@ namespace FinalProject.Messaging
             if (!listeners.ContainsKey(message))
             {
                 listeners[message] = new List<Delegate>();
+                toRemove[message] = new List<Delegate>();
             }
             listeners[message].Add(callback);
         }
@@ -69,6 +75,7 @@ namespace FinalProject.Messaging
                         callback();
                     }
                 }
+                CleanUp(message);
             }
         }
 
@@ -84,6 +91,7 @@ namespace FinalProject.Messaging
                         callback(parameterOne);
                     }
                 }
+                CleanUp(message);
             }
         }
 
@@ -99,6 +107,7 @@ namespace FinalProject.Messaging
                         callback(parameterOne, parameterTwo);
                     }
                 }
+                CleanUp(message);
             }
         }
 
@@ -114,6 +123,7 @@ namespace FinalProject.Messaging
                         callback(parameterOne, parameterTwo, parameterThree);
                     }
                 }
+                CleanUp(message);
             }
         }
 
@@ -129,6 +139,7 @@ namespace FinalProject.Messaging
                         callback(parameterOne, parameterTwo, parameterThree, parameterFour);
                     }
                 }
+                CleanUp(message);
             }
         }
 
@@ -136,7 +147,7 @@ namespace FinalProject.Messaging
         {
             if (listeners.ContainsKey(message))
             {
-                listeners[message].Remove(callback);
+                toRemove[message].Add(callback);
             }
         }
 
@@ -144,7 +155,7 @@ namespace FinalProject.Messaging
         {
             if (listeners.ContainsKey(message))
             {
-                listeners[message].Remove(callback);
+                toRemove[message].Add(callback);
             }
         }
 
@@ -152,7 +163,7 @@ namespace FinalProject.Messaging
         {
             if (listeners.ContainsKey(message))
             {
-                listeners[message].Remove(callback);
+                toRemove[message].Add(callback);
             }
         }
 
@@ -160,7 +171,7 @@ namespace FinalProject.Messaging
         {
             if (listeners.ContainsKey(message))
             {
-                listeners[message].Remove(callback);
+                toRemove[message].Add(callback);
             }
         }
 
@@ -168,8 +179,17 @@ namespace FinalProject.Messaging
         {
             if (listeners.ContainsKey(message))
             {
+                toRemove[message].Add(callback);
+            }
+        }
+
+        private void CleanUp(string message)
+        {
+            foreach (Delegate callback in toRemove[message])
+            {
                 listeners[message].Remove(callback);
             }
+            toRemove[message].Clear();
         }
     }
 }

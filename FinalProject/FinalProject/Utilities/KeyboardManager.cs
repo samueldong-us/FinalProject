@@ -4,11 +4,11 @@ using System;
 
 namespace FinalProject.Utilities
 {
-    internal class KeyboardManager
+    internal static class KeyboardManager
     {
-        private Keys[] lastPressedKeys;
+        private static Keys[] lastPressedKeys;
 
-        public void BroadcastChanges(Screen receiver)
+        public static void BroadcastChanges(Screen receiver)
         {
             if (lastPressedKeys != null && receiver != null)
             {
@@ -29,6 +29,11 @@ namespace FinalProject.Utilities
                 }
             }
             lastPressedKeys = Keyboard.GetState().GetPressedKeys();
+        }
+
+        public static Keys[] GetPressedKeys()
+        {
+            return lastPressedKeys;
         }
     }
 }
