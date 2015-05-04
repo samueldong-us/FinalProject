@@ -55,7 +55,7 @@ namespace FinalProject.GameComponents
             }
             foreach (DrawableComponent drawable in drawableLayers["Debug"])
             {
-                drawable.Draw(spriteBatch);
+                //drawable.Draw(spriteBatch);
             }
         }
 

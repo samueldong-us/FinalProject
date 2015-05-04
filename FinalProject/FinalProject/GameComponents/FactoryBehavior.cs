@@ -35,8 +35,8 @@ namespace FinalProject.GameComponents
         {
             Vector2 spawnPosition = spawnInformation.GetInformation<Vector2>("Spawn Position");
             Vector2 switchPosition = spawnInformation.GetInformation<Vector2>("Switch Position");
-            float inSpeed = spawnInformation.GetInformation<float>("In Speed");
-            float outSpeed = spawnInformation.GetInformation<float>("Out Speed");
+            float inSpeed = Values.UnitMovementSpeeds[spawnInformation.GetInformation<string>("Unit Name")] * 4;
+            float outSpeed = Values.UnitMovementSpeeds[spawnInformation.GetInformation<string>("Unit Name")];
             int ceaseFireY = spawnInformation.GetInformation<int>("Cease Fire Y");
             entity.Position = spawnPosition;
             new ComponentBehaviorInFireOut(entity, switchPosition, inSpeed, outSpeed, ceaseFireY);

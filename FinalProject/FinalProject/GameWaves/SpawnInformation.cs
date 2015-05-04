@@ -5,9 +5,8 @@ namespace FinalProject.GameWaves
 {
     internal class SpawnInformation
     {
+        public float SpawnTime;
         private Dictionary<string, object> Information;
-
-        public float SpawnTime { get; private set; }
 
         public SpawnInformation(float spawnTime)
         {

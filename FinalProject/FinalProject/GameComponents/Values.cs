@@ -40,8 +40,8 @@ namespace FinalProject.GameComponents
 
         private static void FillUnitMovementSpeeds()
         {
-            UnitMovementSpeeds["Jellyfish"] = 200f;
-            UnitMovementSpeeds["Walking Fish01"] = 200f;
+            UnitMovementSpeeds["Jellyfish"] = 50f;
+            UnitMovementSpeeds["Walking Fish01"] = 100f;
         }
 
         private static void FillUnitValues()
@@ -62,15 +62,27 @@ namespace FinalProject.GameComponents
             WeaponValues[SaveGame.Difficulty.Easy][1]["Circular Fire"]["Damage"] = 1;
             WeaponValues[SaveGame.Difficulty.Easy][1]["Circular Fire"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
 
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Fire"]["Fire Rate"] = 2f;
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Fire"]["Fire Rate"] = 3f;
             WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Fire"]["Number Of Bullets"] = 35;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Fire"]["Damage"] = 2;
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Fire"]["Damage"] = 1;
             WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Fire"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
 
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Fire"]["Fire Rate"] = 1f;
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Fire"]["Fire Rate"] = 3f;
             WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Fire"]["Number Of Bullets"] = 50;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Fire"]["Damage"] = 3;
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Fire"]["Damage"] = 2;
             WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Fire"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+
+            WeaponValues[SaveGame.Difficulty.Easy][1]["Fan"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Easy][1]["Fan"]["Number Of Bullets"] = 2;
+            WeaponValues[SaveGame.Difficulty.Easy][1]["Fan"]["Damage"] = 1;
+
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Fan"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Fan"]["Number Of Bullets"] = 3;
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Fan"]["Damage"] = 1;
+
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Fan"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Fan"]["Number Of Bullets"] = 5;
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Fan"]["Damage"] = 2;
         }
 
         private static void InitalizeWeaponValues()
