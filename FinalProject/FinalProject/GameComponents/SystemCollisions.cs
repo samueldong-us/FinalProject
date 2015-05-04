@@ -8,6 +8,7 @@ namespace FinalProject.GameComponents
     internal class SystemCollisions
     {
         private Dictionary<string, List<ComponentCollider>> colliderLayers;
+
         private string[] Layers = { "Enemy", "EnemyBullet", "Player", "PlayerBullet" };
 
         public SystemCollisions()

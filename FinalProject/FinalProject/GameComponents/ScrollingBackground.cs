@@ -1,18 +1,17 @@
 ﻿using FinalProject.Screens;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameComponents
 {
     internal class ScrollingBackground
     {
         private const int PixelsPerSecond = 200;
+
         private int currentRow;
+
         private float currentY;
+
         private int nextRow;
 
         public ScrollingBackground()
@@ -25,19 +24,19 @@ namespace FinalProject.GameComponents
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (currentY > 4096 - ScreenGame.Bounds.Height)
+            if (currentY > 4096 - ScreenGame.Visible.Height)
             {
-                spriteBatch.Draw(GameAssets.BGTexture, new Rectangle(ScreenGame.Bounds.Left, ScreenGame
-                    .Bounds.Bottom - 4096 + (int)currentY, ScreenGame
-                    .Bounds.Width, 4096 - (int)currentY), new Rectangle(currentRow * 1024, 0, 1024, 4096 - (int)currentY), Color.White);
+                spriteBatch.Draw(GameAssets.BGTexture, new Rectangle(ScreenGame.Visible.Left, ScreenGame
+                    .Visible.Bottom - 4096 + (int)currentY, ScreenGame
+                    .Visible.Width, 4096 - (int)currentY), new Rectangle(currentRow * 1024, 0, 1024, 4096 - (int)currentY), Color.White);
 
-                spriteBatch.Draw(GameAssets.BGTexture, new Rectangle(ScreenGame.Bounds.Left, ScreenGame
-                    .Bounds.Top, ScreenGame
-                    .Bounds.Width, ScreenGame.Bounds.Height - 4096 + (int)currentY), new Rectangle(nextRow * 1024, 8192 - (int)currentY - ScreenGame.Bounds.Height, 1024, ScreenGame.Bounds.Height - 4096 + (int)currentY), Color.White);
+                spriteBatch.Draw(GameAssets.BGTexture, new Rectangle(ScreenGame.Visible.Left, ScreenGame
+                    .Visible.Top, ScreenGame
+                    .Visible.Width, ScreenGame.Visible.Height - 4096 + (int)currentY), new Rectangle(nextRow * 1024, 8192 - (int)currentY - ScreenGame.Visible.Height, 1024, ScreenGame.Visible.Height - 4096 + (int)currentY), Color.White);
             }
             else
             {
-                spriteBatch.Draw(GameAssets.BGTexture, ScreenGame.Bounds, new Rectangle(currentRow * 1024, 4096 - (int)currentY - ScreenGame.Bounds.Height, 1024, ScreenGame.Bounds.Height), Color.White);
+                spriteBatch.Draw(GameAssets.BGTexture, ScreenGame.Visible, new Rectangle(currentRow * 1024, 4096 - (int)currentY - ScreenGame.Visible.Height, 1024, ScreenGame.Visible.Height), Color.White);
             }
         }
 

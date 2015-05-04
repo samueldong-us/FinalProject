@@ -1,14 +1,9 @@
-﻿using FinalProject.Screens;
-using FinalProject.Utilities;
-using Microsoft.Xna.Framework;
-using System;
+﻿using Microsoft.Xna.Framework;
 
 namespace FinalProject.GameComponents
 {
     internal class ComponentDelayedSetVelocity : Component
     {
-        private Vector2 closestPosition;
-
         private float delay;
 
         private Vector2 newVelocity;

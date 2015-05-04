@@ -91,6 +91,7 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GameComponents\CatmullRomGenerator.cs" />
     <Compile Include="GameComponents\ComponentBehaviorCatmullRom.cs" />
     <Compile Include="GameComponents\ComponentBounce.cs" />
     <Compile Include="GameComponents\ComponentDelayedSetVelocity.cs" />

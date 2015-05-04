@@ -7,7 +7,9 @@ namespace FinalProject.Utilities
     internal static class Fonts
     {
         public static SpriteFont DebugFont;
+
         public static SpriteFont MenuItemFont, MenuTitleFont, UpgradeNameFont, UpgradeCreditTextFont, UpgradeCreditsFont;
+
         public static Color Teal = new Color(32, 241, 175), Green = new Color(167, 240, 37), Red = new Color(241, 36, 79);
 
         public static void LoadFonts(ContentManager contentManager)

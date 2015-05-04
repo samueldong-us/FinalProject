@@ -10,15 +10,25 @@ namespace FinalProject.GameComponents
     internal class ComponentBehaviorCatmullRom : DrawableComponent
     {
         private const float alpha = 1f;
+
         private const float deltaTime = .01f;
+
         private float parameter;
+
         private List<float> pathLength;
+
         private List<Vector2> pointList;
+
         private List<float> pointTimes;
+
         private float speed;
+
         private float startFiringPercentage;
+
         private float stopFiringPercentage;
+
         private float timePassed;
+
         private float timeToFinish;
 
         public ComponentBehaviorCatmullRom(Entity entity, List<Vector2> path, float speed, float startFiringPercentage, float stopFiringPercentage)

@@ -9,6 +9,7 @@ namespace FinalProject.GameComponents
     internal class GameAssets
     {
         public static Texture2D BGTexture;
+
         public static List<Rectangle> Bullet;
 
         public static Texture2D BulletTexture;

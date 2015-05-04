@@ -1,13 +1,12 @@
 ﻿using FinalProject.Screens;
-using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
-using System;
 
 namespace FinalProject.GameComponents
 {
     internal class ComponentBounce : Component
     {
         private bool bounced;
+
         private Vector2 velocity;
 
         public ComponentBounce(Entity entity)
