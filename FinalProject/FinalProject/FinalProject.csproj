@@ -122,6 +122,7 @@
     <Compile Include="GameComponents\ComponentSignalOnExit.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponSpreadShot.cs" />
     <Compile Include="GameComponents\ComponentTextureRenderer.cs" />
+    <Compile Include="GameComponents\ScrollingBackground.cs" />
     <Compile Include="GameComponents\SystemDrawing.cs" />
     <Compile Include="GameComponents\SystemEntity.cs" />
     <Compile Include="GameComponents\ComponentVelocityAcceleration.cs" />

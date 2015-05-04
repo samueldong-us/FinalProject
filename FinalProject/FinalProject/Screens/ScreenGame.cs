@@ -2,6 +2,7 @@
 using FinalProject.GameSaving;
 using FinalProject.GameWaves;
 using FinalProject.Messaging;
+using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
@@ -18,19 +19,14 @@ namespace FinalProject.Screens
         public static SystemCollisions Collisions;
         public static SystemDrawing Drawing;
         public static SystemEntity Entities;
-
         public static MessageCenter MessageCenter;
-
         private Texture2D background;
-
         private SaveGame currentGame;
-
         private ItemGroupMenu menuItems;
-
         private bool paused;
-
+        private Keys[] pressedKeys;
         private Random rng = new Random();
-
+        private ScrollingBackground scrollingBackground;
         private SystemWaves waveManager;
 
         public ScreenGame(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -46,23 +42,51 @@ namespace FinalProject.Screens
         {
             if (state == ScreenState.Active)
             {
-                MessageCenter.Broadcast<Keys>("Key Pressed", key);
+                if (!paused)
+                {
+                    MessageCenter.Broadcast<Keys>("Key Pressed", key);
+                }
                 switch (key)
                 {
                     case Keys.Enter:
                         {
+                            if (paused)
+                            {
+                                if (menuItems.GetSelected().Equals("RESUME GAME"))
+                                {
+                                    Unpause();
+                                }
+                                else
+                                {
+                                    Unpause();
+                                    BeginTransitioningOut();
+                                }
+                            }
                         } break;
                     case Keys.Up:
                         {
-                            menuItems.MoveUp();
+                            if (paused)
+                            {
+                                menuItems.MoveUp();
+                            }
                         } break;
                     case Keys.Down:
                         {
-                            menuItems.MoveDown();
+                            if (paused)
+                            {
+                                menuItems.MoveDown();
+                            }
                         } break;
                     case Keys.Escape:
                         {
-                            BeginTransitioningOut();
+                            if (paused)
+                            {
+                                Unpause();
+                            }
+                            else
+                            {
+                                Pause();
+                            }
                         } break;
                 }
             }
@@ -70,7 +94,7 @@ namespace FinalProject.Screens
 
         public override void KeyReleased(Keys key)
         {
-            if (state == ScreenState.Active)
+            if (state == ScreenState.Active && !paused)
             {
                 MessageCenter.Broadcast<Keys>("Key Released", key);
             }
@@ -85,6 +109,7 @@ namespace FinalProject.Screens
 
         public override void Start()
         {
+            scrollingBackground = new ScrollingBackground();
             TestSetup();
             base.Start();
         }
@@ -93,6 +118,7 @@ namespace FinalProject.Screens
         {
             if (!paused)
             {
+                scrollingBackground.Update(secondsPassed);
                 waveManager.Update(secondsPassed);
                 Collisions.Update();
                 Entities.Update(secondsPassed);
@@ -109,9 +135,11 @@ namespace FinalProject.Screens
         protected override void DrawScreen(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
+            scrollingBackground.Draw(spriteBatch);
             Drawing.Draw(spriteBatch);
             if (paused)
             {
+                spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, .75f));
                 menuItems.Draw(spriteBatch);
             }
         }
@@ -132,8 +160,8 @@ namespace FinalProject.Screens
         private void InitializeMenu()
         {
             menuItems = new ItemGroupMenu();
-            menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "LEVEL SELECT"));
-            menuItems.AddItem(new ItemMenu(new Vector2(280, 450), "UPGRADES"));
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "RESUME GAME"));
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 450), "QUIT GAME"));
         }
 
         private void InitializeMessageCenter()
@@ -149,15 +177,33 @@ namespace FinalProject.Screens
             Entities = new SystemEntity();
         }
 
+        private void Pause()
+        {
+            paused = true;
+            pressedKeys = KeyboardManager.GetPressedKeys();
+        }
+
         private void SetCurrentGameAndStage(SaveGame saveGame, string stage)
         {
             currentGame = saveGame;
             FactoryUnit.Difficulty = currentGame.difficulty;
             switch (stage)
             {
-                case "LEVEL 1": { FactoryUnit.Stage = 1; } break;
-                case "LEVEL 2": { FactoryUnit.Stage = 2; } break;
-                case "LEVEL 3": { FactoryUnit.Stage = 3; } break;
+                case "LEVEL 1":
+                    {
+                        FactoryUnit.Stage = 1;
+                        GameAssets.LoadBackground(content, "Level2BG");
+                    } break;
+                case "LEVEL 2":
+                    {
+                        FactoryUnit.Stage = 2;
+                        GameAssets.LoadBackground(content, "Level2BG");
+                    } break;
+                case "LEVEL 3":
+                    {
+                        FactoryUnit.Stage = 3;
+                        GameAssets.LoadBackground(content, "Level3BG");
+                    } break;
             }
         }
 
@@ -188,6 +234,15 @@ namespace FinalProject.Screens
             }
             waveManager = new SystemWaves(waves);
             Entities.AddEntity(FactoryPlayer.CreatePlayer(currentGame));
+        }
+
+        private void Unpause()
+        {
+            paused = false;
+            foreach (Keys key in pressedKeys)
+            {
+                MessageCenter.Broadcast<Keys>("Key Released", key);
+            }
         }
     }
 }
