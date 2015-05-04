@@ -16,7 +16,7 @@ namespace FinalProject.GameWaves
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
             listOfUnits["Jellyfish"] = 6;
-            listOfUnits["Walking Fish01"] = 20;
+            listOfUnits["Walking Fish01"] = 50;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Jellyfish"] = 6;
             worthOfUnits["Walking Fish01"] = 1;
@@ -111,6 +111,7 @@ namespace FinalProject.GameWaves
             }
             foreach (string unit in sortedByWorth)
             {
+                /*
                 while (listOfUnits[unit] > 0)
                 {
                     for (int i = 0; i < NumberOfWaves; i++)
@@ -133,6 +134,7 @@ namespace FinalProject.GameWaves
                         }
                     }
                 }
+                 * */
             }
             return waves;
         }

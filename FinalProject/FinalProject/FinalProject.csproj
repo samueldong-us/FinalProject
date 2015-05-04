@@ -107,6 +107,7 @@
     <Compile Include="GameComponents\ComponentProjectileWeaponFan.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponFanStream.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponSplitShot.cs" />
+    <Compile Include="GameComponents\ComponentRemoveOnCollide.cs" />
     <Compile Include="GameComponents\ComponentRemoveOnExit.cs" />
     <Compile Include="GameComponents\FactoryBehavior.cs" />
     <Compile Include="GameComponents\FactoryPlayer.cs" />
