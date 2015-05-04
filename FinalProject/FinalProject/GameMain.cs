@@ -12,9 +12,13 @@ namespace FinalProject
     public class GameMain : Microsoft.Xna.Framework.Game
     {
         public const int VirtualHeight = 1080;
+
         public const int VirtualWidth = 1920;
+
         public static MessageCenter MessageCenter;
+
         public static Random RNG;
+
         private Screen currentScreen;
 
         private GraphicsDeviceManager graphics;

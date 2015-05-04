@@ -12,14 +12,11 @@ namespace FinalProject.GameComponents
 
         private int damage;
 
-        private double FieldOfFire = Math.PI / 5;
         private int numberOfBullets;
-        private Random random;
 
         public ComponentProjectileWeaponBulletStream(Entity entity, int numberOfBullets, int damage)
             : base(entity, Vector2.Zero)
         {
-            random = new Random();
             closestPosition = new Vector2(-1, -1);
             entity.MessageCenter.AddListener<Vector2>("Closest Player", SetClosestPosition);
             this.numberOfBullets = numberOfBullets;
@@ -40,7 +37,7 @@ namespace FinalProject.GameComponents
             {
                 direction = new Vector2(0, 1);
             }
-            float randomAngle = (float)(Math.PI / 16 * (random.NextDouble() - .5));
+            float randomAngle = (float)(Math.PI / 16 * (GameMain.RNG.NextDouble() - .5));
             float bulletAngle = (float)Math.Atan2(direction.Y, direction.X);
 
             Entity bullet = CreateProjectile(Speed, bulletAngle + randomAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");

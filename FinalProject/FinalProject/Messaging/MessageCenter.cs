@@ -6,6 +6,7 @@ namespace FinalProject.Messaging
     public class MessageCenter
     {
         private Dictionary<string, List<Delegate>> listeners;
+
         private Dictionary<string, List<Delegate>> toRemove;
 
         public MessageCenter()

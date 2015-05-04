@@ -7,7 +7,9 @@ namespace FinalProject.Utilities
         public delegate void InterpolationEvent(float parameter);
 
         public InterpolationEvent InterpolationFinished;
+
         protected float parameter;
+
         protected float timeScale;
 
         protected InterpolatedValue(float timeToFinish)

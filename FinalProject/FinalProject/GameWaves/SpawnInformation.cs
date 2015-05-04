@@ -20,6 +20,16 @@ namespace FinalProject.GameWaves
             Information[name] = information;
         }
 
+        public SpawnInformation Clone()
+        {
+            SpawnInformation spawnInformation = new SpawnInformation(SpawnTime);
+            foreach (string key in Information.Keys)
+            {
+                spawnInformation.Information[key] = Information[key];
+            }
+            return spawnInformation;
+        }
+
         public T GetInformation<T>(string name)
         {
             if (Information[name] is T)

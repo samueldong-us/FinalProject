@@ -14,19 +14,32 @@ namespace FinalProject.Screens
 {
     internal class ScreenGame : ScreenPixelatedTransition
     {
-        public static Rectangle Bounds = new Rectangle(420, 0, 1080, 1050);
+        public static Rectangle Bounds = new Rectangle(420, 0, 1000, 1062);
 
         public static SystemCollisions Collisions;
+
         public static SystemDrawing Drawing;
+
         public static SystemEntity Entities;
+
         public static MessageCenter MessageCenter;
+
+        public static Rectangle Visible = new Rectangle(420, 0, 1000, 1080);
+
         private Texture2D background;
+
         private SaveGame currentGame;
+
         private ItemGroupMenu menuItems;
+
         private bool paused;
+
         private Keys[] pressedKeys;
+
         private Random rng = new Random();
+
         private ScrollingBackground scrollingBackground;
+
         private SystemWaves waveManager;
 
         public ScreenGame(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -192,7 +205,7 @@ namespace FinalProject.Screens
                 case "LEVEL 1":
                     {
                         FactoryUnit.Stage = 1;
-                        GameAssets.LoadBackground(content, "Level2BG");
+                        GameAssets.LoadBackground(content, "Level1BG");
                     } break;
                 case "LEVEL 2":
                     {
@@ -210,26 +223,22 @@ namespace FinalProject.Screens
         private void TestSetup()
         {
             List<Wave> waves = new List<Wave>();
-            SpawnInformation test2 = new SpawnInformation(2);
-            test2.AddInformation("Unit Name", "Walking Fish01");
-            test2.AddInformation("Starting Rotation", (float)(Math.PI / 2));
-            test2.AddInformation("Rotate Based On Velocity", false);
-            test2.AddInformation("Behavior Name", "Catmull Rom");
-            test2.AddInformation("Weapon Name", "Circular Fire");
-            List<Vector2> path = new List<Vector2>();
-            path.Add(new Vector2(320, 200));
-            path.Add(new Vector2(1010, 400));
-            path.Add(new Vector2(1010, 600));
-            path.Add(new Vector2(910, 600));
-            path.Add(new Vector2(910, 400));
-            path.Add(new Vector2(1600, 200));
-            test2.AddInformation("Path", path);
-            test2.AddInformation("Start Firing Percentage", 0.1f);
-            test2.AddInformation("Stop Firing Percentage", 0.9f);
             for (int i = 0; i < 4; i++)
             {
                 Wave wave = new Wave();
-                wave.AddSpawnInformation(test2);
+                for (int j = 0; j < 5; j++)
+                {
+                    SpawnInformation test2 = new SpawnInformation(j);
+                    test2.AddInformation("Unit Name", "Walking Fish01");
+                    test2.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+                    test2.AddInformation("Rotate Based On Velocity", false);
+                    test2.AddInformation("Behavior Name", "Catmull Rom");
+                    test2.AddInformation("Weapon Name", "Circular Fire");
+                    test2.AddInformation("Path", CatmullRomGenerator.GenerateSigmoid());
+                    test2.AddInformation("Start Firing Percentage", 0.1f);
+                    test2.AddInformation("Stop Firing Percentage", 0.9f);
+                    wave.AddSpawnInformation(test2);
+                }
                 waves.Add(wave);
             }
             waveManager = new SystemWaves(waves);

@@ -12,8 +12,6 @@ namespace FinalProject.GameComponents
 
         private int damage;
 
-        private double FieldOfFire = Math.PI / 5;
-
         private int numberOfBullets;
 
         public ComponentProjectileWeaponBullet(Entity entity, int numberOfBullets, int damage)

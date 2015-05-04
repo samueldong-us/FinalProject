@@ -1,7 +1,6 @@
 ﻿using FinalProject.GameSaving;
 using FinalProject.GameWaves;
 using Microsoft.Xna.Framework;
-using System.Collections.Generic;
 
 namespace FinalProject.GameComponents
 {
