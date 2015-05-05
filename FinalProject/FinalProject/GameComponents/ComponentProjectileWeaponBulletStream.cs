@@ -40,7 +40,7 @@ namespace FinalProject.GameComponents
             float randomAngle = (float)(Math.PI / 16 * (GameMain.RNG.NextDouble() - .5));
             float bulletAngle = (float)Math.Atan2(direction.Y, direction.X);
 
-            Entity bullet = CreateProjectile(Speed, bulletAngle + randomAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
+            Entity bullet = CreateProjectile(Speed, bulletAngle + randomAngle, GameAssets.BulletTexture, GameAssets.Bullet[6], GameAssets.BulletTriangles[6], Color.Red, "EnemyBullet", "EnemyBullet");
             new ComponentDealDamage(bullet, damage);
             ScreenGame.Entities.AddEntity(bullet);
         }
