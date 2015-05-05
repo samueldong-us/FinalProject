@@ -23,12 +23,12 @@ namespace FinalProject.Screens
             }
             UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Teal, position + new Vector2(100, 27), Text);
             UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Teal, position + new Vector2(620, 27), "LVL: " + level);
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Red, position + new Vector2(1000, 27), "COST: " + GetCost());
+            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Red, position + new Vector2(1000, 27), "COST: " + (level == 10 ? "MAX" : GetCost() + ""));
         }
 
         public int GetCost()
         {
-            return level * level;
+            return level == 10 ? 0 : level * level;
         }
     }
 }
