@@ -29,6 +29,11 @@ namespace FinalProject.GameComponents
             }
             entityList.Clear();
             toRemove.Clear();
+            foreach (Entity entity in toAdd)
+            {
+                entity.Dispose();
+            }
+            toAdd.Clear();
         }
 
         public void RemoveEntity(Entity entity)

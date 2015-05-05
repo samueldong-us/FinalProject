@@ -54,7 +54,7 @@ namespace FinalProject.GameComponents
             BulletTexture = content.Load<Texture2D>("BulletTexture");
             Bullet = new List<Rectangle>();
 
-            for (int i = 0; i < 17; i++)
+            for (int i = 0; i < 18; i++)
             {
                 int x = (i % 10) * 100;
                 int y = (i / 10) * 100;

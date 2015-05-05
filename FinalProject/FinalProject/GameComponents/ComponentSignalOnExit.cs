@@ -12,7 +12,7 @@ namespace FinalProject.GameComponents
             : base(entity)
         {
             this.bounds = bounds;
-            this.source = source;
+            this.source = new Rectangle(0, 0, source.Width, source.Height);
         }
 
         public override void Dispose()
