@@ -60,7 +60,7 @@ namespace FinalProject.GameComponents
             int newColumn = column > 1 ? 2 : 1;
             Vector2 spawnPosition = RandomPointInQuadrant(0, column);
             Vector2 switchPosition = RandomPointInQuadrant(1, newColumn);
-            return new Vector4(spawnPosition.X, spawnPosition.Y, switchPosition.X, switchPosition.Y);
+            return new Vector4(spawnPosition.X, spawnPosition.Y, MathHelper.Clamp(switchPosition.X, ScreenGame.Bounds.Left + 100, ScreenGame.Bounds.Right - 100), switchPosition.Y);
         }
 
         private static List<Vector2> LoopBackFromQuadrant(int row, int column)

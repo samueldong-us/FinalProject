@@ -9,7 +9,7 @@ namespace FinalProject.GameComponents
 {
     internal class ComponentHomingToEnemy : Component
     {
-        private const float MaxAcceleration = 250;
+        private const float MaxAcceleration = 400;
         private const float MaxAngle = (float)(Math.PI / 6);
         private Vector2 closestPosition;
         private Vector2 velocity;
