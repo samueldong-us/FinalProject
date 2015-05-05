@@ -122,7 +122,7 @@ namespace FinalProject.Screens
         public override void Start()
         {
             scrollingBackground = new ScrollingBackground();
-            TestSetup();
+            Setup();
             base.Start();
         }
 
@@ -222,9 +222,23 @@ namespace FinalProject.Screens
             }
         }
 
-        private void TestSetup()
+        private void Setup()
         {
-            waveManager = new SystemWaves(LevelGenerator.GenerateLevel1());
+            switch (FactoryUnit.Stage)
+            {
+                case 1:
+                    {
+                        waveManager = new SystemWaves(LevelGenerator.GenerateLevel1());
+                    } break;
+                case 2:
+                    {
+                        waveManager = new SystemWaves(LevelGenerator.GenerateLevel2());
+                    } break;
+                case 3:
+                    {
+                        waveManager = new SystemWaves(LevelGenerator.GenerateLevel3());
+                    } break;
+            }
             Entities.AddEntity(FactoryPlayer.CreatePlayer(currentGame));
         }
 
