@@ -99,43 +99,54 @@ namespace FinalProject.GameComponents
             });
             //6
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(71, 50), new Vector2(50, 56), new Vector2(50, 44)),
+                new Triangle(new Vector2(29, 50), new Vector2(50, 56), new Vector2(50, 44))
             });
             //7
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(66, 50), new Vector2(34, 40), new Vector2(34, 60))
             });
             //8
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(60, 48), new Vector2(50, 41), new Vector2(40, 48)),
+                new Triangle(new Vector2(60, 53), new Vector2(50, 60), new Vector2(40, 53))
             });
             //9
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(40, 43), new Vector2(60, 43), new Vector2(50, 50)),
+                new Triangle(new Vector2(40, 57), new Vector2(60, 57), new Vector2(50, 50))
             });
             //10
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(48, 40), new Vector2(48, 51), new Vector2(53, 55)),
+                new Triangle(new Vector2(37, 58), new Vector2(48, 51), new Vector2(51, 60)),
+                new Triangle(new Vector2(52, 61), new Vector2(48, 51), new Vector2(63, 61))
             });
             //11
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(25, 55), new Vector2(36, 55), new Vector2(45, 43)),
+                new Triangle(new Vector2(49, 45), new Vector2(36, 55), new Vector2(45, 43)),
+                new Triangle(new Vector2(49, 45), new Vector2(44, 49), new Vector2(60, 58)),
+                new Triangle(new Vector2(49, 45), new Vector2(65, 55), new Vector2(60, 58)),
+                new Triangle(new Vector2(60, 52), new Vector2(65, 55), new Vector2(76, 49))
             });
             //12
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(50, 50), new Vector2(58, 50), new Vector2(42, 66)),
+                new Triangle(new Vector2(50, 50), new Vector2(58, 50), new Vector2(42, 35))
             });
             //13
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(34, 56), new Vector2(34, 44), new Vector2(67, 50))
             });
             //14
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(36, 62), new Vector2(36, 38), new Vector2(66, 50))
             });
             //15
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(41, 44), new Vector2(41, 56), new Vector2(72, 50)),
+                new Triangle(new Vector2(37, 44), new Vector2(37, 56), new Vector2(26, 50))
             });
             //16
             BulletTriangles.Add(new List<Triangle>() {
@@ -143,7 +154,8 @@ namespace FinalProject.GameComponents
             });
             //17
             BulletTriangles.Add(new List<Triangle>() {
-                new Triangle(new Vector2(), new Vector2(), new Vector2())
+                new Triangle(new Vector2(70, 50), new Vector2(44, 56), new Vector2(44, 45)),
+                new Triangle(new Vector2(41, 50), new Vector2(29, 71), new Vector2(29, 30))
             });
             UnitTriangles = new Dictionary<string, List<Triangle>>();
             UnitTriangles["Spread Shot Ship"] = new List<Triangle>() {
