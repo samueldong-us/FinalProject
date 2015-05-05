@@ -20,7 +20,7 @@ namespace FinalProject.GameComponents
 
         protected override void Fire()
         {
-            Entity bullet = CreateProjectile(Speed, rotation, GameAssets.BulletTexture, GameAssets.Bullet[9], GameAssets.BulletTriangles[9], Color.Red, "PlayerBullet", "PlayerBullet");
+            Entity bullet = CreateProjectile(Speed, rotation, GameAssets.BulletTexture, GameAssets.Bullet[9], GameAssets.BulletTriangles[9], new Color(101, 232, 136), "PlayerBullet", "PlayerBullet");
             new ComponentDealDamage(bullet, damage);
             ScreenGame.Entities.AddEntity(bullet);
         }
