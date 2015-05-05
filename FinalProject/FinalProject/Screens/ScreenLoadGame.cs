@@ -113,6 +113,14 @@ namespace FinalProject.Screens
             {
                 savedGames[currentPage].Draw(spriteBatch);
             }
+            if (currentPage == -1)
+            {
+                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(300, 900), "NO SAVES");
+            }
+            else
+            {
+                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(300, 900), "PAGE " + (currentPage + 1) + "/" + savedGames.Count);
+            }
             UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(380, 210), "SELECT PROFILE");
         }
 

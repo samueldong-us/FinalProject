@@ -1,4 +1,5 @@
-﻿using FinalProject.Utilities;
+﻿using FinalProject.Screens;
+using FinalProject.Utilities;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,28 @@ namespace FinalProject.GameComponents
         public void AddCollider(string layer, ComponentCollider collider)
         {
             colliderLayers[layer].Add(collider);
+        }
+
+        public void ClosestEnemyByAngle(Entity entity, float maxAngle)
+        {
+            ComponentCollider closest = null;
+            float closestAngle = (float)(Math.PI);
+            Vector2 entityVector = Vector2.Transform(Vector2.UnitX, Matrix.CreateRotationZ(entity.Rotation));
+            foreach (ComponentCollider collider in colliderLayers["Enemy"])
+            {
+                if (ScreenGame.Bounds.Contains((int)collider.GetEntity().Position.X, (int)collider.GetEntity().Position.Y))
+                {
+                    Vector2 fromTo = collider.GetEntity().Position - entity.Position;
+                    float angleBetween = UtilitiesMath.AngleBetween(entityVector, fromTo);
+                    if (angleBetween < maxAngle && angleBetween < closestAngle)
+                    {
+                        closest = collider;
+                        closestAngle = angleBetween;
+                    }
+                }
+            }
+            Vector2 result = closest == null ? new Vector2(-1, -1) : closest.GetEntity().Position;
+            entity.MessageCenter.Broadcast<Vector2>("Closest Enemy", result);
         }
 
         public void ClosestPlayer(Entity parameterOne)

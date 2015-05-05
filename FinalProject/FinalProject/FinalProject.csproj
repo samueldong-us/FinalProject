@@ -96,6 +96,7 @@
     <Compile Include="GameComponents\ComponentBounce.cs" />
     <Compile Include="GameComponents\ComponentDealDamage.cs" />
     <Compile Include="GameComponents\ComponentDelayedSetVelocity.cs" />
+    <Compile Include="GameComponents\ComponentHomingToEnemy.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponBullet.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponBulletStream.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponCircularBounce.cs" />
@@ -107,6 +108,7 @@
     <Compile Include="GameComponents\ComponentFollowWithOffset.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponFan.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponFanStream.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponHoming.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponSplitShot.cs" />
     <Compile Include="GameComponents\ComponentRemoveOnCollide.cs" />
     <Compile Include="GameComponents\ComponentRemoveOnExit.cs" />

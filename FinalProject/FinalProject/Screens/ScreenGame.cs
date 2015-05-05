@@ -181,6 +181,7 @@ namespace FinalProject.Screens
         {
             MessageCenter = new MessageCenter();
             MessageCenter.AddListener<Entity>("Find Closest Player", Collisions.ClosestPlayer);
+            MessageCenter.AddListener<Entity, float>("Find Closest Enemy By Angle", Collisions.ClosestEnemyByAngle);
         }
 
         private void InitializeSystems()

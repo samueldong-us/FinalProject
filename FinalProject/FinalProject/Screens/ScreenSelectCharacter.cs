@@ -12,13 +12,19 @@ namespace FinalProject.Screens
     {
         private enum Result { Back, Continue }
 
+        private const float RotationSpeed = (float)(Math.PI / 8);
+
         private Texture2D background;
 
         private SaveGame currentGame;
 
+        private Texture2D displayShips;
+
         private ItemGroupMenu menuItems;
 
         private Result result;
+
+        private float rotation;
 
         public ScreenSelectCharacter(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
@@ -77,6 +83,7 @@ namespace FinalProject.Screens
         public override void LoadContent()
         {
             background = content.Load<Texture2D>("MenuBackground");
+            displayShips = content.Load<Texture2D>("DisplayShips");
             base.LoadContent();
         }
 
@@ -88,6 +95,16 @@ namespace FinalProject.Screens
             }
             base.Start();
             InitializeMenu();
+        }
+
+        protected override void ActiveUpdate(float secondsPassed)
+        {
+            rotation += RotationSpeed * secondsPassed;
+            if (rotation > Math.PI * 2)
+            {
+                rotation -= (float)(Math.PI * 2);
+            }
+            base.ActiveUpdate(secondsPassed);
         }
 
         protected override void BeginTransitioningOut()
@@ -113,6 +130,24 @@ namespace FinalProject.Screens
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             menuItems.Draw(spriteBatch);
             UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "SELECT CHARACTER");
+            switch (menuItems.GetSelected())
+            {
+                case "VARLET":
+                    {
+                        spriteBatch.Draw(displayShips, new Vector2(1400, 500), new Rectangle(460, 0, 230, 230), Color.White, rotation, new Vector2(115, 115), 1, SpriteEffects.None, 0);
+                        UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(1250, 700), "LASER");
+                    } break;
+                case "OASON":
+                    {
+                        spriteBatch.Draw(displayShips, new Vector2(1400, 500), new Rectangle(230, 0, 230, 230), Color.White, rotation, new Vector2(115, 115), 1, SpriteEffects.None, 0);
+                        UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(1250, 700), "HOMING");
+                    } break;
+                case "DIMMY":
+                    {
+                        spriteBatch.Draw(displayShips, new Vector2(1400, 500), new Rectangle(0, 0, 230, 230), Color.White, rotation, new Vector2(115, 115), 1, SpriteEffects.None, 0);
+                        UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(1250, 700), "SPREAD");
+                    } break;
+            }
         }
 
         protected override void Reset()
