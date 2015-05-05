@@ -47,13 +47,13 @@ namespace FinalProject.GameComponents
             //Left
             Entity bullet2 = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
             new ComponentDelayedSetVelocity(bullet2, 1f, UtilitiesMath.VectorFromMagnitudeAndAngle(Speed, bulletAngle + ((float)Math.PI / 8)));
-            new ComponentDealDamage(bullet, damage);
-            ScreenGame.Entities.AddEntity(bullet);
+            new ComponentDealDamage(bullet2, damage);
+            ScreenGame.Entities.AddEntity(bullet2);
             //Right
             Entity bullet3 = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
             new ComponentDelayedSetVelocity(bullet3, 1f, UtilitiesMath.VectorFromMagnitudeAndAngle(Speed, bulletAngle - ((float)Math.PI / 8)));
-            new ComponentDealDamage(bullet, damage);
-            ScreenGame.Entities.AddEntity(bullet);
+            new ComponentDealDamage(bullet3, damage);
+            ScreenGame.Entities.AddEntity(bullet3);
         }
 
         private void SetClosestPosition(Vector2 parameterOne)
