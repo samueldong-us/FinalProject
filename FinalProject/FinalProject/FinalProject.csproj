@@ -92,6 +92,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GameComponents\BehaviorInformationGenerator.cs" />
+    <Compile Include="GameComponents\ComponentBehaviorStar.cs" />
     <Compile Include="GameComponents\ComponentBehaviorCatmullRom.cs" />
     <Compile Include="GameComponents\ComponentBounce.cs" />
     <Compile Include="GameComponents\ComponentDealDamage.cs" />
