@@ -22,7 +22,7 @@ namespace FinalProject.GameComponents
             this.numberOfBullets = numberOfBullets;
             this.damage = damage;
             this.rotationalDelta = rotationalDelta;
-            rotation = 0;
+            rotation = (float)(GameMain.RNG.NextDouble() * 2 * Math.PI);
             entity.MessageCenter.AddListener<float>("Rotate", Rotate);
         }
 

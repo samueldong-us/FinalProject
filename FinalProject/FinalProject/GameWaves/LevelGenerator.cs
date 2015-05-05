@@ -12,7 +12,7 @@ namespace FinalProject.GameWaves
         public static List<Wave> GenerateLevel1()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
-            listOfUnits["Jellyfish"] = 6;
+            listOfUnits["Jellyfish"] = 60;
             listOfUnits["Walking Fish01"] = 20;
             listOfUnits["Walking Fish02"] = 20;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
