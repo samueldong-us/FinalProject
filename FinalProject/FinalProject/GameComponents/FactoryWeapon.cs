@@ -37,6 +37,10 @@ namespace FinalProject.GameComponents
                     {
                         AddSplitShotWeapon(entity, difficulty, stage);
                     } break;
+                case "Spiral":
+                    {
+                        AddSpiralFireWeapon(entity, difficulty, stage);
+                    } break;
             }
         }
 
@@ -92,6 +96,16 @@ namespace FinalProject.GameComponents
             int damage = (int)Values.WeaponValues[difficulty][stage]["Fan"]["Damage"];
             new ComponentConstantRateFire(entity, fireRate);
             new ComponentProjectileWeaponFan(entity, numberOfBullets, damage);
+        }
+
+        private static void AddSpiralFireWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
+        {
+            float fireRate = (float)Values.WeaponValues[difficulty][stage]["Spiral"]["Fire Rate"];
+            int numberOfBullets = (int)Values.WeaponValues[difficulty][stage]["Spiral"]["Number Of Bullets"];
+            int damage = (int)Values.WeaponValues[difficulty][stage]["Spiral"]["Damage"];
+            float rotationalDelta = (float)Values.WeaponValues[difficulty][stage]["Spiral"]["Rotational Delta"];
+            new ComponentConstantRateFire(entity, fireRate);
+            new ComponentProjectileWeaponCircularFire(entity, numberOfBullets, damage, rotationalDelta);
         }
 
         private static void AddSplitShotWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)

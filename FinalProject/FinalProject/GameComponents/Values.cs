@@ -17,7 +17,7 @@ namespace FinalProject.GameComponents
 
         private static SaveGame.Difficulty[] difficultyValues = { SaveGame.Difficulty.Easy, SaveGame.Difficulty.Normal, SaveGame.Difficulty.Hard };
 
-        private static string[] weaponTypes = { "Circular Fire", "Fan", "Bullet Stream", "Circular Bounce", "Fan Stream", "Split Shot", "Bullet" };
+        private static string[] weaponTypes = { "Circular Fire", "Fan", "Bullet Stream", "Circular Bounce", "Fan Stream", "Split Shot", "Bullet", "Spiral" };
 
         static Values()
         {
@@ -36,13 +36,13 @@ namespace FinalProject.GameComponents
         private static void FillBulletStreamValues()
         {
             // Level 2
-            WeaponValues[SaveGame.Difficulty.Easy][2]["Bullet Stream"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Easy][2]["Bullet Stream"]["Fire Rate"] = .2f;
             WeaponValues[SaveGame.Difficulty.Easy][2]["Bullet Stream"]["Damage"] = 1;
 
-            WeaponValues[SaveGame.Difficulty.Normal][2]["Bullet Stream"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Normal][2]["Bullet Stream"]["Fire Rate"] = .2f;
             WeaponValues[SaveGame.Difficulty.Normal][2]["Bullet Stream"]["Damage"] = 1;
 
-            WeaponValues[SaveGame.Difficulty.Hard][2]["Bullet Stream"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Hard][2]["Bullet Stream"]["Fire Rate"] = .2f;
             WeaponValues[SaveGame.Difficulty.Hard][2]["Bullet Stream"]["Damage"] = 2;
             // Level 3
             WeaponValues[SaveGame.Difficulty.Easy][3]["Bullet Stream"]["Fire Rate"] = 3f;
@@ -241,6 +241,55 @@ namespace FinalProject.GameComponents
             WeaponValues[SaveGame.Difficulty.Hard][3]["Fan"]["Damage"] = 2;
         }
 
+        private static void FillSpiralFireValues()
+        {
+            // Level 1
+            WeaponValues[SaveGame.Difficulty.Easy][1]["Spiral"]["Fire Rate"] = .5f;
+            WeaponValues[SaveGame.Difficulty.Easy][1]["Spiral"]["Number Of Bullets"] = 3;
+            WeaponValues[SaveGame.Difficulty.Easy][1]["Spiral"]["Damage"] = 1;
+            WeaponValues[SaveGame.Difficulty.Easy][1]["Spiral"]["Rotational Delta"] = (float)(Math.PI / 32);
+
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Spiral"]["Fire Rate"] = .5f;
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Spiral"]["Number Of Bullets"] = 35;
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Spiral"]["Damage"] = 1;
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Spiral"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Spiral"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Spiral"]["Number Of Bullets"] = 50;
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Spiral"]["Damage"] = 2;
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Spiral"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+            // Level 2
+            WeaponValues[SaveGame.Difficulty.Easy][2]["Spiral"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Easy][2]["Spiral"]["Number Of Bullets"] = 25;
+            WeaponValues[SaveGame.Difficulty.Easy][2]["Spiral"]["Damage"] = 1;
+            WeaponValues[SaveGame.Difficulty.Easy][2]["Spiral"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+
+            WeaponValues[SaveGame.Difficulty.Normal][2]["Spiral"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Normal][2]["Spiral"]["Number Of Bullets"] = 35;
+            WeaponValues[SaveGame.Difficulty.Normal][2]["Spiral"]["Damage"] = 1;
+            WeaponValues[SaveGame.Difficulty.Normal][2]["Spiral"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+
+            WeaponValues[SaveGame.Difficulty.Hard][2]["Spiral"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Hard][2]["Spiral"]["Number Of Bullets"] = 50;
+            WeaponValues[SaveGame.Difficulty.Hard][2]["Spiral"]["Damage"] = 2;
+            WeaponValues[SaveGame.Difficulty.Hard][2]["Spiral"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+            // Level 3
+            WeaponValues[SaveGame.Difficulty.Easy][3]["Spiral"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Easy][3]["Spiral"]["Number Of Bullets"] = 25;
+            WeaponValues[SaveGame.Difficulty.Easy][3]["Spiral"]["Damage"] = 1;
+            WeaponValues[SaveGame.Difficulty.Easy][3]["Spiral"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+
+            WeaponValues[SaveGame.Difficulty.Normal][3]["Spiral"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Normal][3]["Spiral"]["Number Of Bullets"] = 35;
+            WeaponValues[SaveGame.Difficulty.Normal][3]["Spiral"]["Damage"] = 1;
+            WeaponValues[SaveGame.Difficulty.Normal][3]["Spiral"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+
+            WeaponValues[SaveGame.Difficulty.Hard][3]["Spiral"]["Fire Rate"] = 3f;
+            WeaponValues[SaveGame.Difficulty.Hard][3]["Spiral"]["Number Of Bullets"] = 50;
+            WeaponValues[SaveGame.Difficulty.Hard][3]["Spiral"]["Damage"] = 2;
+            WeaponValues[SaveGame.Difficulty.Hard][3]["Spiral"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+        }
+
         private static void FillSplitShotValues()
         {
             // Level 1
@@ -395,6 +444,7 @@ namespace FinalProject.GameComponents
             FillFanValues();
             FillFanStreamValues();
             FillSplitShotValues();
+            FillSpiralFireValues();
         }
 
         private static void InitalizeWeaponValues()
