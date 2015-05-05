@@ -108,9 +108,12 @@
     <Compile Include="GameComponents\ComponentProjectileWeaponFan.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponFanStream.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponHoming.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponSpiral.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponSplitShot.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponWall.cs" />
     <Compile Include="GameComponents\ComponentRemoveOnCollide.cs" />
     <Compile Include="GameComponents\ComponentRemoveOnExit.cs" />
+    <Compile Include="GameComponents\ComponentWallFire.cs" />
     <Compile Include="GameComponents\FactoryBehavior.cs" />
     <Compile Include="GameComponents\FactoryPlayer.cs" />
     <Compile Include="GameComponents\FactoryUnit.cs" />

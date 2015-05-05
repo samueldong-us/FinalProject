@@ -41,7 +41,7 @@ namespace FinalProject.GameWaves
             spawnInformation["Walking Fish02"] = walkingfish02Default;
 
             Dictionary<string, List<string>> possibleWeapons = new Dictionary<string, List<string>>();
-            possibleWeapons["Jellyfish"] = new List<string> { "Spiral" };
+            possibleWeapons["Jellyfish"] = new List<string> { "Wall Fire" };
             possibleWeapons["Walking Fish01"] = new List<string> { "Bullet" };
             possibleWeapons["Walking Fish02"] = new List<string> { "Fan" };
 

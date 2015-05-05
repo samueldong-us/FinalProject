@@ -41,6 +41,10 @@ namespace FinalProject.GameComponents
                     {
                         AddSpiralFireWeapon(entity, difficulty, stage);
                     } break;
+                case "Wall Fire":
+                    {
+                        AddCircularWallWeapon(entity, difficulty, stage);
+                    } break;
             }
         }
 
@@ -80,6 +84,17 @@ namespace FinalProject.GameComponents
             new ComponentProjectileWeaponCircularFire(entity, numberOfBullets, damage, rotationalDelta);
         }
 
+        private static void AddCircularWallWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
+        {
+            float fireRate = (float)Values.WeaponValues[difficulty][stage]["Wall Fire"]["Fire Rate"];
+            int numberOfBullets = (int)Values.WeaponValues[difficulty][stage]["Wall Fire"]["Number Of Bullets"];
+            int damage = (int)Values.WeaponValues[difficulty][stage]["Wall Fire"]["Damage"];
+            float rotationalDelta = (float)Values.WeaponValues[difficulty][stage]["Wall Fire"]["Rotational Delta"];
+            int wallWidth = (int)Values.WeaponValues[difficulty][stage]["Wall Fire"]["Wall Width"];
+            new ComponentWallFire(entity, fireRate, wallWidth);
+            new ComponentProjectileWeaponWall(entity, numberOfBullets, damage, rotationalDelta);
+        }
+
         private static void AddFanStreamWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
         {
             float fireRate = (float)Values.WeaponValues[difficulty][stage]["Fan Stream"]["Fire Rate"];
@@ -105,7 +120,7 @@ namespace FinalProject.GameComponents
             int damage = (int)Values.WeaponValues[difficulty][stage]["Spiral"]["Damage"];
             float rotationalDelta = (float)Values.WeaponValues[difficulty][stage]["Spiral"]["Rotational Delta"];
             new ComponentConstantRateFire(entity, fireRate);
-            new ComponentProjectileWeaponCircularFire(entity, numberOfBullets, damage, rotationalDelta);
+            new ComponentProjectileWeaponSpiral(entity, numberOfBullets, damage, rotationalDelta);
         }
 
         private static void AddSplitShotWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)

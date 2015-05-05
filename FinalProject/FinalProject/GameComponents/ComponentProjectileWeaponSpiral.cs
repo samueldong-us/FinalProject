@@ -4,7 +4,7 @@ using System;
 
 namespace FinalProject.GameComponents
 {
-    internal class ComponentProjectileWeaponCircularFire : ComponentProjectileWeapon
+    internal class ComponentProjectileWeaponSpiral : ComponentProjectileWeapon
     {
         private const int Speed = 200;
 
@@ -16,7 +16,7 @@ namespace FinalProject.GameComponents
 
         private float rotationalDelta;
 
-        public ComponentProjectileWeaponCircularFire(Entity entity, int numberOfBullets, int damage, float rotationalDelta)
+        public ComponentProjectileWeaponSpiral(Entity entity, int numberOfBullets, int damage, float rotationalDelta)
             : base(entity, Vector2.Zero)
         {
             this.numberOfBullets = numberOfBullets;
@@ -36,7 +36,7 @@ namespace FinalProject.GameComponents
         {
             for (int i = 0; i < numberOfBullets; i++)
             {
-                Entity bullet = CreateProjectile(Speed, (float)(2 * Math.PI * i / numberOfBullets + rotation), GameAssets.BulletTexture, GameAssets.Bullet[2], GameAssets.BulletTriangles[2], new Color(186, 124, 255), "EnemyBullet", "EnemyBullet");
+                Entity bullet = CreateProjectile(Speed, (float)(2 * Math.PI * i / numberOfBullets + rotation), GameAssets.BulletTexture, GameAssets.Bullet[11], GameAssets.BulletTriangles[11], new Color(186, 124, 255), "EnemyBullet", "EnemyBullet");
                 new ComponentDealDamage(bullet, damage);
                 ScreenGame.Entities.AddEntity(bullet);
             }
