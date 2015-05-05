@@ -46,7 +46,7 @@ namespace FinalProject.GameComponents
                 for (int i = -numberOfBullets / 2; i <= numberOfBullets / 2; i++)
                 {
                     float modifiedBulletAngle = bulletAngle + ((float)(FieldOfFire * i / numberOfBullets));
-                    Entity bullet = CreateProjectile(Speed - j * 2, modifiedBulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[15], GameAssets.BulletTriangles[15], Color.Red, "EnemyBullet", "EnemyBullet");
+                    Entity bullet = CreateProjectile(Speed - j * 2, modifiedBulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[15], GameAssets.BulletTriangles[15], new Color(112, 255, 231), "EnemyBullet", "EnemyBullet");
                     new ComponentDelayedSetVelocity(bullet, 1, UtilitiesMath.VectorFromMagnitudeAndAngle(Speed * (15 - j), modifiedBulletAngle));
                     new ComponentDealDamage(bullet, damage);
                     ScreenGame.Entities.AddEntity(bullet);

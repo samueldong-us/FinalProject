@@ -24,7 +24,7 @@ namespace FinalProject.GameComponents
 
         protected override void Fire()
         {
-            Entity bullet = CreateProjectile(Speed, rotation, GameAssets.BulletTexture, GameAssets.Bullet[1], GameAssets.BulletTriangles[1], Color.Red, "PlayerBullet", "PlayerBullet");
+            Entity bullet = CreateProjectile(Speed, rotation, GameAssets.BulletTexture, GameAssets.Bullet[1], GameAssets.BulletTriangles[1], new Color(127, 255, 124), "PlayerBullet", "PlayerBullet");
             bullet.Scale = .75f;
             new ComponentDealDamage(bullet, damage);
             new ComponentHomingToEnemy(bullet);
