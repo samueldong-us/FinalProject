@@ -134,6 +134,7 @@ namespace FinalProject.Screens
                 waveManager.Update(secondsPassed);
                 Collisions.Update();
                 Entities.Update(secondsPassed);
+                MessageCenter.CleanUp();
             }
         }
 

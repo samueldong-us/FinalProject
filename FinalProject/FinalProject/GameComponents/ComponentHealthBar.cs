@@ -20,7 +20,7 @@ namespace FinalProject.GameComponents
             int x = (int)(offset.X - size.Width / 2.0);
             int y = (int)(offset.Y - size.Height / 2.0);
             bar = new Rectangle(x, y, size.Width, size.Height);
-            backing = new Rectangle(x - 3, y - 3, size.Width + 6, size.Height + 6);
+            backing = new Rectangle(x - 2, y - 2, size.Width + 4, size.Height + 4);
             entity.MessageCenter.AddListener<float, float>("Health", UpdateHealth);
             health = 1;
             maxHealth = 1;

@@ -183,7 +183,7 @@ namespace FinalProject.GameComponents
 
         private static void FillUnitHealthBars()
         {
-            UnitHealthBars["Jellyfish"] = new UnitHealthBarInformation(new Rectangle(0, 0, 100, 10), new Vector2(0, -75));
+            UnitHealthBars["Jellyfish"] = new UnitHealthBarInformation(new Rectangle(0, 0, 100, 1), new Vector2(0, -50));
         }
 
         private static void FillUnitMovementSpeeds()
