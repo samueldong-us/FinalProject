@@ -35,41 +35,23 @@ namespace FinalProject.GameComponents
 
         private static void FillBulletStreamValues()
         {
-            // Level 1
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Bullet Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Bullet Stream"]["Number Of Bullets"] = 2;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Bullet Stream"]["Damage"] = 1;
-
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Bullet Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Bullet Stream"]["Number Of Bullets"] = 3;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Bullet Stream"]["Damage"] = 1;
-
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Bullet Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Bullet Stream"]["Number Of Bullets"] = 5;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Bullet Stream"]["Damage"] = 2;
             // Level 2
             WeaponValues[SaveGame.Difficulty.Easy][2]["Bullet Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Easy][2]["Bullet Stream"]["Number Of Bullets"] = 2;
             WeaponValues[SaveGame.Difficulty.Easy][2]["Bullet Stream"]["Damage"] = 1;
 
             WeaponValues[SaveGame.Difficulty.Normal][2]["Bullet Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Normal][2]["Bullet Stream"]["Number Of Bullets"] = 3;
             WeaponValues[SaveGame.Difficulty.Normal][2]["Bullet Stream"]["Damage"] = 1;
 
             WeaponValues[SaveGame.Difficulty.Hard][2]["Bullet Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Hard][2]["Bullet Stream"]["Number Of Bullets"] = 5;
             WeaponValues[SaveGame.Difficulty.Hard][2]["Bullet Stream"]["Damage"] = 2;
             // Level 3
             WeaponValues[SaveGame.Difficulty.Easy][3]["Bullet Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Easy][3]["Bullet Stream"]["Number Of Bullets"] = 2;
             WeaponValues[SaveGame.Difficulty.Easy][3]["Bullet Stream"]["Damage"] = 1;
 
             WeaponValues[SaveGame.Difficulty.Normal][3]["Bullet Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Normal][3]["Bullet Stream"]["Number Of Bullets"] = 3;
             WeaponValues[SaveGame.Difficulty.Normal][3]["Bullet Stream"]["Damage"] = 1;
 
             WeaponValues[SaveGame.Difficulty.Hard][3]["Bullet Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Hard][3]["Bullet Stream"]["Number Of Bullets"] = 5;
             WeaponValues[SaveGame.Difficulty.Hard][3]["Bullet Stream"]["Damage"] = 2;
         }
 
@@ -77,59 +59,37 @@ namespace FinalProject.GameComponents
         {
             // Level 1
             WeaponValues[SaveGame.Difficulty.Easy][1]["Bullet"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Bullet"]["Number Of Bullets"] = 2;
             WeaponValues[SaveGame.Difficulty.Easy][1]["Bullet"]["Damage"] = 1;
 
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Bullet"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Bullet"]["Number Of Bullets"] = 3;
+            WeaponValues[SaveGame.Difficulty.Normal][1]["Bullet"]["Fire Rate"] = 2f;
             WeaponValues[SaveGame.Difficulty.Normal][1]["Bullet"]["Damage"] = 1;
 
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Bullet"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Bullet"]["Number Of Bullets"] = 5;
+            WeaponValues[SaveGame.Difficulty.Hard][1]["Bullet"]["Fire Rate"] = 1f;
             WeaponValues[SaveGame.Difficulty.Hard][1]["Bullet"]["Damage"] = 2;
             // Level 2
             WeaponValues[SaveGame.Difficulty.Easy][2]["Bullet"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Easy][2]["Bullet"]["Number Of Bullets"] = 2;
             WeaponValues[SaveGame.Difficulty.Easy][2]["Bullet"]["Damage"] = 1;
 
             WeaponValues[SaveGame.Difficulty.Normal][2]["Bullet"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Normal][2]["Bullet"]["Number Of Bullets"] = 3;
             WeaponValues[SaveGame.Difficulty.Normal][2]["Bullet"]["Damage"] = 1;
 
             WeaponValues[SaveGame.Difficulty.Hard][2]["Bullet"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Hard][2]["Bullet"]["Number Of Bullets"] = 5;
             WeaponValues[SaveGame.Difficulty.Hard][2]["Bullet"]["Damage"] = 2;
             // Level 3
             WeaponValues[SaveGame.Difficulty.Easy][3]["Bullet"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Easy][3]["Bullet"]["Number Of Bullets"] = 2;
             WeaponValues[SaveGame.Difficulty.Easy][3]["Bullet"]["Damage"] = 1;
 
             WeaponValues[SaveGame.Difficulty.Normal][3]["Bullet"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Normal][3]["Bullet"]["Number Of Bullets"] = 3;
             WeaponValues[SaveGame.Difficulty.Normal][3]["Bullet"]["Damage"] = 1;
 
             WeaponValues[SaveGame.Difficulty.Hard][3]["Bullet"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Hard][3]["Bullet"]["Number Of Bullets"] = 5;
             WeaponValues[SaveGame.Difficulty.Hard][3]["Bullet"]["Damage"] = 2;
         }
 
         private static void FillCircularBounceValues()
         {
             // Level 1
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Circular Bounce"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Circular Bounce"]["Number Of Bullets"] = 25;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Circular Bounce"]["Damage"] = 1;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Circular Bounce"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
-
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Bounce"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Bounce"]["Number Of Bullets"] = 35;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Bounce"]["Damage"] = 1;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Circular Bounce"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
-
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Bounce"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Bounce"]["Number Of Bullets"] = 50;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Bounce"]["Damage"] = 2;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Circular Bounce"]["Rotational Delta"] = (float)(Math.PI * Math.PI);
+            // Not Used
             // Level 2
             WeaponValues[SaveGame.Difficulty.Easy][2]["Circular Bounce"]["Fire Rate"] = 3f;
             WeaponValues[SaveGame.Difficulty.Easy][2]["Circular Bounce"]["Number Of Bullets"] = 25;
@@ -214,17 +174,7 @@ namespace FinalProject.GameComponents
         private static void FillFanStreamValues()
         {
             // Level 1
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Fan Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Fan Stream"]["Number Of Bullets"] = 2;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Fan Stream"]["Damage"] = 1;
-
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Fan Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Fan Stream"]["Number Of Bullets"] = 3;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Fan Stream"]["Damage"] = 1;
-
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Fan Stream"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Fan Stream"]["Number Of Bullets"] = 5;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Fan Stream"]["Damage"] = 2;
+            // Not used
             // Level 2
             WeaponValues[SaveGame.Difficulty.Easy][2]["Fan Stream"]["Fire Rate"] = 3f;
             WeaponValues[SaveGame.Difficulty.Easy][2]["Fan Stream"]["Number Of Bullets"] = 2;
@@ -294,17 +244,7 @@ namespace FinalProject.GameComponents
         private static void FillSplitShotValues()
         {
             // Level 1
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Split Shot"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Split Shot"]["Number Of Bullets"] = 2;
-            WeaponValues[SaveGame.Difficulty.Easy][1]["Split Shot"]["Damage"] = 1;
-
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Split Shot"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Split Shot"]["Number Of Bullets"] = 3;
-            WeaponValues[SaveGame.Difficulty.Normal][1]["Split Shot"]["Damage"] = 1;
-
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Split Shot"]["Fire Rate"] = 3f;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Split Shot"]["Number Of Bullets"] = 5;
-            WeaponValues[SaveGame.Difficulty.Hard][1]["Split Shot"]["Damage"] = 2;
+            // Not used
             // Level 2
             WeaponValues[SaveGame.Difficulty.Easy][2]["Split Shot"]["Fire Rate"] = 3f;
             WeaponValues[SaveGame.Difficulty.Easy][2]["Split Shot"]["Number Of Bullets"] = 2;
@@ -340,7 +280,7 @@ namespace FinalProject.GameComponents
         {
             UnitMovementSpeeds["Jellyfish"] = 50f;
             UnitMovementSpeeds["Walking Fish01"] = 100f;
-            UnitMovementSpeeds["Walking Fish02"] = 100f;
+            UnitMovementSpeeds["Walking Fish02"] = 80f;
             UnitMovementSpeeds["Squid"] = 100f;
             UnitMovementSpeeds["Turtle"] = 100f;
             UnitMovementSpeeds["Sea Slug"] = 100f;
@@ -361,37 +301,9 @@ namespace FinalProject.GameComponents
             UnitValues[SaveGame.Difficulty.Normal][1]["Walking Fish01"] = new UnitValues(20);
             UnitValues[SaveGame.Difficulty.Hard][1]["Walking Fish01"] = new UnitValues(30);
 
-            UnitValues[SaveGame.Difficulty.Easy][1]["Walking Fish02"] = new UnitValues(10);
-            UnitValues[SaveGame.Difficulty.Normal][1]["Walking Fish02"] = new UnitValues(20);
-            UnitValues[SaveGame.Difficulty.Hard][1]["Walking Fish02"] = new UnitValues(30);
-
-            UnitValues[SaveGame.Difficulty.Easy][1]["Sea Slug"] = new UnitValues(10);
-            UnitValues[SaveGame.Difficulty.Normal][1]["Sea Slug"] = new UnitValues(20);
-            UnitValues[SaveGame.Difficulty.Hard][1]["Sea Slug"] = new UnitValues(30);
-
-            UnitValues[SaveGame.Difficulty.Easy][1]["Squid"] = new UnitValues(10);
-            UnitValues[SaveGame.Difficulty.Normal][1]["Squid"] = new UnitValues(20);
-            UnitValues[SaveGame.Difficulty.Hard][1]["Squid"] = new UnitValues(30);
-
-            UnitValues[SaveGame.Difficulty.Easy][1]["Turtle"] = new UnitValues(10);
-            UnitValues[SaveGame.Difficulty.Normal][1]["Turtle"] = new UnitValues(20);
-            UnitValues[SaveGame.Difficulty.Hard][1]["Turtle"] = new UnitValues(30);
-
-            UnitValues[SaveGame.Difficulty.Easy][1]["Starfish"] = new UnitValues(10);
-            UnitValues[SaveGame.Difficulty.Normal][1]["Starfish"] = new UnitValues(20);
-            UnitValues[SaveGame.Difficulty.Hard][1]["Starfish"] = new UnitValues(30);
-
-            UnitValues[SaveGame.Difficulty.Easy][1]["Lobster"] = new UnitValues(10);
-            UnitValues[SaveGame.Difficulty.Normal][1]["Lobster"] = new UnitValues(20);
-            UnitValues[SaveGame.Difficulty.Hard][1]["Lobster"] = new UnitValues(30);
-
-            UnitValues[SaveGame.Difficulty.Easy][1]["Flying Fish"] = new UnitValues(10);
-            UnitValues[SaveGame.Difficulty.Normal][1]["Flying Fish"] = new UnitValues(20);
-            UnitValues[SaveGame.Difficulty.Hard][1]["Flying Fish"] = new UnitValues(30);
-
-            UnitValues[SaveGame.Difficulty.Easy][1]["Super Jelly"] = new UnitValues(10);
-            UnitValues[SaveGame.Difficulty.Normal][1]["Super Jelly"] = new UnitValues(20);
-            UnitValues[SaveGame.Difficulty.Hard][1]["Super Jelly"] = new UnitValues(30);
+            UnitValues[SaveGame.Difficulty.Easy][1]["Walking Fish02"] = new UnitValues(15);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Walking Fish02"] = new UnitValues(30);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Walking Fish02"] = new UnitValues(45);
             // Level 2
             UnitValues[SaveGame.Difficulty.Easy][2]["Jellyfish"] = new UnitValues(30);
             UnitValues[SaveGame.Difficulty.Normal][2]["Jellyfish"] = new UnitValues(45);

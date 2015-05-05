@@ -43,19 +43,17 @@ namespace FinalProject.GameComponents
         private static void AddBulletStreamWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
         {
             float fireRate = (float)Values.WeaponValues[difficulty][stage]["Bullet Stream"]["Fire Rate"];
-            int numberOfBullets = (int)Values.WeaponValues[difficulty][stage]["Bullet Stream"]["Number Of Bullets"];
             int damage = (int)Values.WeaponValues[difficulty][stage]["Bullet Stream"]["Damage"];
             new ComponentConstantRateFire(entity, fireRate);
-            new ComponentProjectileWeaponBulletStream(entity, numberOfBullets, damage);
+            new ComponentProjectileWeaponBulletStream(entity, damage);
         }
 
         private static void AddBulletWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
         {
             float fireRate = (float)Values.WeaponValues[difficulty][stage]["Bullet"]["Fire Rate"];
-            int numberOfBullets = (int)Values.WeaponValues[difficulty][stage]["Bullet"]["Number Of Bullets"];
             int damage = (int)Values.WeaponValues[difficulty][stage]["Bullet"]["Damage"];
             new ComponentConstantRateFire(entity, fireRate);
-            new ComponentProjectileWeaponBullet(entity, numberOfBullets, damage);
+            new ComponentProjectileWeaponBullet(entity, damage);
         }
 
         private static void AddCircularBounceWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
