@@ -183,17 +183,26 @@ namespace FinalProject.GameComponents
 
         private static void FillUnitHealthBars()
         {
-            UnitHealthBars["Jellyfish"] = new UnitHealthBarInformation(new Rectangle(0, 0, 100, 10), new Vector2(0, -75));
+            UnitHealthBars["Jellyfish"] = new UnitHealthBarInformation(new Rectangle(0, 0, 100, 1), new Vector2(0, -50));
         }
 
         private static void FillUnitMovementSpeeds()
         {
             UnitMovementSpeeds["Jellyfish"] = 50f;
             UnitMovementSpeeds["Walking Fish01"] = 100f;
+            UnitMovementSpeeds["Walking Fish02"] = 100f;
+            UnitMovementSpeeds["Squid"] = 100f;
+            UnitMovementSpeeds["Turtle"] = 100f;
+            UnitMovementSpeeds["Sea Slug"] = 100f;
+            UnitMovementSpeeds["Starfish"] = 100f;
+            UnitMovementSpeeds["Lobster"] = 100f;
+            UnitMovementSpeeds["Super Jelly"] = 100f;
+            UnitMovementSpeeds["Flying Fish"] = 100f;
         }
 
         private static void FillUnitValues()
         {
+            // Level 1
             UnitValues[SaveGame.Difficulty.Easy][1]["Jellyfish"] = new UnitValues(30);
             UnitValues[SaveGame.Difficulty.Normal][1]["Jellyfish"] = new UnitValues(45);
             UnitValues[SaveGame.Difficulty.Hard][1]["Jellyfish"] = new UnitValues(60);
@@ -201,6 +210,78 @@ namespace FinalProject.GameComponents
             UnitValues[SaveGame.Difficulty.Easy][1]["Walking Fish01"] = new UnitValues(10);
             UnitValues[SaveGame.Difficulty.Normal][1]["Walking Fish01"] = new UnitValues(20);
             UnitValues[SaveGame.Difficulty.Hard][1]["Walking Fish01"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][1]["Walking Fish02"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Walking Fish02"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Walking Fish02"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][1]["Sea Slug"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Sea Slug"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Sea Slug"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][1]["Squid"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Squid"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Squid"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][1]["Turtle"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Turtle"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Turtle"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][1]["Starfish"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Starfish"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Starfish"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][1]["Lobster"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Lobster"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Lobster"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][1]["Flying Fish"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Flying Fish"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Flying Fish"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][1]["Super Jelly"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][1]["Super Jelly"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][1]["Super Jelly"] = new UnitValues(30);
+            // Level 2
+            UnitValues[SaveGame.Difficulty.Easy][2]["Jellyfish"] = new UnitValues(30);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Jellyfish"] = new UnitValues(45);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Jellyfish"] = new UnitValues(60);
+
+            UnitValues[SaveGame.Difficulty.Easy][2]["Walking Fish01"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Walking Fish01"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Walking Fish01"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][2]["Walking Fish02"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Walking Fish02"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Walking Fish02"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][2]["Sea Slug"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Sea Slug"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Sea Slug"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][2]["Squid"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Squid"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Squid"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][2]["Turtle"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Turtle"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Turtle"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][2]["Starfish"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Starfish"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Starfish"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][2]["Lobster"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Lobster"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Lobster"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][2]["Flying Fish"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Flying Fish"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Flying Fish"] = new UnitValues(30);
+
+            UnitValues[SaveGame.Difficulty.Easy][2]["Super Jelly"] = new UnitValues(10);
+            UnitValues[SaveGame.Difficulty.Normal][2]["Super Jelly"] = new UnitValues(20);
+            UnitValues[SaveGame.Difficulty.Hard][2]["Super Jelly"] = new UnitValues(30);
         }
 
         private static void FillWeaponValues()

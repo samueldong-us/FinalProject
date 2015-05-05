@@ -104,7 +104,6 @@
     <Compile Include="GameComponents\ComponentHealthBarCircular.cs" />
     <Compile Include="GameComponents\ComponentConstantRateFire.cs" />
     <Compile Include="GameComponents\ComponentDelayedTargeting.cs" />
-    <Compile Include="GameComponents\ComponentProjectileWeaponExample.cs" />
     <Compile Include="GameComponents\ComponentFollowWithOffset.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponFan.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponFanStream.cs" />

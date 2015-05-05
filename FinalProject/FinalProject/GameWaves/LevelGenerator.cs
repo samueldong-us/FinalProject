@@ -7,16 +7,33 @@ namespace FinalProject.GameWaves
 {
     internal static class LevelGenerator
     {
-        private const float LengthOfWave = 5;
+        private const float LengthOfWave = 8;
 
         public static List<Wave> GenerateLevel1()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
             listOfUnits["Jellyfish"] = 6;
-            listOfUnits["Walking Fish01"] = 50;
+            listOfUnits["Walking Fish01"] = 20;
+            listOfUnits["Walking Fish02"] = 20;
+            listOfUnits["Squid"] = 20;
+            listOfUnits["Turtle"] = 20;
+            listOfUnits["Flying Fish"] = 20;
+            listOfUnits["Super Jelly"] = 20;
+            listOfUnits["Lobster"] = 20;
+            listOfUnits["Sea Slug"] = 20;
+            listOfUnits["Starfish"] = 20;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Jellyfish"] = 6;
             worthOfUnits["Walking Fish01"] = 1;
+            worthOfUnits["Walking Fish02"] = 1;
+            worthOfUnits["Squid"] = 1;
+            worthOfUnits["Turtle"] = 1;
+            worthOfUnits["Flying Fish"] = 1;
+            worthOfUnits["Super Jelly"] = 1;
+            worthOfUnits["Lobster"] = 1;
+            worthOfUnits["Starfish"] = 1;
+            worthOfUnits["Sea Slug"] = 1;
+
             SpawnInformation jellyfishDefault = new SpawnInformation(0);
             jellyfishDefault.AddInformation("Unit Name", "Jellyfish");
             jellyfishDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
@@ -25,15 +42,72 @@ namespace FinalProject.GameWaves
             walkingfishDefault.AddInformation("Unit Name", "Walking Fish01");
             walkingfishDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
             walkingfishDefault.AddInformation("Rotate Based On Velocity", true);
+            SpawnInformation walkingfish02Default = new SpawnInformation(0);
+            walkingfish02Default.AddInformation("Unit Name", "Walking Fish02");
+            walkingfish02Default.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+            walkingfish02Default.AddInformation("Rotate Based On Velocity", true);
+            SpawnInformation squidDefault = new SpawnInformation(0);
+            squidDefault.AddInformation("Unit Name", "Squid");
+            squidDefault.AddInformation("Starting Rotation", -(float)(Math.PI / 2));
+            squidDefault.AddInformation("Rotate Based On Velocity", true);
+            SpawnInformation turtleDefault = new SpawnInformation(0);
+            turtleDefault.AddInformation("Unit Name", "Turtle");
+            turtleDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+            turtleDefault.AddInformation("Rotate Based On Velocity", true);
+            SpawnInformation flyingfishDefault = new SpawnInformation(0);
+            flyingfishDefault.AddInformation("Unit Name", "Flying Fish");
+            flyingfishDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+            flyingfishDefault.AddInformation("Rotate Based On Velocity", true);
+            SpawnInformation superjellyDefault = new SpawnInformation(0);
+            superjellyDefault.AddInformation("Unit Name", "Super Jelly");
+            superjellyDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+            superjellyDefault.AddInformation("Rotate Based On Velocity", true);
+            SpawnInformation lobsterDefault = new SpawnInformation(0);
+            lobsterDefault.AddInformation("Unit Name", "Lobster");
+            lobsterDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+            lobsterDefault.AddInformation("Rotate Based On Velocity", true);
+            SpawnInformation starfishDefault = new SpawnInformation(0);
+            starfishDefault.AddInformation("Unit Name", "Starfish");
+            starfishDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+            starfishDefault.AddInformation("Rotate Based On Velocity", true);
+            SpawnInformation seaslugDefault = new SpawnInformation(0);
+            seaslugDefault.AddInformation("Unit Name", "Sea Slug");
+            seaslugDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
+            seaslugDefault.AddInformation("Rotate Based On Velocity", true);
             Dictionary<string, SpawnInformation> spawnInformation = new Dictionary<string, SpawnInformation>();
             spawnInformation["Jellyfish"] = jellyfishDefault;
             spawnInformation["Walking Fish01"] = walkingfishDefault;
+            spawnInformation["Walking Fish02"] = walkingfish02Default;
+            spawnInformation["Squid"] = squidDefault;
+            spawnInformation["Turtle"] = turtleDefault;
+            spawnInformation["Flying Fish"] = flyingfishDefault;
+            spawnInformation["Super Jelly"] = superjellyDefault;
+            spawnInformation["Lobster"] = lobsterDefault;
+            spawnInformation["Starfish"] = starfishDefault;
+            spawnInformation["Sea Slug"] = seaslugDefault;
             Dictionary<string, List<string>> possibleWeapons = new Dictionary<string, List<string>>();
             possibleWeapons["Jellyfish"] = new List<string> { "Circular Fire", "Circular Bounce" };
             possibleWeapons["Walking Fish01"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
+            possibleWeapons["Walking Fish02"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
+            possibleWeapons["Squid"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
+            possibleWeapons["Turtle"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
+            possibleWeapons["Flying Fish"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
+            possibleWeapons["Super Jelly"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
+            possibleWeapons["Lobster"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
+            possibleWeapons["Starfish"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
+            possibleWeapons["Sea Slug"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
             Dictionary<string, List<string>> possibleBehaviors = new Dictionary<string, List<string>>();
             possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Walking Fish01"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Walking Fish02"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Squid"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Turtle"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Flying Fish"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Super Jelly"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Lobster"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Starfish"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Sea Slug"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+
             return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 8);
         }
 

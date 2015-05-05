@@ -29,7 +29,7 @@ namespace FinalProject.GameComponents
         {
             for (int i = 0; i < numberOfBullets; i++)
             {
-                Entity bullet = CreateProjectile(Speed, (float)(2 * Math.PI * i / numberOfBullets + rotation), GameAssets.BulletTexture, GameAssets.Bullet[16], GameAssets.BulletTriangles[16], Color.Red, "EnemyBullet", "EnemyBullet");
+                Entity bullet = CreateProjectile(Speed, (float)(2 * Math.PI * i / numberOfBullets + rotation), GameAssets.BulletTexture, GameAssets.Bullet[2], GameAssets.BulletTriangles[2], Color.Red, "EnemyBullet", "EnemyBullet");
                 new ComponentDealDamage(bullet, damage);
                 ScreenGame.Entities.AddEntity(bullet);
             }

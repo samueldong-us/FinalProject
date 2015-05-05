@@ -41,16 +41,16 @@ namespace FinalProject.GameComponents
             float bulletAngle = (float)Math.Atan2(direction.Y, direction.X);
 
             //Middle
-            Entity bullet = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
+            Entity bullet = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[13], GameAssets.BulletTriangles[13], Color.Red, "EnemyBullet", "EnemyBullet");
             new ComponentDealDamage(bullet, damage);
             ScreenGame.Entities.AddEntity(bullet);
             //Left
-            Entity bullet2 = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
+            Entity bullet2 = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[13], GameAssets.BulletTriangles[13], Color.Red, "EnemyBullet", "EnemyBullet");
             new ComponentDelayedSetVelocity(bullet2, 1f, UtilitiesMath.VectorFromMagnitudeAndAngle(Speed, bulletAngle + ((float)Math.PI / 8)));
             new ComponentDealDamage(bullet2, damage);
             ScreenGame.Entities.AddEntity(bullet2);
             //Right
-            Entity bullet3 = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
+            Entity bullet3 = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[13], GameAssets.BulletTriangles[13], Color.Red, "EnemyBullet", "EnemyBullet");
             new ComponentDelayedSetVelocity(bullet3, 1f, UtilitiesMath.VectorFromMagnitudeAndAngle(Speed, bulletAngle - ((float)Math.PI / 8)));
             new ComponentDealDamage(bullet3, damage);
             ScreenGame.Entities.AddEntity(bullet3);
