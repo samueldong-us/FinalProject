@@ -29,8 +29,8 @@ namespace FinalProject.GameWaves
             spawnInformation["Jellyfish"] = jellyfishDefault;
             spawnInformation["Walking Fish01"] = walkingfishDefault;
             Dictionary<string, List<string>> possibleWeapons = new Dictionary<string, List<string>>();
-            possibleWeapons["Jellyfish"] = new List<string> { "Circular Fire" };
-            possibleWeapons["Walking Fish01"] = new List<string> { "Fan" };
+            possibleWeapons["Jellyfish"] = new List<string> { "Circular Fire", "Circular Bounce" };
+            possibleWeapons["Walking Fish01"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
             Dictionary<string, List<string>> possibleBehaviors = new Dictionary<string, List<string>>();
             possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Walking Fish01"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };

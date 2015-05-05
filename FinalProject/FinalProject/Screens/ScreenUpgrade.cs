@@ -35,7 +35,7 @@ namespace FinalProject.Screens
                             case Keys.Enter:
                                 {
                                     int cost = upgrades.GetSelectedCost();
-                                    if (cost < currentGame.Credits)
+                                    if (cost <= currentGame.Credits)
                                     {
                                         currentGame.Credits -= cost;
                                         upgrades.UpgradeSelected();

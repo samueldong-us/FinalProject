@@ -16,7 +16,7 @@ namespace FinalProject.GameComponents
             {
                 case SaveGame.Character.Dimmy:
                     {
-                        CreateLaserShip(saveGame, player);
+                        CreateSpreadShotShip(saveGame, player);
                     } break;
                 case SaveGame.Character.Oason:
                     {
@@ -44,6 +44,41 @@ namespace FinalProject.GameComponents
             new ComponentHealthBarCircular(player, (float)(Math.PI * 4 / 5));
             new ComponentRemoveOnDeath(player);
             new ComponentTextureRenderer(player, GameAssets.UnitTexture, GameAssets.Unit["Laser Ship"], Color.White, "Player");
+        }
+
+        private static void CreateSpreadShotShip(SaveGame saveGame, Entity player)
+        {
+            float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
+            int damage = saveGame.Damage;
+            int health = 20 + 2 * saveGame.Shields;
+            float firerate = .2f - .1f * saveGame.FireRate / 10;
+            new ComponentPlayerController(player, movementSpeed);
+            new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
+            new ComponentRestrictPosition(player, 50, 50, ScreenGame.Bounds);
+            new ComponentConstantRateFire(player, firerate);
+            new ComponentProjectileWeaponSpreadShot(player, damage, (float)(-Math.PI / 2), new Vector2(0, -35));
+            new ComponentProjectileWeaponSpreadShot(player, damage, (float)(-Math.PI / 2 + Math.PI / 32), new Vector2(10, 0));
+            new ComponentProjectileWeaponSpreadShot(player, damage, (float)(-Math.PI / 2 - Math.PI / 32), new Vector2(-10, 0));
+            if (saveGame.WeaponStrength > 3)
+            {
+                new ComponentProjectileWeaponSpreadShot(player, damage, (float)(-Math.PI / 2 + Math.PI / 20), new Vector2(15, -10));
+                new ComponentProjectileWeaponSpreadShot(player, damage, (float)(-Math.PI / 2 - Math.PI / 20), new Vector2(-15, -10));
+            }
+            if (saveGame.WeaponStrength > 6)
+            {
+                new ComponentProjectileWeaponSpreadShot(player, damage, (float)(-Math.PI / 2 + Math.PI / 10), new Vector2(22, -10));
+                new ComponentProjectileWeaponSpreadShot(player, damage, (float)(-Math.PI / 2 - Math.PI / 10), new Vector2(-22, -10));
+            }
+            if (saveGame.WeaponStrength == 10)
+            {
+                new ComponentProjectileWeaponSpreadShot(player, damage, (float)(-Math.PI / 2 + Math.PI / 5), new Vector2(30, -20));
+                new ComponentProjectileWeaponSpreadShot(player, damage, (float)(-Math.PI / 2 - Math.PI / 5), new Vector2(-30, -20));
+            }
+            new ComponentCollider(player, GameAssets.Unit["Spread Shot Ship"], GameAssets.UnitTriangles["Spread Shot Ship"], "Player");
+            new ComponentHealth(player, health);
+            new ComponentHealthBarCircular(player, (float)(Math.PI * 4 / 5));
+            new ComponentRemoveOnDeath(player);
+            new ComponentTextureRenderer(player, GameAssets.UnitTexture, GameAssets.Unit["Spread Shot Ship"], Color.White, "Player");
         }
     }
 }

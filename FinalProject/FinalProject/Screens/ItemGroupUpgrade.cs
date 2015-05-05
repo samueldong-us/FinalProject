@@ -22,7 +22,10 @@ namespace FinalProject.Screens
 
         public void UpgradeSelected()
         {
-            ((ItemUpgrade)items[index]).level++;
+            if (((ItemUpgrade)items[index]).level < 10)
+            {
+                ((ItemUpgrade)items[index]).level++;
+            }
         }
     }
 }

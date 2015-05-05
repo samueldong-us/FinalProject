@@ -49,7 +49,7 @@ namespace FinalProject.GameComponents
             }
             if (timePassed > outTime)
             {
-                ScreenGame.MessageCenter.Broadcast<Entity>("Remove Entity", entity);
+                ScreenGame.Entities.RemoveEntity(entity);
             }
         }
     }
