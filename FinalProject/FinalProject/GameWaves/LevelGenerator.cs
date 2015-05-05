@@ -15,13 +15,6 @@ namespace FinalProject.GameWaves
             listOfUnits["Jellyfish"] = 6;
             listOfUnits["Walking Fish01"] = 20;
             listOfUnits["Walking Fish02"] = 20;
-            listOfUnits["Squid"] = 20;
-            listOfUnits["Turtle"] = 20;
-            listOfUnits["Flying Fish"] = 20;
-            listOfUnits["Super Jelly"] = 20;
-            listOfUnits["Lobster"] = 20;
-            listOfUnits["Sea Slug"] = 20;
-            listOfUnits["Starfish"] = 20;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Jellyfish"] = 4;
             worthOfUnits["Walking Fish01"] = 1;
