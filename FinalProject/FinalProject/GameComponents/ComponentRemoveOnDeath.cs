@@ -13,6 +13,7 @@ namespace FinalProject.GameComponents
         public override void Dispose()
         {
             entity.MessageCenter.RemoveListener("Health Depleted", RequestRemove);
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)

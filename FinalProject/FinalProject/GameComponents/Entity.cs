@@ -39,6 +39,7 @@ namespace FinalProject.GameComponents
             {
                 component.Dispose();
             }
+            components.Clear();
         }
 
         public void MoveComponent(int from, int to)

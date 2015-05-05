@@ -23,6 +23,7 @@ namespace FinalProject.GameComponents
             entity.MessageCenter.RemoveListener<Vector2>("Set Acceleration", SetAcceleration);
             entity.MessageCenter.RemoveListener("Get Velocity", GetVelocity);
             entity.MessageCenter.RemoveListener("Get Acceleration", GetAcceleration);
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)

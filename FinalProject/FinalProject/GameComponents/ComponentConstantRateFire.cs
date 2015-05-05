@@ -22,6 +22,7 @@
         {
             entity.MessageCenter.RemoveListener("Start Firing", StartFiring);
             entity.MessageCenter.RemoveListener("Stop Firing", StopFiring);
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)

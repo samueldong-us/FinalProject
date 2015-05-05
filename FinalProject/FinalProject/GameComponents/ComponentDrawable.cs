@@ -17,6 +17,7 @@ namespace FinalProject.GameComponents
         public override void Dispose()
         {
             ScreenGame.Drawing.RemoveDrawable(drawableLayer, this);
+            base.Dispose();
         }
 
         public abstract void Draw(SpriteBatch spriteBatch);

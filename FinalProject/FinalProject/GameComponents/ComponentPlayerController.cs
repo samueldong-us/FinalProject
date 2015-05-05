@@ -28,6 +28,7 @@ namespace FinalProject.GameComponents
         {
             ScreenGame.MessageCenter.RemoveListener<Keys>("Key Pressed", KeyPressed);
             ScreenGame.MessageCenter.RemoveListener<Keys>("Key Released", KeyReleased);
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)

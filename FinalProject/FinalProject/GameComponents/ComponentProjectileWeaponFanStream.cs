@@ -48,17 +48,10 @@ namespace FinalProject.GameComponents
                     float modifiedBulletAngle = bulletAngle + ((float)(FieldOfFire * i / numberOfBullets));
                     Entity bullet = CreateProjectile(Speed, modifiedBulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
                     bullet.MessageCenter.Broadcast<Vector2>("Set Acceleration", UtilitiesMath.VectorFromMagnitudeAndAngle(Speed * ((j + 1)), modifiedBulletAngle));
-                    bullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
-                    bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
-                    projectiles.Add(bullet);
+                    new ComponentDealDamage(bullet, damage);
+                    ScreenGame.Entities.AddEntity(bullet);
                 }
             }
-        }
-
-        private void DealDamage(Entity projectile, Entity collidedEntity)
-        {
-            collidedEntity.MessageCenter.Broadcast<float>("Take Damage", damage);
-            RemoveProjectile(projectile);
         }
 
         private void SetClosestPosition(Vector2 parameterOne)

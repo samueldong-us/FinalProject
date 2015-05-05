@@ -97,8 +97,10 @@ namespace FinalProject
 
         private void InitializeGraphicsSettings()
         {
-            graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
-            graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            //graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
+            //graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
+            graphics.PreferredBackBufferWidth = 800;
+            graphics.PreferredBackBufferHeight = 600;
             //graphics.IsFullScreen = true;
             IsFixedTimeStep = false;
             graphics.ApplyChanges();

@@ -43,16 +43,9 @@ namespace FinalProject.GameComponents
             for (int i = -numberOfBullets / 2; i <= numberOfBullets / 2; i++)
             {
                 Entity bullet = CreateProjectile(Speed, bulletAngle + ((float)(FieldOfFire * i / numberOfBullets)), GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
-                bullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
-                bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
-                projectiles.Add(bullet);
+                new ComponentDealDamage(bullet, damage);
+                ScreenGame.Entities.AddEntity(bullet);
             }
-        }
-
-        private void DealDamage(Entity projectile, Entity collidedEntity)
-        {
-            collidedEntity.MessageCenter.Broadcast<float>("Take Damage", damage);
-            RemoveProjectile(projectile);
         }
 
         private void SetClosestPosition(Vector2 parameterOne)

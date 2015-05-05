@@ -19,6 +19,7 @@ namespace FinalProject.GameComponents
         public override void Dispose()
         {
             entity.MessageCenter.RemoveListener<Vector2>("Velocity", GetVelocity);
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)

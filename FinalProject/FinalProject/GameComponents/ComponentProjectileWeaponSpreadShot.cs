@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FinalProject.Screens;
+using Microsoft.Xna.Framework;
 
 namespace FinalProject.GameComponents
 {
@@ -20,15 +21,8 @@ namespace FinalProject.GameComponents
         protected override void Fire()
         {
             Entity bullet = CreateProjectile(Speed, rotation, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "PlayerBullet", "PlayerBullet");
-            bullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
-            bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
-            projectiles.Add(bullet);
-        }
-
-        private void DealDamage(Entity projectile, Entity collidedEntity)
-        {
-            collidedEntity.MessageCenter.Broadcast<float>("Take Damage", damage);
-            RemoveProjectile(projectile);
+            new ComponentDealDamage(bullet, damage);
+            ScreenGame.Entities.AddEntity(bullet);
         }
     }
 }

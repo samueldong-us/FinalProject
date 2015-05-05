@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FinalProject.Screens;
+using Microsoft.Xna.Framework;
 using System;
 
 namespace FinalProject.GameComponents
@@ -25,18 +26,11 @@ namespace FinalProject.GameComponents
             for (int i = 0; i < 6; i++)
             {
                 Entity centerBullet = CreateProjectile(100, (float)(Math.PI * i / 3), GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "PlayerBullet", "EnemyBullet");
-                centerBullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
-                centerBullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
+                new ComponentDealDamage(centerBullet, 1);
                 new ComponentDelayedTargeting(centerBullet, .5f, .1f * i, 300);
                 centerBullet.MoveComponent(5, 1);
-                projectiles.Add(centerBullet);
+                ScreenGame.Entities.AddEntity(centerBullet);
             }
-        }
-
-        private void DealDamage(Entity projectile, Entity entity)
-        {
-            entity.MessageCenter.Broadcast<float>("Take Damage", 1);
-            RemoveProjectile(projectile);
         }
 
         private void SetClosestPosition(Vector2 parameterOne)

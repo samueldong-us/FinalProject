@@ -19,6 +19,7 @@
         {
             entity.MessageCenter.RemoveListener<float>("Take Damage", TakeDamage);
             entity.MessageCenter.RemoveListener("Get Health", ReturnHealth);
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)

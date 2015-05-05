@@ -20,6 +20,7 @@ namespace FinalProject.GameComponents
 
         public override void Dispose()
         {
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)

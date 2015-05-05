@@ -17,6 +17,7 @@ namespace FinalProject.GameComponents
         public override void Dispose()
         {
             entity.MessageCenter.RemoveListener<Entity, Entity>("Collided With", Remove);
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)
