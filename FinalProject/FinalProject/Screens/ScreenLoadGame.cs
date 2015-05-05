@@ -115,11 +115,11 @@ namespace FinalProject.Screens
             }
             if (currentPage == -1)
             {
-                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Green, new Vector2(350, 900), "NO SAVES");
+                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Green, new Vector2(375, 880), "NO SAVES");
             }
             else
             {
-                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Green, new Vector2(350, 900), "PAGE " + (currentPage + 1) + "/" + savedGames.Count);
+                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Green, new Vector2(375, 880), "PAGE " + (currentPage + 1) + "/" + savedGames.Count);
             }
             UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(380, 210), "SELECT PROFILE");
         }
