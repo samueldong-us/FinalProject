@@ -12,16 +12,16 @@ namespace FinalProject.GameWaves
         public static List<Wave> GenerateLevel1()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
-            listOfUnits["Jellyfish"] = 6;
-            listOfUnits["Walking Fish01"] = 20;
-            listOfUnits["Walking Fish02"] = 20;
-            listOfUnits["Squid"] = 20;
-            listOfUnits["Turtle"] = 20;
-            listOfUnits["Flying Fish"] = 20;
-            listOfUnits["Super Jelly"] = 20;
-            listOfUnits["Lobster"] = 20;
-            listOfUnits["Sea Slug"] = 20;
-            listOfUnits["Starfish"] = 20;
+            listOfUnits["Jellyfish"] = 200;
+            listOfUnits["Walking Fish01"] = 0;
+            listOfUnits["Walking Fish02"] = 0;
+            listOfUnits["Squid"] = 0;
+            listOfUnits["Turtle"] = 0;
+            listOfUnits["Flying Fish"] = 0;
+            listOfUnits["Super Jelly"] = 0;
+            listOfUnits["Lobster"] = 0;
+            listOfUnits["Sea Slug"] = 0;
+            listOfUnits["Starfish"] = 0;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Jellyfish"] = 6;
             worthOfUnits["Walking Fish01"] = 1;
