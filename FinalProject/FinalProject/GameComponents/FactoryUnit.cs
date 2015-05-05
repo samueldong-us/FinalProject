@@ -28,6 +28,8 @@ namespace FinalProject.GameComponents
                 new ComponentVelocityBasedRotation(unit);
             }
             new ComponentTextureRenderer(unit, GameAssets.UnitTexture, GameAssets.Unit[unitName], Color.White, "Enemy");
+            new ComponentAddWorthOnDeath(unit, Values.UnitWorth[unitName]);
+            new ComponentDealDamage(unit, 1000000);
             FactoryBehavior.AddBehavior(unit, spawnInformation);
             FactoryWeapon.AddWeapon(unit, spawnInformation, Difficulty, Stage);
             return unit;

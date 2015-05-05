@@ -13,6 +13,8 @@ namespace FinalProject.GameComponents
 
         public static Dictionary<SaveGame.Difficulty, Dictionary<int, Dictionary<string, UnitValues>>> UnitValues;
 
+        public static Dictionary<string, int> UnitWorth;
+
         public static Dictionary<SaveGame.Difficulty, Dictionary<int, Dictionary<string, Dictionary<string, object>>>> WeaponValues;
 
         private static SaveGame.Difficulty[] difficultyValues = { SaveGame.Difficulty.Easy, SaveGame.Difficulty.Normal, SaveGame.Difficulty.Hard };
@@ -26,6 +28,8 @@ namespace FinalProject.GameComponents
             FillUnitValues();
             UnitMovementSpeeds = new Dictionary<string, float>();
             FillUnitMovementSpeeds();
+            UnitWorth = new Dictionary<string, int>();
+            FillUnitWorth();
             UnitHealthBars = new Dictionary<string, UnitHealthBarInformation>();
             FillUnitHealthBars();
             WeaponValues = new Dictionary<SaveGame.Difficulty, Dictionary<int, Dictionary<string, Dictionary<string, object>>>>();
@@ -384,6 +388,11 @@ namespace FinalProject.GameComponents
             UnitValues[SaveGame.Difficulty.Easy][3]["Super Jelly"] = new UnitValues(10);
             UnitValues[SaveGame.Difficulty.Normal][3]["Super Jelly"] = new UnitValues(20);
             UnitValues[SaveGame.Difficulty.Hard][3]["Super Jelly"] = new UnitValues(30);
+        }
+
+        private static void FillUnitWorth()
+        {
+            //TODO
         }
 
         private static void FillWeaponValues()

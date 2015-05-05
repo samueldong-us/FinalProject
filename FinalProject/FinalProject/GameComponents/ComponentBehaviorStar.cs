@@ -8,7 +8,7 @@ namespace FinalProject.GameComponents
 {
     internal class ComponentBehaviorStar : Component
     {
-        private const float Speed = 400;
+        private const float Speed = 1000;
         private Vector2 center;
         private Vector2 currentPoint;
         private float delay;
@@ -55,6 +55,7 @@ namespace FinalProject.GameComponents
                 {
                     timeSpent = 0;
                     resting = true;
+                    entity.MessageCenter.Broadcast<Vector2>("Set Velocity", Vector2.Zero);
                     entity.MessageCenter.Broadcast("Fire");
                 }
             }
@@ -70,7 +71,7 @@ namespace FinalProject.GameComponents
             }
             else
             {
-                currentAngle += (float)(Math.PI + 2 * Math.PI / numberOfPoints);
+                currentAngle += (float)(Math.PI + Math.PI / numberOfPoints);
             }
             currentPoint = new Vector2(radius * (float)Math.Cos(currentAngle), radius * (float)Math.Sin(currentAngle)) + center;
             timeUntilReach = Vector2.Distance(currentPoint, entity.Position) / Speed;
