@@ -6,17 +6,19 @@ namespace FinalProject.GameComponents
     {
         private List<Entity> entityList;
 
+        private List<Entity> toAdd;
         private List<Entity> toRemove;
 
         public SystemEntity()
         {
             entityList = new List<Entity>();
             toRemove = new List<Entity>();
+            toAdd = new List<Entity>();
         }
 
         public void AddEntity(Entity entity)
         {
-            entityList.Add(entity);
+            toAdd.Add(entity);
         }
 
         public void Dispose()
@@ -27,6 +29,11 @@ namespace FinalProject.GameComponents
             }
             entityList.Clear();
             toRemove.Clear();
+            foreach (Entity entity in toAdd)
+            {
+                entity.Dispose();
+            }
+            toAdd.Clear();
         }
 
         public void RemoveEntity(Entity entity)
@@ -45,6 +52,11 @@ namespace FinalProject.GameComponents
                 entityList.Remove(entity);
                 entity.Dispose();
             }
+            foreach (Entity entity in toAdd)
+            {
+                entityList.Add(entity);
+            }
+            toAdd.Clear();
             toRemove.Clear();
         }
     }

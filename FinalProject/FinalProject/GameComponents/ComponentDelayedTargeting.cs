@@ -37,6 +37,7 @@ namespace FinalProject.GameComponents
         {
             entity.MessageCenter.RemoveListener<Vector2>("Closest Player", SetClosestPosition);
             entity.MessageCenter.AddListener<Vector2>("Velocity", SetVelocity);
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)

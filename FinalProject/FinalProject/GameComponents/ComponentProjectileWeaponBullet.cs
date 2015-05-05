@@ -40,15 +40,8 @@ namespace FinalProject.GameComponents
             float bulletAngle = (float)Math.Atan2(direction.Y, direction.X);
 
             Entity bullet = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
-            bullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
-            bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
-            projectiles.Add(bullet);
-        }
-
-        private void DealDamage(Entity projectile, Entity collidedEntity)
-        {
-            collidedEntity.MessageCenter.Broadcast<float>("Take Damage", damage);
-            RemoveProjectile(projectile);
+            new ComponentDealDamage(bullet, damage);
+            ScreenGame.Entities.AddEntity(bullet);
         }
 
         private void SetClosestPosition(Vector2 parameterOne)

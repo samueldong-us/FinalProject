@@ -16,8 +16,6 @@ namespace FinalProject.GameComponents
             Entity unit = new Entity();
             unit.Rotation = spawnInformation.GetInformation<float>("Starting Rotation");
             new ComponentVelocityAcceleration(unit, Vector2.Zero, Vector2.Zero);
-            FactoryBehavior.AddBehavior(unit, spawnInformation);
-            FactoryWeapon.AddWeapon(unit, spawnInformation, Difficulty, Stage);
             new ComponentHealth(unit, Values.UnitValues[Difficulty][Stage][spawnInformation.GetInformation<string>("Unit Name")].Health);
             if (Values.UnitHealthBars.ContainsKey(unitName))
             {
@@ -30,6 +28,8 @@ namespace FinalProject.GameComponents
                 new ComponentVelocityBasedRotation(unit);
             }
             new ComponentTextureRenderer(unit, GameAssets.UnitTexture, GameAssets.Unit[unitName], Color.White, "Enemy");
+            FactoryBehavior.AddBehavior(unit, spawnInformation);
+            FactoryWeapon.AddWeapon(unit, spawnInformation, Difficulty, Stage);
             return unit;
         }
     }

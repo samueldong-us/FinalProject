@@ -144,6 +144,14 @@ namespace FinalProject.Messaging
             }
         }
 
+        public void CleanUp()
+        {
+            foreach (string message in listeners.Keys)
+            {
+                CleanUp(message);
+            }
+        }
+
         public void RemoveListener(string message, Callback callback)
         {
             if (listeners.ContainsKey(message))

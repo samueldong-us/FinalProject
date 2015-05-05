@@ -42,27 +42,18 @@ namespace FinalProject.GameComponents
 
             //Middle
             Entity bullet = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
-            bullet.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
-            bullet.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
-            projectiles.Add(bullet);
+            new ComponentDealDamage(bullet, damage);
+            ScreenGame.Entities.AddEntity(bullet);
             //Left
             Entity bullet2 = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
             new ComponentDelayedSetVelocity(bullet2, 1f, UtilitiesMath.VectorFromMagnitudeAndAngle(Speed, bulletAngle + ((float)Math.PI / 8)));
-            bullet2.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
-            bullet2.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
-            projectiles.Add(bullet2);
+            new ComponentDealDamage(bullet, damage);
+            ScreenGame.Entities.AddEntity(bullet);
             //Right
             Entity bullet3 = CreateProjectile(Speed, bulletAngle, GameAssets.BulletTexture, GameAssets.Bullet[0], GameAssets.BulletTriangles[0], Color.Red, "EnemyBullet", "EnemyBullet");
             new ComponentDelayedSetVelocity(bullet3, 1f, UtilitiesMath.VectorFromMagnitudeAndAngle(Speed, bulletAngle - ((float)Math.PI / 8)));
-            bullet3.MessageCenter.AddListener<Entity>("Exited Bounds", RemoveProjectile);
-            bullet3.MessageCenter.AddListener<Entity, Entity>("Collided With", DealDamage);
-            projectiles.Add(bullet3);
-        }
-
-        private void DealDamage(Entity projectile, Entity collidedEntity)
-        {
-            collidedEntity.MessageCenter.Broadcast<float>("Take Damage", damage);
-            RemoveProjectile(projectile);
+            new ComponentDealDamage(bullet, damage);
+            ScreenGame.Entities.AddEntity(bullet);
         }
 
         private void SetClosestPosition(Vector2 parameterOne)

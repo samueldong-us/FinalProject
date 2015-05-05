@@ -10,7 +10,10 @@
             this.entity = entity;
         }
 
-        public abstract void Dispose();
+        public virtual void Dispose()
+        {
+            entity = null;
+        }
 
         public abstract void Update(float secondsPassed);
     }

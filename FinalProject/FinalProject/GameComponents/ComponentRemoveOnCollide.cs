@@ -1,8 +1,4 @@
 ﻿using FinalProject.Screens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameComponents
 {
@@ -17,6 +13,7 @@ namespace FinalProject.GameComponents
         public override void Dispose()
         {
             entity.MessageCenter.RemoveListener<Entity, Entity>("Collided With", Remove);
+            base.Dispose();
         }
 
         public override void Update(float secondsPassed)
