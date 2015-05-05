@@ -31,6 +31,7 @@ namespace FinalProject.GameComponents
         {
             Entity projectile = new Entity();
             projectile.Position = entity.Position + offset;
+            projectile.Rotation = rotation;
             new ComponentCollider(projectile, source, triangles, colliderLayer);
             new ComponentVelocityAcceleration(projectile, UtilitiesMath.VectorFromMagnitudeAndAngle(speed, rotation), Vector2.Zero);
             new ComponentVelocityBasedRotation(projectile);

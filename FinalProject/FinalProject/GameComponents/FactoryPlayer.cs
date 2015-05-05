@@ -40,23 +40,23 @@ namespace FinalProject.GameComponents
             new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
             new ComponentRestrictPosition(player, 50, 50, ScreenGame.Bounds);
             new ComponentConstantRateFire(player, firerate);
-            new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2), new Vector2(0, -35));
-            new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 + Math.PI / 32), new Vector2(10, 0));
-            new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 - Math.PI / 32), new Vector2(-10, 0));
+            new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2), new Vector2(0, -20));
+            new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 + Math.PI / 32), new Vector2(8, -20));
+            new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 - Math.PI / 32), new Vector2(-8, -20));
             if (saveGame.WeaponStrength > 3)
             {
-                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 + Math.PI / 20), new Vector2(15, -10));
-                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 - Math.PI / 20), new Vector2(-15, -10));
+                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2), new Vector2(12, -10));
+                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2), new Vector2(-12, -10));
             }
             if (saveGame.WeaponStrength > 6)
             {
-                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 + Math.PI / 10), new Vector2(22, -10));
-                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 - Math.PI / 10), new Vector2(-22, -10));
+                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 + Math.PI / 10), new Vector2(21, -15));
+                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 - Math.PI / 10), new Vector2(-21, -15));
             }
             if (saveGame.WeaponStrength == 10)
             {
-                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 + Math.PI / 5), new Vector2(30, -20));
-                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2 - Math.PI / 5), new Vector2(-30, -20));
+                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2), new Vector2(28, -15));
+                new ComponentProjectileWeaponHoming(player, damage, (float)(-Math.PI / 2), new Vector2(-28, -15));
             }
             new ComponentCollider(player, GameAssets.Unit["Homing Ship"], GameAssets.UnitTriangles["Homing Ship"], "Player");
             new ComponentHealth(player, health);
