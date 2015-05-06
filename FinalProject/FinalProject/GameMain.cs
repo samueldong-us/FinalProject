@@ -115,6 +115,7 @@ namespace FinalProject
         private void InitializeScreens()
         {
             screens = new Dictionary<string, Screen>();
+            screens["Show Credits"] = new ScreenGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Command Center"] = new ScreenCommandCenter(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Load Game"] = new ScreenLoadGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Main Menu"] = new ScreenMainMenu(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
