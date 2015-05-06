@@ -109,12 +109,12 @@ namespace FinalProject.GameWaves
             possibleWeapons["Squid"] = new List<string> { "Fan Stream" };
             possibleWeapons["Turtle"] = new List<string> { "Wall Fire" };
             Dictionary<string, List<string>> possibleBehaviors = new Dictionary<string, List<string>>();
-            possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Walking Fish01"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
             possibleBehaviors["Walking Fish02"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            possibleBehaviors["Squid"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            possibleBehaviors["Turtle"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
             possibleBehaviors["Sea Slug"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
+            possibleBehaviors["Squid"] = new List<string> { "In Fire Out" };
+            possibleBehaviors["Turtle"] = new List<string> { "In Fire Out" };
 
             return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 8);
         }
@@ -199,15 +199,15 @@ namespace FinalProject.GameWaves
             possibleWeapons["Flying Fish"] = new List<string> { "Split Shot" };
             possibleWeapons["Super Jelly"] = new List<string> { "Circular Bounce" };
             Dictionary<string, List<string>> possibleBehaviors = new Dictionary<string, List<string>>();
-            possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Walking Fish02"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            possibleBehaviors["Squid"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            possibleBehaviors["Turtle"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            possibleBehaviors["Flying Fish"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            possibleBehaviors["Super Jelly"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            possibleBehaviors["Lobster"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            possibleBehaviors["Starfish"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
             possibleBehaviors["Sea Slug"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
+            possibleBehaviors["Squid"] = new List<string> { "In Fire Out" };
+            possibleBehaviors["Turtle"] = new List<string> { "In Fire Out" };
+            possibleBehaviors["Starfish"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Lobster"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Flying Fish"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Super Jelly"] = new List<string> { "In Fire Out" };
 
             return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 8);
         }
