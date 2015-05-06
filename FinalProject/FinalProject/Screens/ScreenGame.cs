@@ -29,13 +29,19 @@ namespace FinalProject.Screens
 
         private SaveGame currentGame;
 
+        private InterpolatedValue fadeIn;
+
         private Texture2D gameHUD;
+
+        private bool gameOver;
 
         private ItemGroupMenu menuItems;
 
         private bool paused;
 
         private Keys[] pressedKeys;
+
+        private bool readyToLeave;
 
         private Random rng = new Random();
 
@@ -49,6 +55,8 @@ namespace FinalProject.Screens
             InitializeSystems();
             InitializeMessageCenter();
             InitializeMenu();
+            fadeIn = new InterpolatedValueLinear(0, .75f, 1);
+            fadeIn.InterpolationFinished = (leftOver) => { readyToLeave = true; };
             GameMain.MessageCenter.AddListener<SaveGame, string>("Save Game and Stage Pass to Game", SetCurrentGameAndStage);
         }
 
@@ -64,6 +72,19 @@ namespace FinalProject.Screens
                 {
                     case Keys.Enter:
                         {
+                            if (readyToLeave)
+                            {
+                                if (!gameOver)
+                                {
+                                    currentGame.Credits += Scoring.GetScore();
+                                    if (FactoryUnit.Stage + 1 > currentGame.HighestUnlockedStage && currentGame.HighestUnlockedStage < 3)
+                                    {
+                                        currentGame.HighestUnlockedStage = FactoryUnit.Stage + 1;
+                                    }
+                                    SaveGameManager.SaveGame(currentGame);
+                                }
+                                BeginTransitioningOut();
+                            }
                             if (paused)
                             {
                                 if (menuItems.GetSelected().Equals("RESUME GAME"))
@@ -97,7 +118,7 @@ namespace FinalProject.Screens
                             {
                                 Unpause();
                             }
-                            else
+                            else if (!gameOver && !EnemiesGone())
                             {
                                 Pause();
                             }
@@ -137,6 +158,10 @@ namespace FinalProject.Screens
                 Collisions.Update();
                 Entities.Update(secondsPassed);
                 MessageCenter.CleanUp();
+                if (gameOver || EnemiesGone())
+                {
+                    fadeIn.Update(secondsPassed);
+                }
             }
         }
 
@@ -153,6 +178,21 @@ namespace FinalProject.Screens
             Drawing.Draw(spriteBatch);
             spriteBatch.Draw(gameHUD, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             Scoring.Draw(spriteBatch);
+            if (gameOver)
+            {
+                spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, fadeIn.GetValue()));
+                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Red * fadeIn.GetValue(), new Vector2(460, 500), "DEFEAT");
+                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Red * fadeIn.GetValue(), new Vector2(460, 600), "EARNED 0 CREDITS");
+            }
+            else
+            {
+                if (EnemiesGone())
+                {
+                    spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, fadeIn.GetValue()));
+                    UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 500), "VICTORY");
+                    UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 600), "EARNED " + Scoring.GetScore() + "CREDITS");
+                }
+            }
             if (paused)
             {
                 spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, .75f));
@@ -166,12 +206,21 @@ namespace FinalProject.Screens
             Collisions.Dispose();
             Drawing.Dispose();
             MessageCenter.CleanUp();
+            Scoring.Reset();
+            fadeIn.SetParameter(0);
+            gameOver = false;
+            readyToLeave = false;
             base.Reset();
         }
 
         protected override void SwitchScreens()
         {
             GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Stage");
+        }
+
+        private bool EnemiesGone()
+        {
+            return waveManager.GetNumberOfWaves() == 0 && Collisions.GetCount("Enemy") == 0 && Collisions.GetCount("EnemyBullet") == 0;
         }
 
         private void InitializeMenu()
@@ -246,6 +295,7 @@ namespace FinalProject.Screens
             }
             Scoring.SetMaxScore(waveManager.GetTotalPossibleScore());
             Entity player = FactoryPlayer.CreatePlayer(currentGame);
+            player.MessageCenter.AddListener("Health Depleted", () => { gameOver = true; });
             Scoring.SetPlayer(player);
             Entities.AddEntity(player);
         }
