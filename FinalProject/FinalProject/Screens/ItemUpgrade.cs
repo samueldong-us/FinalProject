@@ -28,7 +28,7 @@ namespace FinalProject.Screens
 
         public int GetCost()
         {
-            return level == 10 ? 0 : level * level;
+            return level == 10 ? 0 : 10 * level * level;
         }
     }
 }

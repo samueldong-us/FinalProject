@@ -34,6 +34,10 @@ namespace FinalProject.GameComponents
             {
                 player.MessageCenter.Broadcast("Get Health");
             }
+            else
+            {
+                health = 0;
+            }
             int height = (int)(1041 * (score / (float)maxScore));
             int scoreTop = 1061 - height;
             float healthAmount = health / maxHealth;
@@ -42,11 +46,11 @@ namespace FinalProject.GameComponents
             Vector3 healthColor = Vector3.Zero;
             if (healthAmount > .5f)
             {
-                healthColor = Vector3.Lerp(new Vector3(1, 1, 0), new Vector3(0, 1, 0), healthAmount - .5f);
+                healthColor = Vector3.Lerp(new Vector3(1, 1, 0), new Vector3(0, 1, 0), (healthAmount - .5f) * 2);
             }
             else
             {
-                healthColor = Vector3.Lerp(new Vector3(1, 0, 0), new Vector3(1, 1, 0), healthAmount);
+                healthColor = Vector3.Lerp(new Vector3(1, 0, 0), new Vector3(1, 1, 0), healthAmount * 2);
             }
             spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(1479, healthTop, 15, healthHeight), new Color(healthColor));
             spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(428, scoreTop, 15, height), new Color(255, 215, 0));

@@ -29,8 +29,6 @@ namespace FinalProject.Screens
 
         private SaveGame currentGame;
 
-        private bool enemiesGone;
-
         private InterpolatedValue fadeIn;
 
         private Texture2D gameHUD;
@@ -79,7 +77,7 @@ namespace FinalProject.Screens
                                 if (!gameOver)
                                 {
                                     currentGame.Credits += Scoring.GetScore();
-                                    if (FactoryUnit.Stage > currentGame.HighestUnlockedStage && currentGame.HighestUnlockedStage < 3)
+                                    if (FactoryUnit.Stage + 1 > currentGame.HighestUnlockedStage && currentGame.HighestUnlockedStage < 3)
                                     {
                                         currentGame.HighestUnlockedStage = FactoryUnit.Stage + 1;
                                     }
@@ -120,7 +118,7 @@ namespace FinalProject.Screens
                             {
                                 Unpause();
                             }
-                            else
+                            else if (!gameOver && !EnemiesGone())
                             {
                                 Pause();
                             }
@@ -160,7 +158,7 @@ namespace FinalProject.Screens
                 Collisions.Update();
                 Entities.Update(secondsPassed);
                 MessageCenter.CleanUp();
-                if (gameOver || enemiesGone)
+                if (gameOver || EnemiesGone())
                 {
                     fadeIn.Update(secondsPassed);
                 }
@@ -182,11 +180,17 @@ namespace FinalProject.Screens
             Scoring.Draw(spriteBatch);
             if (gameOver)
             {
+                spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, fadeIn.GetValue()));
+                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Red * fadeIn.GetValue(), new Vector2(460, 500), "DEFEAT");
+                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Red * fadeIn.GetValue(), new Vector2(460, 600), "EARNED 0 CREDITS");
             }
             else
             {
-                if (enemiesGone)
+                if (EnemiesGone())
                 {
+                    spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, fadeIn.GetValue()));
+                    UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 500), "VICTORY");
+                    UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 600), "EARNED " + Scoring.GetScore() + "CREDITS");
                 }
             }
             if (paused)
@@ -202,7 +206,10 @@ namespace FinalProject.Screens
             Collisions.Dispose();
             Drawing.Dispose();
             MessageCenter.CleanUp();
+            Scoring.Reset();
             fadeIn.SetParameter(0);
+            gameOver = false;
+            readyToLeave = false;
             base.Reset();
         }
 

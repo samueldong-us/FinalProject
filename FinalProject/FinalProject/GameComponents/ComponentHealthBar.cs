@@ -38,11 +38,11 @@ namespace FinalProject.GameComponents
             Vector3 healthColor = Vector3.Zero;
             if (healthAmount > .5f)
             {
-                healthColor = Vector3.Lerp(new Vector3(1, 1, 0), new Vector3(0, 1, 0), healthAmount - .5f);
+                healthColor = Vector3.Lerp(new Vector3(1, 1, 0), new Vector3(0, 1, 0), (healthAmount - .5f) * 2);
             }
             else
             {
-                healthColor = Vector3.Lerp(new Vector3(1, 0, 0), new Vector3(1, 1, 0), healthAmount);
+                healthColor = Vector3.Lerp(new Vector3(1, 0, 0), new Vector3(1, 1, 0), healthAmount * 2);
             }
             spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(backing.X + (int)entity.Position.X, backing.Y + (int)entity.Position.Y, backing.Width, backing.Height), Color.DarkSlateGray);
             spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(bar.X + (int)entity.Position.X, bar.Y + (int)entity.Position.Y, (int)(bar.Width * healthAmount), bar.Height), new Color(healthColor));
