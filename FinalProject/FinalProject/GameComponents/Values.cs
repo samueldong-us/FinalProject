@@ -441,6 +441,16 @@ namespace FinalProject.GameComponents
 
         private static void FillUnitWorth()
         {
+            UnitWorth["Walking Fish01"] = 1;
+            UnitWorth["Walking Fish02"] = 2;
+            UnitWorth["Sea Slug"] = 3;
+            UnitWorth["Jellyfish"] = 4;
+            UnitWorth["Squid"] = 6;
+            UnitWorth["Turtle"] = 8;
+            UnitWorth["Starfish"] = 8;
+            UnitWorth["Super Jelly"] = 10;
+            UnitWorth["Flying Fish"] = 10;
+            UnitWorth["Lobster"] = 10;
         }
 
         private static void FillWallFireValues()
