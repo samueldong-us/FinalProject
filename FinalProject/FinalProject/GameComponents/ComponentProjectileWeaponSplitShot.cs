@@ -13,14 +13,11 @@ namespace FinalProject.GameComponents
 
         private int damage;
 
-        private int numberOfBullets;
-
-        public ComponentProjectileWeaponSplitShot(Entity entity, int numberOfBullets, int damage)
+        public ComponentProjectileWeaponSplitShot(Entity entity, int damage)
             : base(entity, Vector2.Zero)
         {
             closestPosition = new Vector2(-1, -1);
             entity.MessageCenter.AddListener<Vector2>("Closest Player", SetClosestPosition);
-            this.numberOfBullets = numberOfBullets;
             this.damage = damage;
         }
 
