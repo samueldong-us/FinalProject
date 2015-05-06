@@ -12,13 +12,13 @@ namespace FinalProject.GameWaves
         public static List<Wave> GenerateLevel1()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
-            listOfUnits["Jellyfish"] = 60;
             listOfUnits["Walking Fish01"] = 20;
             listOfUnits["Walking Fish02"] = 20;
+            listOfUnits["Jellyfish"] = 60;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
-            worthOfUnits["Jellyfish"] = 4;
             worthOfUnits["Walking Fish01"] = 1;
             worthOfUnits["Walking Fish02"] = 2;
+            worthOfUnits["Jellyfish"] = 4;
 
             SpawnInformation jellyfishDefault = new SpawnInformation(0);
             jellyfishDefault.AddInformation("Unit Name", "Jellyfish");
@@ -36,19 +36,19 @@ namespace FinalProject.GameWaves
             walkingfish02Default.AddInformation("Rotate Based On Velocity", true);
 
             Dictionary<string, SpawnInformation> spawnInformation = new Dictionary<string, SpawnInformation>();
-            spawnInformation["Jellyfish"] = jellyfishDefault;
             spawnInformation["Walking Fish01"] = walkingfishDefault;
             spawnInformation["Walking Fish02"] = walkingfish02Default;
+            spawnInformation["Jellyfish"] = jellyfishDefault;
 
             Dictionary<string, List<string>> possibleWeapons = new Dictionary<string, List<string>>();
-            possibleWeapons["Jellyfish"] = new List<string> { "Wall Fire" };
             possibleWeapons["Walking Fish01"] = new List<string> { "Bullet" };
             possibleWeapons["Walking Fish02"] = new List<string> { "Fan" };
+            possibleWeapons["Jellyfish"] = new List<string> { "Circular Fire" };
 
             Dictionary<string, List<string>> possibleBehaviors = new Dictionary<string, List<string>>();
-            possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Walking Fish01"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
             possibleBehaviors["Walking Fish02"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
 
             return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 8);
         }
@@ -56,19 +56,19 @@ namespace FinalProject.GameWaves
         public static List<Wave> GenerateLevel2()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
-            listOfUnits["Jellyfish"] = 0;
             listOfUnits["Walking Fish01"] = 0;
             listOfUnits["Walking Fish02"] = 0;
+            listOfUnits["Sea Slug"] = 20;
+            listOfUnits["Jellyfish"] = 0;
             listOfUnits["Squid"] = 20;
             listOfUnits["Turtle"] = 20;
-            listOfUnits["Sea Slug"] = 20;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
-            worthOfUnits["Jellyfish"] = 3;
             worthOfUnits["Walking Fish01"] = 1;
             worthOfUnits["Walking Fish02"] = 2;
+            worthOfUnits["Sea Slug"] = 3;
+            worthOfUnits["Jellyfish"] = 3;
             worthOfUnits["Squid"] = 4;
             worthOfUnits["Turtle"] = 5;
-            worthOfUnits["Sea Slug"] = 3;
 
             SpawnInformation jellyfishDefault = new SpawnInformation(0);
             jellyfishDefault.AddInformation("Unit Name", "Jellyfish");
@@ -95,19 +95,19 @@ namespace FinalProject.GameWaves
             seaslugDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
             seaslugDefault.AddInformation("Rotate Based On Velocity", true);
             Dictionary<string, SpawnInformation> spawnInformation = new Dictionary<string, SpawnInformation>();
-            spawnInformation["Jellyfish"] = jellyfishDefault;
             spawnInformation["Walking Fish01"] = walkingfishDefault;
             spawnInformation["Walking Fish02"] = walkingfish02Default;
+            spawnInformation["Sea Slug"] = seaslugDefault;
+            spawnInformation["Jellyfish"] = jellyfishDefault;
             spawnInformation["Squid"] = squidDefault;
             spawnInformation["Turtle"] = turtleDefault;
-            spawnInformation["Sea Slug"] = seaslugDefault;
             Dictionary<string, List<string>> possibleWeapons = new Dictionary<string, List<string>>();
-            possibleWeapons["Jellyfish"] = new List<string> { "Circular Fire", "Circular Bounce" };
             possibleWeapons["Walking Fish01"] = new List<string> { "Bullet" };
             possibleWeapons["Walking Fish02"] = new List<string> { "Fan" };
-            possibleWeapons["Squid"] = new List<string> { "Bullet Stream" };
-            possibleWeapons["Turtle"] = new List<string> { "Bullet Stream" };
             possibleWeapons["Sea Slug"] = new List<string> { "Bullet Stream", };
+            possibleWeapons["Jellyfish"] = new List<string> { "Circular Fire" };
+            possibleWeapons["Squid"] = new List<string> { "Fan Stream" };
+            possibleWeapons["Turtle"] = new List<string> { "Wall Fire" };
             Dictionary<string, List<string>> possibleBehaviors = new Dictionary<string, List<string>>();
             possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Walking Fish01"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
@@ -122,25 +122,25 @@ namespace FinalProject.GameWaves
         public static List<Wave> GenerateLevel3()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
-            listOfUnits["Jellyfish"] = 3;
             listOfUnits["Walking Fish02"] = 1;
+            listOfUnits["Sea Slug"] = 3;
+            listOfUnits["Jellyfish"] = 3;
             listOfUnits["Squid"] = 4;
             listOfUnits["Turtle"] = 5;
+            listOfUnits["Starfish"] = 1;
+            listOfUnits["Lobster"] = 1;
             listOfUnits["Flying Fish"] = 1;
             listOfUnits["Super Jelly"] = 1;
-            listOfUnits["Lobster"] = 1;
-            listOfUnits["Sea Slug"] = 3;
-            listOfUnits["Starfish"] = 1;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
-            worthOfUnits["Jellyfish"] = 3;
             worthOfUnits["Walking Fish02"] = 1;
+            worthOfUnits["Sea Slug"] = 1;
+            worthOfUnits["Jellyfish"] = 3;
             worthOfUnits["Squid"] = 4;
             worthOfUnits["Turtle"] = 5;
+            worthOfUnits["Starfish"] = 3;
+            worthOfUnits["Lobster"] = 1;
             worthOfUnits["Flying Fish"] = 1;
             worthOfUnits["Super Jelly"] = 1;
-            worthOfUnits["Lobster"] = 1;
-            worthOfUnits["Starfish"] = 3;
-            worthOfUnits["Sea Slug"] = 1;
 
             SpawnInformation jellyfishDefault = new SpawnInformation(0);
             jellyfishDefault.AddInformation("Unit Name", "Jellyfish");
@@ -179,25 +179,25 @@ namespace FinalProject.GameWaves
             seaslugDefault.AddInformation("Starting Rotation", (float)(Math.PI / 2));
             seaslugDefault.AddInformation("Rotate Based On Velocity", true);
             Dictionary<string, SpawnInformation> spawnInformation = new Dictionary<string, SpawnInformation>();
-            spawnInformation["Jellyfish"] = jellyfishDefault;
             spawnInformation["Walking Fish02"] = walkingfish02Default;
+            spawnInformation["Sea Slug"] = seaslugDefault;
+            spawnInformation["Jellyfish"] = jellyfishDefault;
             spawnInformation["Squid"] = squidDefault;
             spawnInformation["Turtle"] = turtleDefault;
+            spawnInformation["Starfish"] = starfishDefault;
+            spawnInformation["Lobster"] = lobsterDefault;
             spawnInformation["Flying Fish"] = flyingfishDefault;
             spawnInformation["Super Jelly"] = superjellyDefault;
-            spawnInformation["Lobster"] = lobsterDefault;
-            spawnInformation["Starfish"] = starfishDefault;
-            spawnInformation["Sea Slug"] = seaslugDefault;
             Dictionary<string, List<string>> possibleWeapons = new Dictionary<string, List<string>>();
-            possibleWeapons["Jellyfish"] = new List<string> { "Circular Bounce" };
             possibleWeapons["Walking Fish02"] = new List<string> { "Fan" };
-            possibleWeapons["Squid"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
-            possibleWeapons["Turtle"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
-            possibleWeapons["Flying Fish"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
-            possibleWeapons["Super Jelly"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
-            possibleWeapons["Lobster"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
-            possibleWeapons["Starfish"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
-            possibleWeapons["Sea Slug"] = new List<string> { "Split Shot", "Bullet", "Bullet Stream", "Fan", "Fan Stream", };
+            possibleWeapons["Sea Slug"] = new List<string> { "Bullet Stream" };
+            possibleWeapons["Jellyfish"] = new List<string> { "Circular Fire" };
+            possibleWeapons["Squid"] = new List<string> { "Fan Stream", };
+            possibleWeapons["Turtle"] = new List<string> { "Wall Fire" };
+            possibleWeapons["Starfish"] = new List<string> { "Spiral" };
+            possibleWeapons["Lobster"] = new List<string> { "Split Shot" };
+            possibleWeapons["Flying Fish"] = new List<string> { "Split Shot" };
+            possibleWeapons["Super Jelly"] = new List<string> { "Circular Bounce" };
             Dictionary<string, List<string>> possibleBehaviors = new Dictionary<string, List<string>>();
             possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Walking Fish02"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
