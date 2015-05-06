@@ -136,6 +136,7 @@
     <Compile Include="GameComponents\SystemEntity.cs" />
     <Compile Include="GameComponents\ComponentVelocityAcceleration.cs" />
     <Compile Include="GameComponents\ComponentVelocityBasedRotation.cs" />
+    <Compile Include="GameComponents\SystemScoring.cs" />
     <Compile Include="GameComponents\UnitHealthBarInformation.cs" />
     <Compile Include="GameComponents\UnitValues.cs" />
     <Compile Include="GameComponents\Values.cs" />

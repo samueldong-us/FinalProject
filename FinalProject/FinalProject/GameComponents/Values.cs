@@ -439,6 +439,10 @@ namespace FinalProject.GameComponents
             UnitValues[SaveGame.Difficulty.Hard][3]["Super Jelly"] = new UnitValues(30);
         }
 
+        private static void FillUnitWorth()
+        {
+        }
+
         private static void FillWallFireValues()
         {
             // Level 1
