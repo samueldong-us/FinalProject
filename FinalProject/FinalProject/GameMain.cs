@@ -115,7 +115,6 @@ namespace FinalProject
         private void InitializeScreens()
         {
             screens = new Dictionary<string, Screen>();
-            screens["Show Credits"] = new ScreenCredits(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Command Center"] = new ScreenCommandCenter(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Load Game"] = new ScreenLoadGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Main Menu"] = new ScreenMainMenu(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
@@ -123,6 +122,7 @@ namespace FinalProject
             screens["Select Character"] = new ScreenSelectCharacter(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Select Difficulty"] = new ScreenSelectDifficulty(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Select Stage"] = new ScreenSelectStage(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Show Credits"] = new ScreenCredits(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Splash Screen"] = new ScreenSplash(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Upgrade"] = new ScreenUpgrade(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Game"] = new ScreenGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);

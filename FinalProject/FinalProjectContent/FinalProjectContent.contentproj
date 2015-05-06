@@ -120,13 +120,13 @@
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Level2BG.png">
-      <Name>Level2BG</Name>
+    <Compile Include="Level3BG.png">
+      <Name>Level3BG</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="Level3BG.png">
-      <Name>Level3BG</Name>
+    <Compile Include="Level2BG.png">
+      <Name>Level2BG</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -141,6 +141,13 @@
   <ItemGroup>
     <Compile Include="credits.jpg">
       <Name>credits</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="gameHUD.png">
+      <Name>gameHUD</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

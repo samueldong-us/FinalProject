@@ -13,7 +13,7 @@ namespace FinalProject.Screens
 {
     internal class ScreenGame : ScreenPixelatedTransition
     {
-        public static Rectangle Bounds = new Rectangle(420, 0, 1000, 1062);
+        public static Rectangle Bounds = new Rectangle(460, 0, 1000, 1062);
 
         public static SystemCollisions Collisions;
 
@@ -25,11 +25,11 @@ namespace FinalProject.Screens
 
         public static SystemScoring Scoring;
 
-        public static Rectangle Visible = new Rectangle(420, 0, 1000, 1080);
-
-        private Texture2D background;
+        public static Rectangle Visible = new Rectangle(460, 0, 1000, 1080);
 
         private SaveGame currentGame;
+
+        private Texture2D gameHUD;
 
         private ItemGroupMenu menuItems;
 
@@ -116,7 +116,7 @@ namespace FinalProject.Screens
 
         public override void LoadContent()
         {
-            background = content.Load<Texture2D>("MenuBackground");
+            gameHUD = content.Load<Texture2D>("gameHUD");
             GameAssets.LoadContent(content);
             base.LoadContent();
         }
@@ -149,9 +149,9 @@ namespace FinalProject.Screens
 
         protected override void DrawScreen(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             scrollingBackground.Draw(spriteBatch);
             Drawing.Draw(spriteBatch);
+            spriteBatch.Draw(gameHUD, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             Scoring.Draw(spriteBatch);
             if (paused)
             {
@@ -245,7 +245,9 @@ namespace FinalProject.Screens
                     } break;
             }
             Scoring.SetMaxScore(waveManager.GetTotalPossibleScore());
-            Entities.AddEntity(FactoryPlayer.CreatePlayer(currentGame));
+            Entity player = FactoryPlayer.CreatePlayer(currentGame);
+            Scoring.SetPlayer(player);
+            Entities.AddEntity(player);
         }
 
         private void Unpause()
