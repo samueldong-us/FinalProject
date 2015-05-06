@@ -30,7 +30,7 @@ namespace FinalProject.GameComponents
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (player != null)
+            if (player != null && !player.Disposed)
             {
                 player.MessageCenter.Broadcast("Get Health");
             }
