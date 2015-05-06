@@ -46,6 +46,10 @@ namespace FinalProject.GameComponents
                     {
                         AddCircularWallWeapon(entity, difficulty, stage);
                     } break;
+                case "Swing":
+                    {
+                        AddSwingWeapon(entity, difficulty, stage);
+                    } break;
             }
         }
 
@@ -131,6 +135,17 @@ namespace FinalProject.GameComponents
             int damage = (int)Values.WeaponValues[difficulty][stage]["Split Shot"]["Damage"];
             new ComponentConstantRateFire(entity, fireRate);
             new ComponentProjectileWeaponSplitShot(entity, numberOfBullets, damage);
+        }
+
+        private static void AddSwingWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
+        {
+            float fireRate = (float)Values.WeaponValues[difficulty][stage]["Swing"]["Fire Rate"];
+            int damage = (int)Values.WeaponValues[difficulty][stage]["Swing"]["Damage"];
+            float lengthOfFire = (float)Values.WeaponValues[difficulty][stage]["Swing"]["Time Firing"];
+            float delay = (float)Values.WeaponValues[difficulty][stage]["Swing"]["Delay"];
+            float deltaTheta = (float)Values.WeaponValues[difficulty][stage]["Swing"]["Delta Theta"];
+            new ComponentSwingFireControl(entity, fireRate, lengthOfFire, delay);
+            new ComponentProjectileWeaponSwing(entity, damage, deltaTheta);
         }
     }
 }

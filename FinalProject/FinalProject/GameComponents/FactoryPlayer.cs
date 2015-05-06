@@ -60,7 +60,6 @@ namespace FinalProject.GameComponents
             }
             new ComponentCollider(player, GameAssets.Unit["Homing Ship"], GameAssets.UnitTriangles["Homing Ship"], "Player");
             new ComponentHealth(player, health);
-            new ComponentHealthBarCircular(player, (float)(Math.PI * 4 / 5));
             new ComponentRemoveOnDeath(player);
             new ComponentTextureRenderer(player, GameAssets.UnitTexture, GameAssets.Unit["Homing Ship"], Color.White, "Player");
         }
@@ -76,7 +75,6 @@ namespace FinalProject.GameComponents
             new ComponentWeaponLaser(player, damagePerSecond);
             new ComponentCollider(player, GameAssets.Unit["Laser Ship"], GameAssets.UnitTriangles["Laser Ship"], "Player");
             new ComponentHealth(player, health);
-            new ComponentHealthBarCircular(player, (float)(Math.PI * 4 / 5));
             new ComponentRemoveOnDeath(player);
             new ComponentTextureRenderer(player, GameAssets.UnitTexture, GameAssets.Unit["Laser Ship"], Color.White, "Player");
         }
@@ -111,7 +109,6 @@ namespace FinalProject.GameComponents
             }
             new ComponentCollider(player, GameAssets.Unit["Spread Shot Ship"], GameAssets.UnitTriangles["Spread Shot Ship"], "Player");
             new ComponentHealth(player, health);
-            new ComponentHealthBarCircular(player, (float)(Math.PI * 4 / 5));
             new ComponentRemoveOnDeath(player);
             new ComponentTextureRenderer(player, GameAssets.UnitTexture, GameAssets.Unit["Spread Shot Ship"], Color.White, "Player");
         }

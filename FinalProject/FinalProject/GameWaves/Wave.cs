@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using FinalProject.GameComponents;
+using System.Collections.Generic;
 
 namespace FinalProject.GameWaves
 {
@@ -36,6 +37,16 @@ namespace FinalProject.GameWaves
                 }
             }
             return toSpawn;
+        }
+
+        public int TotalPossibleScore()
+        {
+            int total = 0;
+            foreach (SpawnInformation spawnInformation in contents)
+            {
+                total += Values.UnitWorth[spawnInformation.GetInformation<string>("Unit Name")];
+            }
+            return total;
         }
 
         public void Update(float secondsPassed)

@@ -22,7 +22,9 @@ namespace FinalProject.Screens
         public static SystemEntity Entities;
 
         public static MessageCenter MessageCenter;
+
         public static SystemScoring Scoring;
+
         public static Rectangle Visible = new Rectangle(420, 0, 1000, 1080);
 
         private Texture2D background;
@@ -242,6 +244,7 @@ namespace FinalProject.Screens
                         waveManager = new SystemWaves(LevelGenerator.GenerateLevel3());
                     } break;
             }
+            Scoring.SetMaxScore(waveManager.GetTotalPossibleScore());
             Entities.AddEntity(FactoryPlayer.CreatePlayer(currentGame));
         }
 
