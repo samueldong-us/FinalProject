@@ -392,7 +392,7 @@ namespace FinalProject.GameComponents
             UnitWorth["Starfish"] = 88;
             UnitWorth["Super Jelly"] = 86;
             UnitWorth["Flying Fish"] = 70;
-            UnitWorth["Lobster"] = 100;
+            UnitWorth["Lobster"] = 70;
         }
 
         private static void FillWallFireValues()
