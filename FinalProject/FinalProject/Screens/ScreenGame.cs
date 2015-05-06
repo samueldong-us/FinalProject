@@ -190,7 +190,7 @@ namespace FinalProject.Screens
                 {
                     spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, fadeIn.GetValue()));
                     UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 500), "VICTORY");
-                    UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 600), "EARNED " + Scoring.GetScore() + "CREDITS");
+                    UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 600), "EARNED " + Scoring.GetScore() + " CREDITS");
                 }
             }
             if (paused)

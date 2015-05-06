@@ -8,7 +8,7 @@
 
         public Character character;
 
-        public int Credits = 1000;
+        public int Credits = 0;
 
         public int Damage = 1;
 
