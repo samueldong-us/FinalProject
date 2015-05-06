@@ -33,9 +33,9 @@ namespace FinalProject.GameComponents
         private static void CreateHomingShip(SaveGame saveGame, Entity player)
         {
             float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
-            int damage = saveGame.Damage;
+            int damage = 1 + saveGame.Damage / 4;
             int health = 20 + 2 * saveGame.Shields;
-            float firerate = .2f - .1f * saveGame.FireRate / 10;
+            float firerate = .5f - .25f * saveGame.FireRate / 10;
             new ComponentPlayerController(player, movementSpeed);
             new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
             new ComponentRestrictPosition(player, 50, 50, ScreenGame.Bounds);
@@ -67,7 +67,7 @@ namespace FinalProject.GameComponents
         private static void CreateLaserShip(SaveGame saveGame, Entity player)
         {
             float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
-            float damagePerSecond = (10 + 1 * saveGame.Damage + 1 * saveGame.WeaponStrength) * (1 + saveGame.FireRate / 10.0f);
+            float damagePerSecond = (10 + 2f * saveGame.Damage + 2f * saveGame.WeaponStrength) * (1.5f + saveGame.FireRate / 10.0f);
             int health = 20 + 2 * saveGame.Shields;
             new ComponentPlayerController(player, movementSpeed);
             new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
@@ -82,7 +82,7 @@ namespace FinalProject.GameComponents
         private static void CreateSpreadShotShip(SaveGame saveGame, Entity player)
         {
             float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
-            int damage = saveGame.Damage;
+            int damage = 1 + saveGame.Damage / 4;
             int health = 20 + 2 * saveGame.Shields;
             float firerate = .2f - .1f * saveGame.FireRate / 10;
             new ComponentPlayerController(player, movementSpeed);

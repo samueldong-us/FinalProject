@@ -131,10 +131,9 @@ namespace FinalProject.GameComponents
         private static void AddSplitShotWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
         {
             float fireRate = (float)Values.WeaponValues[difficulty][stage]["Split Shot"]["Fire Rate"];
-            int numberOfBullets = (int)Values.WeaponValues[difficulty][stage]["Split Shot"]["Number Of Bullets"];
             int damage = (int)Values.WeaponValues[difficulty][stage]["Split Shot"]["Damage"];
             new ComponentConstantRateFire(entity, fireRate);
-            new ComponentProjectileWeaponSplitShot(entity, numberOfBullets, damage);
+            new ComponentProjectileWeaponSplitShot(entity, damage);
         }
 
         private static void AddSwingWeapon(Entity entity, SaveGame.Difficulty difficulty, int stage)
