@@ -129,7 +129,7 @@ namespace FinalProject.GameWaves
             listOfUnits["Turtle"] = 5;
             listOfUnits["Starfish"] = 1;
             listOfUnits["Lobster"] = 1;
-            listOfUnits["Flying Fish"] = 1;
+            listOfUnits["Flying Fish"] = 40;
             listOfUnits["Super Jelly"] = 1;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Walking Fish02"] = 1;
@@ -196,7 +196,7 @@ namespace FinalProject.GameWaves
             possibleWeapons["Turtle"] = new List<string> { "Wall Fire" };
             possibleWeapons["Starfish"] = new List<string> { "Spiral" };
             possibleWeapons["Lobster"] = new List<string> { "Split Shot" };
-            possibleWeapons["Flying Fish"] = new List<string> { "Split Shot" };
+            possibleWeapons["Flying Fish"] = new List<string> { "Swing" };
             possibleWeapons["Super Jelly"] = new List<string> { "Circular Bounce" };
             Dictionary<string, List<string>> possibleBehaviors = new Dictionary<string, List<string>>();
             possibleBehaviors["Walking Fish02"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
@@ -206,7 +206,7 @@ namespace FinalProject.GameWaves
             possibleBehaviors["Turtle"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Starfish"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
             possibleBehaviors["Lobster"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
-            possibleBehaviors["Flying Fish"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
+            possibleBehaviors["Flying Fish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Super Jelly"] = new List<string> { "In Fire Out" };
 
             return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 8);
