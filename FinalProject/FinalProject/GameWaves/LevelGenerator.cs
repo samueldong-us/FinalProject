@@ -127,9 +127,9 @@ namespace FinalProject.GameWaves
             listOfUnits["Jellyfish"] = 3;
             listOfUnits["Squid"] = 4;
             listOfUnits["Turtle"] = 5;
-            listOfUnits["Starfish"] = 1;
+            listOfUnits["Starfish"] = 41;
             listOfUnits["Lobster"] = 1;
-            listOfUnits["Flying Fish"] = 40;
+            listOfUnits["Flying Fish"] = 0;
             listOfUnits["Super Jelly"] = 1;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Walking Fish02"] = 1;
