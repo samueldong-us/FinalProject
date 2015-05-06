@@ -18,6 +18,16 @@ namespace FinalProject.GameWaves
             timePassed = 0;
         }
 
+        public int GetTotalPossibleScore()
+        {
+            int total = 0;
+            foreach (Wave wave in waves)
+            {
+                total += wave.TotalPossibleScore();
+            }
+            return total;
+        }
+
         public void Update(float secondsPassed)
         {
             timePassed += secondsPassed;
