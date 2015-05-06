@@ -99,7 +99,7 @@ namespace FinalProject
         {
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            //graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
             IsFixedTimeStep = false;
             graphics.ApplyChanges();
         }
