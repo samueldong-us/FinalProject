@@ -12,9 +12,9 @@ namespace FinalProject.GameWaves
         public static List<Wave> GenerateLevel1()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
-            listOfUnits["Walking Fish01"] = 20;
+            listOfUnits["Walking Fish01"] = 40;
             listOfUnits["Walking Fish02"] = 20;
-            listOfUnits["Jellyfish"] = 60;
+            listOfUnits["Jellyfish"] = 10;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Walking Fish01"] = 1;
             worthOfUnits["Walking Fish02"] = 2;
@@ -50,25 +50,25 @@ namespace FinalProject.GameWaves
             possibleBehaviors["Walking Fish02"] = new List<string> { "Loop Back", "Sigmoid", "Loop Straight" };
             possibleBehaviors["Jellyfish"] = new List<string> { "In Fire Out" };
 
-            return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 8);
+            return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 6);
         }
 
         public static List<Wave> GenerateLevel2()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
-            listOfUnits["Walking Fish01"] = 0;
-            listOfUnits["Walking Fish02"] = 0;
-            listOfUnits["Sea Slug"] = 20;
-            listOfUnits["Jellyfish"] = 0;
-            listOfUnits["Squid"] = 20;
-            listOfUnits["Turtle"] = 20;
+            listOfUnits["Walking Fish01"] = 40;
+            listOfUnits["Walking Fish02"] = 30;
+            listOfUnits["Sea Slug"] = 6;
+            listOfUnits["Jellyfish"] = 6;
+            listOfUnits["Squid"] = 4;
+            listOfUnits["Turtle"] = 4;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Walking Fish01"] = 1;
             worthOfUnits["Walking Fish02"] = 2;
-            worthOfUnits["Sea Slug"] = 3;
-            worthOfUnits["Jellyfish"] = 3;
-            worthOfUnits["Squid"] = 4;
-            worthOfUnits["Turtle"] = 5;
+            worthOfUnits["Sea Slug"] = 8;
+            worthOfUnits["Jellyfish"] = 4;
+            worthOfUnits["Squid"] = 6;
+            worthOfUnits["Turtle"] = 10;
 
             SpawnInformation jellyfishDefault = new SpawnInformation(0);
             jellyfishDefault.AddInformation("Unit Name", "Jellyfish");
@@ -122,25 +122,25 @@ namespace FinalProject.GameWaves
         public static List<Wave> GenerateLevel3()
         {
             Dictionary<string, int> listOfUnits = new Dictionary<string, int>();
-            listOfUnits["Walking Fish02"] = 1;
-            listOfUnits["Sea Slug"] = 3;
-            listOfUnits["Jellyfish"] = 3;
-            listOfUnits["Squid"] = 4;
-            listOfUnits["Turtle"] = 5;
-            listOfUnits["Starfish"] = 41;
-            listOfUnits["Lobster"] = 1;
-            listOfUnits["Flying Fish"] = 0;
-            listOfUnits["Super Jelly"] = 1;
+            listOfUnits["Walking Fish02"] = 35;
+            listOfUnits["Sea Slug"] = 6;
+            listOfUnits["Jellyfish"] = 10;
+            listOfUnits["Squid"] = 6;
+            listOfUnits["Turtle"] = 6;
+            listOfUnits["Starfish"] = 4;
+            listOfUnits["Lobster"] = 6;
+            listOfUnits["Flying Fish"] = 4;
+            listOfUnits["Super Jelly"] = 4;
             Dictionary<string, int> worthOfUnits = new Dictionary<string, int>();
             worthOfUnits["Walking Fish02"] = 1;
-            worthOfUnits["Sea Slug"] = 1;
+            worthOfUnits["Sea Slug"] = 10;
             worthOfUnits["Jellyfish"] = 3;
             worthOfUnits["Squid"] = 4;
-            worthOfUnits["Turtle"] = 5;
-            worthOfUnits["Starfish"] = 3;
-            worthOfUnits["Lobster"] = 1;
-            worthOfUnits["Flying Fish"] = 1;
-            worthOfUnits["Super Jelly"] = 1;
+            worthOfUnits["Turtle"] = 10;
+            worthOfUnits["Starfish"] = 20;
+            worthOfUnits["Lobster"] = 8;
+            worthOfUnits["Flying Fish"] = 12;
+            worthOfUnits["Super Jelly"] = 8;
 
             SpawnInformation jellyfishDefault = new SpawnInformation(0);
             jellyfishDefault.AddInformation("Unit Name", "Jellyfish");
@@ -209,7 +209,7 @@ namespace FinalProject.GameWaves
             possibleBehaviors["Flying Fish"] = new List<string> { "In Fire Out" };
             possibleBehaviors["Super Jelly"] = new List<string> { "In Fire Out" };
 
-            return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 8);
+            return CreateLevel(listOfUnits, worthOfUnits, spawnInformation, possibleWeapons, possibleBehaviors, 10);
         }
 
         private static void AddBehaviorToSpawn(string behavior, SpawnInformation spawnInformation)
