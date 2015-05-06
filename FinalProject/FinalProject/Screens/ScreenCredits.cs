@@ -19,7 +19,6 @@ namespace FinalProject.Screens
         public ScreenCredits(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
-            //GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Select Stage", saveGame => currentGame = saveGame);
         }
 
         public override void KeyPressed(Keys key)
@@ -46,12 +45,10 @@ namespace FinalProject.Screens
             base.LoadContent();
         }
 
-        
         public override void Start()
         {
             base.Start();
         }
-        
 
         protected override void BeginTransitioningOut()
         {
@@ -81,7 +78,7 @@ namespace FinalProject.Screens
             {
                 case Result.Back:
                     {
-                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Main Menu");
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Main Menu");
                     } break;
             }
         }
