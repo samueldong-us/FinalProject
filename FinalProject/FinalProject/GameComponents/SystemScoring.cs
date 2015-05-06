@@ -52,6 +52,11 @@ namespace FinalProject.GameComponents
             spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(428, scoreTop, 15, height), new Color(255, 215, 0));
         }
 
+        public int GetScore()
+        {
+            return score;
+        }
+
         public void Reset()
         {
             player.MessageCenter.RemoveListener<float, float>("Health", SetHealth);

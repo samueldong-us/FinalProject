@@ -18,6 +18,11 @@ namespace FinalProject.GameWaves
             timePassed = 0;
         }
 
+        public int GetNumberOfWaves()
+        {
+            return waves.Count;
+        }
+
         public int GetTotalPossibleScore()
         {
             int total = 0;
