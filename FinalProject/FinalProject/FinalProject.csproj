@@ -159,6 +159,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Screens\ScreenCommandCenter.cs" />
+    <Compile Include="Screens\ScreenCredits.cs" />
     <Compile Include="Screens\ScreenGame.cs" />
     <Compile Include="Screens\ScreenLoadGame.cs" />
     <Compile Include="Screens\ScreenMainMenu.cs" />
