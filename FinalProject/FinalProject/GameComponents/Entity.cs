@@ -18,6 +18,8 @@ namespace FinalProject.GameComponents
 
         private List<Component> toRemove;
 
+        public bool Disposed { get; private set; }
+
         public Entity()
         {
             components = new List<Component>();
@@ -35,6 +37,7 @@ namespace FinalProject.GameComponents
 
         public void Dispose()
         {
+            Disposed = true;
             foreach (Component component in components)
             {
                 component.Dispose();
