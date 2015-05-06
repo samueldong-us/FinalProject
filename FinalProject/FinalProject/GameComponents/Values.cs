@@ -86,7 +86,7 @@ namespace FinalProject.GameComponents
         private static void FillCircularBounceValues()
         {
             // Level 1
-            // Not used
+            // Not Used
             // Level 2
             // Not used
             // Level 3

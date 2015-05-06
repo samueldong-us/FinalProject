@@ -22,7 +22,7 @@ namespace FinalProject.Screens
         public static SystemEntity Entities;
 
         public static MessageCenter MessageCenter;
-
+        public static SystemScoring Scoring;
         public static Rectangle Visible = new Rectangle(420, 0, 1000, 1080);
 
         private Texture2D background;
@@ -150,6 +150,7 @@ namespace FinalProject.Screens
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             scrollingBackground.Draw(spriteBatch);
             Drawing.Draw(spriteBatch);
+            Scoring.Draw(spriteBatch);
             if (paused)
             {
                 spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, .75f));
@@ -183,6 +184,7 @@ namespace FinalProject.Screens
             MessageCenter = new MessageCenter();
             MessageCenter.AddListener<Entity>("Find Closest Player", Collisions.ClosestPlayer);
             MessageCenter.AddListener<Entity, float>("Find Closest Enemy By Angle", Collisions.ClosestEnemyByAngle);
+            MessageCenter.AddListener<int>("Add Worth", Scoring.AddWorth);
         }
 
         private void InitializeSystems()
@@ -190,6 +192,7 @@ namespace FinalProject.Screens
             Collisions = new SystemCollisions();
             Drawing = new SystemDrawing();
             Entities = new SystemEntity();
+            Scoring = new SystemScoring();
         }
 
         private void Pause()

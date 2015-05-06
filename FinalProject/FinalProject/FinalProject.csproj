@@ -112,9 +112,11 @@
     <Compile Include="GameComponents\ComponentProjectileWeaponHoming.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponSpiral.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponSplitShot.cs" />
+    <Compile Include="GameComponents\ComponentProjectileWeaponSwing.cs" />
     <Compile Include="GameComponents\ComponentProjectileWeaponWall.cs" />
     <Compile Include="GameComponents\ComponentRemoveOnCollide.cs" />
     <Compile Include="GameComponents\ComponentRemoveOnExit.cs" />
+    <Compile Include="GameComponents\ComponentSwingFireControl.cs" />
     <Compile Include="GameComponents\ComponentWallFire.cs" />
     <Compile Include="GameComponents\FactoryBehavior.cs" />
     <Compile Include="GameComponents\FactoryPlayer.cs" />
@@ -136,6 +138,7 @@
     <Compile Include="GameComponents\SystemEntity.cs" />
     <Compile Include="GameComponents\ComponentVelocityAcceleration.cs" />
     <Compile Include="GameComponents\ComponentVelocityBasedRotation.cs" />
+    <Compile Include="GameComponents\SystemScoring.cs" />
     <Compile Include="GameComponents\UnitHealthBarInformation.cs" />
     <Compile Include="GameComponents\UnitValues.cs" />
     <Compile Include="GameComponents\Values.cs" />
