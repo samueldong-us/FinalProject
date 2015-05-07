@@ -288,7 +288,16 @@ namespace FinalProject.GameComponents
 
         private static void FillUnitHealthBars()
         {
-            UnitHealthBars["Jellyfish"] = new UnitHealthBarInformation(new Rectangle(0, 0, 100, 1), new Vector2(0, -50));
+            UnitHealthBars["Jellyfish"] = new UnitHealthBarInformation(new Rectangle(0, 0, 75, 1), new Vector2(0, -50));
+            UnitHealthBars["Walking Fish01"] = new UnitHealthBarInformation(new Rectangle(0, 0, 50, 1), new Vector2(0, -50));
+            UnitHealthBars["Walking Fish02"] = new UnitHealthBarInformation(new Rectangle(0, 0, 50, 1), new Vector2(0, -60));
+            UnitHealthBars["Sea Slug"] = new UnitHealthBarInformation(new Rectangle(0, 0, 75, 1), new Vector2(0, -75));
+            UnitHealthBars["Squid"] = new UnitHealthBarInformation(new Rectangle(0, 0, 50, 1), new Vector2(0, -90));
+            UnitHealthBars["Turtle"] = new UnitHealthBarInformation(new Rectangle(0, 0, 150, 1), new Vector2(0, -75));
+            UnitHealthBars["Lobster"] = new UnitHealthBarInformation(new Rectangle(0, 0, 150, 1), new Vector2(0, -90));
+            UnitHealthBars["Starfish"] = new UnitHealthBarInformation(new Rectangle(0, 0, 150, 1), new Vector2(0, -90));
+            UnitHealthBars["Flying Fish"] = new UnitHealthBarInformation(new Rectangle(0, 0, 150, 1), new Vector2(0, -50));
+            UnitHealthBars["Super Jelly"] = new UnitHealthBarInformation(new Rectangle(0, 0, 150, 1), new Vector2(0, -75));
         }
 
         private static void FillUnitMovementSpeeds()

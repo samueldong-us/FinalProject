@@ -91,7 +91,7 @@ namespace FinalProject
         {
             if (gameTime.ElapsedGameTime.TotalSeconds != 0)
             {
-                spriteBatch.DrawString(Fonts.DebugFont, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Fonts.Red);
+                //spriteBatch.DrawString(Fonts.DebugFont, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Fonts.Red);
             }
         }
 
@@ -99,7 +99,7 @@ namespace FinalProject
         {
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            //graphics.IsFullScreen = true;
+            graphics.IsFullScreen = true;
             IsFixedTimeStep = false;
             graphics.ApplyChanges();
         }
