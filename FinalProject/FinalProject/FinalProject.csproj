@@ -174,9 +174,12 @@
     <Compile Include="Screens\ScreenSelectStage.cs" />
     <Compile Include="Screens\Screen.cs" />
     <Compile Include="Screens\ItemGroupUpgrade.cs" />
+    <Compile Include="Screens\ScreenSettings.cs" />
     <Compile Include="Screens\ScreenSplash.cs" />
     <Compile Include="Screens\ScreenUpgrade.cs" />
     <Compile Include="GameComponents\SystemCollisions.cs" />
+    <Compile Include="Utilities\OneTimeSound.cs" />
+    <Compile Include="Utilities\AudioManager.cs" />
     <Compile Include="Utilities\InterpolatedValueCubic.cs" />
     <Compile Include="Utilities\InterpolatedValueExponential.cs" />
     <Compile Include="Utilities\Fonts.cs" />

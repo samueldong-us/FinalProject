@@ -22,16 +22,17 @@ namespace FinalProject.Screens
         public ScreenSplash(ContentManager content, GraphicsDevice graphicsDevice)
             : base(content, graphicsDevice)
         {
-            opacity = new InterpolatedValueExponential(1, 0, 3);
+            opacity = new InterpolatedValueLinear(1, 0, 2);
             opacity.InterpolationFinished = (parameter) => { ready = true; };
             scrollingBackground = new ScrollingBackground("Level1BG");
         }
 
         public override void KeyPressed(Keys key)
         {
-            if (ready && key == Keys.Enter)
+            if (state == ScreenState.Active && ready && key == Keys.Enter)
             {
                 BeginTransitioningOut();
+                GameMain.Audio.PlayOneTimeSound("Menu Sound");
             }
             base.KeyPressed(key);
         }

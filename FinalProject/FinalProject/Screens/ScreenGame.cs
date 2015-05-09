@@ -84,17 +84,20 @@ namespace FinalProject.Screens
                                     SaveGameManager.SaveGame(currentGame);
                                 }
                                 BeginTransitioningOut();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                             if (paused)
                             {
                                 if (menuItems.GetSelected().Equals("RESUME GAME"))
                                 {
                                     Unpause();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 }
                                 else
                                 {
                                     Unpause();
                                     BeginTransitioningOut();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 }
                             }
                         } break;
@@ -103,6 +106,7 @@ namespace FinalProject.Screens
                             if (paused)
                             {
                                 menuItems.MoveUp();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                         } break;
                     case Keys.Down:
@@ -110,6 +114,7 @@ namespace FinalProject.Screens
                             if (paused)
                             {
                                 menuItems.MoveDown();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                         } break;
                     case Keys.Escape:
@@ -117,10 +122,12 @@ namespace FinalProject.Screens
                             if (paused)
                             {
                                 Unpause();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                             else if (!gameOver && !EnemiesGone())
                             {
                                 Pause();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                         } break;
                 }

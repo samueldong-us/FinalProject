@@ -39,20 +39,24 @@ namespace FinalProject.Screens
                                     {
                                         currentGame.Credits -= cost;
                                         upgrades.UpgradeSelected();
+                                        GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                     }
                                 } break;
                             case Keys.Up:
                                 {
                                     upgrades.MoveUp();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                             case Keys.Down:
                                 {
                                     upgrades.MoveDown();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                             case Keys.Escape:
                                 {
                                     UpdateUpgrades();
                                     BeginTransitioningOut();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                         }
                     } break;

@@ -15,6 +15,8 @@ namespace FinalProject
 
         public const int VirtualWidth = 1920;
 
+        public static AudioManager Audio;
+
         public static MessageCenter MessageCenter;
 
         public static Random RNG;
@@ -48,6 +50,7 @@ namespace FinalProject
         {
             InitializeGraphicsSettings();
             InitializeMessageCenter();
+            Audio = new AudioManager();
             InitializeScreens();
             UtilitiesGraphics.Initialize(GraphicsDevice);
             SaveGameManager.CreateSaveDirectory();
@@ -58,6 +61,7 @@ namespace FinalProject
         protected override void LoadContent()
         {
             Fonts.LoadFonts(Content);
+            Audio.LoadContent(Content);
             UtilitiesGraphics.LoadCircularWipe(Content);
             screens["Splash Screen"].LoadContent();
             currentScreen = screens["Splash Screen"];
@@ -98,7 +102,7 @@ namespace FinalProject
         {
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            graphics.IsFullScreen = true;
+            //graphics.IsFullScreen = true;
             IsFixedTimeStep = false;
             graphics.ApplyChanges();
         }
@@ -115,16 +119,17 @@ namespace FinalProject
         {
             screens = new Dictionary<string, Screen>();
             screens["Command Center"] = new ScreenCommandCenter(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Game"] = new ScreenGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Load Game"] = new ScreenLoadGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Main Menu"] = new ScreenMainMenu(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["New Game"] = new ScreenNewGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Select Character"] = new ScreenSelectCharacter(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Select Difficulty"] = new ScreenSelectDifficulty(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Select Stage"] = new ScreenSelectStage(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
+            screens["Settings"] = new ScreenSettings(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Show Credits"] = new ScreenCredits(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Splash Screen"] = new ScreenSplash(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
             screens["Upgrade"] = new ScreenUpgrade(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
-            screens["Game"] = new ScreenGame(UtilitiesGame.GenerateNewContentManager(Services), GraphicsDevice);
         }
 
         private void SwitchScreens(string screen)

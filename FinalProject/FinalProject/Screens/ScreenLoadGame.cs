@@ -41,6 +41,7 @@ namespace FinalProject.Screens
                                     {
                                         result = Result.Continue;
                                         BeginTransitioningOut();
+                                        GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                     }
                                 } break;
                             case Keys.Up:
@@ -48,6 +49,7 @@ namespace FinalProject.Screens
                                     if (currentPage != -1)
                                     {
                                         savedGames[currentPage].MoveUp();
+                                        GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                     }
                                 } break;
                             case Keys.Down:
@@ -55,6 +57,7 @@ namespace FinalProject.Screens
                                     if (currentPage != -1)
                                     {
                                         savedGames[currentPage].MoveDown();
+                                        GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                     }
                                 } break;
                             case Keys.Left:
@@ -62,6 +65,7 @@ namespace FinalProject.Screens
                                     if (currentPage > 0)
                                     {
                                         currentPage--;
+                                        GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                     }
                                 } break;
                             case Keys.Right:
@@ -69,12 +73,14 @@ namespace FinalProject.Screens
                                     if (currentPage < savedGames.Count - 1 && currentPage != -1)
                                     {
                                         currentPage++;
+                                        GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                     }
                                 } break;
                             case Keys.Escape:
                                 {
                                     result = Result.Back;
                                     BeginTransitioningOut();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                         }
                     } break;
