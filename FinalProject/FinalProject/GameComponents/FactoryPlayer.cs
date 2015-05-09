@@ -33,9 +33,9 @@ namespace FinalProject.GameComponents
         private static void CreateHomingShip(SaveGame saveGame, Entity player)
         {
             float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
-            int damage = 1 + saveGame.Damage / 4;
+            int damage = 2 + saveGame.Damage / 5;
             int health = 20 + 2 * saveGame.Shields;
-            float firerate = .5f - .25f * saveGame.FireRate / 10;
+            float firerate = .35f - .1f * saveGame.FireRate / 10;
             new ComponentPlayerController(player, movementSpeed);
             new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
             new ComponentRestrictPosition(player, 50, 50, ScreenGame.Bounds);
@@ -82,9 +82,9 @@ namespace FinalProject.GameComponents
         private static void CreateSpreadShotShip(SaveGame saveGame, Entity player)
         {
             float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
-            int damage = 1 + saveGame.Damage / 4;
+            int damage = 2 + saveGame.Damage / 5;
             int health = 20 + 2 * saveGame.Shields;
-            float firerate = .2f - .1f * saveGame.FireRate / 10;
+            float firerate = .15f - .05f * saveGame.FireRate / 10;
             new ComponentPlayerController(player, movementSpeed);
             new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
             new ComponentRestrictPosition(player, 50, 50, ScreenGame.Bounds);
