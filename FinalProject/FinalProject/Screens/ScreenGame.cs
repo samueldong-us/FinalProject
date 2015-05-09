@@ -139,12 +139,12 @@ namespace FinalProject.Screens
         {
             gameHUD = content.Load<Texture2D>("gameHUD");
             GameAssets.LoadContent(content);
+            scrollingBackground.LoadContent(content);
             base.LoadContent();
         }
 
         public override void Start()
         {
-            scrollingBackground = new ScrollingBackground();
             Setup();
             base.Start();
         }
@@ -261,19 +261,17 @@ namespace FinalProject.Screens
                 case "LEVEL 1":
                     {
                         FactoryUnit.Stage = 1;
-                        GameAssets.LoadBackground(content, "Level1BG");
                     } break;
                 case "LEVEL 2":
                     {
                         FactoryUnit.Stage = 2;
-                        GameAssets.LoadBackground(content, "Level2BG");
                     } break;
                 case "LEVEL 3":
                     {
                         FactoryUnit.Stage = 3;
-                        GameAssets.LoadBackground(content, "Level3BG");
                     } break;
             }
+            scrollingBackground = new ScrollingBackground("Level" + FactoryUnit.Stage + "BG");
         }
 
         private void Setup()

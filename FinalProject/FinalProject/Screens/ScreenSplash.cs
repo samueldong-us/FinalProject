@@ -1,82 +1,75 @@
-﻿using Microsoft.Xna.Framework;
+﻿using FinalProject.GameComponents;
+using FinalProject.Utilities;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using Microsoft.Xna.Framework.Media;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenSplash : Screen
+    internal class ScreenSplash : ScreenPixelatedTransition
     {
-        private MediaState lastVideoState;
+        private Texture2D background;
+        private InterpolatedValue opacity;
+        private bool ready;
+        private ScrollingBackground scrollingBackground;
+        private Texture2D title;
 
-        private Video splashVideo;
-
-        private VideoPlayer splashVideoPlayer;
-
-        public ScreenSplash(ContentManager contentManager, GraphicsDevice graphicsDevice)
-            : base(contentManager, graphicsDevice)
+        public ScreenSplash(ContentManager content, GraphicsDevice graphicsDevice)
+            : base(content, graphicsDevice)
         {
-            splashVideoPlayer = new VideoPlayer();
-        }
-
-        public override void Draw(SpriteBatch spriteBatch)
-        {
-            if (state == ScreenState.Active)
-            {
-                spriteBatch.Draw(splashVideoPlayer.GetTexture(), new Rectangle(0, 0, 1920, 1080), Color.White);
-            }
+            opacity = new InterpolatedValueExponential(1, 0, 3);
+            opacity.InterpolationFinished = (parameter) => { ready = true; };
+            scrollingBackground = new ScrollingBackground("Level1BG");
         }
 
         public override void KeyPressed(Keys key)
         {
-            if (key == Keys.Space)
+            if (ready && key == Keys.Enter)
             {
-                FinishTransitioningOut();
+                BeginTransitioningOut();
             }
+            base.KeyPressed(key);
         }
 
         public override void LoadContent()
         {
+            background = content.Load<Texture2D>("MenuBackgroundWithHole");
+            title = content.Load<Texture2D>("TitleScreen");
+            scrollingBackground.LoadContent(content);
             base.LoadContent();
         }
 
-        public override void Start()
+        protected override void ActiveUpdate(float secondsPassed)
         {
-            lastVideoState = MediaState.Stopped;
-            otherScreenReady = true;
-            FinishTransitioningOut();
-        }
-
-        public override void Stop()
-        {
-            base.Stop();
-        }
-
-        public override void TransitionOut()
-        {
+            scrollingBackground.Update(secondsPassed);
+            opacity.Update(secondsPassed);
+            base.ActiveUpdate(secondsPassed);
         }
 
         protected override void BeginTransitioningOut()
         {
+            GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Main Menu");
             base.BeginTransitioningOut();
+        }
+
+        protected override void DrawScreen(SpriteBatch spriteBatch)
+        {
+            scrollingBackground.Draw(spriteBatch);
+            spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
+            spriteBatch.Draw(title, ScreenGame.Visible, Color.White);
+            spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, opacity.GetValue()));
         }
 
         protected override void Reset()
         {
+            opacity.SetParameter(0);
+            ready = false;
             base.Reset();
-        }
-
-        protected override void ScreenUpdate(float secondsPassed)
-        {
-            if (state == ScreenState.Active)
-            {
-                if (splashVideoPlayer.State == MediaState.Stopped && lastVideoState == MediaState.Playing)
-                {
-                    BeginTransitioningOut();
-                }
-                lastVideoState = splashVideoPlayer.State;
-            }
         }
 
         protected override void SwitchScreens()

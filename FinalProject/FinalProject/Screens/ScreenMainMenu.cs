@@ -109,7 +109,7 @@ namespace FinalProject.Screens
                     } break;
                 case "CREDITS":
                     {
-                        GameMain.MessageCenter.Broadcast("Switch Screens", "Show Credits");
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Show Credits");
                     } break;
             }
         }
@@ -119,7 +119,7 @@ namespace FinalProject.Screens
             menuItems.AddItem(new ItemMenu(new Vector2(280, 160), "NEW GAME"));
             menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "LOAD GAME"));
             menuItems.AddItem(new ItemMenu(new Vector2(280, 480), "SETTINGS") { Disabled = true });
-            menuItems.AddItem(new ItemMenu(new Vector2(280, 640), "CREDITS")/* { Disabled = true }*/);
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 640), "CREDITS"));
             menuItems.AddItem(new ItemMenu(new Vector2(280, 800), "QUIT GAME"));
         }
     }

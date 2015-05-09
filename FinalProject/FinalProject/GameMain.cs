@@ -36,10 +36,10 @@ namespace FinalProject
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, UtilitiesGame.GetResizeMatrix(GraphicsDevice));
             DrawCurrentScreen();
-            DrawFPSCounter(gameTime);
+            //DrawFPSCounter(gameTime);
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -60,7 +60,6 @@ namespace FinalProject
             Fonts.LoadFonts(Content);
             UtilitiesGraphics.LoadCircularWipe(Content);
             screens["Splash Screen"].LoadContent();
-            screens["Main Menu"].LoadContent();
             currentScreen = screens["Splash Screen"];
             currentScreen.Start();
         }
@@ -91,7 +90,7 @@ namespace FinalProject
         {
             if (gameTime.ElapsedGameTime.TotalSeconds != 0)
             {
-                //spriteBatch.DrawString(Fonts.DebugFont, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Fonts.Red);
+                spriteBatch.DrawString(Fonts.DebugFont, string.Format("FPS: {0:00.00}", 1 / gameTime.ElapsedGameTime.TotalSeconds), new Vector2(300, 10), Fonts.Red);
             }
         }
 
