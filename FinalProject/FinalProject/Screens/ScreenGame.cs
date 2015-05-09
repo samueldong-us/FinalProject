@@ -84,17 +84,20 @@ namespace FinalProject.Screens
                                     SaveGameManager.SaveGame(currentGame);
                                 }
                                 BeginTransitioningOut();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                             if (paused)
                             {
                                 if (menuItems.GetSelected().Equals("RESUME GAME"))
                                 {
                                     Unpause();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 }
                                 else
                                 {
                                     Unpause();
                                     BeginTransitioningOut();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 }
                             }
                         } break;
@@ -103,6 +106,7 @@ namespace FinalProject.Screens
                             if (paused)
                             {
                                 menuItems.MoveUp();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                         } break;
                     case Keys.Down:
@@ -110,6 +114,7 @@ namespace FinalProject.Screens
                             if (paused)
                             {
                                 menuItems.MoveDown();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                         } break;
                     case Keys.Escape:
@@ -117,10 +122,12 @@ namespace FinalProject.Screens
                             if (paused)
                             {
                                 Unpause();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                             else if (!gameOver && !EnemiesGone())
                             {
                                 Pause();
+                                GameMain.Audio.PlayOneTimeSound("Menu Sound");
                             }
                         } break;
                 }
@@ -139,12 +146,12 @@ namespace FinalProject.Screens
         {
             gameHUD = content.Load<Texture2D>("gameHUD");
             GameAssets.LoadContent(content);
+            scrollingBackground.LoadContent(content);
             base.LoadContent();
         }
 
         public override void Start()
         {
-            scrollingBackground = new ScrollingBackground();
             Setup();
             base.Start();
         }
@@ -261,19 +268,17 @@ namespace FinalProject.Screens
                 case "LEVEL 1":
                     {
                         FactoryUnit.Stage = 1;
-                        GameAssets.LoadBackground(content, "Level1BG");
                     } break;
                 case "LEVEL 2":
                     {
                         FactoryUnit.Stage = 2;
-                        GameAssets.LoadBackground(content, "Level2BG");
                     } break;
                 case "LEVEL 3":
                     {
                         FactoryUnit.Stage = 3;
-                        GameAssets.LoadBackground(content, "Level3BG");
                     } break;
             }
+            scrollingBackground = new ScrollingBackground("Level" + FactoryUnit.Stage + "BG");
         }
 
         private void Setup()

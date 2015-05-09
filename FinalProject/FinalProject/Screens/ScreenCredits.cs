@@ -33,6 +33,7 @@ namespace FinalProject.Screens
                                 {
                                     result = Result.Back;
                                     BeginTransitioningOut();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                         }
                     } break;

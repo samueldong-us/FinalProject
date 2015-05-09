@@ -60,11 +60,13 @@ namespace FinalProject.Screens
                                         result = Result.Continue;
                                         BeginTransitioningOut();
                                     }
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                             case Keys.Escape:
                                 {
                                     result = Result.Back;
                                     BeginTransitioningOut();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                             case Keys.Space:
                                 {

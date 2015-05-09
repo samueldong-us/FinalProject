@@ -29,14 +29,17 @@ namespace FinalProject.Screens
                             case Keys.Enter:
                                 {
                                     BeginTransitioningOut();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                             case Keys.Up:
                                 {
                                     menuItems.MoveUp();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                             case Keys.Down:
                                 {
                                     menuItems.MoveDown();
+                                    GameMain.Audio.PlayOneTimeSound("Menu Sound");
                                 } break;
                         }
                     } break;
@@ -70,6 +73,10 @@ namespace FinalProject.Screens
                 case "QUIT GAME":
                     {
                         otherScreenReady = true;
+                    } break;
+                case "SETTINGS":
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Settings");
                     } break;
                 case "CREDITS":
                     {
@@ -107,9 +114,13 @@ namespace FinalProject.Screens
                     {
                         GameMain.MessageCenter.Broadcast("Quit");
                     } break;
+                case "SETTINGS":
+                    {
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Settings");
+                    } break;
                 case "CREDITS":
                     {
-                        GameMain.MessageCenter.Broadcast("Switch Screens", "Show Credits");
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Show Credits");
                     } break;
             }
         }
@@ -118,8 +129,8 @@ namespace FinalProject.Screens
         {
             menuItems.AddItem(new ItemMenu(new Vector2(280, 160), "NEW GAME"));
             menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "LOAD GAME"));
-            menuItems.AddItem(new ItemMenu(new Vector2(280, 480), "SETTINGS") { Disabled = true });
-            menuItems.AddItem(new ItemMenu(new Vector2(280, 640), "CREDITS")/* { Disabled = true }*/);
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 480), "SETTINGS"));
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 640), "CREDITS"));
             menuItems.AddItem(new ItemMenu(new Vector2(280, 800), "QUIT GAME"));
         }
     }
