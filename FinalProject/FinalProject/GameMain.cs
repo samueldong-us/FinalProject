@@ -34,6 +34,12 @@ namespace FinalProject
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             RNG = new Random();
+
+            IntPtr hWnd = this.Window.Handle;
+            var control = System.Windows.Forms.Control.FromHandle(hWnd);
+            var form = control.FindForm();
+            form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            form.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
 
         protected override void Draw(GameTime gameTime)
@@ -75,6 +81,7 @@ namespace FinalProject
         protected override void Update(GameTime gameTime)
         {
             KeyboardManager.BroadcastChanges(currentScreen);
+            Audio.Update();
             if (currentScreen != null)
             {
                 currentScreen.Update(gameTime);

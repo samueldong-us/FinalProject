@@ -178,6 +178,7 @@
     <Compile Include="Screens\ScreenSplash.cs" />
     <Compile Include="Screens\ScreenUpgrade.cs" />
     <Compile Include="GameComponents\SystemCollisions.cs" />
+    <Compile Include="Utilities\BackgroundMusic.cs" />
     <Compile Include="Utilities\OneTimeSound.cs" />
     <Compile Include="Utilities\AudioManager.cs" />
     <Compile Include="Utilities\InterpolatedValueCubic.cs" />

@@ -1,15 +1,13 @@
 ﻿using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Content;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.Utilities
 {
     public class AudioManager
     {
+        private BackgroundMusic backgroundMusic;
         private float masterVolume;
         private Dictionary<string, OneTimeSound> oneTimeSounds;
 
@@ -18,7 +16,7 @@ namespace FinalProject.Utilities
             oneTimeSounds = new Dictionary<string, OneTimeSound>();
             if (!LoadConfig())
             {
-                masterVolume = 1;
+                masterVolume = .5f;
             }
         }
 
@@ -29,7 +27,9 @@ namespace FinalProject.Utilities
 
         public void LoadContent(ContentManager content)
         {
-            oneTimeSounds["Menu Sound"] = new OneTimeSound(content.Load<SoundEffect>("Blip_Select"), 0.2f);
+            oneTimeSounds["Menu Sound"] = new OneTimeSound(content.Load<SoundEffect>("Blip_Select"), 1f);
+            backgroundMusic = new BackgroundMusic(content);
+            backgroundMusic.LoadContent();
         }
 
         public void PlayOneTimeSound(string name)
@@ -46,6 +46,11 @@ namespace FinalProject.Utilities
         {
             masterVolume = volume;
             SaveConfig();
+        }
+
+        public void Update()
+        {
+            backgroundMusic.Update(masterVolume);
         }
 
         private bool LoadConfig()

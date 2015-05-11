@@ -4,10 +4,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.Screens
 {
@@ -24,7 +20,7 @@ namespace FinalProject.Screens
         {
             opacity = new InterpolatedValueLinear(1, 0, 2);
             opacity.InterpolationFinished = (parameter) => { ready = true; };
-            scrollingBackground = new ScrollingBackground("Level1BG");
+            scrollingBackground = new ScrollingBackground("Level3BG");
         }
 
         public override void KeyPressed(Keys key)
