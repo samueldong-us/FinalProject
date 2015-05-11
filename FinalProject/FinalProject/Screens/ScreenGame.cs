@@ -210,7 +210,10 @@ namespace FinalProject.Screens
 
         private bool EnemiesGone()
         {
-            return waveManager.GetNumberOfWaves() == 0 && Collisions.GetCount("Enemy") == 0 && Collisions.GetCount("EnemyBullet") == 0;
+            bool waveManagerFinished = waveManager.GetNumberOfWaves() == 0;
+            bool enemiesGone = Collisions.GetCount("Enemy") == 0;
+            bool enemyBulletsGone = Collisions.GetCount("EnemyBullet") == 0;
+            return waveManagerFinished && enemiesGone && enemyBulletsGone;
         }
 
         private void InitializeMenu()
