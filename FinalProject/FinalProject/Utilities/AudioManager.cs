@@ -11,13 +11,14 @@ namespace FinalProject.Utilities
         private float masterVolume;
         private Dictionary<string, OneTimeSound> oneTimeSounds;
 
-        public AudioManager()
+        public AudioManager(ContentManager content1, ContentManager content2)
         {
             oneTimeSounds = new Dictionary<string, OneTimeSound>();
             if (!LoadConfig())
             {
                 masterVolume = .5f;
             }
+            backgroundMusic = new BackgroundMusic(content1, content2);
         }
 
         public float GetVolume()
@@ -28,7 +29,6 @@ namespace FinalProject.Utilities
         public void LoadContent(ContentManager content)
         {
             oneTimeSounds["Menu Sound"] = new OneTimeSound(content.Load<SoundEffect>("Blip_Select"), 1f);
-            backgroundMusic = new BackgroundMusic(content);
             backgroundMusic.LoadContent();
         }
 

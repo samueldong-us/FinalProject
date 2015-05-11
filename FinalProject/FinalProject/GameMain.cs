@@ -52,7 +52,7 @@ namespace FinalProject
         {
             InitializeGraphicsSettings();
             InitializeMessageCenter();
-            Audio = new AudioManager();
+            Audio = new AudioManager(UtilitiesGame.GenerateNewContentManager(Services), UtilitiesGame.GenerateNewContentManager(Services));
             DebugMode = false;
             InitializeScreens();
             UtilitiesGraphics.Initialize(GraphicsDevice);
