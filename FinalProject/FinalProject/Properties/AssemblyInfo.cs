@@ -1,12 +1,13 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Resources;
 
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("FinalProject")]
-[assembly: AssemblyProduct("FinalProject")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Cyber Water Destroyer 4K")]
+[assembly: AssemblyProduct("Cyber Water Destroyer 4K")]
+[assembly: AssemblyDescription("Procedurally Generated Bullet Hell")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
@@ -31,3 +32,4 @@ using System.Runtime.InteropServices;
 //      Revision
 //
 [assembly: AssemblyVersion("1.0.0.0")]
+[assembly: NeutralResourcesLanguageAttribute("en")]
