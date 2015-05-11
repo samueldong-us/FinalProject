@@ -14,6 +14,7 @@ namespace FinalProject
         public const int VirtualHeight = 1080;
         public const int VirtualWidth = 1920;
         public static AudioManager Audio;
+        public static bool DebugMode;
         public static MessageCenter MessageCenter;
         public static Random RNG;
         private Screen currentScreen;
@@ -39,7 +40,10 @@ namespace FinalProject
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, UtilitiesGame.GetResizeMatrix(GraphicsDevice));
             DrawCurrentScreen();
-            //DrawFPSCounter(gameTime);
+            if (DebugMode)
+            {
+                DrawFPSCounter(gameTime);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -49,6 +53,7 @@ namespace FinalProject
             InitializeGraphicsSettings();
             InitializeMessageCenter();
             Audio = new AudioManager();
+            DebugMode = false;
             InitializeScreens();
             UtilitiesGraphics.Initialize(GraphicsDevice);
             SaveGameManager.CreateSaveDirectory();
@@ -101,7 +106,6 @@ namespace FinalProject
         {
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            //graphics.IsFullScreen = true;
             IsFixedTimeStep = false;
             graphics.ApplyChanges();
         }

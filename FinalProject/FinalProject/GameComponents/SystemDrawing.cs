@@ -52,9 +52,12 @@ namespace FinalProject.GameComponents
             {
                 drawable.Draw(spriteBatch);
             }
-            foreach (DrawableComponent drawable in drawableLayers["Debug"])
+            if (GameMain.DebugMode)
             {
-                //drawable.Draw(spriteBatch);
+                foreach (DrawableComponent drawable in drawableLayers["Debug"])
+                {
+                    drawable.Draw(spriteBatch);
+                }
             }
         }
 
