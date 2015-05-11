@@ -13,11 +13,8 @@ namespace FinalProject.Screens
         private enum Result { Back, Continue }
 
         private Texture2D background;
-
         private SaveGame currentGame;
-
         private ItemGroupMenu menuItems;
-
         private Result result;
 
         public ScreenSelectStage(ContentManager contentManager, GraphicsDevice graphicsDevice)

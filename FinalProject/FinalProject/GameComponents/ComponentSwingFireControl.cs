@@ -5,17 +5,11 @@ namespace FinalProject.GameComponents
     internal class ComponentSwingFireControl : Component
     {
         private bool active;
-
         private float delay;
-
         private bool firing;
-
         private float lengthOfFire;
-
         private float timeBetweenShots;
-
         private float timePassed;
-
         private float totalTimePassed;
 
         public ComponentSwingFireControl(Entity entity, float timeBetweenShots, float lengthOfFire, float delay)

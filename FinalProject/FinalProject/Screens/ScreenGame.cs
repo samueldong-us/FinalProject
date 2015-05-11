@@ -14,39 +14,22 @@ namespace FinalProject.Screens
     internal class ScreenGame : ScreenPixelatedTransition
     {
         public static Rectangle Bounds = new Rectangle(460, 0, 1000, 1062);
-
         public static SystemCollisions Collisions;
-
         public static SystemDrawing Drawing;
-
         public static SystemEntity Entities;
-
         public static MessageCenter MessageCenter;
-
         public static SystemScoring Scoring;
-
         public static Rectangle Visible = new Rectangle(460, 0, 1000, 1080);
-
         private SaveGame currentGame;
-
         private InterpolatedValue fadeIn;
-
         private Texture2D gameHUD;
-
         private bool gameOver;
-
         private ItemGroupMenu menuItems;
-
         private bool paused;
-
         private Keys[] pressedKeys;
-
         private bool readyToLeave;
-
         private Random rng = new Random();
-
         private ScrollingBackground scrollingBackground;
-
         private SystemWaves waveManager;
 
         public ScreenGame(ContentManager contentManager, GraphicsDevice graphicsDevice)

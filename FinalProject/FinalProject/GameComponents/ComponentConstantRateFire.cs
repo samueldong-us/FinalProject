@@ -3,9 +3,7 @@
     internal class ComponentConstantRateFire : Component
     {
         private bool active;
-
         private float timeBetweenShots;
-
         private float timePassed;
 
         public ComponentConstantRateFire(Entity entity, float timeBetweenShots)

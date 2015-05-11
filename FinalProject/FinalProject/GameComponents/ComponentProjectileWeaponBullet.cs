@@ -7,9 +7,7 @@ namespace FinalProject.GameComponents
     internal class ComponentProjectileWeaponBullet : ComponentProjectileWeapon
     {
         private const int Speed = 200;
-
         private Vector2 closestPosition;
-
         private int damage;
 
         public ComponentProjectileWeaponBullet(Entity entity, int damage)

@@ -8,17 +8,11 @@ namespace FinalProject.GameComponents
     internal class ComponentDelayedTargeting : Component
     {
         private Vector2 closestPosition;
-
         private float delay;
-
         private bool happened;
-
         private Vector2 lastVelocity;
-
         private float secondDelay;
-
         private float speed;
-
         private float timePassed;
 
         public ComponentDelayedTargeting(Entity entity, float delay, float secondDelay, float speed)

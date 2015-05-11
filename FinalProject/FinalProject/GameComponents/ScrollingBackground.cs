@@ -10,33 +10,19 @@ namespace FinalProject.GameComponents
     internal class ScrollingBackground
     {
         private const float MaxRot = (float)(Math.PI / 2);
-
         private const float MaxTime = 10;
-
         private const float MinRot = (float)(Math.PI / 8);
-
         private const float MinTime = 2;
-
         private const int PixelsPerSecond = 100;
-
         private const int PlanetSpeed = 150;
-
         private Texture2D background;
-
         private int currentRow;
-
         private float currentY;
-
         private string levelBackground;
-
         private int nextRow;
-
         private List<Vector4> planetInfo;
-
         private Texture2D planets;
-
         private List<Point> planetTexture;
-
         private float untilNextPlanet;
 
         public ScrollingBackground(string levelBackground)

@@ -6,9 +6,7 @@ namespace FinalProject.GameComponents
     internal class ComponentProjectileWeaponHoming : ComponentProjectileWeapon
     {
         private const int Speed = 500;
-
         private int damage;
-
         private float rotation;
 
         public ComponentProjectileWeaponHoming(Entity entity, int damage, float rotation, Vector2 offset)

@@ -5,7 +5,6 @@ namespace FinalProject.GameComponents
     internal class ComponentFollowWithOffset : Component
     {
         private Vector2 offset;
-
         private Entity toFollow;
 
         public ComponentFollowWithOffset(Entity entity, Entity toFollow, Vector2 offset)

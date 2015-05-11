@@ -5,9 +5,7 @@ namespace FinalProject.GameComponents
     internal class ComponentDelayedSetVelocity : Component
     {
         private float delay;
-
         private Vector2 newVelocity;
-
         private float timePassed;
 
         public ComponentDelayedSetVelocity(Entity entity, float delay, Vector2 velocity)

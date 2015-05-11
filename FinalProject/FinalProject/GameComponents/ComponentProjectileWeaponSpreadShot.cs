@@ -6,9 +6,7 @@ namespace FinalProject.GameComponents
     internal class ComponentProjectileWeaponSpreadShot : ComponentProjectileWeapon
     {
         private const int Speed = 1000;
-
         private int damage;
-
         private float rotation;
 
         public ComponentProjectileWeaponSpreadShot(Entity entity, int damage, float rotation, Vector2 offset)

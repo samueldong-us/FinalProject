@@ -8,7 +8,6 @@ namespace FinalProject.Screens
     internal class ScreenMainMenu : ScreenPixelatedTransition
     {
         private Texture2D background;
-
         private ItemGroupMenu menuItems;
 
         public ScreenMainMenu(ContentManager contentManager, GraphicsDevice graphicsDevice)

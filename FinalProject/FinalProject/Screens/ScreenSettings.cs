@@ -10,11 +10,8 @@ namespace FinalProject.Screens
     {
         private const float VolumeChangeSpeed = 10;
         private Texture2D background;
-
         private float master;
-
         private ItemGroupMenu menuItems;
-
         private ItemMenu volume;
 
         public ScreenSettings(ContentManager contentManager, GraphicsDevice graphicsDevice)

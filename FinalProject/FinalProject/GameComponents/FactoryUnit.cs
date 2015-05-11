@@ -7,7 +7,6 @@ namespace FinalProject.GameComponents
     internal static class FactoryUnit
     {
         public static SaveGame.Difficulty Difficulty;
-
         public static int Stage;
 
         public static Entity CreateEntityFromSpawnInformation(SpawnInformation spawnInformation)

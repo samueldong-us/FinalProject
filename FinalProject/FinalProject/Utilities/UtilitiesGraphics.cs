@@ -8,11 +8,8 @@ namespace FinalProject.Utilities
     internal static class UtilitiesGraphics
     {
         public static Texture2D PlainTexture = null;
-
         private static Effect circularWipe;
-
         private static Matrix currentMatrix;
-
         private static RenderTarget2D renderTarget = null;
 
         public static void BeginDrawingPixelated(SpriteBatch spriteBatch, GraphicsDevice graphicsDevice, float scale)

@@ -13,13 +13,9 @@ namespace FinalProject.Screens
         protected enum ScreenState { TransitioningIn, TransitioningOut, Active, Inactive };
 
         protected ContentManager content;
-
         protected GraphicsDevice graphicsDevice;
-
         protected bool otherScreenReady;
-
         protected bool readyToSwitch;
-
         protected ScreenState state;
 
         protected Screen(ContentManager content, GraphicsDevice graphicsDevice)

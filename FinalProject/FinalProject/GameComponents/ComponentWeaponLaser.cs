@@ -9,9 +9,7 @@ namespace FinalProject.GameComponents
     {
         private static int instances = 0;
         private float damagePerSecond;
-
         private Entity laser;
-
         private List<Entity> toDamage;
 
         public ComponentWeaponLaser(Entity entity, float damagePerSecond)

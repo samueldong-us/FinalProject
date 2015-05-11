@@ -10,7 +10,6 @@ namespace FinalProject.Screens
         private enum Result { Back, Continue }
 
         private Texture2D background;
-
         private Result result;
 
         public ScreenCredits(ContentManager contentManager, GraphicsDevice graphicsDevice)

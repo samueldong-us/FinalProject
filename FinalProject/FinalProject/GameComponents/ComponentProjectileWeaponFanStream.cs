@@ -8,13 +8,9 @@ namespace FinalProject.GameComponents
     internal class ComponentProjectileWeaponFanStream : ComponentProjectileWeapon
     {
         private const int Speed = 100;
-
         private Vector2 closestPosition;
-
         private int damage;
-
         private double FieldOfFire = Math.PI / 5;
-
         private int numberOfBullets;
 
         public ComponentProjectileWeaponFanStream(Entity entity, int numberOfBullets, int damage)

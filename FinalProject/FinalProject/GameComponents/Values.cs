@@ -8,17 +8,11 @@ namespace FinalProject.GameComponents
     internal static class Values
     {
         public static Dictionary<string, UnitHealthBarInformation> UnitHealthBars;
-
         public static Dictionary<string, float> UnitMovementSpeeds;
-
         public static Dictionary<SaveGame.Difficulty, Dictionary<int, Dictionary<string, UnitValues>>> UnitValues;
-
         public static Dictionary<string, int> UnitWorth;
-
         public static Dictionary<SaveGame.Difficulty, Dictionary<int, Dictionary<string, Dictionary<string, object>>>> WeaponValues;
-
         private static SaveGame.Difficulty[] difficultyValues = { SaveGame.Difficulty.Easy, SaveGame.Difficulty.Normal, SaveGame.Difficulty.Hard };
-
         private static string[] weaponTypes = { "Circular Fire", "Fan", "Bullet Stream", "Circular Bounce", "Fan Stream", "Split Shot", "Bullet", "Spiral", "Wall Fire", "Swing" };
 
         static Values()

@@ -5,7 +5,6 @@ namespace FinalProject.GameComponents
     internal class ComponentWallFire : Component
     {
         private bool active;
-
         private float timeBetweenShots;
         private float timePassed;
         private int wallWidth;
