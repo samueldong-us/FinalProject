@@ -69,6 +69,7 @@ namespace FinalProject.GameComponents
             float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
             float damagePerSecond = (10 + 2f * saveGame.Damage + 2f * saveGame.WeaponStrength) * (1.5f + saveGame.FireRate / 10.0f);
             int health = 20 + 4 * saveGame.Shields;
+            float firerate = .15f;
             new ComponentPlayerController(player, movementSpeed);
             new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
             new ComponentRestrictPosition(player, 50, 50, ScreenGame.Bounds);
@@ -77,6 +78,7 @@ namespace FinalProject.GameComponents
             new ComponentHealth(player, health);
             new ComponentRemoveOnDeath(player);
             new ComponentTextureRenderer(player, GameAssets.UnitTexture, GameAssets.Unit["Laser Ship"], Color.White, "Player");
+            new ComponentConstantRateFire(player, firerate);
         }
 
         private static void CreateSpreadShotShip(SaveGame saveGame, Entity player)

@@ -20,11 +20,16 @@ namespace FinalProject.GameComponents
             this.damagePerSecond = damagePerSecond;
             entity.MessageCenter.AddListener("Start Firing", StartFiring);
             entity.MessageCenter.AddListener("Stop Firing", StopFiring);
+            entity.MessageCenter.AddListener("Fire", Fire);
             laser = new Entity();
             laser.Position = entity.Position + new Vector2(0, -500);
             laser.Rotation = (float)(-Math.PI / 2);
             laser.MessageCenter.AddListener<Entity, Entity>("Collided With", AddToList);
             ScreenGame.Entities.AddEntity(laser);
+        }
+        protected void Fire()
+        {
+            GameMain.Audio.PlayOneTimeSound("Laser Sound");
         }
 
         public override void Dispose()
@@ -32,6 +37,7 @@ namespace FinalProject.GameComponents
             instances--;
             entity.MessageCenter.RemoveListener("Start Firing", StartFiring);
             entity.MessageCenter.RemoveListener("Stop Firing", StopFiring);
+            entity.MessageCenter.RemoveListener("Fire", Fire);
             laser.Dispose();
             base.Dispose();
         }

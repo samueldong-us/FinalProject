@@ -1,0 +1,2658 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner"
+  dslVersion="1.0.0.0"
+  Id="23b880ca-e73d-4b27-9c62-addebc386fc6"
+  name="GameWaves"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="0acc834a-b6bc-4b98-843a-6f4c03d24493"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DFinalProject.GameWaves"
+      tag="ViewCode" />
+  </referencesInternal>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="6f9bfd3a-36fc-4038-b493-fa8217514b38"
+        name="SpawnInformation"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="f070ce11-d27c-4445-9c72-77eae38fd135"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="5cabb601-31ed-42d4-8a63-effb2b273b54"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="14629312-83eb-4250-bcba-2d3bdfd271a6">
+                <propertyInstance
+                  Id="9a1ab1dc-01a7-4acd-b0c4-f9709c1ac5f1"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="93b05a4e-2235-4894-a496-07f1e4b58902">
+                <propertyInstance
+                  Id="6e0f3894-48d3-458c-9206-acf94a93a751"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c33f47cf-8d66-4ac2-a009-e53b1b72ae3e">
+                <propertyInstance
+                  Id="bcf953c9-cb40-4c9f-b623-139f5d25fb53"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6627294e-14a1-48aa-93a8-478380736e64">
+                <propertyInstance
+                  Id="1249f01d-fc2b-41a0-864a-83b814d0e197"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="db379c71-8198-461c-9ea2-72656f1847e5">
+                <propertyInstance
+                  Id="4b4acd44-546c-4ba8-a75b-7634ada12bbe"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="e1e36821-e639-4c47-b13f-1f823b2d0747"
+            name="Information"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="e3cc7c21-7adc-4a43-9ff7-5dec312a91b2"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3DInformation"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="51eb8351-b601-4084-a63b-9e440a97604e"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="427cb774-a27d-473e-84ac-160e6d527f75">
+                    <propertyInstance
+                      Id="ed1d66b8-d946-42d1-a97a-5a6844b56cd2"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="24dbcb25-9a7c-424c-adce-aa8d3f9e3c89">
+                    <propertyInstance
+                      Id="ff548626-896f-41fe-8471-56f0ab716ed7"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3203cf63-51d1-4369-bf65-977a2813bfa9">
+                    <propertyInstance
+                      Id="422bcfd4-8f3d-4945-973f-e0bc2e694911"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cfc13fe0-3f26-4920-b879-55d4e5d700a2">
+                    <propertyInstance
+                      Id="66c01187-bc29-4c24-9594-510ec7debdd3"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="088a184e-916d-4dc4-b7cf-6ed25e399100">
+                    <propertyInstance
+                      Id="f4bcca28-b08e-4a5e-b300-4a835fbec1ff"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+          <property
+            Id="c6de7b42-014f-4aaf-8b08-d97784b111a3"
+            name="SpawnTime"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="617e156f-3106-4cb4-87a7-24c3aa5ae23e"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3DSpawnTime"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7486b135-cfa9-45cf-aa3f-60422a7c2f8c"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1c4649d9-f4fe-4dfb-a543-cf80ca26b809">
+                    <propertyInstance
+                      Id="61e150d9-415f-4a1a-aedd-85eaf7c290c4"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2d37b187-dcf2-459d-a9d4-bb9ad23360b9">
+                    <propertyInstance
+                      Id="a3fda972-7a98-4863-8b13-f0b52c04ebe2"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9980a50e-2d52-496f-8b1a-5d9a9173a7eb">
+                    <propertyInstance
+                      Id="11e571c2-298b-4ebe-9444-ad5c97e275e3"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="eb06bf17-ef5c-480e-a1fc-d2b406588b67">
+                    <propertyInstance
+                      Id="9836f439-6f93-4cc1-a6ec-454b33961e5c"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1a40b886-0c2a-47d5-9ba7-64a7b35adabc">
+                    <propertyInstance
+                      Id="88ae4c92-15ff-4c48-8a9c-456a86a7d9f8"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="02df2595-43d6-4b05-9b06-d62d5bb35618"
+            name="SpawnInformation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="3138a041-76e0-4dfc-8979-221e260259cc"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DSingle)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="adb613eb-a9fa-49b7-b93c-3411d8d84f0e"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a48bf083-99bf-4915-ac8e-0a54d4a2a920">
+                    <propertyInstance
+                      Id="193c4b78-2d42-4856-8d07-1f54fd48a365"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0fd17ad8-0827-4dba-80cd-de7eacada26c">
+                    <propertyInstance
+                      Id="ebc61e55-1df7-42b7-a9a6-dd45c5d10220"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a130289e-e216-450e-8477-3114aac27998">
+                    <propertyInstance
+                      Id="2d0f9a4c-9ad3-4b56-b7ba-38c2ed0cf577"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2fd2690d-3b89-4183-a3e9-12df0ac8775d">
+                    <propertyInstance
+                      Id="1473408d-af86-4d1c-a93d-603171f43fe6"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e1760316-fc10-4440-98c3-6145cbfa8460">
+                    <propertyInstance
+                      Id="1068fb99-f877-42db-91eb-0648abfcc227"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e080c69e-53ca-4d3c-9741-958453425290">
+                    <propertyInstance
+                      Id="3353d871-5b2e-4268-bbf4-d788aaf7c066"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="dea78e68-7435-41c4-b911-32c46473ab84"
+                  name="spawnTime"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="4bb71f2d-35f4-46fe-a74f-ffe1df43981e"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DSingle)]) ParameterIdentifier%3DspawnTime"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="8cc89e94-49af-4234-a518-43a5a7315570"
+            name="AddInformation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="769fbb4b-6b4c-4977-8045-5337c492e4c2"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3D(Name%3DAddInformation OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1b0d03f2-1c05-489a-b4cf-de2fefeae5f3"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e295d3b2-1c00-4119-afa8-b498a04dd022">
+                    <propertyInstance
+                      Id="adc9692f-6a10-4bdf-b739-36cfe09d0fc4"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0591d4ac-69ca-43cc-84d4-fdc0a3f887a6">
+                    <propertyInstance
+                      Id="32272bd8-a269-4408-a9fb-00d0cfe0c0ba"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3a47339c-1b00-4814-bffa-1133a410f1ac">
+                    <propertyInstance
+                      Id="ce02ea77-d344-4e66-bae1-174e15a41f3c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9957c00d-1b2d-4dca-979b-b141f9d3d5aa">
+                    <propertyInstance
+                      Id="050d981d-8183-4c7e-b61f-46817ab81b08"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fda68e83-b8bb-4c68-9b4d-52faa3d090d9">
+                    <propertyInstance
+                      Id="28c43adb-2d8b-450b-aadd-6d69e96051e4"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6c3e3052-8553-4fc8-b82d-421390da08fc">
+                    <propertyInstance
+                      Id="1e0fca0a-cd78-42af-b338-1ad59a123bce"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="a314fded-9a65-4b29-9155-a1b078d45982"
+                  name="name"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="465e5406-c5d4-4e3a-bb8c-5f8b89da6ef1"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3D(Name%3DAddInformation OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)]) ParameterIdentifier%3Dname"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d866875b-59c3-438b-bf96-c14a57632e77"
+                  name="information"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="dfb0a443-ac1d-46f3-9161-468bad77b97b"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3D(Name%3DAddInformation OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DObject)]) ParameterIdentifier%3Dinformation"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="8dfcd74b-b98b-4027-98cc-99b335df28ac"
+            name="GetInformation‎&lt;T‎&gt;"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="f01a9380-44a3-423b-ba61-a496c9050747"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3D(Name%3DGetInformation GenericParameterCount%3D1 OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7fce8a66-5f41-4114-b852-81be94f5985b"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="68bf4427-e29c-45ea-8736-3c372e76bc72">
+                    <propertyInstance
+                      Id="d1d42d2f-3622-4989-8e47-a7dcc0efa9df"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="864db482-281e-4613-a721-ee167fe14f16">
+                    <propertyInstance
+                      Id="fdc31923-efa2-4328-ab1e-45bedc59fb58"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4b2d32af-c77f-4e85-bc37-1bdf1fe8afcf">
+                    <propertyInstance
+                      Id="48bba0bf-6eba-4e23-abcb-3d072b317e3d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="dc9aef9a-bd6e-47b4-a16a-34b96bcb01ae">
+                    <propertyInstance
+                      Id="700cd417-517e-4fca-a0df-ee0d6baf72ee"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="82369ce5-3f52-452f-8c8a-91c7ab51a7e6">
+                    <propertyInstance
+                      Id="faa980dc-fe4b-4ffe-a9a1-1144f357f959"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8e2d0325-91b3-4e89-9348-3171d3d08365">
+                    <propertyInstance
+                      Id="ed90eb31-4fdd-45e3-a65e-66fdedeb6d81"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="81de0fe8-603a-4cf9-ad81-17ae12517b03"
+                  direction="Return" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c650ce5b-decd-4691-ab07-337fd7f69bc2"
+                  name="name"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="fdf6694f-4c31-43c5-89ec-bb8e3750c4e7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3D(Name%3DGetInformation GenericParameterCount%3D1 OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]) ParameterIdentifier%3Dname"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="738ecd2a-f98c-48cd-b755-e2d0732dec55"
+            name="Clone"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="117c9ccd-403f-44b9-a12f-eba726a82361"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation Member%3DClone"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="1f6164ca-daf4-474e-995d-9c97d3d02082"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3ad156da-0a4e-4c9d-a87f-cfa7a142c146">
+                    <propertyInstance
+                      Id="208d828a-555b-4920-8e57-5b64ed5d7395"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a202cb82-9665-4f9c-a8d1-e703ab07c20a">
+                    <propertyInstance
+                      Id="066beab2-8ca4-45b4-b72c-36d13abf3376"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="179818e4-c93b-4e5a-92d3-277877afd69d">
+                    <propertyInstance
+                      Id="0fb55c23-1cc3-40ea-b65b-78d29c10e274"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e3017d81-e39a-49bd-9974-376f7c935499">
+                    <propertyInstance
+                      Id="b60a812d-7450-40a0-9093-10ffc229a136"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4d6fce27-5587-49b3-9f23-abc4baf30fea">
+                    <propertyInstance
+                      Id="455c8543-21fc-4295-a889-350ec01de8d3"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3ea3f0bf-3ec6-47ee-9654-02d698fc6cef">
+                    <propertyInstance
+                      Id="79fc86a0-2a5b-40a6-bb35-8e8f238ef6ff"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="254f1deb-e3ff-418a-97ed-21c1c8a1fa5b"
+                  direction="Return">
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="6f9bfd3a-36fc-4038-b493-fa8217514b38"
+                      LastKnownName="SpawnInformation"
+                      LastKnownLocation="Package15_1547.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="95f5f01d-7cac-41ec-9e36-9dc201240f93"
+        name="LevelGenerator"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="2d729092-8a41-450e-b294-4cd542b2fa46"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="dda01af6-af6b-4660-8856-b32e551321f9"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e919ace7-4bd8-410f-aa9b-ef6f4363c8c5">
+                <propertyInstance
+                  Id="8a22c3c7-36bf-43af-a08b-b4a1ec489ead"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="12fbc470-dd50-460f-b2d3-9eecff0a48db">
+                <propertyInstance
+                  Id="cdf95189-acaf-4c62-9586-7fd590da2899"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f7d52c36-e488-46eb-b521-4d418469a593">
+                <propertyInstance
+                  Id="e380943b-58ee-464f-b719-b7f5640a8341"
+                  name="IsStatic"
+                  value="True" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cff7c8ed-7d3f-4077-9ad8-f00fc63d0d67">
+                <propertyInstance
+                  Id="7c16cbbf-8919-43ed-82a1-aff3919b6aee"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="7ebe33d7-c736-4e6e-92e4-6189da34158e">
+                <propertyInstance
+                  Id="daed640a-40e1-4c23-b930-1997d0931c68"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="964929c3-2ed0-4c9b-b6c7-444dc4014a14"
+            name="LengthOfWave"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="d898f931-be22-4da0-849b-eef7613a45d6"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3DLengthOfWave"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="634c2610-9ff9-436d-9e92-ffe5b21fc654"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e52280db-45d6-4b3c-8103-37b9002f2712">
+                    <propertyInstance
+                      Id="47abff31-6015-4bc0-a4aa-18c75dbd5b02"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5a03f2a9-0fd0-4600-9cbb-dce8817ddffa">
+                    <propertyInstance
+                      Id="6f33ed82-846c-4eb4-8707-8c449f86ffd7"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="71ed792f-313a-4396-a496-abde07ebf01c">
+                    <propertyInstance
+                      Id="053b831a-b93b-4662-9192-1e5ede51fbfb"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="64261af6-7dad-493f-9230-a2a2e1b22d3f">
+                    <propertyInstance
+                      Id="2e734b91-ede0-4e43-b8e8-b59e00f325c4"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b2bd0fc9-0bfe-451c-ba0a-90db64f5d4b4">
+                    <propertyInstance
+                      Id="c70fcfd5-da07-4e24-8db4-1e8c3e6102a3"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="5ab122a9-b20f-4730-9ee2-de6d3a1694a1"
+            name="AddBehaviorToSpawn"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="bba49dad-5f18-4d6a-bdf3-a599f4864b09"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DAddBehaviorToSpawn OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="644ec62b-a753-4f31-8aa5-0fa01320a3ab"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="74537607-2b5b-4bf5-a3fc-52e64fa6bb86">
+                    <propertyInstance
+                      Id="e11259f0-b4e6-432e-a330-14169dfa1e6c"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8b86fedb-19d8-440e-9e4e-e11132f1e6ea">
+                    <propertyInstance
+                      Id="8a878b5a-76e6-43c8-878f-4e8ae8116a1b"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a7cd0b22-0ea8-4cac-85a3-01dc8fca3e5f">
+                    <propertyInstance
+                      Id="fcf6c2f1-d6d3-4df1-9793-31fa0ad507af"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="54684269-5f19-4fc8-aa0f-e92f0defc702">
+                    <propertyInstance
+                      Id="2509a996-3d52-4a38-8fa5-739078f94f27"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bad065ef-8422-49c1-acab-e47aff9f7985">
+                    <propertyInstance
+                      Id="ea2c87a6-fa99-4181-adda-058bff9f6035"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="662f92b8-cf6a-4d29-891b-7a25e0be546e">
+                    <propertyInstance
+                      Id="52c2a109-dbb3-4e75-a338-5f0670715b99"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2efd76dd-8939-42d6-b202-cabf58483541"
+                  name="behavior"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="3ffdf3eb-653e-480c-8c7d-dfd30b52da2e"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DAddBehaviorToSpawn OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]) ParameterIdentifier%3Dbehavior"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="5679f12b-ec42-4b1d-ad32-c76126b48874"
+                  name="spawnInformation"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="6033e3f2-73dd-4c12-9a17-1381f172efa4"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DAddBehaviorToSpawn OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]) ParameterIdentifier%3DspawnInformation"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="6f9bfd3a-36fc-4038-b493-fa8217514b38"
+                      LastKnownName="SpawnInformation"
+                      LastKnownLocation="Package15_1547.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="406dd89f-c103-41eb-92fa-a613a6ff03ba"
+            name="AddWeaponToSpawn"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="23978180-928c-4ce0-84ea-b513fd41390f"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DAddWeaponToSpawn OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="10fdedb2-bb49-449f-bdab-971f7606cf25"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="37ebb581-072c-4142-bc8b-19d0e70dd9be">
+                    <propertyInstance
+                      Id="4af0a53c-0725-41c6-829b-6b9cf82fbb5b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8fd323ed-76ea-4eac-b8e8-f34dffe09a31">
+                    <propertyInstance
+                      Id="ba07b412-8598-40b0-92f5-1d9d346be672"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="74204608-6f88-4956-a88c-63af3c2594be">
+                    <propertyInstance
+                      Id="5abd1219-656a-4bd0-91c9-fb568d79d48c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="889f26d3-335d-4661-a4ed-5dbc7b780106">
+                    <propertyInstance
+                      Id="fd3ecdff-736c-433d-9831-df233fc4f9c0"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="794a819d-96ae-4aa6-aa18-aa4c5f7938fc">
+                    <propertyInstance
+                      Id="f998ab10-6645-44eb-9e77-4534ab957ccb"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a3726f7a-2c7e-4739-ad77-7e865dd09403">
+                    <propertyInstance
+                      Id="0f86e7ad-b002-4ce7-b96f-b0e076d0e9e2"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="78f3cf95-2126-408e-be58-465e17f8068b"
+                  name="weapon"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="eff7b539-cd00-4d92-b192-d0c30f43600c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DAddWeaponToSpawn OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]) ParameterIdentifier%3Dweapon"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="59259974-6d55-42c6-b7bd-763d77ac8ef9"
+                      LastKnownName="String"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="bd404157-22bd-472f-aa07-56f74a73d948"
+                  name="spawnInformation"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="dde55e73-5dee-4c28-9c9b-70dfd883c460"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DAddWeaponToSpawn OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]) ParameterIdentifier%3DspawnInformation"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="6f9bfd3a-36fc-4038-b493-fa8217514b38"
+                      LastKnownName="SpawnInformation"
+                      LastKnownLocation="Package15_1547.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="bea2dec9-77d0-4ae7-aab4-38d026b8169a"
+            name="CreateLevel"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="14dbee37-a282-4c23-9409-588ccbd06079"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DCreateLevel OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="9f8ea0ac-1460-4e98-bff8-002a5957d087"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="168b8ac6-73c4-4078-920c-b5acb636282f">
+                    <propertyInstance
+                      Id="fa2ae8d5-1c2e-46fa-a225-e71e6c38783f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ea33aff3-aca2-4029-a2b8-469b774f61b4">
+                    <propertyInstance
+                      Id="1837c5a4-96f5-408d-b2a8-6727ce983b97"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c880a2d6-009b-4e2e-bd1f-30e6b0134d1d">
+                    <propertyInstance
+                      Id="3b70b387-9ea1-47d0-8876-afaa5a818324"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="99864d4d-6e8e-4018-b63a-f937081577a7">
+                    <propertyInstance
+                      Id="5abbd6bd-8db9-4114-8b2d-38d489c3490d"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="de13e404-cc1d-4ee2-9a83-fd318ca223fb">
+                    <propertyInstance
+                      Id="fdc03a2b-730c-4519-95b7-a8adc13f0180"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5fab2f52-a3b7-4785-af7a-a48fe7bd9efb">
+                    <propertyInstance
+                      Id="d66d87e0-7b9b-49ad-a89e-cb9a6c196757"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1d0c37a8-fd13-4e1f-a59f-6546087038cf"
+                  direction="Return" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="038d17ab-ea1b-4659-8c90-1f9f0f78d0f1"
+                  name="listOfUnits"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="19758d7a-45b8-4122-a620-48bc7cdb06d9"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DCreateLevel OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3DlistOfUnits"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="431f5403-2b0d-4a14-b1eb-1ff082994056"
+                  name="worthOfUnits"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="745a3b90-8d3c-4572-978e-9f8699ebbd99"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DCreateLevel OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3DworthOfUnits"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="eab82bcc-a250-499f-aeeb-856c32b4c86d"
+                  name="spawnInformation"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="303feed5-150f-4da6-95ae-4496814625e7"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DCreateLevel OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3DspawnInformation"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="63db078d-9a07-4e45-9519-7c89ed5167ed"
+                  name="possibleWeapons"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="02c6b44d-ca63-442e-9341-02203a38aca4"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DCreateLevel OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3DpossibleWeapons"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="cc89ceea-8521-4997-afda-ce7188c153ff"
+                  name="possibleBehaviors"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="01707e2a-dcb2-4992-ae7e-8074a00419c5"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DCreateLevel OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3DpossibleBehaviors"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="66ea9842-aef4-4951-be3e-dfc55b192a9c"
+                  name="numberOfWaves"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="03ff61a2-1a3c-4719-a810-66ea473c8d4c"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DCreateLevel OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DDictionary GenericParameterCount%3D2 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DString)]))]))%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3DnumberOfWaves"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="a6fecf18-c9c1-497f-b561-b8d673132b44"
+            name="GenerateWaveDistribution"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e93340ec-039f-48e3-98fb-4adbc989f7fe"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DGenerateWaveDistribution OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="413fb60d-ad59-49ed-8efa-ecc992072ec3"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1eca7ad9-511a-44d8-bad5-96acfb36ce94">
+                    <propertyInstance
+                      Id="4401af59-a628-405f-93a7-c2fac7aaf210"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b226a62d-a535-4fd5-9bf9-330e72b3788c">
+                    <propertyInstance
+                      Id="f5b1318a-3834-4fb2-8863-16b3a358651a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="64d02e14-c67d-4712-9dac-4f63b023c405">
+                    <propertyInstance
+                      Id="64e714ed-7f23-4a87-ba2b-7d812063b00e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ae9a6f4b-dcae-475b-a68f-e936bd82d128">
+                    <propertyInstance
+                      Id="568952b1-870e-4819-be98-2077403371f2"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3bb9e716-5fd2-4d08-8dac-5d41da36c222">
+                    <propertyInstance
+                      Id="46673e35-813a-4879-aadd-21c473df287c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="830fdd07-64c0-4255-8f22-5f6f25a1bc41">
+                    <propertyInstance
+                      Id="0448e90e-9ec1-4fa1-b0b2-5c3395d76e4b"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="054856af-8a27-4619-bc93-57e72d0eb98f"
+                  direction="Return" />
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="26b52112-05b6-441b-90a9-e543e5a80176"
+                  name="total"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="6f750649-cff9-4d20-b0a8-7f141f1c93db"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DGenerateWaveDistribution OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Dtotal"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="2ba56f6d-7839-4b3c-a58d-149c0976f092"
+                  name="number"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="263353f0-cb47-4a89-81a9-8c498b31c581"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3D(Name%3DGenerateWaveDistribution OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)%2C(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DInt32)]) ParameterIdentifier%3Dnumber"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0d45e25b-a69c-4df6-9071-fcfbad415bc5"
+            name="GenerateLevel1"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="595a2d75-7943-49af-945b-e937b15be964"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3DGenerateLevel1"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="dc99bf35-20fe-4854-84ed-2642c2730d42"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e2b2ff5e-7975-4481-b4c8-e1d1ba8640bf">
+                    <propertyInstance
+                      Id="88afe85b-8785-409a-939e-665fca2e0801"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bafa9d09-ac39-4318-8647-0d7ab183e66b">
+                    <propertyInstance
+                      Id="76b4e78b-4ccd-482c-88de-3e08e56d3fa1"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e2fe6126-1ee5-4245-ad84-fd3cf12f6d8b">
+                    <propertyInstance
+                      Id="877f66a2-fd8d-4ba6-9793-941d036c8229"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="67df84d1-0e96-4d67-a2e6-0725b9c57f41">
+                    <propertyInstance
+                      Id="752a6355-8599-4cfa-a350-d7b999c419d6"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="db1df4bb-6bed-4f51-926d-6d016867d97a">
+                    <propertyInstance
+                      Id="911e532a-fcb5-4be7-9ae8-dcb5f0eba839"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="977e8eb8-adbe-4803-90a9-7f7194ba3d4a">
+                    <propertyInstance
+                      Id="af416e74-c886-4dda-88e0-4df394bd1ab4"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="728465bc-4c96-4867-89cf-feeeea04c3b8"
+                  direction="Return" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="09b847a4-a11d-4b85-936e-dc7b091b3d2b"
+            name="GenerateLevel2"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="30dd27b3-4732-4c91-8739-41d4d0d34ef2"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3DGenerateLevel2"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="efd9fc37-60f2-4417-814b-87ccdb983a89"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="23d66fdf-84ef-4db9-b627-6713c7441d51">
+                    <propertyInstance
+                      Id="b942164b-e6ee-448b-8d50-986c4521f924"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="457eaa4a-dc8d-420c-bb79-749d0f66664c">
+                    <propertyInstance
+                      Id="f1ea6475-1f81-4d96-8499-c6ae08ee45d9"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c3009836-cb0a-4dc1-8442-c27a7597918d">
+                    <propertyInstance
+                      Id="0820152b-57f6-48e2-bafd-f470875912d3"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fc646306-dafd-4231-b574-4a81661d88b5">
+                    <propertyInstance
+                      Id="ac850e75-23d7-49cb-9abb-0294e252bbbd"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1593668b-4da0-41cf-9c27-fb86962c7902">
+                    <propertyInstance
+                      Id="109dad38-e09e-47a2-b069-90d5692997ce"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="53b88b7a-564f-457b-b3b6-f9f69c3d4678">
+                    <propertyInstance
+                      Id="4435d1ca-79ba-4ed3-9af5-d4d2de4f9c15"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="9b5210e8-edc0-4ed5-afaa-e37fe1d421e9"
+                  direction="Return" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="96a0c365-a620-4ef2-84c5-ee4a0ac52c1d"
+            name="GenerateLevel3"
+            isLeaf="false"
+            isStatic="true"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="90e62ed8-6982-43c4-a1cf-3e2c13b12b43"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DLevelGenerator Member%3DGenerateLevel3"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="01f1ad4f-05a7-4d9e-aa92-d1a438cca4af"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d281115c-83fe-443d-9a9d-dd1e706af790">
+                    <propertyInstance
+                      Id="480c636b-73da-4555-982e-0cd69c8d73b3"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b8f7351-8061-4fc5-90c7-d278eca14a44">
+                    <propertyInstance
+                      Id="8680138e-c276-4e4c-9a4a-b8dc48c6c8a7"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7c2420d2-0edd-4201-8bbd-5c22784002d6">
+                    <propertyInstance
+                      Id="4e00793d-8d49-4638-ba89-1369d7882aa8"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="df9de88a-9ac1-4de7-ba42-920f28998bec">
+                    <propertyInstance
+                      Id="efd3414c-b7ea-46fe-90aa-06023fd5511d"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bba27f81-4791-42b9-a6f9-84b4f8589faa">
+                    <propertyInstance
+                      Id="45f1eee6-237d-4a81-9c23-413992c5a3fa"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="87051eeb-3780-4eaa-8cb1-98661d43bde2">
+                    <propertyInstance
+                      Id="e4bf2005-cfc2-4708-af2a-758ce82e3d3c"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c2619e99-d7f4-4e72-aa7f-faf4e8f03919"
+                  direction="Return" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="8006c6ee-8095-4287-9ee5-e0854e6b3d37"
+        name="Wave"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="f14ee48a-4b3e-49c5-a88f-da99834550e6"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="91a69308-7447-41e3-acb8-246df0a9a2e2"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="36d502a7-e85d-48ca-b47d-8bc053ef0524">
+                <propertyInstance
+                  Id="42200694-de62-49ac-9e7c-5fd0e2680b7f"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f5ae303f-9334-4494-ad68-28932d1a5f3c">
+                <propertyInstance
+                  Id="1b9fb65d-b754-4f99-bd52-c973cbed7022"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3f83b64f-b0c0-4a9c-9e11-b51bbd3a707d">
+                <propertyInstance
+                  Id="e8723e4c-2ad6-46b6-ac03-1e80f9a6f7a3"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1ca505a1-edc9-4318-b1a7-9352ac87cb61">
+                <propertyInstance
+                  Id="b4cc2089-9a2b-485d-8503-9ab18dffcb57"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ca6b2c79-864f-4447-932a-0fb85d0126ff">
+                <propertyInstance
+                  Id="11b7ade8-d3e7-493b-933d-10e9032e43fd"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="94f19a2a-3368-4d69-a3e8-1776eeb225d8"
+            name="timePassed"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="e34d605c-4d35-4198-88f3-e4dad39ab071"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3DtimePassed"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="02b19399-10f7-4f89-8442-598b4ed4b59b"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bb6809fe-dc24-4a24-96ea-943ee27d01ee">
+                    <propertyInstance
+                      Id="5a5fa2d9-f62b-46d7-b876-8d727f63c4b8"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="739fdc82-305c-4817-928c-d563d8232165">
+                    <propertyInstance
+                      Id="aa0f3fb4-3c63-47c7-8d62-e7c82514a264"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a348e8a4-bb8a-420b-8183-18f6dcfbd9e0">
+                    <propertyInstance
+                      Id="930d0b18-9b05-47e0-b69a-ea315f20e2b6"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="084dafcf-5a5b-4517-9b38-38cc4dee5e03">
+                    <propertyInstance
+                      Id="680b24d2-7d39-4ba8-91d5-31d305129797"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="1b6df58e-3ca9-43c4-8456-d7cdeb56659d">
+                    <propertyInstance
+                      Id="95cf0ff3-360b-454e-b263-6937ec5f15af"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+          <property
+            Id="00e8cf64-ddfd-414b-bee5-ad4863104470"
+            name="contents"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="7c82d689-8cba-4078-9c3d-0c240ba40f55"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3Dcontents"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d1081e76-e73a-44bf-97fc-0c0f80cf8363"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="392b1075-bce9-451e-a341-9ec29d6088f3">
+                    <propertyInstance
+                      Id="0dd845a8-f697-4377-a359-ed8625e9e1de"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="28509b99-2434-481b-94e2-9ccbf04af89e">
+                    <propertyInstance
+                      Id="05c462dd-a4fe-4056-8dd1-359e81f46245"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="416281d4-cf76-4889-8aff-7b4b20feb4ad">
+                    <propertyInstance
+                      Id="1e936287-92c1-4b17-b6dd-f45e8da4a453"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f0a95ffe-1ee3-48c5-8f66-a039cc32f716">
+                    <propertyInstance
+                      Id="a39cc800-b703-4058-aeb7-448497ba4c75"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8b7150b8-6e42-4590-bfbe-6fac51765b9e">
+                    <propertyInstance
+                      Id="a3bcb57d-a0e0-4cdb-b46c-528efccd3d20"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="dbbc7831-644c-4bf7-bf49-7c4203deb3f2"
+            name="Update"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="06f4433d-3c6f-4d17-a14c-810a7a6b6ca8"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3D(Name%3DUpdate OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DSingle)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="090f5f13-351d-4c7d-8b4f-1bc5989b1501"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c107229d-fd7b-4e61-8d0f-4522b3bbfcca">
+                    <propertyInstance
+                      Id="f7649826-fcc0-4e14-8bcf-b3ffe02c73f0"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9f9dacde-e136-48d0-a8be-675b6f340bf7">
+                    <propertyInstance
+                      Id="4cd0f0ad-5720-471f-98c4-927d0e1cbacc"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6bffba35-7d01-49db-865e-2ccdf25af1a5">
+                    <propertyInstance
+                      Id="4b4db2ee-2d69-4ac3-922c-dd175639c0b5"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="10c864b7-03d2-482e-bbce-d6929e17fa70">
+                    <propertyInstance
+                      Id="3c4ee851-5583-4e38-8570-e97e4c778515"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ac5e6c4d-f881-49b9-9d60-04d1bc1e31fd">
+                    <propertyInstance
+                      Id="df234830-b79e-4293-b531-b1d742977e52"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c79365de-8de9-4730-b298-c1c17a806028">
+                    <propertyInstance
+                      Id="0411f1e3-8ad3-4499-9997-7c5ef01200e2"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="63c6ce09-74a5-40af-b116-11f8ff165919"
+                  name="secondsPassed"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="f06df2d9-d117-45f3-a99a-dd05602a8a82"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3D(Name%3DUpdate OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DSingle)]) ParameterIdentifier%3DsecondsPassed"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="8814ec81-cc5d-4c87-815e-20e95bde4e83"
+            name="Wave"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="782a581e-d5b1-4928-a447-4adf8f61b178"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3D.ctor"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="53f1cb9a-7ac9-4c27-a513-f8c3239b5cf5"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="028d44e8-9c73-46ab-8f7d-50b75e0b8a3f">
+                    <propertyInstance
+                      Id="7ed05292-094d-4215-a42a-5f4762bdbd38"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="729bfa3b-43e0-47dc-b248-6a8a93a81bfa">
+                    <propertyInstance
+                      Id="6d8b0cd4-1403-43f5-9450-31a8cab9d9ed"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="84c08eb8-0d4b-40b3-8a33-9c0e1d21f844">
+                    <propertyInstance
+                      Id="c05783ef-e97c-4455-9f02-0e85a4f6722b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3a23fc79-748b-492d-8623-35cb64eb8c8f">
+                    <propertyInstance
+                      Id="1fced4a3-aa72-4307-b873-344c335803a3"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="70c8a9b2-26b2-453f-b340-f7e2a49626fa">
+                    <propertyInstance
+                      Id="0cb722cf-597a-4e7e-b5f6-f55c86054302"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e4daffc3-a366-4820-a103-ebfa3866f5e7">
+                    <propertyInstance
+                      Id="dca66cd8-35f0-4f19-b161-e65372fb4336"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </operation>
+          <operation
+            Id="bc1a1de0-457c-4338-a280-935d0e8e42f5"
+            name="AddSpawnInformation"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="ff5962dd-c15e-4ef5-b33f-1bea060d0903"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3D(Name%3DAddSpawnInformation OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="f65b038d-80a5-4acf-8887-f5df9610468f"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="818cf5bb-0f5e-42c2-9d83-ea76a9d1922c">
+                    <propertyInstance
+                      Id="8bd5d475-3d11-464a-8e7c-df5d3f88e669"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="018b20a7-65da-4386-b376-9e7f2b042b2c">
+                    <propertyInstance
+                      Id="21d4337b-e763-4f77-8504-75a9e5bb6ba7"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bdd42cf9-314a-4a5c-bf07-9be2b6f8d2a1">
+                    <propertyInstance
+                      Id="057e020c-9d7c-4be1-afb8-9d937ae04b8d"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="0237b846-ca98-4ee1-acf3-b15594ac9611">
+                    <propertyInstance
+                      Id="d826f0fa-ac54-4788-a4bd-5ada0ca77f57"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8c3c0abb-4513-402b-b905-1f59f88d60df">
+                    <propertyInstance
+                      Id="b8f9b084-3cce-4361-b8dd-6d8381151dc1"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="24ecc806-b7fb-443b-9028-586d6f23da84">
+                    <propertyInstance
+                      Id="3fd8b23a-0981-4086-bcca-042bbea49960"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="19d64d58-6211-4426-a318-27fd7347a1ff"
+                  name="spawnInformation"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="70b9403a-3736-4fd6-b1a4-475821fdc046"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3D(Name%3DAddSpawnInformation OverloadingParameters%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSpawnInformation)]) ParameterIdentifier%3DspawnInformation"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                  <type_NamedElement>
+                    <classMoniker
+                      Id="6f9bfd3a-36fc-4038-b493-fa8217514b38"
+                      LastKnownName="SpawnInformation"
+                      LastKnownLocation="Package15_1547.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="038670a9-b344-4b56-90b7-6c52b72e9017"
+            name="Finished"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="fb264142-72f1-4fa8-9e60-802a6fdde8e6"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3DFinished"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="23bc9559-0d29-48a4-a4ee-3894b2de0761"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="665e56cd-dfee-408a-9930-656be05b0307">
+                    <propertyInstance
+                      Id="0c232090-ed62-43fa-879c-120cdc3a6060"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2df4ef3a-d458-4121-aa85-9ba883852b0c">
+                    <propertyInstance
+                      Id="10f2c4cc-9451-49f5-8b28-3bb8d9efbfc1"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e4ec4054-5982-4384-8b18-11dd0968c5cd">
+                    <propertyInstance
+                      Id="c825f37c-ba34-4992-98bf-357453ab0875"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="16c83c0f-a0c1-4252-9392-0e2a533783f8">
+                    <propertyInstance
+                      Id="2fe240dc-a48d-4c2a-ace8-c291c08271ab"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d4279748-6cde-4733-8000-65bdbdb00fa5">
+                    <propertyInstance
+                      Id="0c0201be-8126-4f22-ab53-5fc315b4cfff"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="5e7127a5-9bdd-424e-9869-1e3e7b7c8b06">
+                    <propertyInstance
+                      Id="2690cd95-f9a7-4fe6-be0c-6da22a8ae5f3"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="d3df4b31-2874-4751-a149-d5b29cd411d3"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="0688de60-4873-425b-92fe-e010ec5469a2"
+            name="GetSpawnInformationToSpawn"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e9060b06-bb91-4460-8220-c46b1f8ad125"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3DGetSpawnInformationToSpawn"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="183ec4a5-3da2-46a8-8e04-e8304f5983f6"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="09c1a692-c511-470b-8b4d-48e166045481">
+                    <propertyInstance
+                      Id="deb72021-88a5-4e60-b869-b418837d9262"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c9079bfe-d25c-4f16-ac2e-c12b40295539">
+                    <propertyInstance
+                      Id="950483e3-31cd-45f2-8e6b-e51902b4c68f"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="57b22a46-c952-4cc1-9679-d9692597bbae">
+                    <propertyInstance
+                      Id="adf32816-b944-469c-91d3-50cdf5ab2411"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2b4f36b7-d91f-4d56-9f79-96216b76f02e">
+                    <propertyInstance
+                      Id="cc75a26f-5617-44f6-9261-b0d0a2a20ec3"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="15f1a6d5-3fd5-4e25-8434-157a2ffeefc6">
+                    <propertyInstance
+                      Id="1bfd30e5-aa19-46a9-848c-59c912a2623a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="aa855363-20d2-4a15-baa2-29f24c992712">
+                    <propertyInstance
+                      Id="e0ec96fa-0bb5-4aa9-b029-a56336beddcb"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ba57f5fa-01bb-4876-873b-af3b05a8694e"
+                  direction="Return" />
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="f2b20f8e-a585-4892-aeb9-d2297cfa9c09"
+            name="TotalPossibleScore"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="ae81f0aa-8277-4731-bcbf-ac5d18c14825"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave Member%3DTotalPossibleScore"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="d4bca731-c471-48f5-9f4d-42b1927bc2de"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="27f14b9b-34e7-48e2-8901-a18a564ed24c">
+                    <propertyInstance
+                      Id="3d7bef16-f9bb-440e-9b42-aa416717d073"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="66187df5-bb1c-4357-8218-7ea967483886">
+                    <propertyInstance
+                      Id="5f275096-4c27-4b91-8660-4647a96bf01e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="43473688-128d-4756-882f-9933868f2190">
+                    <propertyInstance
+                      Id="0a5f08d8-fe02-4bfc-ae77-4a71bf74f11b"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="86b38432-7cad-4101-aedb-9968c1148b48">
+                    <propertyInstance
+                      Id="ab900da9-9332-4c7a-98e8-68fa0ca77dcc"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="06ff2773-27c6-4331-a57f-765714479203">
+                    <propertyInstance
+                      Id="e3c40895-95c2-45da-b36a-f51cac3538e5"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8288f73b-dfcd-43d5-925d-880895412a2f">
+                    <propertyInstance
+                      Id="3c7eadf1-0b56-4a3f-b32f-833b7ce421fc"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="4549b2aa-e13e-42b9-b84a-e8b71508ea89"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="91c7d678-4ba4-4e28-850b-e358c10fe17b"
+        name="SystemWaves"
+        visibility="Package"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="3d36f058-65c9-441b-aeff-9826e39474f6"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="6aa65a2b-9a2a-4b0c-aee6-1ab55f5e6b92"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a4a2e406-8f09-44ba-899f-37659efe4c4b">
+                <propertyInstance
+                  Id="f076f9d7-eaa9-4b61-bcaf-d44179c77dde"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="128f6977-8f62-4bb0-be9d-a10623b14a81">
+                <propertyInstance
+                  Id="2129ffef-b55d-42f8-ac57-38375578f520"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b95bce11-091d-428e-9df2-4971757b408f">
+                <propertyInstance
+                  Id="7cc818b7-0ae7-43ba-b3a7-4ae3ac873901"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4710ce66-fa90-4d74-a63d-461f18533446">
+                <propertyInstance
+                  Id="497a3a80-2420-4386-83ce-9f1e227656c6"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8e1946c4-ab42-44f1-8fa9-768bfc6af3eb">
+                <propertyInstance
+                  Id="3801c284-469e-49c0-b2dc-2e4ea6ef34e9"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <ownedAttributesInternal>
+          <property
+            Id="185ad38d-f250-47e6-84c0-972a41fcf7e5"
+            name="timePassed"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="d8455895-102d-46d9-8dc1-6570511e3d86"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3DtimePassed"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="4ef56127-4e9e-42a4-a608-11da7e1dc959"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e5f9dceb-1796-4d5a-b25c-f7de59d176b3">
+                    <propertyInstance
+                      Id="cffc22a9-4651-4d7b-9dec-eb415c9cf993"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="bbd648b9-36b8-461c-8e44-8b424136d7f1">
+                    <propertyInstance
+                      Id="4e6386ce-0510-45db-8714-0da14a1670e9"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="60bd8559-7b19-4aae-8699-9478603607ac">
+                    <propertyInstance
+                      Id="e08d853e-4f89-473d-88e6-4f7bb32b8180"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="298f9bc6-a823-4b93-b53a-b9fd8b7cfea5">
+                    <propertyInstance
+                      Id="b903fbd8-4829-4069-bd09-1e5d83000448"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="94fdc32d-ce04-4d0d-af16-3e4b11a80d35">
+                    <propertyInstance
+                      Id="d5248807-2535-45e6-99d2-ea2b5331dd0e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+          <property
+            Id="f0a9f09f-8c65-4b48-8126-e985eb63cc13"
+            name="TimeBetweenWaves"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="true"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="50973846-5046-4a32-84b6-abab63ee60d8"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3DTimeBetweenWaves"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="60a166f3-cec8-48ad-ad1f-80e1c1ccc1ab"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="6fc19d4e-8de1-41dd-8e7d-bf984e1f73e3">
+                    <propertyInstance
+                      Id="7faefdac-c749-4b7b-a25c-5860e8a25e71"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="f594512f-6eae-45c0-b0ae-a57962695d5a">
+                    <propertyInstance
+                      Id="b3a6035c-4d0a-47cb-b15c-b737e8b7c0b5"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="20a46252-b0f8-460a-8618-c5d07a1ecf5e">
+                    <propertyInstance
+                      Id="bbb9109c-877b-4b4d-96da-7861c66f65bf"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d8b3c45b-9d25-4838-bc10-6d5dcaefe18e">
+                    <propertyInstance
+                      Id="172fd798-b6f0-47e2-8190-953bcb6a2919"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d2dc27ab-fd2d-4955-9d0c-9405801bd5c0">
+                    <propertyInstance
+                      Id="63c0cbfd-a3ed-42f7-8921-e5e9573e862c"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+          <property
+            Id="3cb2d97f-355d-453c-ad51-5d063472bdbb"
+            name="waves"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isReadOnly="false"
+            isDerived="false"
+            isDerivedUnion="false"
+            aggregation="None"
+            isComposite="false">
+            <referencesInternal>
+              <reference
+                Id="27edde52-25a8-4fe5-a777-85eb899aa701"
+                handle="viewcode://./CodeSchema_Field?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3Dwaves"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="928f4389-1f5d-44ae-8e5d-d375047e3ee9"
+                name="field"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="79d67ea6-52eb-4fe5-9256-fc32e2ddde4b">
+                    <propertyInstance
+                      Id="fc0d5335-4808-4864-9cf9-cc54e92b2517"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ba1183bc-c990-4257-bf82-0f68afa09855">
+                    <propertyInstance
+                      Id="21e1878e-1ad5-4b0b-8316-549210b3567a"
+                      name="IsConst"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="01629f3a-6b09-423c-baab-eb503a02f4d8">
+                    <propertyInstance
+                      Id="4f8b926e-254a-4d0f-92bd-5f4b8ae45c6f"
+                      name="IsNullable"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b48f7bb6-223c-465e-ad21-a0cc86b5a7c8">
+                    <propertyInstance
+                      Id="558f3193-7a2a-41b1-b091-eba92dd8a612"
+                      name="IsVolatile"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="a682bd5d-a4e8-4017-a719-16073d8678e5">
+                    <propertyInstance
+                      Id="7c56c342-2e2f-4d58-bdbd-7a1ba8feaadd"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+          </property>
+        </ownedAttributesInternal>
+        <ownedOperationsInternal>
+          <operation
+            Id="f6aca0c9-583a-4874-a148-3c7c356b4d77"
+            name="Update"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e91f62c6-96b0-4277-829a-8ab676ede647"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3D(Name%3DUpdate OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DSingle)])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b29ffe5c-9107-450d-a2cd-d06a8375a2c7"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="02f46859-ba62-422f-9daf-a546c896d599">
+                    <propertyInstance
+                      Id="01665c6a-904d-448a-9eb9-70a796aa60a3"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="7c0915f3-e35e-4204-b63a-e5e4bb851dbc">
+                    <propertyInstance
+                      Id="5fb5a6a0-d16b-4c7c-9925-21a0e908a29a"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="55f80f98-42a4-42b4-a1a7-280c706e3000">
+                    <propertyInstance
+                      Id="add3a073-7bb3-4faa-aba8-e73fc6dfa491"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c7e361ba-fd1b-4318-9a70-e2103318ea23">
+                    <propertyInstance
+                      Id="6607a22e-a457-48bc-a29d-918038b4dbb4"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d2470d4d-5950-407e-ab3a-27678bdc3450">
+                    <propertyInstance
+                      Id="74fce92b-6deb-48a5-8e00-d9d65d9d7c99"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d5050756-7c58-44b2-9cd7-b5d85362a706">
+                    <propertyInstance
+                      Id="f8ee48bd-ba46-4d4b-ba18-2f9cfd9b0d24"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="7716f644-208c-411e-9858-dbe54ddfd059"
+                  name="secondsPassed"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="f6012786-d955-487e-beac-184907900f4d"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3D(Name%3DUpdate OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem Type%3DSingle)]) ParameterIdentifier%3DsecondsPassed"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="b7f5d0d7-fd98-4cb9-8247-39714bfdb135"
+            name="SystemWaves"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e755101a-4855-4536-b224-a530f1e90910"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave)]))])"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="dadf628a-879b-4423-92e1-411e510b5cef"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b165ff7a-3600-4f6b-9bee-87b6a101aa02">
+                    <propertyInstance
+                      Id="76564e2d-e081-48e1-9fbb-cf92b8e39c3f"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ea8c85de-5571-4448-b9ed-d6130383249e">
+                    <propertyInstance
+                      Id="f34a4c2d-d50f-417d-ba6c-2ba056e82dc9"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="2aa9b6d1-6a59-4d0a-88a4-118624ea71d7">
+                    <propertyInstance
+                      Id="545bf279-69df-42e3-8b3e-c156782a7b3e"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9d1f0e91-4795-4189-b354-a75058ede925">
+                    <propertyInstance
+                      Id="727189ca-9d58-424b-9310-9fe4a130cfc0"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b89e0a69-0c2b-4249-87f1-6c20ce39183c">
+                    <propertyInstance
+                      Id="0f0fb6e8-5fd7-496f-890b-2c17e93c3839"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="ed91d360-a7f7-489f-8fa8-7237a3673f6c">
+                    <propertyInstance
+                      Id="dcd55da2-8196-4d96-8410-412ca90092ba"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="ed1b1fa0-0b09-451e-8f15-b1c93576ef46"
+                  name="waves"
+                  direction="In">
+                  <referencesInternal>
+                    <reference
+                      Id="d58fafa9-0a52-4ad0-be22-92ea7f2adf20"
+                      handle="viewcode://./CodeSchema_Parameter?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3D(Name%3D.ctor OverloadingParameters%3D[(Assembly%3D&quot;file:%2F%2F%2FC:%2FProgram Files (x86)%2FReference Assemblies%2FMicrosoft%2FFramework%2F.NETFramework%2Fv4.0%2FProfile%2FClient%2Fmscorlib.dll&quot; Namespace%3DSystem.Collections.Generic Type%3D(Name%3DList GenericParameterCount%3D1 GenericArguments%3D[(Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DWave)]))]) ParameterIdentifier%3Dwaves"
+                      tag="ViewCode" />
+                  </referencesInternal>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="306cf1d2-44a8-44c0-8d52-b56888b57a89"
+            name="CurrentWaveOver"
+            visibility="Private"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="c4e072e0-da0b-4081-8958-63c055f979ef"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3DCurrentWaveOver"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="7f33ea7a-480d-4e3b-b944-0aee2998b137"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="109153e7-fa7b-48f3-8747-e5c4c20db7e5">
+                    <propertyInstance
+                      Id="17fbf1bb-1ab6-433f-b910-0a09213b066a"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="cd379b7b-a960-476b-8200-7d6f8e7006de">
+                    <propertyInstance
+                      Id="dd8adf55-0f32-4687-ac32-2d63f88f7e9e"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="48ebc1a6-d03e-45c8-8a08-5fc31c99ffe6">
+                    <propertyInstance
+                      Id="3e39a6ee-9f4f-4cec-8c6e-e3e32e0b37ac"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d0b9cc71-05eb-4bc9-914c-0aa5aecbf657">
+                    <propertyInstance
+                      Id="27af227b-b677-48af-b7de-9210bbf35cde"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fec23d69-fa17-4ae0-a139-43c822d4b0ea">
+                    <propertyInstance
+                      Id="9f26e7f9-7ae3-4662-8d26-66972ca0730e"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="9b727692-ffab-477e-9f5f-6d195b44d3d4">
+                    <propertyInstance
+                      Id="deb96ee5-213c-4d07-b186-03e1701a4948"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="b7ccf716-48e2-4c20-bc42-65f3ea6e763e"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="8943dc84-709e-4f62-b15a-a3273aa6f165"
+                      LastKnownName="Boolean"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="2b2dfdca-b9eb-4f77-834e-437df9b202f7"
+            name="GetNumberOfWaves"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="cfc404c8-abd8-40ca-8255-f5a8a6ff0dbb"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3DGetNumberOfWaves"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="b6e591c5-0f1b-4d18-a69a-7ca92ad10b6b"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="03120c92-5a84-43b4-b227-3ea07ab4c467">
+                    <propertyInstance
+                      Id="2c33c10b-c535-42c7-83df-f066f1b2d545"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="d24a4ff3-d112-4c89-907d-e3e98ab8a164">
+                    <propertyInstance
+                      Id="ab75c318-ec0b-43dc-932a-4d0e7040653b"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="e95a5fbc-9b12-4917-bea3-73aa87d04225">
+                    <propertyInstance
+                      Id="1d26dff5-63e5-49ee-a59b-ad22d4f4ec5c"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="3d5f3ef4-4e1c-416f-964f-69a280a51cd2">
+                    <propertyInstance
+                      Id="3a249839-02db-4f6f-a449-a3b19a2ea8a1"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="8836c7c3-edbf-4cdd-994a-5c29fe2dd5a6">
+                    <propertyInstance
+                      Id="4b47c2e4-a95d-4c83-a6d6-07c66127ff6a"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="b36468c1-3993-42a4-a5e2-b935b4df6b83">
+                    <propertyInstance
+                      Id="aa916b34-da99-4d1a-9b66-0833b3e34eee"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="c5e7e9c1-cd3f-4e8d-a2a3-3bf506eb4f8e"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+          <operation
+            Id="cce03b33-5508-461e-bd26-3226a9add449"
+            name="GetTotalPossibleScore"
+            isLeaf="false"
+            isStatic="false"
+            isAbstract="false"
+            concurrency="Sequential"
+            isQuery="false">
+            <referencesInternal>
+              <reference
+                Id="e9ed9e5d-0e6c-483e-be66-f1ed68f0f8ee"
+                handle="viewcode://./CodeSchema_Method?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2Factual%2FSource%2FRepos%2FFinalProject%2FFinalProject%2FFinalProject%2Fbin%2Fx86%2FDebug%2FFinalProject.exe Namespace%3DFinalProject.GameWaves Type%3DSystemWaves Member%3DGetTotalPossibleScore"
+                tag="ViewCode" />
+            </referencesInternal>
+            <appliedStereotypesInternal>
+              <stereotypeInstance
+                Id="e2d74407-5604-4329-aa3e-9d21f1f3c5c1"
+                name="method"
+                profile="CSharpProfile">
+                <propertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="4e617819-57bb-4f47-8872-40cbdafa3241">
+                    <propertyInstance
+                      Id="5fb1b094-d30f-4794-9943-34b657f6925b"
+                      name="ClrAttributes" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="34bf4ca4-6021-46ea-94f7-8260d27d7d8e">
+                    <propertyInstance
+                      Id="8505d62f-cd24-4ad1-91ba-3a850ce792ab"
+                      name="IsPartial"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="fdb236c3-1982-4b2b-9025-8d10f803e5f2">
+                    <propertyInstance
+                      Id="e57377ba-cc61-47c1-8abd-34b26b6da5b5"
+                      name="IsUnsafe"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="22db268e-df58-43c9-bcb6-26ecab32da12">
+                    <propertyInstance
+                      Id="ff870e74-99b1-4280-abfd-2727cb2c7646"
+                      name="Inheritance"
+                      value="none" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="38c267da-367f-4935-bdb8-105d0ea040b2">
+                    <propertyInstance
+                      Id="aa6278c3-7265-4975-ae2b-13bb616f6490"
+                      name="PackageVisibility"
+                      value="internal" />
+                  </stereotypeInstanceHasPropertyInstances>
+                  <stereotypeInstanceHasPropertyInstances
+                    Id="c667df91-9a34-4eaa-a74d-d956e6b91f44">
+                    <propertyInstance
+                      Id="406400a7-57f6-4e95-be3c-234823e02cf9"
+                      name="params"
+                      value="false" />
+                  </stereotypeInstanceHasPropertyInstances>
+                </propertyInstances>
+              </stereotypeInstance>
+            </appliedStereotypesInternal>
+            <ownedParameters>
+              <operationHasOwnedParameters>
+                <parameter
+                  Id="1c2d001a-ef6f-4923-b8cd-7cb74661cba7"
+                  direction="Return">
+                  <type_NamedElement>
+                    <primitiveTypeMoniker
+                      Id="220a3521-e091-4221-bae9-3ef9018e845c"
+                      LastKnownName="Integer"
+                      LastKnownLocation="CWD4K.uml" />
+                  </type_NamedElement>
+                </parameter>
+              </operationHasOwnedParameters>
+            </ownedParameters>
+          </operation>
+        </ownedOperationsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -28,6 +28,10 @@ namespace FinalProject.Utilities
         public void LoadContent(ContentManager content)
         {
             oneTimeSounds["Menu Sound"] = new OneTimeSound(content.Load<SoundEffect>("Blip_Select"), 1f);
+            oneTimeSounds["Laser Sound"] = new OneTimeSound(content.Load<SoundEffect>("Laser_Shoot"), .7f);
+            oneTimeSounds["Spread Sound"] = new OneTimeSound(content.Load<SoundEffect>("Laser_Shoot2"), .2f);
+            oneTimeSounds["Homing Sound"] = new OneTimeSound(content.Load<SoundEffect>("Laser_Shoot4"), .2f);
+            oneTimeSounds["Enemy Sound"] = new OneTimeSound(content.Load<SoundEffect>("Enemy_Shoot"), .2f);
             backgroundMusic = new BackgroundMusic(content);
             backgroundMusic.LoadContent();
         }

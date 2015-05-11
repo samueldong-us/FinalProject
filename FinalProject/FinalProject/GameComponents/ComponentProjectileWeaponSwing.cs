@@ -31,6 +31,7 @@ namespace FinalProject.GameComponents
 
         protected override void Fire()
         {
+            GameMain.Audio.PlayOneTimeSound("Laser Sound");
             Vector2 direction = closestPosition - entity.Position;
             if (closestPosition.Equals(new Vector2(-1, -1)))
             {
