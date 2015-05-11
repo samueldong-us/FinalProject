@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameComponents
 {
     internal class ComponentWallFire : Component
     {
         private bool active;
-
         private float timeBetweenShots;
         private float timePassed;
         private int wallWidth;

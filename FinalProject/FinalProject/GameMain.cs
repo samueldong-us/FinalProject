@@ -12,21 +12,14 @@ namespace FinalProject
     public class GameMain : Microsoft.Xna.Framework.Game
     {
         public const int VirtualHeight = 1080;
-
         public const int VirtualWidth = 1920;
-
         public static AudioManager Audio;
-
+        public static bool DebugMode;
         public static MessageCenter MessageCenter;
-
         public static Random RNG;
-
         private Screen currentScreen;
-
         private GraphicsDeviceManager graphics;
-
         private Dictionary<string, Screen> screens;
-
         private SpriteBatch spriteBatch;
 
         public GameMain()
@@ -34,6 +27,12 @@ namespace FinalProject
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             RNG = new Random();
+
+            IntPtr hWnd = this.Window.Handle;
+            var control = System.Windows.Forms.Control.FromHandle(hWnd);
+            var form = control.FindForm();
+            form.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            form.WindowState = System.Windows.Forms.FormWindowState.Maximized;
         }
 
         protected override void Draw(GameTime gameTime)
@@ -41,7 +40,10 @@ namespace FinalProject
             GraphicsDevice.Clear(Color.Black);
             spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, UtilitiesGame.GetResizeMatrix(GraphicsDevice));
             DrawCurrentScreen();
-            //DrawFPSCounter(gameTime);
+            if (DebugMode)
+            {
+                DrawFPSCounter(gameTime);
+            }
             spriteBatch.End();
             base.Draw(gameTime);
         }
@@ -51,6 +53,7 @@ namespace FinalProject
             InitializeGraphicsSettings();
             InitializeMessageCenter();
             Audio = new AudioManager();
+            DebugMode = false;
             InitializeScreens();
             UtilitiesGraphics.Initialize(GraphicsDevice);
             SaveGameManager.CreateSaveDirectory();
@@ -75,6 +78,7 @@ namespace FinalProject
         protected override void Update(GameTime gameTime)
         {
             KeyboardManager.BroadcastChanges(currentScreen);
+            Audio.Update();
             if (currentScreen != null)
             {
                 currentScreen.Update(gameTime);
@@ -102,7 +106,6 @@ namespace FinalProject
         {
             graphics.PreferredBackBufferWidth = GraphicsDevice.DisplayMode.Width;
             graphics.PreferredBackBufferHeight = GraphicsDevice.DisplayMode.Height;
-            //graphics.IsFullScreen = true;
             IsFixedTimeStep = false;
             graphics.ApplyChanges();
         }

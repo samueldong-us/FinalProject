@@ -7,9 +7,7 @@ namespace FinalProject.GameComponents
     internal class ComponentProjectileWeaponBulletStream : ComponentProjectileWeapon
     {
         private const int Speed = 200;
-
         private Vector2 closestPosition;
-
         private int damage;
 
         public ComponentProjectileWeaponBulletStream(Entity entity, int damage)

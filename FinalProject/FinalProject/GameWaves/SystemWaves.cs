@@ -7,9 +7,7 @@ namespace FinalProject.GameWaves
     internal class SystemWaves
     {
         private const float TimeBetweenWaves = 2;
-
         private float timePassed;
-
         private List<Wave> waves;
 
         public SystemWaves(List<Wave> waves)

@@ -1,18 +1,12 @@
 ﻿using FinalProject.Screens;
 using Microsoft.Xna.Framework;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameComponents
 {
     internal class ComponentProjectileWeaponHoming : ComponentProjectileWeapon
     {
         private const int Speed = 500;
-
         private int damage;
-
         private float rotation;
 
         public ComponentProjectileWeaponHoming(Entity entity, int damage, float rotation, Vector2 offset)

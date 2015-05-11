@@ -6,7 +6,6 @@ namespace FinalProject.GameComponents
     internal class SystemDrawing
     {
         private Dictionary<string, List<DrawableComponent>> drawableLayers;
-
         private string[] Layers = { "Enemy", "EnemyBullet", "Player", "PlayerBullet", "HealthBar", "Debug" };
 
         public SystemDrawing()
@@ -53,9 +52,12 @@ namespace FinalProject.GameComponents
             {
                 drawable.Draw(spriteBatch);
             }
-            foreach (DrawableComponent drawable in drawableLayers["Debug"])
+            if (GameMain.DebugMode)
             {
-                //drawable.Draw(spriteBatch);
+                foreach (DrawableComponent drawable in drawableLayers["Debug"])
+                {
+                    drawable.Draw(spriteBatch);
+                }
             }
         }
 

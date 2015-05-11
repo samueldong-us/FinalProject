@@ -14,15 +14,10 @@ namespace FinalProject.Screens
         private enum Result { Back, Continue }
 
         private Texture2D background;
-
         private SaveGame currentGame;
-
         private Error lastError;
-
         private ItemGroupMenu menuItems;
-
         private Result result;
-
         private ItemMenu userGameName;
 
         public ScreenNewGame(ContentManager contentManager, GraphicsDevice graphicsDevice)

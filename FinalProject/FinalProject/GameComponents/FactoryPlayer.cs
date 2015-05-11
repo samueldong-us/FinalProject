@@ -34,7 +34,7 @@ namespace FinalProject.GameComponents
         {
             float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
             int damage = 2 + saveGame.Damage / 5;
-            int health = 20 + 2 * saveGame.Shields;
+            int health = 20 + 4 * saveGame.Shields;
             float firerate = .35f - .1f * saveGame.FireRate / 10;
             new ComponentPlayerController(player, movementSpeed);
             new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
@@ -68,7 +68,7 @@ namespace FinalProject.GameComponents
         {
             float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
             float damagePerSecond = (10 + 2f * saveGame.Damage + 2f * saveGame.WeaponStrength) * (1.5f + saveGame.FireRate / 10.0f);
-            int health = 20 + 2 * saveGame.Shields;
+            int health = 20 + 4 * saveGame.Shields;
             new ComponentPlayerController(player, movementSpeed);
             new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);
             new ComponentRestrictPosition(player, 50, 50, ScreenGame.Bounds);
@@ -83,7 +83,7 @@ namespace FinalProject.GameComponents
         {
             float movementSpeed = 200 + 20 * saveGame.MovementSpeed;
             int damage = 2 + saveGame.Damage / 5;
-            int health = 20 + 2 * saveGame.Shields;
+            int health = 20 + 4 * saveGame.Shields;
             float firerate = .15f - .05f * saveGame.FireRate / 10;
             new ComponentPlayerController(player, movementSpeed);
             new ComponentVelocityAcceleration(player, Vector2.Zero, Vector2.Zero);

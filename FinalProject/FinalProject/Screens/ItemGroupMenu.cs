@@ -7,7 +7,6 @@ namespace FinalProject.Screens
     internal class ItemGroupMenu
     {
         protected int index;
-
         protected List<ItemMenu> items;
 
         public ItemGroupMenu()

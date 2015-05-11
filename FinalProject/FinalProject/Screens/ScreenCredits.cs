@@ -1,10 +1,7 @@
-﻿using FinalProject.GameSaving;
-using FinalProject.Utilities;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
 
 namespace FinalProject.Screens
 {
@@ -13,7 +10,6 @@ namespace FinalProject.Screens
         private enum Result { Back, Continue }
 
         private Texture2D background;
-
         private Result result;
 
         public ScreenCredits(ContentManager contentManager, GraphicsDevice graphicsDevice)

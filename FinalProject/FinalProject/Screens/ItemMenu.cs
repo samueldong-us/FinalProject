@@ -7,11 +7,8 @@ namespace FinalProject.Screens
     internal class ItemMenu
     {
         public bool Disabled;
-
         public bool Selected;
-
         public string Text;
-
         protected Vector2 position;
 
         public ItemMenu(Vector2 position, string text)

@@ -6,9 +6,7 @@ namespace FinalProject.GameComponents
     internal class ComponentTextureRenderer : DrawableComponent
     {
         private Rectangle source;
-
         private Texture2D texture;
-
         private Color tint;
 
         public ComponentTextureRenderer(Entity entity, Texture2D texture, Rectangle source, Color tint, string drawableLayer)

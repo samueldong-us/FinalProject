@@ -13,11 +13,8 @@ namespace FinalProject.Screens
         private enum Result { Back, Continue }
 
         private Texture2D background;
-
         private int currentPage;
-
         private Result result;
-
         private List<ItemGroupMenu> savedGames;
 
         public ScreenLoadGame(ContentManager contentManager, GraphicsDevice graphicsDevice)

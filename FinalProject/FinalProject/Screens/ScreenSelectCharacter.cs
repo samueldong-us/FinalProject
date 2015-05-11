@@ -13,17 +13,11 @@ namespace FinalProject.Screens
         private enum Result { Back, Continue }
 
         private const float RotationSpeed = (float)(Math.PI / 8);
-
         private Texture2D background;
-
         private SaveGame currentGame;
-
         private Texture2D displayShips;
-
         private ItemGroupMenu menuItems;
-
         private Result result;
-
         private float rotation;
 
         public ScreenSelectCharacter(ContentManager contentManager, GraphicsDevice graphicsDevice)

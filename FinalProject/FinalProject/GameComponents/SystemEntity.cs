@@ -5,7 +5,6 @@ namespace FinalProject.GameComponents
     internal class SystemEntity
     {
         private List<Entity> entityList;
-
         private List<Entity> toAdd;
         private List<Entity> toRemove;
 

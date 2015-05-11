@@ -3,10 +3,6 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.Screens
 {
@@ -14,11 +10,9 @@ namespace FinalProject.Screens
     {
         private const float VolumeChangeSpeed = 10;
         private Texture2D background;
-
+        private ItemMenu debug;
         private float master;
-
         private ItemGroupMenu menuItems;
-
         private ItemMenu volume;
 
         public ScreenSettings(ContentManager contentManager, GraphicsDevice graphicsDevice)
@@ -35,6 +29,14 @@ namespace FinalProject.Screens
                     {
                         switch (key)
                         {
+                            case Keys.Enter:
+                                {
+                                    if (menuItems.GetSelected().Contains("DEBUG"))
+                                    {
+                                        GameMain.DebugMode = !GameMain.DebugMode;
+                                        debug.Text = "DEBUG MODE: " + (GameMain.DebugMode ? "ON" : "OFF");
+                                    }
+                                } break;
                             case Keys.Left:
                                 {
                                     GameMain.Audio.PlayOneTimeSound("Menu Sound");
@@ -71,7 +73,9 @@ namespace FinalProject.Screens
         {
             master = (int)(GameMain.Audio.GetVolume() * 100);
             volume = new ItemMenu(new Vector2(280, 320), "VOLUME: " + (int)master);
+            debug = new ItemMenu(new Vector2(280, 450), "DEBUG MODE: " + (GameMain.DebugMode ? "ON" : "OFF"));
             menuItems.AddItem(volume);
+            menuItems.AddItem(debug);
             base.Start();
         }
 

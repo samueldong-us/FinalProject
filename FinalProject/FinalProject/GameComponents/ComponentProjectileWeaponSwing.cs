@@ -1,24 +1,16 @@
 ﻿using FinalProject.Screens;
 using Microsoft.Xna.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
 namespace FinalProject.GameComponents
 {
     internal class ComponentProjectileWeaponSwing : ComponentProjectileWeapon
     {
         private const float FieldOfFire = (float)(Math.PI / 8);
-
         private const int Speed = 200;
-
         private Vector2 closestPosition;
-
         private int damage;
-
         private float deltaTheta;
-
         private float theta;
 
         public ComponentProjectileWeaponSwing(Entity entity, int damage, float deltaTheta)

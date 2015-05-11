@@ -6,7 +6,6 @@ namespace FinalProject.GameComponents
     internal class ComponentBounce : Component
     {
         private bool bounced;
-
         private Vector2 velocity;
 
         public ComponentBounce(Entity entity)

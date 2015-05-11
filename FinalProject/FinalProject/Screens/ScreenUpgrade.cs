@@ -12,9 +12,7 @@ namespace FinalProject.Screens
     internal class ScreenUpgrade : ScreenPixelatedTransition
     {
         private Texture2D background;
-
         private SaveGame currentGame;
-
         private ItemGroupUpgrade upgrades;
 
         public ScreenUpgrade(ContentManager contentManager, GraphicsDevice graphicsDevice)

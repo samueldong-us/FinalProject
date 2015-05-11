@@ -7,13 +7,9 @@ namespace FinalProject.GameComponents
     internal class ComponentProjectileWeaponCircularBounce : ComponentProjectileWeapon
     {
         private const int Speed = 200;
-
         private int damage;
-
         private int numberOfBullets;
-
         private float rotation;
-
         private float rotationalDelta;
 
         public ComponentProjectileWeaponCircularBounce(Entity entity, int numberOfBullets, int damage, float rotationalDelta)

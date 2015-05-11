@@ -8,9 +8,7 @@ namespace FinalProject.GameComponents
     internal class ComponentProjectileWeaponSplitShot : ComponentProjectileWeapon
     {
         private const int Speed = 200;
-
         private Vector2 closestPosition;
-
         private int damage;
 
         public ComponentProjectileWeaponSplitShot(Entity entity, int damage)
