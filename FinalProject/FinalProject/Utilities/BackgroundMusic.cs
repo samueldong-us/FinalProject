@@ -10,6 +10,7 @@ namespace FinalProject.Utilities
         private const float Volume = 1f;
         private int bufferIndex;
         private ContentManager content;
+        private ContentManager[] contentBuffer;
         private SoundEffectInstance currentSong;
         private SoundState lastSoundState;
         private List<string> playlist;
@@ -17,7 +18,7 @@ namespace FinalProject.Utilities
         private SoundEffect[] songBuffer;
         private string[] songs = { "Acrylics", "Zoooom", "Goooo", "Twistclip" };
 
-        public BackgroundMusic(ContentManager content)
+        public BackgroundMusic(ContentManager content1, ContentManager content2)
         {
             songBuffer = new SoundEffect[2];
             InitializeVolumes();
@@ -26,7 +27,9 @@ namespace FinalProject.Utilities
             playlistIndex = 0;
             lastSoundState = SoundState.Stopped;
             GeneratePlaylist();
-            this.content = content;
+            contentBuffer = new ContentManager[2];
+            contentBuffer[0] = content1;
+            contentBuffer[1] = content2;
         }
 
         public void LoadContent()
@@ -40,23 +43,19 @@ namespace FinalProject.Utilities
         {
             if (currentSong.State == SoundState.Stopped && lastSoundState == SoundState.Playing)
             {
+                playlistIndex = (playlistIndex + 1) % playlist.Count;
+                SwapBuffers();
+                contentBuffer[BackBuffer()].Unload();
                 if (playlistIndex == playlist.Count - 1)
                 {
                     GeneratePlaylist();
-                    playlistIndex = 0;
-                    SwapBuffers();
-                    songBuffer[BackBuffer()].Dispose();
-                    LoadSongAsynchronously(playlist[playlistIndex], BackBuffer());
-                    Play();
+                    LoadSongAsynchronously(playlist[0], BackBuffer());
                 }
                 else
                 {
-                    playlistIndex++;
-                    SwapBuffers();
-                    songBuffer[BackBuffer()].Dispose();
-                    LoadSongAsynchronously(playlist[playlistIndex], BackBuffer());
-                    Play();
+                    LoadSongAsynchronously(playlist[playlistIndex + 1], BackBuffer());
                 }
+                Play();
             }
             currentSong.Volume = masterVolume * 1;
             lastSoundState = currentSong.State;
@@ -106,7 +105,7 @@ namespace FinalProject.Utilities
 
         private void LoadSong(string name, int index)
         {
-            songBuffer[index] = content.Load<SoundEffect>(name);
+            songBuffer[index] = contentBuffer[index].Load<SoundEffect>(name);
         }
 
         private void LoadSongAsynchronously(string name, int index)
