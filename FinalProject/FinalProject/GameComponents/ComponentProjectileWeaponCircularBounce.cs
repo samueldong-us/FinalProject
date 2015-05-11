@@ -23,7 +23,7 @@ namespace FinalProject.GameComponents
 
         protected override void Fire()
         {
-            GameMain.Audio.PlayOneTimeSound("Laser Sound");
+            GameMain.Audio.PlayOneTimeSound("Enemy Sound");
             for (int i = 0; i < numberOfBullets; i++)
             {
                 Entity bullet = CreateProjectile(Speed, (float)(2 * Math.PI * i / numberOfBullets + rotation), GameAssets.BulletTexture, GameAssets.Bullet[8], GameAssets.BulletTriangles[8], new Color(137, 112, 232), "EnemyBullet", "EnemyBullet");

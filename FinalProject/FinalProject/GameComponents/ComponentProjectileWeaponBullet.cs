@@ -26,6 +26,7 @@ namespace FinalProject.GameComponents
 
         protected override void Fire()
         {
+            GameMain.Audio.PlayOneTimeSound("Enemy Sound");
             ScreenGame.MessageCenter.Broadcast<Entity>("Find Closest Player", entity);
             Vector2 direction = closestPosition - entity.Position;
             if (closestPosition.Equals(new Vector2(-1, -1)))

@@ -32,7 +32,7 @@ namespace FinalProject.GameComponents
         {
             for (int i = 0; i < numberOfBullets; i++)
             {
-                GameMain.Audio.PlayOneTimeSound("Laser Sound");
+                GameMain.Audio.PlayOneTimeSound("Enemy Sound");
                 Entity bullet = CreateProjectile(Speed, (float)(2 * Math.PI * i / numberOfBullets + rotation), GameAssets.BulletTexture, GameAssets.Bullet[11], GameAssets.BulletTriangles[11], new Color(186, 124, 255), "EnemyBullet", "EnemyBullet");
                 new ComponentDealDamage(bullet, damage);
                 ScreenGame.Entities.AddEntity(bullet);

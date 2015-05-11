@@ -31,7 +31,7 @@ namespace FinalProject.Utilities
             oneTimeSounds["Laser Sound"] = new OneTimeSound(content.Load<SoundEffect>("Laser_Shoot"), .7f);
             oneTimeSounds["Spread Sound"] = new OneTimeSound(content.Load<SoundEffect>("Laser_Shoot2"), .2f);
             oneTimeSounds["Homing Sound"] = new OneTimeSound(content.Load<SoundEffect>("Laser_Shoot4"), .2f);
-            oneTimeSounds["Enemy Sound"] = new OneTimeSound(content.Load<SoundEffect>("Enemy_Shoot"), .2f);
+            oneTimeSounds["Enemy Sound"] = new OneTimeSound(content.Load<SoundEffect>("Enemy_Shoot"), .7f);
             backgroundMusic = new BackgroundMusic(content);
             backgroundMusic.LoadContent();
         }
