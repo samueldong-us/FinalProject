@@ -27,10 +27,6 @@ namespace FinalProject.GameComponents
             laser.MessageCenter.AddListener<Entity, Entity>("Collided With", AddToList);
             ScreenGame.Entities.AddEntity(laser);
         }
-        protected void Fire()
-        {
-            GameMain.Audio.PlayOneTimeSound("Laser Sound");
-        }
 
         public override void Dispose()
         {
@@ -50,6 +46,11 @@ namespace FinalProject.GameComponents
                 entity.MessageCenter.Broadcast<float>("Take Damage", damagePerSecond * secondsPassed);
             }
             toDamage.Clear();
+        }
+
+        protected void Fire()
+        {
+            GameMain.Audio.PlayOneTimeSound("Laser Sound");
         }
 
         private void AddToList(Entity entity, Entity collidedWith)
