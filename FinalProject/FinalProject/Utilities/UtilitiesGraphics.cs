@@ -83,7 +83,7 @@ namespace FinalProject.Utilities
         {
             renderTarget = new RenderTarget2D(
                 graphicsDevice,
-               GameMain.VirtualWidth,
+                GameMain.VirtualWidth,
                 GameMain.VirtualHeight,
                 false,
                 graphicsDevice.PresentationParameters.BackBufferFormat,
