@@ -9,7 +9,6 @@ namespace FinalProject.Utilities
     {
         private const float Volume = 1f;
         private int bufferIndex;
-        private ContentManager content;
         private ContentManager[] contentBuffer;
         private SoundEffectInstance currentSong;
         private SoundState lastSoundState;
