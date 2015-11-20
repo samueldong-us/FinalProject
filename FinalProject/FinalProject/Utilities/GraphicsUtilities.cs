@@ -5,7 +5,7 @@ using System;
 
 namespace FinalProject.Utilities
 {
-    internal static class UtilitiesGraphics
+    internal static class GraphicsUtilities
     {
         public static Texture2D PlainTexture = null;
         private static Effect circularWipe;
@@ -47,11 +47,11 @@ namespace FinalProject.Utilities
             Rectangle scaledRectangle = new Rectangle(0, 0, (int)(GameMain.VirtualWidth * scale), (int)(GameMain.VirtualHeight * scale));
             spriteBatch.End();
             graphicsDevice.SetRenderTarget(null);
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, UtilitiesGame.GetResizeMatrix(graphicsDevice));
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, SamplerState.PointClamp, null, null, null, GameUtilities.GetResizeMatrix(graphicsDevice));
             spriteBatch.Draw((Texture2D)renderTarget, destinationRectangle, scaledRectangle, Color.White);
             spriteBatch.End();
-            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, UtilitiesGame.GetResizeMatrix(graphicsDevice));
-            currentMatrix = UtilitiesGame.GetResizeMatrix(graphicsDevice);
+            spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, GameUtilities.GetResizeMatrix(graphicsDevice));
+            currentMatrix = GameUtilities.GetResizeMatrix(graphicsDevice);
         }
 
         public static void EndDrawingWithCircularWipe(SpriteBatch spriteBatch)

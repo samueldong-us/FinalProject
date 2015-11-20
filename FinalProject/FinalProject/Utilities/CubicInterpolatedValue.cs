@@ -2,11 +2,11 @@
 
 namespace FinalProject.Utilities
 {
-    internal class InterpolatedValueLinear : InterpolatedValue
+    internal class CubicInterpolatedValue : InterpolatedValue
     {
         private float beginningValue, endingValue;
 
-        public InterpolatedValueLinear(float beginningValue, float endingValue, float timeToFinish)
+        public CubicInterpolatedValue(float beginningValue, float endingValue, float timeToFinish)
             : base(timeToFinish)
         {
             this.beginningValue = beginningValue;
@@ -15,7 +15,7 @@ namespace FinalProject.Utilities
 
         public override float GetValue()
         {
-            return MathHelper.Lerp(beginningValue, endingValue, parameter);
+            return MathHelper.SmoothStep(beginningValue, endingValue, parameter);
         }
     }
 }

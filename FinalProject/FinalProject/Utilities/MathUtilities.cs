@@ -3,7 +3,7 @@ using System;
 
 namespace FinalProject.Utilities
 {
-    internal static class UtilitiesMath
+    internal static class MathUtilities
     {
         public static float AngleBetween(Vector2 one, Vector2 two)
         {

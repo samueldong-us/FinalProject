@@ -2,12 +2,12 @@
 
 namespace FinalProject.Utilities
 {
-    internal class InterpolatedValueExponential : InterpolatedValue
+    internal class ExponentialInterpolatedValue : InterpolatedValue
     {
         private float beginningValue, endingValue;
         private float offset;
 
-        public InterpolatedValueExponential(float beginningValue, float endingValue, float timeToFinish)
+        public ExponentialInterpolatedValue(float beginningValue, float endingValue, float timeToFinish)
             : base(timeToFinish)
         {
             float smallestValue = Math.Min(beginningValue, endingValue);

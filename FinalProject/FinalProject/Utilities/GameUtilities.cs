@@ -5,7 +5,7 @@ using System;
 
 namespace FinalProject.Utilities
 {
-    internal static class UtilitiesGame
+    internal static class GameUtilities
     {
         public static ContentManager GenerateNewContentManager(GameServiceContainer gameService)
         {
