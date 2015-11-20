@@ -4,16 +4,16 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace FinalProject.Screens
 {
-    internal abstract class ScreenPixelatedTransition : Screen
+    internal abstract class PixelatedTransitionScreen : Screen
     {
         private InterpolatedValue scaleIn, scaleOut;
 
-        public ScreenPixelatedTransition(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public PixelatedTransitionScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
-            scaleIn = new InterpolatedValueExponential(.002f, .25f, .5f);
+            scaleIn = new ExponentialInterpolatedValue(.002f, .25f, .5f);
             scaleIn.InterpolationFinished = ScaleInFinished;
-            scaleOut = new InterpolatedValueExponential(.25f, .002f, .5f);
+            scaleOut = new ExponentialInterpolatedValue(.25f, .002f, .5f);
             scaleOut.InterpolationFinished = ScaleOutFinished;
         }
 
@@ -23,9 +23,9 @@ namespace FinalProject.Screens
             {
                 case ScreenState.TransitioningIn:
                     {
-                        UtilitiesGraphics.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                         DrawScreen(spriteBatch);
-                        UtilitiesGraphics.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleIn.GetValue());
                     } break;
                 case ScreenState.Active:
                     {
@@ -33,9 +33,9 @@ namespace FinalProject.Screens
                     } break;
                 case ScreenState.TransitioningOut:
                     {
-                        UtilitiesGraphics.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
+                        GraphicsUtilities.BeginDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                         DrawScreen(spriteBatch);
-                        UtilitiesGraphics.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
+                        GraphicsUtilities.EndDrawingPixelated(spriteBatch, graphicsDevice, scaleOut.GetValue());
                     } break;
             }
         }

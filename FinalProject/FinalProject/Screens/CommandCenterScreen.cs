@@ -8,7 +8,7 @@ using System;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenCommandCenter : ScreenPixelatedTransition
+    internal class CommandCenterScreen : PixelatedTransitionScreen
     {
         private enum Result { Back, Continue }
 
@@ -20,7 +20,7 @@ namespace FinalProject.Screens
         private Result result;
         private float rotation;
 
-        public ScreenCommandCenter(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public CommandCenterScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             menuItems = new ItemGroupMenu();
@@ -121,23 +121,23 @@ namespace FinalProject.Screens
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             menuItems.Draw(spriteBatch);
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "COMMAND CENTER");
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "COMMAND CENTER");
             switch (currentGame.character)
             {
                 case SaveGame.Character.Varlet:
                     {
                         spriteBatch.Draw(displayShips, new Vector2(1400, 500), new Rectangle(460, 0, 230, 230), Color.White, rotation, new Vector2(115, 115), 1, SpriteEffects.None, 0);
-                        UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(1250, 700), "LASER");
+                        GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(1250, 700), "LASER");
                     } break;
                 case SaveGame.Character.Oason:
                     {
                         spriteBatch.Draw(displayShips, new Vector2(1400, 500), new Rectangle(230, 0, 230, 230), Color.White, rotation, new Vector2(115, 115), 1, SpriteEffects.None, 0);
-                        UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(1250, 700), "HOMING");
+                        GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(1250, 700), "HOMING");
                     } break;
                 case SaveGame.Character.Dimmy:
                     {
                         spriteBatch.Draw(displayShips, new Vector2(1400, 500), new Rectangle(0, 0, 230, 230), Color.White, rotation, new Vector2(115, 115), 1, SpriteEffects.None, 0);
-                        UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(1250, 700), "SPREAD");
+                        GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green, new Vector2(1250, 700), "SPREAD");
                     } break;
             }
         }

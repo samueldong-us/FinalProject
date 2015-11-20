@@ -8,7 +8,7 @@ using System.Collections.Generic;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenLoadGame : ScreenPixelatedTransition
+    internal class LoadGameScreen : PixelatedTransitionScreen
     {
         private enum Result { Back, Continue }
 
@@ -17,7 +17,7 @@ namespace FinalProject.Screens
         private Result result;
         private List<ItemGroupMenu> savedGames;
 
-        public ScreenLoadGame(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public LoadGameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             savedGames = new List<ItemGroupMenu>();
@@ -118,13 +118,13 @@ namespace FinalProject.Screens
             }
             if (currentPage == -1)
             {
-                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Green, new Vector2(375, 880), "NO SAVES");
+                GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Green, new Vector2(375, 880), "NO SAVES");
             }
             else
             {
-                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Green, new Vector2(375, 880), "PAGE " + (currentPage + 1) + "/" + savedGames.Count);
+                GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeNameFont, Fonts.Green, new Vector2(375, 880), "PAGE " + (currentPage + 1) + "/" + savedGames.Count);
             }
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(380, 210), "SELECT PROFILE");
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(380, 210), "SELECT PROFILE");
         }
 
         protected override void Reset()

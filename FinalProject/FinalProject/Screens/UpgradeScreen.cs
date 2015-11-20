@@ -9,13 +9,13 @@ using System.Collections.Generic;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenUpgrade : ScreenPixelatedTransition
+    internal class UpgradeScreen : PixelatedTransitionScreen
     {
         private Texture2D background;
         private SaveGame currentGame;
         private ItemGroupUpgrade upgrades;
 
-        public ScreenUpgrade(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public UpgradeScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             upgrades = new ItemGroupUpgrade();
@@ -89,9 +89,9 @@ namespace FinalProject.Screens
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             upgrades.Draw(spriteBatch);
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "UPGRADES");
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditTextFont, Fonts.Red, new Vector2(1155, 245), "CREDITS:");
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditsFont, Fonts.Red, new Vector2(1440, 245), "" + currentGame.Credits);
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "UPGRADES");
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditTextFont, Fonts.Red, new Vector2(1155, 245), "CREDITS:");
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditsFont, Fonts.Red, new Vector2(1440, 245), "" + currentGame.Credits);
         }
 
         protected override void Reset()

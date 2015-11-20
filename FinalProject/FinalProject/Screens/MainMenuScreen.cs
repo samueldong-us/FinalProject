@@ -5,12 +5,12 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenMainMenu : ScreenPixelatedTransition
+    internal class MainMenuScreen : PixelatedTransitionScreen
     {
         private Texture2D background;
         private ItemGroupMenu menuItems;
 
-        public ScreenMainMenu(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public MainMenuScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             menuItems = new ItemGroupMenu();

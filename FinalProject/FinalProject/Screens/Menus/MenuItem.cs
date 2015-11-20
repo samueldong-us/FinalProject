@@ -23,10 +23,10 @@ namespace FinalProject.Screens
         {
             if (Selected && !Disabled)
             {
-                spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle((int)position.X, (int)position.Y, 100, 100), Fonts.Teal);
-                spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle((int)position.X + 100, (int)position.Y, 860, 100), Fonts.Teal * 0.27f);
+                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle((int)position.X, (int)position.Y, 100, 100), Fonts.Teal);
+                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle((int)position.X + 100, (int)position.Y, 860, 100), Fonts.Teal * 0.27f);
             }
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Disabled ? Fonts.Teal * 0.27f : Fonts.Teal, position + new Vector2(100, 55), Text);
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Disabled ? Fonts.Teal * 0.27f : Fonts.Teal, position + new Vector2(100, 55), Text);
         }
     }
 }

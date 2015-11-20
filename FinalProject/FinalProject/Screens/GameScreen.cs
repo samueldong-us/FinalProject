@@ -11,14 +11,14 @@ using System;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenGame : ScreenPixelatedTransition
+    internal class GameScreen : PixelatedTransitionScreen
     {
         public static Rectangle Bounds = new Rectangle(460, 0, 1000, 1062);
-        public static SystemCollisions Collisions;
-        public static SystemDrawing Drawing;
-        public static SystemEntity Entities;
+        public static CollisionSystem Collisions;
+        public static DrawingSystem Drawing;
+        public static EntitySystem Entities;
         public static MessageCenter MessageCenter;
-        public static SystemScoring Scoring;
+        public static ScoringSystem Scoring;
         public static Rectangle Visible = new Rectangle(460, 0, 1000, 1080);
         private SaveGame currentGame;
         private InterpolatedValue fadeIn;
@@ -30,15 +30,15 @@ namespace FinalProject.Screens
         private bool readyToLeave;
         private Random rng = new Random();
         private ScrollingBackground scrollingBackground;
-        private SystemWaves waveManager;
+        private WavesSystem waveManager;
 
-        public ScreenGame(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public GameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             InitializeSystems();
             InitializeMessageCenter();
             InitializeMenu();
-            fadeIn = new InterpolatedValueLinear(0, .75f, 1);
+            fadeIn = new LinearInterpolatedValue(0, .75f, 1);
             fadeIn.InterpolationFinished = (leftOver) => { readyToLeave = true; };
             GameMain.MessageCenter.AddListener<SaveGame, string>("Save Game and Stage Pass to Game", SetCurrentGameAndStage);
         }
@@ -60,9 +60,9 @@ namespace FinalProject.Screens
                                 if (!gameOver)
                                 {
                                     currentGame.Credits += Scoring.GetScore();
-                                    if (FactoryUnit.Stage + 1 > currentGame.HighestUnlockedStage && currentGame.HighestUnlockedStage < 3)
+                                    if (UnitFactory.Stage + 1 > currentGame.HighestUnlockedStage && currentGame.HighestUnlockedStage < 3)
                                     {
-                                        currentGame.HighestUnlockedStage = FactoryUnit.Stage + 1;
+                                        currentGame.HighestUnlockedStage = UnitFactory.Stage + 1;
                                     }
                                     SaveGameManager.SaveGame(currentGame);
                                 }
@@ -170,22 +170,22 @@ namespace FinalProject.Screens
             Scoring.Draw(spriteBatch);
             if (gameOver)
             {
-                spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, fadeIn.GetValue()));
-                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Red * fadeIn.GetValue(), new Vector2(460, 500), "DEFEAT");
-                UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Red * fadeIn.GetValue(), new Vector2(460, 600), "EARNED 0 CREDITS");
+                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, fadeIn.GetValue()));
+                GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Red * fadeIn.GetValue(), new Vector2(460, 500), "DEFEAT");
+                GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Red * fadeIn.GetValue(), new Vector2(460, 600), "EARNED 0 CREDITS");
             }
             else
             {
                 if (EnemiesGone())
                 {
-                    spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, fadeIn.GetValue()));
-                    UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 500), "VICTORY");
-                    UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 600), "EARNED " + Scoring.GetScore() + " CREDITS");
+                    spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, fadeIn.GetValue()));
+                    GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 500), "VICTORY");
+                    GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuItemFont, Fonts.Green * fadeIn.GetValue(), new Vector2(460, 600), "EARNED " + Scoring.GetScore() + " CREDITS");
                 }
             }
             if (paused)
             {
-                spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, .75f));
+                spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, .75f));
                 menuItems.Draw(spriteBatch);
             }
         }
@@ -230,10 +230,10 @@ namespace FinalProject.Screens
 
         private void InitializeSystems()
         {
-            Collisions = new SystemCollisions();
-            Drawing = new SystemDrawing();
-            Entities = new SystemEntity();
-            Scoring = new SystemScoring();
+            Collisions = new CollisionSystem();
+            Drawing = new DrawingSystem();
+            Entities = new EntitySystem();
+            Scoring = new ScoringSystem();
         }
 
         private void Pause()
@@ -245,44 +245,44 @@ namespace FinalProject.Screens
         private void SetCurrentGameAndStage(SaveGame saveGame, string stage)
         {
             currentGame = saveGame;
-            FactoryUnit.Difficulty = currentGame.difficulty;
+            UnitFactory.Difficulty = currentGame.difficulty;
             switch (stage)
             {
                 case "LEVEL 1":
                     {
-                        FactoryUnit.Stage = 1;
+                        UnitFactory.Stage = 1;
                     } break;
                 case "LEVEL 2":
                     {
-                        FactoryUnit.Stage = 2;
+                        UnitFactory.Stage = 2;
                     } break;
                 case "LEVEL 3":
                     {
-                        FactoryUnit.Stage = 3;
+                        UnitFactory.Stage = 3;
                     } break;
             }
-            scrollingBackground = new ScrollingBackground("Level" + FactoryUnit.Stage + "BG");
+            scrollingBackground = new ScrollingBackground("Level" + UnitFactory.Stage + "BG");
         }
 
         private void Setup()
         {
-            switch (FactoryUnit.Stage)
+            switch (UnitFactory.Stage)
             {
                 case 1:
                     {
-                        waveManager = new SystemWaves(LevelGenerator.GenerateLevel1());
+                        waveManager = new WavesSystem(LevelGenerator.GenerateLevel1());
                     } break;
                 case 2:
                     {
-                        waveManager = new SystemWaves(LevelGenerator.GenerateLevel2());
+                        waveManager = new WavesSystem(LevelGenerator.GenerateLevel2());
                     } break;
                 case 3:
                     {
-                        waveManager = new SystemWaves(LevelGenerator.GenerateLevel3());
+                        waveManager = new WavesSystem(LevelGenerator.GenerateLevel3());
                     } break;
             }
             Scoring.SetMaxScore(waveManager.GetTotalPossibleScore());
-            Entity player = FactoryPlayer.CreatePlayer(currentGame);
+            Entity player = PlayerFactory.CreatePlayer(currentGame);
             player.MessageCenter.AddListener("Health Depleted", () => { gameOver = true; });
             Scoring.SetPlayer(player);
             Entities.AddEntity(player);

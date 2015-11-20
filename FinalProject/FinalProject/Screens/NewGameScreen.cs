@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenNewGame : ScreenPixelatedTransition
+    internal class NewGameScreen : PixelatedTransitionScreen
     {
         private enum Error { None, Exists, Empty }
 
@@ -20,7 +20,7 @@ namespace FinalProject.Screens
         private Result result;
         private ItemMenu userGameName;
 
-        public ScreenNewGame(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public NewGameScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             menuItems = new ItemGroupMenu();
@@ -120,16 +120,16 @@ namespace FinalProject.Screens
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             menuItems.Draw(spriteBatch);
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(380, 210), "NAME PROFILE");
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(380, 210), "NAME PROFILE");
             switch (lastError)
             {
                 case Error.Empty:
                     {
-                        UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditTextFont, Fonts.Red, new Vector2(380, 620), "INVALID NAME");
+                        GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditTextFont, Fonts.Red, new Vector2(380, 620), "INVALID NAME");
                     } break;
                 case Error.Exists:
                     {
-                        UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditTextFont, Fonts.Red, new Vector2(380, 620), "NAME ALREADY FOUND");
+                        GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.UpgradeCreditTextFont, Fonts.Red, new Vector2(380, 620), "NAME ALREADY FOUND");
                     } break;
             }
         }

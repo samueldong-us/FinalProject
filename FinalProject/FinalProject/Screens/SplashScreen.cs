@@ -7,7 +7,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenSplash : ScreenPixelatedTransition
+    internal class SplashScreen : PixelatedTransitionScreen
     {
         private Texture2D background;
         private InterpolatedValue opacity;
@@ -15,10 +15,10 @@ namespace FinalProject.Screens
         private ScrollingBackground scrollingBackground;
         private Texture2D title;
 
-        public ScreenSplash(ContentManager content, GraphicsDevice graphicsDevice)
+        public SplashScreen(ContentManager content, GraphicsDevice graphicsDevice)
             : base(content, graphicsDevice)
         {
-            opacity = new InterpolatedValueLinear(1, 0, 2);
+            opacity = new LinearInterpolatedValue(1, 0, 2);
             opacity.InterpolationFinished = (parameter) => { ready = true; };
             scrollingBackground = new ScrollingBackground("Level3BG");
         }
@@ -58,8 +58,8 @@ namespace FinalProject.Screens
         {
             scrollingBackground.Draw(spriteBatch);
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
-            spriteBatch.Draw(title, ScreenGame.Visible, Color.White);
-            spriteBatch.Draw(UtilitiesGraphics.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, opacity.GetValue()));
+            spriteBatch.Draw(title, GameScreen.Visible, Color.White);
+            spriteBatch.Draw(GraphicsUtilities.PlainTexture, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), new Color(0, 0, 0, opacity.GetValue()));
         }
 
         protected override void Reset()

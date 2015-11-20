@@ -8,7 +8,7 @@ using System;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenSelectStage : ScreenPixelatedTransition
+    internal class SelectDifficultyScreen : PixelatedTransitionScreen
     {
         private enum Result { Back, Continue }
 
@@ -17,11 +17,12 @@ namespace FinalProject.Screens
         private ItemGroupMenu menuItems;
         private Result result;
 
-        public ScreenSelectStage(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public SelectDifficultyScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             menuItems = new ItemGroupMenu();
-            GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Select Stage", saveGame => currentGame = saveGame);
+            InitializeMenu();
+            GameMain.MessageCenter.AddListener<SaveGame>("Save Game Pass to Select Difficulty", saveGame => currentGame = saveGame);
         }
 
         public override void KeyPressed(Keys key)
@@ -34,6 +35,21 @@ namespace FinalProject.Screens
                         {
                             case Keys.Enter:
                                 {
+                                    switch (menuItems.GetSelected())
+                                    {
+                                        case "EASY":
+                                            {
+                                                currentGame.difficulty = SaveGame.Difficulty.Easy;
+                                            } break;
+                                        case "NORMAL":
+                                            {
+                                                currentGame.difficulty = SaveGame.Difficulty.Normal;
+                                            } break;
+                                        case "HARD":
+                                            {
+                                                currentGame.difficulty = SaveGame.Difficulty.Hard;
+                                            } break;
+                                    }
                                     result = Result.Continue;
                                     BeginTransitioningOut();
                                     GameMain.Audio.PlayOneTimeSound("Menu Sound");
@@ -71,27 +87,7 @@ namespace FinalProject.Screens
             {
                 throw new Exception("A Save Game Must Be Passed In");
             }
-            switch (currentGame.HighestUnlockedStage)
-            {
-                case 1:
-                    {
-                        menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "LEVEL 1"));
-                        menuItems.AddItem(new ItemMenu(new Vector2(280, 450), "LEVEL 2") { Disabled = true });
-                        menuItems.AddItem(new ItemMenu(new Vector2(280, 580), "LEVEL 3") { Disabled = true });
-                    } break;
-                case 2:
-                    {
-                        menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "LEVEL 1"));
-                        menuItems.AddItem(new ItemMenu(new Vector2(280, 450), "LEVEL 2"));
-                        menuItems.AddItem(new ItemMenu(new Vector2(280, 580), "LEVEL 3") { Disabled = true });
-                    } break;
-                case 3:
-                    {
-                        menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "LEVEL 1"));
-                        menuItems.AddItem(new ItemMenu(new Vector2(280, 450), "LEVEL 2"));
-                        menuItems.AddItem(new ItemMenu(new Vector2(280, 580), "LEVEL 3"));
-                    } break;
-            }
+            InitializeMenu();
             base.Start();
         }
 
@@ -101,13 +97,14 @@ namespace FinalProject.Screens
             {
                 case Result.Continue:
                     {
-                        GameMain.MessageCenter.Broadcast<SaveGame, string>("Save Game and Stage Pass to Game", currentGame, menuItems.GetSelected());
-                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Game");
+                        SaveGameManager.SaveGame(currentGame);
+                        GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
                     } break;
                 case Result.Back:
                     {
-                        GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Command Center", currentGame);
-                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Command Center");
+                        GameMain.MessageCenter.Broadcast<SaveGame>("Save Game Pass to Select Character", currentGame);
+                        GameMain.MessageCenter.Broadcast<string>("Start Loading Content", "Select Character");
                     } break;
             }
             base.BeginTransitioningOut();
@@ -117,14 +114,13 @@ namespace FinalProject.Screens
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             menuItems.Draw(spriteBatch);
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "STAGE SELECT");
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "SELECT DIFFICULTY");
         }
 
         protected override void Reset()
         {
             currentGame = null;
-            menuItems.Reset();
-            base.Reset();
+            menuItems.Reset(); base.Reset();
         }
 
         protected override void SwitchScreens()
@@ -133,13 +129,20 @@ namespace FinalProject.Screens
             {
                 case Result.Continue:
                     {
-                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Game");
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
                     } break;
                 case Result.Back:
                     {
-                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Command Center");
+                        GameMain.MessageCenter.Broadcast<string>("Switch Screens", "Select Character");
                     } break;
             }
+        }
+
+        private void InitializeMenu()
+        {
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 320), "EASY"));
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 450), "NORMAL"));
+            menuItems.AddItem(new ItemMenu(new Vector2(280, 580), "HARD"));
         }
     }
 }

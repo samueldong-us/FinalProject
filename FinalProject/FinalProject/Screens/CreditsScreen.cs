@@ -5,14 +5,14 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenCredits : ScreenPixelatedTransition
+    internal class CreditsScreen : PixelatedTransitionScreen
     {
         private enum Result { Back, Continue }
 
         private Texture2D background;
         private Result result;
 
-        public ScreenCredits(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public CreditsScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
         }

@@ -6,7 +6,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace FinalProject.Screens
 {
-    internal class ScreenSettings : ScreenPixelatedTransition
+    internal class SettingsScreen : PixelatedTransitionScreen
     {
         private const float VolumeChangeSpeed = 10;
         private Texture2D background;
@@ -15,7 +15,7 @@ namespace FinalProject.Screens
         private ItemGroupMenu menuItems;
         private ItemMenu volume;
 
-        public ScreenSettings(ContentManager contentManager, GraphicsDevice graphicsDevice)
+        public SettingsScreen(ContentManager contentManager, GraphicsDevice graphicsDevice)
             : base(contentManager, graphicsDevice)
         {
             menuItems = new ItemGroupMenu();
@@ -108,7 +108,7 @@ namespace FinalProject.Screens
         {
             spriteBatch.Draw(background, new Rectangle(0, 0, GameMain.VirtualWidth, GameMain.VirtualHeight), Color.White);
             menuItems.Draw(spriteBatch);
-            UtilitiesGraphics.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "SETTINGS");
+            GraphicsUtilities.DrawStringVerticallyCentered(spriteBatch, Fonts.MenuTitleFont, Fonts.Green, new Vector2(320, 210), "SETTINGS");
         }
 
         protected override void Reset()
