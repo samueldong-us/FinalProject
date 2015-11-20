@@ -4,13 +4,13 @@ using System.Collections.Generic;
 
 namespace FinalProject.GameWaves
 {
-    internal class SystemWaves
+    internal class WavesSystem
     {
         private const float TimeBetweenWaves = 2;
         private float timePassed;
         private List<Wave> waves;
 
-        public SystemWaves(List<Wave> waves)
+        public WavesSystem(List<Wave> waves)
         {
             this.waves = waves;
             timePassed = 0;
@@ -50,14 +50,14 @@ namespace FinalProject.GameWaves
             {
                 foreach (SpawnInformation info in waves[0].GetSpawnInformationToSpawn())
                 {
-                    ScreenGame.Entities.AddEntity(FactoryUnit.CreateEntityFromSpawnInformation(info));
+                    GameScreen.Entities.AddEntity(UnitFactory.CreateEntityFromSpawnInformation(info));
                 }
             }
         }
 
         private bool CurrentWaveOver()
         {
-            return waves[0].Finished() && ScreenGame.Collisions.GetCount("Enemy") == 0;
+            return waves[0].Finished() && GameScreen.Collisions.GetCount("Enemy") == 0;
         }
     }
 }
